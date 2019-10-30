@@ -1,18 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { TitlebarModule } from './features/titlebar';
+import { ActionbarModule } from './features/actionbar';
+import { SidebarModule } from './features/sidebar';
+import { ToolbarModule } from './features/toolbar';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  bootstrap: [AppComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+
+    TitlebarModule,
+    ActionbarModule,
+    SidebarModule,
+    ToolbarModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent],
 })
 export class AppModule { }

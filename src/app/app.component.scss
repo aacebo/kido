@@ -1,0 +1,12 @@
+@import '../styles/variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  padding-top: $titlebar-height;
+  height: 100%;
+
+  kido-sidebar {
+    flex: 1;
+  }
+}
