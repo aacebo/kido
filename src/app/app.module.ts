@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 
 import { TitlebarModule } from './features/titlebar';
@@ -13,6 +17,12 @@ import { ToolbarModule } from './features/toolbar';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+
+    StoreModule.forRoot({ }),
+    StoreDevtoolsModule.instrument({
+      logOnly: environment.production,
+      maxAge: 10,
+    }),
 
     TitlebarModule,
     ActionbarModule,

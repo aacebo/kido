@@ -4,12 +4,11 @@
   "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng build --base-href ./ && electron .",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "start:electron": "ng build --base-href ./ && electron ."
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +22,11 @@
     "@angular/router": "~8.2.9",
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@ng-bootstrap/ng-bootstrap": "^5.1.2",
+    "@ngrx/store": "^8.4.0",
+    "@ngrx/store-devtools": "^8.4.0",
     "bootstrap": "^4.3.1",
+    "dotenv": "^8.2.0",
+    "electron-is-dev": "^1.1.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
