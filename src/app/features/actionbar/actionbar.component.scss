@@ -1,6 +1,6 @@
 @import '../../../styles/variables';
 
 :host {
-  display: block;
-  height: 0 0 $actionbar-height;
+  display: flex;
+  flex: 0 0 $actionbar-height;
 }

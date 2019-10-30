@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, screen } = require('electron')
 const url = require("url");
 const path = require("path");
 
@@ -6,12 +6,14 @@ let mainWindow;
 
 function createWindow () {
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: screen.getPrimaryDisplay().bounds.width / 2,
     height: 600,
+    show: false,
     frame: process.platform === 'darwin' ? false : true,
     titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'default',
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegrationInWorker: true,
+      nodeIntegration: false
     }
   });
 
@@ -23,7 +25,10 @@ function createWindow () {
     })
   );
 
-  mainWindow.webContents.openDevTools();
+  mainWindow.webContents.on('dom-ready', () => {
+    mainWindow.show();
+    mainWindow.webContents.openDevTools();
+  });
 
   mainWindow.on('closed', () => {
     mainWindow = null;
