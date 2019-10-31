@@ -45,7 +45,7 @@ function createWindow () {
 
     mainWindow.webContents.send('system', {
       pid: process.pid,
-      platform: process.platform,
+      platform: process.platform
     });
   });
 
