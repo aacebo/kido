@@ -6,6 +6,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { ResourcesModule } from './resources';
 
 import { TitlebarModule } from './features/titlebar';
 import { ActionbarModule } from './features/actionbar';
@@ -24,6 +25,7 @@ import { ToolbarModule } from './features/toolbar';
       maxAge: 10,
     }),
 
+    ResourcesModule,
     TitlebarModule,
     ActionbarModule,
     SidebarModule,

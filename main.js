@@ -9,12 +9,20 @@ dotenv.config();
 
 let mainWindow;
 
-function createWindow () {
+function loadExtensions() {
   if (dev && process.env.REDUX_EXTENSION_LOCATION) {
+    if (process.env.REDUX_EXTENSION_FORCE_RELOAD) {
+      BrowserWindow.removeDevToolsExtension('Redux DevTools');
+    }
+
     BrowserWindow.addDevToolsExtension(
       path.join(os.homedir(), process.env.REDUX_EXTENSION_LOCATION),
     );
   }
+}
+
+function createWindow () {
+  loadExtensions();
 
   mainWindow = new BrowserWindow({
     width: screen.getPrimaryDisplay().bounds.width / 2,
@@ -35,7 +43,7 @@ function createWindow () {
     url.format({
       pathname: path.join(__dirname, `/dist/index.html`),
       protocol: "file:",
-      slashes: true
+      slashes: true,
     })
   );
 
@@ -45,7 +53,7 @@ function createWindow () {
 
     mainWindow.webContents.send('system', {
       pid: process.pid,
-      platform: process.platform
+      platform: process.platform,
     });
   });
 
