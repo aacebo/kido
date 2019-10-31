@@ -13,10 +13,12 @@ import { ISystem } from './models';
 export class SystemService {
   readonly state$: Observable<ISystemState>;
   readonly system$: Observable<ISystem>;
+  readonly isMac$: Observable<boolean>;
 
   constructor(private readonly _store$: Store<ISystemState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
     this.system$ = this._store$.pipe(select(selectors.selectSystem));
+    this.isMac$ = this._store$.pipe(select(selectors.selectIsMac));
   }
 
   add(system: ISystem) {

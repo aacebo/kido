@@ -1,6 +1,6 @@
-<kido-titlebar></kido-titlebar>
-<kido-sidebar>
-  <kido-toolbar></kido-toolbar>
+<kido-titlebar *ngIf="systemService.isMac$ | async"></kido-titlebar>
+<kido-sidebar [class.mac]="systemService.isMac$ | async">
+  <kido-toolbar [class.mac]="systemService.isMac$ | async"></kido-toolbar>
   <div>content</div>
 </kido-sidebar>
 <kido-actionbar></kido-actionbar>

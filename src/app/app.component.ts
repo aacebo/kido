@@ -11,13 +11,13 @@ import { ISystem, SystemService } from './resources/system';
 })
 export class AppComponent implements OnInit {
   constructor(
+    readonly systemService: SystemService,
     private readonly _electronService: ElectronService,
-    private readonly _systemService: SystemService,
   ) { }
 
   ngOnInit() {
     this._electronService.on('system', (system: ISystem) => {
-      this._systemService.add(system);
+      this.systemService.add(system);
     });
   }
 }
