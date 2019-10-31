@@ -3,4 +3,5 @@
 :host {
   display: flex;
   flex: 0 0 $actionbar-height;
+  border-top: 1px solid var(--hairline-strong);
 }
