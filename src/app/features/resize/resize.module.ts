@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HorizontalResizeDirective } from './directives';
+import * as components from './components';
+
+const declarations = [
+  components.HorizontalResizeBarComponent,
+];
 
 @NgModule({
-  declarations: [HorizontalResizeDirective],
-  exports: [HorizontalResizeDirective],
+  declarations,
+  exports: declarations,
   imports: [CommonModule],
 })
 export class ResizeModule { }
