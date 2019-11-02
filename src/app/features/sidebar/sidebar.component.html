@@ -1,8 +1,12 @@
 <div
   class="kido-sidebar"
-  kidoHorizontalResize
+  [style.width.px]="width"
 >
-  <div>sidebar</div>
+  <div class="kido-sidebar--content">sidebar</div>
+  <div
+    class="kido-sidebar--resizer"
+    (kidoHorizontalResize)="onResize($event)"
+  ></div>
 </div>
 
 <div class="kido-sidebar--content">

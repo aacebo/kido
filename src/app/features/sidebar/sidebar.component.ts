@@ -6,4 +6,10 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidebarComponent { }
+export class SidebarComponent {
+  width = 300;
+
+  onResize(e: number) {
+    this.width += e;
+  }
+}

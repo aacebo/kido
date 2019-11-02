@@ -1,17 +1,30 @@
-import { Directive, HostListener } from '@angular/core';
+import { Directive, HostListener, Output, EventEmitter } from '@angular/core';
 
 @Directive({
   selector: '[kidoHorizontalResize]',
-  host: { draggable: 'true' },
 })
 export class HorizontalResizeDirective {
-  @HostListener('dragstart')
-  onDragStart() {
-    console.log('start');
+  @Output('kidoHorizontalResize') resize = new EventEmitter<number>();
+
+  private _x?: number;
+
+  @HostListener('mousedown', ['$event'])
+  onMouseDown(e: MouseEvent) {
+    this._x = e.offsetX;
   }
 
-  @HostListener('dragend')
-  onDragEnd() {
-    console.log('end');
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(e: MouseEvent) {
+    if (this._x) {
+      this.resize.emit(e.offsetX - this._x);
+      this._x = e.offsetX;
+    }
+  }
+
+  @HostListener('document:mouseup')
+  onMouseUp() {
+    if (this._x) {
+      this._x = undefined;
+    }
   }
 }

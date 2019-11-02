@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import { ElectronService } from './core/services';
 import { ISystem, SystemService } from './resources/system';
+import { StreamService } from './resources/stream';
 
 @Component({
   selector: 'kido-root',
@@ -12,6 +13,7 @@ import { ISystem, SystemService } from './resources/system';
 export class AppComponent implements OnInit {
   constructor(
     readonly systemService: SystemService,
+    readonly streamService: StreamService,
     private readonly _electronService: ElectronService,
   ) { }
 
@@ -19,5 +21,9 @@ export class AppComponent implements OnInit {
     this._electronService.on('system', (system: ISystem) => {
       this.systemService.add(system);
     });
+
+    this.streamService.getCollections();
+    this.streamService.getStreams();
+    this.streamService.getMessages();
   }
 }

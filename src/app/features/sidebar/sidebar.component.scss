@@ -13,10 +13,14 @@
   .kido-sidebar {
     flex: 0 0 auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     position: relative;
-    width: 300px;
     box-shadow: 1px 0 4px 0 rgba(0, 0, 0, 0.2);
+
+    .kido-sidebar--resizer {
+      width: 5px;
+      cursor: col-resize;
+    }
   }
 
   .kido-sidebar--content {

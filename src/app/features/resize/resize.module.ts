@@ -5,6 +5,7 @@ import { HorizontalResizeDirective } from './directives';
 
 @NgModule({
   declarations: [HorizontalResizeDirective],
+  exports: [HorizontalResizeDirective],
   imports: [CommonModule],
 })
 export class ResizeModule { }

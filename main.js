@@ -1,4 +1,4 @@
-const { app, BrowserWindow, screen } = require('electron')
+const electron = require('electron')
 const url = require('url');
 const path = require('path');
 const dev = require('electron-is-dev');
@@ -12,10 +12,10 @@ let mainWindow;
 function loadExtensions() {
   if (dev && process.env.REDUX_EXTENSION_LOCATION) {
     if (process.env.REDUX_EXTENSION_FORCE_RELOAD) {
-      BrowserWindow.removeDevToolsExtension('Redux DevTools');
+      electron.BrowserWindow.removeDevToolsExtension('Redux DevTools');
     }
 
-    BrowserWindow.addDevToolsExtension(
+    electron.BrowserWindow.addDevToolsExtension(
       path.join(os.homedir(), process.env.REDUX_EXTENSION_LOCATION),
     );
   }
@@ -24,8 +24,8 @@ function loadExtensions() {
 function createWindow () {
   loadExtensions();
 
-  mainWindow = new BrowserWindow({
-    width: screen.getPrimaryDisplay().bounds.width / 2,
+  mainWindow = new electron.BrowserWindow({
+    width: electron.screen.getPrimaryDisplay().bounds.width / 2,
     height: 600,
     show: false,
     autoHideMenuBar: true,
@@ -62,13 +62,13 @@ function createWindow () {
   });
 }
 
-app.on('ready', createWindow);
+electron.app.on('ready', createWindow);
 
-app.on('window-all-closed', () => {
-  app.quit();
+electron.app.on('window-all-closed', () => {
+  electron.app.quit();
 });
 
-app.on('activate', () => {
+electron.app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
