@@ -19,7 +19,8 @@
       true,
       "element",
       "kido",
-      "kebab-case"
+      "kebab-case",
+      "attribute"
     ],
     "import-blacklist": [
       true,

@@ -17,6 +17,8 @@ import { ActionbarModule } from './features/actionbar';
 import { SidebarModule } from './features/sidebar';
 import { ToolbarModule } from './features/toolbar';
 
+import { ButtonModule } from './ui/button';
+
 PouchDB.plugin(PouchDBFind);
 
 @NgModule({
@@ -37,6 +39,8 @@ PouchDB.plugin(PouchDBFind);
     ActionbarModule,
     SidebarModule,
     ToolbarModule,
+
+    ButtonModule,
   ],
 })
 export class AppModule { }

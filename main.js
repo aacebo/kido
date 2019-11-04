@@ -30,6 +30,7 @@ function createWindow () {
     show: false,
     autoHideMenuBar: true,
     darkTheme: true,
+    title: 'Koda',
     frame: process.platform === 'darwin' ? false : true,
     titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'default',
     backgroundColor: '#424242',
