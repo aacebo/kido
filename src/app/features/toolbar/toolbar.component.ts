@@ -5,7 +5,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
   host: {
-    class: 'navbar navbar-dark bg-dark',
+    class: 'navbar',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

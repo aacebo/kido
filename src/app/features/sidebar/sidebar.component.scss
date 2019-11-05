@@ -3,6 +3,7 @@
 :host {
   display: flex;
   flex: 1;
+  background-color: var(--bg-darkest);
 
   &.mac {
     .kido-sidebar {
@@ -17,9 +18,14 @@
     position: relative;
     min-width: 200px;
     box-shadow: 1px 0 4px 0 rgba(0, 0, 0, 0.2);
+
+    .kido-sidebar--side-content {
+      flex: 1;
+    }
   }
 
   .kido-sidebar--content {
     flex: 1;
+    background-color: var(--bg-darker);
   }
 }

@@ -1,6 +1,10 @@
 $theme-colors: (
   'primary': #20D100,
-  'hairline-strong': #D4D4D4
+  'hairline-strong': #424242,
+  'text-muted': rgb(146, 145, 145),
+  'bg-dark': #424242,
+  'bg-darker': #303030,
+  'bg-darkest': #222222
 );
 
 @import '~bootstrap/scss/bootstrap';
