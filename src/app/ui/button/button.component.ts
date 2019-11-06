@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation } from '@angular/core';
 
 import { Color } from '../../core/enums';
 
@@ -19,6 +19,7 @@ import {
     ...getButtonHost(),
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class ButtonComponent {
   @Input() color = Color.Primary;

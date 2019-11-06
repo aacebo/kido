@@ -1,5 +1,8 @@
 <kido-titlebar *ngIf="systemService.isMac$ | async"></kido-titlebar>
 <kido-sidebar [class.mac]="systemService.isMac$ | async">
-  <kido-toolbar [class.mac]="systemService.isMac$ | async"></kido-toolbar>
+  <kido-toolbar
+    [class.mac]="systemService.isMac$ | async"
+    (add)="onAdd($event)"
+  ></kido-toolbar>
 </kido-sidebar>
 <kido-actionbar></kido-actionbar>

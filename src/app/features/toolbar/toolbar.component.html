@@ -2,8 +2,42 @@
 
 <kido-dropdown size="sm">
   <span kidoDropdownButton>
-    Add +
+    Add <span class="fas fa-plus"></span>
   </span>
 
-  <button kidoDropdownItem>test</button>
+  <button
+    kidoDropdownItem
+    (click)="add.emit(StreamType.WebSocket)"
+  >
+    <kido-img-icon
+      src="assets/external-logos/html5.svg"
+      height="30"
+      width="30"
+    ></kido-img-icon>
+    Websocket
+  </button>
+
+  <button
+    kidoDropdownItem
+    (click)="add.emit(StreamType.SignalR)"
+  >
+    <kido-img-icon
+      src="assets/external-logos/signalr.svg"
+      height="30"
+      width="30"
+    ></kido-img-icon>
+    SignalR
+  </button>
+
+  <button
+    kidoDropdownItem
+    (click)="add.emit(StreamType.SocketIO)"
+  >
+    <kido-img-icon
+      src="assets/external-logos/socket-io.svg"
+      height="30"
+      width="30"
+    ></kido-img-icon>
+    Socket.IO
+  </button>
 </kido-dropdown>

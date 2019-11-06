@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+
+import { StreamType } from '../../resources/stream';
 
 @Component({
   selector: 'kido-toolbar',
@@ -9,4 +11,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ToolbarComponent { }
+export class ToolbarComponent {
+  @Output() add = new EventEmitter<StreamType>();
+
+  readonly StreamType = StreamType;
+}

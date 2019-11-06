@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { Color } from '../../core/enums';
 
@@ -30,6 +31,16 @@ export class DropdownComponent {
     DropdownPlacement.TopLeft,
     DropdownPlacement.TopRight,
   ];
+
+  @Input()
+  get disabled() { return this._disabled; }
+  set disabled(d: boolean) {
+    this._disabled = coerceBooleanProperty(d);
+  }
+  private _disabled = false;
+
+  @Output() clicked = new EventEmitter<void>();
+  @Output() openChange = new EventEmitter<boolean>();
 
   get classes() {
     return getButtonClass(

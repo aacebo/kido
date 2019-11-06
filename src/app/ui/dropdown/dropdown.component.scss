@@ -1,0 +1,18 @@
+@import '../../../styles/box-shadow';
+
+.kido-dropdown {
+  .dropdown-menu {
+    background-color: var(--bg-darker);
+    box-shadow: $box-shadow-lg;
+
+    .dropdown-item {
+      color: var(--text-muted);
+
+      &:hover {
+        color: var(--white);
+        background-color: var(--bg-darker);
+        filter: brightness(120%);
+      }
+    }
+  }
+}
