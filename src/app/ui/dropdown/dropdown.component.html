@@ -1,1 +1,11 @@
-<p>dropdown works!</p>
+<div class="btn-group">
+  <button class="btn" [ngClass]="classes">
+    <ng-content select="[kidoDropdownButton]"></ng-content>
+  </button>
+  <div class="btn-group" ngbDropdown [placement]="placement">
+    <button class="btn dropdown-toggle-split" [ngClass]="classes" ngbDropdownToggle></button>
+    <div class="dropdown-menu" ngbDropdownMenu>
+      <ng-content select="[kidoDropdownItem]"></ng-content>
+    </div>
+  </div>
+</div>

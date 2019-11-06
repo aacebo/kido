@@ -1,4 +1,4 @@
-import { Color } from '../../core/enums';
+import { Color } from '../../../core/enums';
 
 import { ButtonTheme } from './button-theme.enum';
 import { ButtonSize } from './button-size.enum';

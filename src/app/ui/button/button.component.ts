@@ -2,9 +2,11 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 import { Color } from '../../core/enums';
 
-import { ButtonTheme } from './button-theme.enum';
-import { ButtonSize } from './button-size.enum';
-import { getButtonHost } from './get-color-host.util';
+import {
+  ButtonTheme,
+  ButtonSize,
+  getButtonHost,
+} from '../core/button';
 
 @Component({
   moduleId: module.id,
