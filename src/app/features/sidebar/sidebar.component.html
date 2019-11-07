@@ -3,6 +3,10 @@
   [style.width.px]="width"
 >
   <div class="kido-sidebar--side-content">
+    <kido-stream-list-item
+      *ngFor="let stream of streams"
+      [stream]="stream"
+    ></kido-stream-list-item>
   </div>
 
   <kido-horizontal-resize-bar

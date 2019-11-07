@@ -5,7 +5,12 @@ import { IStream } from '../models';
 
 export const addStream = createAction(
   '[STREAM] AddStream',
-  props<{ readonly streamType: StreamType }>(),
+  props<{
+    readonly streamType: StreamType;
+    readonly name: string;
+    readonly url?: string;
+    readonly description?: string;
+  }>(),
 );
 
 export const addStreamSuccess = createAction(

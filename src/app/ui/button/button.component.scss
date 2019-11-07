@@ -1,0 +1,11 @@
+.kido-icon-button {
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: var(--text-muted);
+
+  &:hover {
+    color: var(--white);
+  }
+}

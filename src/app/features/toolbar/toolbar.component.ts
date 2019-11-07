@@ -6,13 +6,9 @@ import { StreamType } from '../../resources/stream';
   selector: 'kido-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
-  host: {
-    class: 'navbar',
-  },
+  host: { class: 'navbar' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarComponent {
-  @Output() add = new EventEmitter<StreamType>();
-
-  readonly StreamType = StreamType;
+  @Output() add = new EventEmitter<StreamType | undefined>();
 }

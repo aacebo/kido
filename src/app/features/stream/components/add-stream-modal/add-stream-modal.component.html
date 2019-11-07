@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h6 class="modal-title">Add Stream</h6>
+
+  <button
+    kido-icon-button
+    class="modal-close-btn"
+    (click)="close()"
+  >
+    <span class="fas fa-times"></span>
+  </button>
+</div>
+
+<div
+  class="modal-body"
+  [formGroup]="form"
+>
+  <kido-input
+    formControlName="name"
+    label="Name"
+    placeholder="Name..."
+    required
+  ></kido-input>
+
+  <kido-input
+    formControlName="url"
+    label="Url"
+    placeholder="Url..."
+  ></kido-input>
+
+  <kido-input
+    formControlName="description"
+    type="textarea"
+    label="Description (Optional)"
+    placeholder="Description..."
+    rows="5"
+  ></kido-input>
+</div>
+
+<div class="modal-footer">
+  <button
+    kido-button
+    size="sm"
+    color="success"
+    [disabled]="form.invalid"
+    (click)="save()"
+  >
+    <span class="fas fa-save"></span> Save
+  </button>
+
+  <button
+    kido-button
+    size="sm"
+    color="secondary"
+    (click)="close()"
+  >Cancel</button>
+</div>

@@ -1,0 +1,30 @@
+<label *ngIf="label" [for]="id">
+  {{ label }}
+</label>
+
+<div *ngIf="type !== 'textarea'" class="input-group">
+  <input
+    class="form-control"
+    [id]="id"
+    [type]="type"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [required]="required"
+    [(ngModel)]="value"
+    [maxlength]="maxLength"
+    [minlength]="minLength"
+  />
+</div>
+
+<textarea
+  *ngIf="type === 'textarea'"
+  class="form-control"
+  [id]="id"
+  [rows]="rows"
+  [placeholder]="placeholder"
+  [disabled]="disabled"
+  [required]="required"
+  [(ngModel)]="value"
+  [maxlength]="maxLength"
+  [minlength]="minLength"
+></textarea>

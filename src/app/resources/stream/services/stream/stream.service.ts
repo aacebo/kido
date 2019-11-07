@@ -30,8 +30,13 @@ export class StreamService {
     this._store$.dispatch(actions.getMessages());
   }
 
-  addStream(streamType: StreamType) {
-    this._store$.dispatch(actions.addStream({ streamType }));
+  addStream(streamType: StreamType, name: string, url?: string, description?: string) {
+    this._store$.dispatch(actions.addStream({
+      streamType,
+      name,
+      url,
+      description,
+    }));
   }
 
   addMessage(streamId: string, messageType: StreamMessageType, content: any) {

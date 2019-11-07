@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { SidebarComponent } from './sidebar.component';
 import { ResizeModule } from '../resize';
+import { StreamModule } from '../stream';
+import { SidebarComponent } from './sidebar.component';
 
 @NgModule({
   declarations: [SidebarComponent],
   exports: [SidebarComponent],
-  imports: [CommonModule, NgbTabsetModule, ResizeModule],
+  imports: [CommonModule, ResizeModule, StreamModule],
 })
 export class SidebarModule { }

@@ -1,0 +1,21 @@
+.modal-content {
+  background-color: var(--bg-darker);
+
+  .modal-header {
+    border-bottom: none;
+
+    .modal-title {
+      margin: auto;
+      flex: 1 1 auto;
+      color: var(--white);
+    }
+
+    .modal-close-btn {
+      padding: 0;
+    }
+  }
+
+  .modal-footer {
+    border-top: 1px solid var(--hairline-strong);
+  }
+}

@@ -16,6 +16,7 @@ import { TitlebarModule } from './features/titlebar';
 import { ActionbarModule } from './features/actionbar';
 import { SidebarModule } from './features/sidebar';
 import { ToolbarModule } from './features/toolbar';
+import { StreamModule } from './features/stream';
 
 import { ButtonModule } from './ui/button';
 
@@ -39,6 +40,7 @@ PouchDB.plugin(PouchDBFind);
     ActionbarModule,
     SidebarModule,
     ToolbarModule,
+    StreamModule,
 
     ButtonModule,
   ],
