@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+
+import { IStream } from '../../resources/stream';
 
 @Component({
   selector: 'kido-sidebar',
@@ -7,6 +9,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
+  @Input() streams: IStream[] = [];
+
   width = 200;
 
   onResize(e: number) {

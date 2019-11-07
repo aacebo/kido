@@ -1,3 +1,2 @@
-export * from './collections';
-export * from './collection-streams';
+export * from './streams';
 export * from './stream-messages';

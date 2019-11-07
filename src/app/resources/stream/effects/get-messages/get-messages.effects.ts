@@ -10,7 +10,7 @@ import { IStreamMessage } from '../../models';
 export class GetMessagesEffects {
   private readonly _pouchService = new PouchService<IStreamMessage>('messages');
 
-  readonly messages$ = createEffect(() => this._actions$.pipe(
+  readonly getMessages$ = createEffect(() => this._actions$.pipe(
     ofType(actions.getMessages),
     switchMap(() =>
       this._pouchService.get()

@@ -22,12 +22,11 @@ export class AppComponent implements OnInit {
       this.systemService.add(system);
     });
 
-    this.streamService.getCollections();
     this.streamService.getStreams();
     this.streamService.getMessages();
   }
 
   onAdd(e: StreamType) {
-    console.log(e);
+    this.streamService.addStream(e);
   }
 }

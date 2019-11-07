@@ -1,7 +1,8 @@
 import { StreamMessageType } from '../enums';
 
 export interface IStreamMessage {
-  readonly id: string;
+  readonly _id: string;
+  readonly _rev?: string;
   readonly streamId: string;
   readonly type: StreamMessageType;
   readonly content: any;

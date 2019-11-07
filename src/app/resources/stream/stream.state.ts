@@ -1,18 +1,16 @@
 import { combineReducers, Action } from '@ngrx/store';
 
-import { IStream, IStreamCollection, IStreamMessage } from './models';
+import { IStream, IStreamMessage } from './models';
 import * as fromReducers from './reducers';
 
 export interface IStreamState {
-  readonly collections: IStreamCollection[];
-  readonly collectionStreams: { [collectionId: string]: IStream[] };
+  readonly streams: IStream[];
   readonly streamMessages: { [streamId: string]: IStreamMessage[] };
 }
 
 export function reducers(state: IStreamState, action: Action) {
   return combineReducers<IStreamState>({
-    collections: fromReducers.collections,
-    collectionStreams: fromReducers.collectionStreams,
+    streams: fromReducers.streams,
     streamMessages: fromReducers.streamMessages,
   })(state, action);
 }

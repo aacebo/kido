@@ -1,21 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap } from 'rxjs/operators';
+import * as uuid from 'uuid';
 
 import * as actions from '../../actions';
 import { PouchService } from '../../../../core/services';
 import { IStream } from '../../models';
 
 @Injectable()
-export class GetStreamsEffects {
+export class AddStreamEffects {
   private readonly _pouchService = new PouchService<IStream>('streams');
 
-  readonly getStreams$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.getStreams),
-    switchMap(() =>
-      this._pouchService.get()
-        .then(res => actions.getStreamsSuccess({ streams: res.docs }))
-        .catch(error => actions.getStreamsFailed({ error })),
+  readonly addStream$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.addStream),
+    switchMap(a =>
+      this._pouchService.put({
+        _id: uuid(),
+        type: a.streamType,
+        createdAt: new Date().getTime(),
+      })
+      .then(res => actions.addStreamSuccess({ stream: res }))
+      .catch(error => actions.addStreamFailed({ error })),
     ),
   ));
 

@@ -1,9 +1,9 @@
 import { StreamType } from '../enums';
 
 export interface IStream {
-  readonly id: string;
-  readonly collectionId: string;
-  readonly url: string;
+  readonly _id: string;
+  readonly _rev?: string;
+  readonly url?: string;
   readonly type: StreamType;
   readonly createdAt: number;
 }

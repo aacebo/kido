@@ -23,4 +23,12 @@ export const streamMessages = createReducer<{ [streamId: string]: IStreamMessage
 
     return map;
   }),
+  on(actions.addMessageSuccess, (_, a) => {
+    const messages = _[a.message.streamId];
+
+    messages.push(a.message);
+    _[a.message.streamId] = messages;
+
+    return _;
+  }),
 );
