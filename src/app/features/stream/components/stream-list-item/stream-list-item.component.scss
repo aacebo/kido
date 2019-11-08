@@ -1,7 +1,12 @@
 :host {
   display: flex;
 
-  .stream-list-item--url {
+  kido-img-icon {
+    margin-right: 10px;
+  }
+
+  .stream-list-item--name {
     flex: 1 1 auto;
+    margin: auto;
   }
 }

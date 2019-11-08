@@ -13,18 +13,11 @@ export class FormControlBase<T> implements ControlValueAccessor {
   private _value?: T;
 
   @Input()
-  get idPrefix() { return this._idPrefix; }
-  set idPrefix(v: string) {
-    this._idPrefix = v;
-  }
-  private _idPrefix: string;
-
-  @Input()
-  get id() { return `${this._idPrefix}-${this._id}`; }
+  get id() { return this._id; }
   set id(v: string) {
-    this._id = `${v}-${++nextId}`;
+    this._id = v;
   }
-  private _id: string;
+  private _id = `${++nextId}`;
 
   @Input()
   get tabIndex() { return this._tabIndex; }

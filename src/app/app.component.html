@@ -7,5 +7,9 @@
     [class.mac]="systemService.isMac$ | async"
     (add)="onAdd($event)"
   ></kido-toolbar>
+
+  <kido-stream-detail
+    [stream]="streamService.activeStream$ | async"
+  ></kido-stream-detail>
 </kido-sidebar>
 <kido-actionbar></kido-actionbar>

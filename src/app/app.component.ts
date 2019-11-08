@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import { ElectronService } from './core/services';
 import { ISystem, SystemService } from './resources/system';
-import { StreamService, StreamType } from './resources/stream';
+import { StreamService, StreamType, IStream } from './resources/stream';
 import { AddStreamModalService } from './features/stream';
 
 @Component({
@@ -29,6 +29,10 @@ export class AppComponent implements OnInit {
   }
 
   onAdd(e?: StreamType) {
-    this._addStreamModalService.open(e);
+    this._addStreamModalService.open(e).then((v?: Partial<IStream>) => {
+      if (v) {
+        this.streamService.addStream(v.type, v.name, v.url, v.description);
+      }
+    });
   }
 }

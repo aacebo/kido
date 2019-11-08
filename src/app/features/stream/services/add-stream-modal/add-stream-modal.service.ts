@@ -18,5 +18,6 @@ export class AddStreamModalService {
     });
 
     this._ref.componentInstance.type = type;
+    return this._ref.result;
   }
 }

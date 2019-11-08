@@ -13,13 +13,17 @@ import { StreamType, StreamMessageType } from '../../enums';
 })
 export class StreamService {
   readonly state$: Observable<IStreamState>;
+  readonly active$: Observable<string | undefined>;
   readonly streams$: Observable<IStream[]>;
   readonly streamMessages$: Observable<{ [streamId: string]: IStreamMessage[] }>;
+  readonly activeStream$: Observable<IStream | undefined>;
 
   constructor(private readonly _store$: Store<IStreamState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
+    this.active$ = this._store$.pipe(select(selectors.selectActive));
     this.streams$ = this._store$.pipe(select(selectors.selectStreams));
     this.streamMessages$ = this._store$.pipe(select(selectors.selectStreamMessages));
+    this.activeStream$ = this._store$.pipe(select(selectors.selectActiveStream));
   }
 
   getStreams() {
@@ -45,5 +49,9 @@ export class StreamService {
       messageType,
       content,
     }));
+  }
+
+  setActive(streamId: string) {
+    this._store$.dispatch(actions.setActive({ streamId }));
   }
 }

@@ -15,6 +15,7 @@ const declarations = [
   components.StreamListItemComponent,
   components.AddStreamButtonComponent,
   components.AddStreamModalComponent,
+  components.StreamDetailComponent,
 ];
 
 @NgModule({

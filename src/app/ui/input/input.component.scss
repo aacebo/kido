@@ -13,5 +13,9 @@
     outline: none;
     box-shadow: none;
     resize: none;
+
+    &:hover, &:focus {
+      filter: brightness(150%);
+    }
   }
 }

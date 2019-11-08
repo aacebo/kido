@@ -17,6 +17,10 @@
     box-shadow: none;
     resize: none;
 
+    &:hover, &:focus {
+      filter: brightness(150%);
+    }
+
     span {
       flex: 1 1 auto;
       text-align: left;
