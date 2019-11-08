@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { StreamType } from '../../../../resources/stream';
+import { STREAM_TYPE_LABELS } from '../../constants';
 
 @Component({
   selector: 'kido-add-stream-modal',
@@ -14,6 +15,9 @@ export class AddStreamModalComponent implements OnInit {
   @Input() type?: StreamType;
 
   form: FormGroup;
+
+  readonly StreamType = StreamType;
+  readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
 
   constructor(
     private readonly _modal: NgbActiveModal,

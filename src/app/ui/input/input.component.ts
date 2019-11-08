@@ -43,7 +43,7 @@ export class InputComponent extends FormControlBase<string> {
   private _minLength?: number;
 
   constructor(
-    readonly el: ElementRef,
+    readonly el: ElementRef<HTMLInputElement | HTMLTextAreaElement>,
     @Optional() readonly ngForm: NgForm,
     @Optional() readonly ngFormGroup: FormGroupDirective,
   ) {

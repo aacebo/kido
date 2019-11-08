@@ -7,6 +7,7 @@ import { ImgIconModule } from '../../ui/img-icon';
 import { DropdownModule } from '../../ui/dropdown';
 import { ButtonModule } from '../../ui/button';
 import { InputModule } from '../../ui/input';
+import { SelectModule } from '../../ui/select';
 
 import * as components from './components';
 
@@ -30,6 +31,7 @@ const declarations = [
     DropdownModule,
     ButtonModule,
     InputModule,
+    SelectModule,
   ],
 })
 export class StreamModule { }

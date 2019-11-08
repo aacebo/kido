@@ -1,0 +1,47 @@
+@import '../../../styles/box-shadow';
+
+.kido-select {
+  display: block;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .form-control {
+    display: flex;
+    background-color: var(--bg-darkest);
+    border-color: var(--hairline-strong);
+    color: var(--white);
+    outline: none;
+    box-shadow: none;
+    resize: none;
+
+    span {
+      flex: 1 1 auto;
+      text-align: left;
+    }
+  }
+
+  .dropdown-toggle {
+    &:after {
+      margin: auto;
+    }
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    background-color: var(--bg-darker);
+    box-shadow: $box-shadow-lg;
+
+    .dropdown-item {
+      color: var(--text-muted);
+
+      &:hover {
+        color: var(--white);
+        background-color: var(--bg-darker);
+        filter: brightness(120%);
+      }
+    }
+  }
+}

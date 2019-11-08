@@ -1,0 +1,17 @@
+<label *ngIf="label" [for]="id">
+  {{ label }}
+</label>
+
+<div ngbDropdown>
+  <button
+    class="form-control"
+    [id]="id"
+    ngbDropdownToggle
+  >
+    <span>{{ selected || placeholder }}</span>
+  </button>
+
+  <div ngbDropdownMenu>
+    <ng-content select="kido-option"></ng-content>
+  </div>
+</div>

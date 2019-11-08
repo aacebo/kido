@@ -34,10 +34,10 @@ export class DropdownComponent {
 
   @Input()
   get disabled() { return this._disabled; }
-  set disabled(d: boolean) {
-    this._disabled = coerceBooleanProperty(d);
+  set disabled(v: boolean) {
+    this._disabled = coerceBooleanProperty(v);
   }
-  private _disabled = false;
+  private _disabled?: boolean;
 
   @Output() clicked = new EventEmitter<void>();
   @Output() openChange = new EventEmitter<boolean>();

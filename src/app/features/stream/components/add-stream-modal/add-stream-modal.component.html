@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h6 class="modal-title">Add Stream</h6>
+  <div class="modal-title">ADD STREAM</div>
 
   <button
     kido-icon-button
@@ -14,6 +14,17 @@
   class="modal-body"
   [formGroup]="form"
 >
+  <kido-select
+    formControlName="type"
+    label="Type"
+    placeholder="Type..."
+    required
+  >
+    <kido-option [value]="StreamType.WebSocket">{{ STREAM_TYPE_LABELS[StreamType.WebSocket] }}</kido-option>
+    <kido-option [value]="StreamType.SignalR">{{ STREAM_TYPE_LABELS[StreamType.SignalR] }}</kido-option>
+    <kido-option [value]="StreamType.SocketIO">{{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}</kido-option>
+  </kido-select>
+
   <kido-input
     formControlName="name"
     label="Name"
@@ -39,7 +50,6 @@
 <div class="modal-footer">
   <button
     kido-button
-    size="sm"
     color="success"
     [disabled]="form.invalid"
     (click)="save()"
@@ -49,7 +59,6 @@
 
   <button
     kido-button
-    size="sm"
     color="secondary"
     (click)="close()"
   >Cancel</button>
