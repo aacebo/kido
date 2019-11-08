@@ -14,6 +14,20 @@
   }
 }
 
+.input-group-append {
+  .kido-dropdown {
+    .dropdown {
+      height: 100%;
+
+      .dropdown-toggle {
+        height: 100%;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+}
+
 .kido-dropdown {
   .dropdown-menu {
     background-color: var(--bg-darker);

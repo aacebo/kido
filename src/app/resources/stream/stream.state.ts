@@ -5,7 +5,7 @@ import * as fromReducers from './reducers';
 
 export interface IStreamState {
   readonly active?: string;
-  readonly streams: IStream[];
+  readonly streams: { [streamId: string]: IStream };
   readonly streamMessages: { [streamId: string]: IStreamMessage[] };
 }
 

@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { ToastrModule } from 'ngx-toastr';
 
 import PouchDB from 'pouchdb';
 import PouchDBFind from 'pouchdb-find';
@@ -26,6 +29,7 @@ PouchDB.plugin(PouchDBFind);
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
 
     StoreModule.forRoot({ }),
     EffectsModule.forRoot([ ]),
@@ -34,6 +38,10 @@ PouchDB.plugin(PouchDBFind);
       maxAge: 10,
     }),
 
+    ToastrModule.forRoot({
+      progressBar: true,
+      positionClass: 'toast-bottom-right',
+    }),
     AppRoutingModule,
 
     ResourcesModule,

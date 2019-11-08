@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
-import { StreamService } from '../../resources/stream';
+import { StreamService, IStream } from '../../resources/stream';
 
 @Component({
   selector: 'kido-stream',
@@ -10,4 +10,8 @@ import { StreamService } from '../../resources/stream';
 })
 export class StreamComponent {
   constructor(readonly streamService: StreamService) { }
+
+  onUpdate(e: Partial<IStream>) {
+    this.streamService.updateStream(e);
+  }
 }

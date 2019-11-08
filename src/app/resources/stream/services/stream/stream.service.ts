@@ -14,10 +14,11 @@ import { StreamType, StreamMessageType } from '../../enums';
 export class StreamService {
   readonly state$: Observable<IStreamState>;
   readonly active$: Observable<string | undefined>;
-  readonly streams$: Observable<IStream[]>;
+  readonly streams$: Observable<{ [streamId: string]: IStream }>;
   readonly streamMessages$: Observable<{ [streamId: string]: IStreamMessage[] }>;
   readonly activeStream$: Observable<IStream | undefined>;
   readonly activeStreamMessages$: Observable<IStreamMessage[]>;
+  readonly entities$: Observable<IStream[]>;
 
   constructor(private readonly _store$: Store<IStreamState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
@@ -26,6 +27,7 @@ export class StreamService {
     this.streamMessages$ = this._store$.pipe(select(selectors.selectStreamMessages));
     this.activeStream$ = this._store$.pipe(select(selectors.selectActiveStream));
     this.activeStreamMessages$ = this._store$.pipe(select(selectors.selectActiveStreamMessages));
+    this.entities$ = this._store$.pipe(select(selectors.selectEntities));
   }
 
   getStreams() {
@@ -43,6 +45,10 @@ export class StreamService {
       url,
       description,
     }));
+  }
+
+  updateStream(stream: Partial<IStream>) {
+    this._store$.dispatch(actions.updateStream({ stream }));
   }
 
   addMessage(streamId: string, messageType: StreamMessageType, content: any) {

@@ -1,4 +1,4 @@
-<div [formGroup]="form">
+<div class="stream-detail--form-group" [formGroup]="form">
   <kido-input
     formControlName="url"
     size="lg"
@@ -26,6 +26,30 @@
           {{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}
         </kido-option>
       </kido-select>
+    </div>
+
+    <div kidoInputAppend>
+      <button
+        kido-button
+        size="lg"
+        color="danger"
+        [disabled]="areEqual"
+        (click)="reset()"
+      >
+        <span class="fas fa-history"></span>
+      </button>
+    </div>
+
+    <div kidoInputAppend>
+      <button
+        kido-button
+        size="lg"
+        color="success"
+        [disabled]="form.invalid || areEqual"
+        (click)="save()"
+      >
+        <span class="fas fa-save"></span>
+      </button>
     </div>
   </kido-input>
 </div>

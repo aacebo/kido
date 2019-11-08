@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
+import { areEqual } from '../../../../core/utils';
 import { IStream, IStreamMessage, StreamType } from '../../../../resources/stream';
 import { STREAM_TYPE_LABELS } from '../../constants';
 
@@ -30,10 +31,16 @@ export class StreamDetailComponent implements OnInit {
   }
   private _stream: IStream;
 
+  @Output() update = new EventEmitter<Partial<IStream>>();
+
   form: FormGroup;
 
   readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
   readonly StreamType = StreamType;
+
+  get areEqual() {
+    return areEqual(this.form.value, this.stream);
+  }
 
   constructor(private readonly _fb: FormBuilder) { }
 
@@ -43,6 +50,22 @@ export class StreamDetailComponent implements OnInit {
       name: this._fb.control(this.stream.name),
       url: this._fb.control(this.stream.url),
       description: this._fb.control(this.stream.description),
+    });
+  }
+
+  save() {
+    this.update.emit({
+      ...this.stream,
+      ...this.form.value,
+    });
+  }
+
+  reset() {
+    this.form.reset({
+      type: this.stream.type,
+      name: this.stream.name,
+      url: this.stream.url,
+      description: this.stream.description,
     });
   }
 }

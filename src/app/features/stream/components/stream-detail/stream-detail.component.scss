@@ -2,15 +2,17 @@
   display: block;
   padding: 10px;
 
-  .kido-input {
-    .form-control {
-      background-color: var(--bg-dark);
+  .stream-detail--form-group {
+    .kido-input {
+      .form-control {
+        background-color: var(--bg-dark);
+      }
     }
-  }
 
-  .kido-select {
-    .form-control {
-      font-weight: bold;
+    .kido-select {
+      .form-control {
+        font-weight: bold;
+      }
     }
   }
 }
