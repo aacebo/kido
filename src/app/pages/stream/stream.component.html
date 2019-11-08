@@ -1,0 +1,5 @@
+<kido-stream-detail
+  *ngIf="streamService.activeStream$ | async"
+  [stream]="streamService.activeStream$ | async"
+  [messages]="streamService.activeStreamMessages$ | async"
+></kido-stream-detail>

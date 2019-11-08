@@ -1,9 +1,11 @@
-<kido-img-icon
-  [src]="STREAM_TYPE_ICON_URLS[stream.type]"
-  width="25"
-  height="25"
-></kido-img-icon>
+<kido-socket-icon [type]="stream.type"></kido-socket-icon>
 
-<div class="stream-list-item--name">
-  {{ stream.name }}
+<div class="stream-list-item--details">
+  <div class="stream-list-item--title">
+    {{ stream.name }}
+  </div>
+
+  <div class="stream-list-item--subtitle text-muted">
+    {{ messages?.length || 0 }} Messages
+  </div>
 </div>

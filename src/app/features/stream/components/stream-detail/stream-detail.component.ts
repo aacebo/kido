@@ -1,13 +1,48 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { IStream } from '../../../../resources/stream';
+import { IStream, IStreamMessage, StreamType } from '../../../../resources/stream';
+import { STREAM_TYPE_LABELS } from '../../constants';
 
 @Component({
   selector: 'kido-stream-detail',
   templateUrl: './stream-detail.component.html',
   styleUrls: ['./stream-detail.component.scss'],
+  host: { class: 'stream-detail' },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
-export class StreamDetailComponent {
-  @Input() stream: IStream;
+export class StreamDetailComponent implements OnInit {
+  @Input() messages: IStreamMessage[] = [];
+  @Input()
+  get stream() { return this._stream; }
+  set stream(v: IStream) {
+    this._stream = v;
+
+    if (this.form) {
+      this.form.setValue({
+        type: this.stream.type,
+        name: this.stream.name,
+        url: this.stream.url,
+        description: this.stream.description,
+      });
+    }
+  }
+  private _stream: IStream;
+
+  form: FormGroup;
+
+  readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
+  readonly StreamType = StreamType;
+
+  constructor(private readonly _fb: FormBuilder) { }
+
+  ngOnInit() {
+    this.form = this._fb.group({
+      type: this._fb.control(this.stream.type),
+      name: this._fb.control(this.stream.name),
+      url: this._fb.control(this.stream.url),
+      description: this._fb.control(this.stream.description),
+    });
+  }
 }

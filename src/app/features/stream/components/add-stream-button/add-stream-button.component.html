@@ -1,4 +1,4 @@
-<kido-dropdown (clicked)="add.emit()">
+<kido-split-dropdown split (clicked)="add.emit()">
   <span kidoDropdownButton>
     Add <span class="fas fa-plus"></span>
   </span>
@@ -7,11 +7,7 @@
     kidoDropdownItem
     (click)="add.emit(StreamType.WebSocket)"
   >
-    <kido-img-icon
-      [src]="STREAM_TYPE_ICON_URLS[StreamType.WebSocket]"
-      height="30"
-      width="30"
-    ></kido-img-icon>
+    <kido-socket-icon [type]="StreamType.WebSocket"></kido-socket-icon>
     {{ STREAM_TYPE_LABELS[StreamType.WebSocket] }}
   </button>
 
@@ -19,11 +15,7 @@
     kidoDropdownItem
     (click)="add.emit(StreamType.SignalR)"
   >
-    <kido-img-icon
-      [src]="STREAM_TYPE_ICON_URLS[StreamType.SignalR]"
-      height="30"
-      width="30"
-    ></kido-img-icon>
+    <kido-socket-icon [type]="StreamType.SignalR"></kido-socket-icon>
     {{ STREAM_TYPE_LABELS[StreamType.SignalR] }}
   </button>
 
@@ -31,11 +23,7 @@
     kidoDropdownItem
     (click)="add.emit(StreamType.SocketIO)"
   >
-    <kido-img-icon
-      [src]="STREAM_TYPE_ICON_URLS[StreamType.SocketIO]"
-      height="30"
-      width="30"
-    ></kido-img-icon>
+    <kido-socket-icon [type]="StreamType.SocketIO"></kido-socket-icon>
     {{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}
   </button>
-</kido-dropdown>
+</kido-split-dropdown>

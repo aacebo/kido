@@ -1,14 +1,15 @@
-<label *ngIf="label" [for]="id">
+<label *ngIf="label" tabindex="-1" [for]="id">
   {{ label }}
 </label>
 
 <div ngbDropdown>
   <button
     class="form-control"
+    [ngClass]="classes"
     [id]="id"
     ngbDropdownToggle
   >
-    <span>{{ selected || placeholder }}</span>
+    <span [innerHTML]="selected || placeholder"></span>
   </button>
 
   <div ngbDropdownMenu>

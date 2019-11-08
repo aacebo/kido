@@ -1,4 +1,4 @@
-import { Optional, Input, ElementRef } from '@angular/core';
+import { Optional, Input, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { NgForm, FormGroupDirective, ControlValueAccessor } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
@@ -8,6 +8,7 @@ export class FormControlBase<T> implements ControlValueAccessor {
   get value() { return this._value; }
   set value(v: T) {
     this._value = v;
+    this.cdr.markForCheck();
     this.onChange(v);
   }
   private _value?: T;
@@ -67,6 +68,7 @@ export class FormControlBase<T> implements ControlValueAccessor {
 
   constructor(
     readonly el: ElementRef<HTMLElement>,
+    readonly cdr: ChangeDetectorRef,
     @Optional() readonly ngForm: NgForm,
     @Optional() readonly ngFormGroup: FormGroupDirective,
   ) {

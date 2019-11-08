@@ -1,30 +1,22 @@
-<div class="btn-group">
+<div
+  ngbDropdown
+  [placement]="placement"
+  (openChange)="openChange.emit($event)"
+>
   <button
     class="btn"
+    ngbDropdownToggle
     [ngClass]="classes"
     [disabled]="disabled"
-    (click)="clicked.emit()"
   >
     <ng-content select="[kidoDropdownButton]"></ng-content>
   </button>
 
   <div
-    class="btn-group"
-    ngbDropdown
-    [placement]="placement"
-    (openChange)="openChange.emit($event)"
+    class="dropdown-menu"
+    ngbDropdownMenu
   >
-    <button
-      class="btn dropdown-toggle-split"
-      [ngClass]="classes"
-      [disabled]="disabled"
-      ngbDropdownToggle
-    ></button>
-    <div
-      class="dropdown-menu"
-      ngbDropdownMenu
-    >
-      <ng-content select="[kidoDropdownItem]"></ng-content>
-    </div>
+    <ng-content select="[kidoDropdownItem]"></ng-content>
   </div>
 </div>
+

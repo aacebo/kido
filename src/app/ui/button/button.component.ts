@@ -1,10 +1,9 @@
 import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, ElementRef, OnInit } from '@angular/core';
 
-import { Color } from '../../core/enums';
+import { Color, Size } from '../core/enums';
 
 import {
   ButtonTheme,
-  ButtonSize,
   getButtonHost,
 } from '../core/button';
 
@@ -29,7 +28,7 @@ const BUTTON_HOST_ATTRIBUTES = [
 export class ButtonComponent implements OnInit {
   @Input() color = Color.Primary;
   @Input() theme = ButtonTheme.Default;
-  @Input() size = ButtonSize.Medium;
+  @Input() size = Size.Medium;
 
   private get _element() {
     return this._el.nativeElement;

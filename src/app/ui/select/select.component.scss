@@ -1,5 +1,19 @@
 @import '../../../styles/box-shadow';
 
+.input-group-prepend {
+  .kido-select {
+    .dropdown {
+      height: 100%;
+
+      .dropdown-toggle {
+        height: 100%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+}
+
 .kido-select {
   display: block;
   margin-bottom: 10px;
@@ -8,28 +22,42 @@
     margin-bottom: 0;
   }
 
+  label {
+    color: var(--white);
+  }
+
   .form-control {
     display: flex;
-    background-color: var(--bg-darkest);
-    border-color: var(--hairline-strong);
+    background-color: var(--bg-darker);
+    border-color: var(--hairline-regular);
     color: var(--white);
     outline: none;
     box-shadow: none;
     resize: none;
 
-    &:hover, &:focus {
+    &:hover {
       filter: brightness(150%);
+
+      &:focus {
+        filter: none;
+      }
+    }
+
+    &:focus {
+      background-color: var(--bg-darkest);
     }
 
     span {
       flex: 1 1 auto;
       text-align: left;
+      margin-right: 10px;
     }
   }
 
   .dropdown-toggle {
     &:after {
       margin: auto;
+      color: var(--text-muted);
     }
   }
 
@@ -39,7 +67,7 @@
     box-shadow: $box-shadow-lg;
 
     .dropdown-item {
-      color: var(--text-muted);
+      color: var(--text-primary);
 
       &:hover {
         color: var(--white);

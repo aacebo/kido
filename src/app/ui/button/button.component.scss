@@ -9,3 +9,18 @@
     color: var(--white);
   }
 }
+
+.kido-button {
+  font-weight: bold;
+
+  &.btn-secondary {
+    color: var(--text-muted);
+    border-color: transparent;
+
+    &:hover {
+      color: var(--white);
+      background-color: var(--secondary);
+      filter: brightness(120%);
+    }
+  }
+}

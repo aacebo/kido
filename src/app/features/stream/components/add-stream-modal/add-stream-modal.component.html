@@ -20,9 +20,20 @@
     placeholder="Type..."
     required
   >
-    <kido-option [value]="StreamType.WebSocket">{{ STREAM_TYPE_LABELS[StreamType.WebSocket] }}</kido-option>
-    <kido-option [value]="StreamType.SignalR">{{ STREAM_TYPE_LABELS[StreamType.SignalR] }}</kido-option>
-    <kido-option [value]="StreamType.SocketIO">{{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}</kido-option>
+    <kido-option [value]="StreamType.WebSocket">
+      <kido-socket-icon [type]="StreamType.WebSocket"></kido-socket-icon>
+      {{ STREAM_TYPE_LABELS[StreamType.WebSocket] }}
+    </kido-option>
+
+    <kido-option [value]="StreamType.SignalR">
+      <kido-socket-icon [type]="StreamType.SignalR"></kido-socket-icon>
+      {{ STREAM_TYPE_LABELS[StreamType.SignalR] }}
+    </kido-option>
+
+    <kido-option [value]="StreamType.SocketIO">
+      <kido-socket-icon [type]="StreamType.SocketIO"></kido-socket-icon>
+      {{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}
+    </kido-option>
   </kido-select>
 
   <kido-input
@@ -50,7 +61,6 @@
 <div class="modal-footer">
   <button
     kido-button
-    color="success"
     [disabled]="form.invalid"
     (click)="save()"
   >

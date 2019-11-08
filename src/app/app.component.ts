@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   onAdd(e?: StreamType) {
-    this._addStreamModalService.open(e).then((v?: Partial<IStream>) => {
+    this._addStreamModalService.open(e, (v?: Partial<IStream>) => {
       if (v) {
         this.streamService.addStream(v.type, v.name, v.url, v.description);
       }

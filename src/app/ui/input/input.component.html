@@ -1,10 +1,13 @@
-<label *ngIf="label" [for]="id">
+<label *ngIf="label" tabindex="-1" [for]="id">
   {{ label }}
 </label>
 
 <div *ngIf="type !== 'textarea'" class="input-group">
+  <ng-content select="[kidoInputPrepend]"></ng-content>
+
   <input
     class="form-control"
+    [ngClass]="classes"
     [id]="id"
     [type]="type"
     [placeholder]="placeholder"
@@ -20,6 +23,7 @@
 <textarea
   *ngIf="type === 'textarea'"
   class="form-control"
+  [ngClass]="classes"
   [id]="id"
   [rows]="rows"
   [placeholder]="placeholder"

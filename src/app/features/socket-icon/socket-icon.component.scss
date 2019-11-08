@@ -1,0 +1,18 @@
+:host {
+  display: inline-block;
+  margin: auto 10px auto 0;
+  width: 25px;
+  font-weight: bold;
+
+  &.websocket {
+    color: #e44d26;
+  }
+
+  &.signalr {
+    color: #00abec;
+  }
+
+  &.socket-io {
+    color: #7ed321;
+  }
+}

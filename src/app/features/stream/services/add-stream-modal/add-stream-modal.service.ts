@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
-import { StreamType } from '../../../../resources/stream';
+import { StreamType, IStream } from '../../../../resources/stream';
 import { AddStreamModalComponent } from '../../components';
 
 @Injectable({
@@ -12,12 +12,12 @@ export class AddStreamModalService {
 
   constructor(private readonly _modalService: NgbModal) { }
 
-  open(type?: StreamType) {
+  open(type?: StreamType, cb?: (stream?: Partial<IStream>) => void) {
     this._ref = this._modalService.open(AddStreamModalComponent, {
       centered: true,
     });
 
     this._ref.componentInstance.type = type;
-    return this._ref.result;
+    this._ref.result.then((res: Partial<IStream>) => cb(res), () => cb());
   }
 }

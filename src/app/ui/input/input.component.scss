@@ -6,16 +6,28 @@
     margin-bottom: 0;
   }
 
+  label {
+    color: var(--white);
+  }
+
   .form-control {
-    background-color: var(--bg-darkest);
-    border-color: var(--hairline-strong);
+    background-color: var(--bg-darker);
+    border-color: var(--hairline-regular);
     color: var(--white);
     outline: none;
     box-shadow: none;
     resize: none;
 
-    &:hover, &:focus {
+    &:hover {
       filter: brightness(150%);
+
+      &:focus {
+        filter: none;
+      }
+    }
+
+    &:focus {
+      background-color: var(--bg-darkest);
     }
   }
 }

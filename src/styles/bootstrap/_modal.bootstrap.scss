@@ -3,18 +3,19 @@
 $modal-padding: 10px 20px;
 
 .modal-content {
-  background-color: var(--bg-darker);
+  background-color: var(--bg-darkest);
   box-shadow: $box-shadow-lg;
 
   .modal-header {
     border-bottom: none;
     padding: $modal-padding;
-    background-color: var(--bg-darkest);
+    background-color: var(--bg-darker);
 
     .modal-title {
       margin: auto;
       flex: 1 1 auto;
       color: var(--white);
+      font-weight: bold;
     }
 
     .modal-close-btn {
@@ -26,4 +27,8 @@ $modal-padding: 10px 20px;
     padding: $modal-padding;
     border-top: 1px solid var(--hairline-strong);
   }
+}
+
+.modal-backdrop {
+  background-color: rgb(61, 61, 61) !important;
 }

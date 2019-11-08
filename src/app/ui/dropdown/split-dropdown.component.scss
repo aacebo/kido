@@ -1,20 +1,6 @@
 @import '../../../styles/box-shadow';
 
-.input-group-prepend {
-  .kido-dropdown {
-    .dropdown {
-      height: 100%;
-
-      .dropdown-toggle {
-        height: 100%;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-    }
-  }
-}
-
-.kido-dropdown {
+.kido-split-dropdown {
   .dropdown-menu {
     background-color: var(--bg-darker);
     box-shadow: $box-shadow-lg;

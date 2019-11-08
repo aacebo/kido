@@ -17,6 +17,7 @@ export class StreamService {
   readonly streams$: Observable<IStream[]>;
   readonly streamMessages$: Observable<{ [streamId: string]: IStreamMessage[] }>;
   readonly activeStream$: Observable<IStream | undefined>;
+  readonly activeStreamMessages$: Observable<IStreamMessage[]>;
 
   constructor(private readonly _store$: Store<IStreamState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
@@ -24,6 +25,7 @@ export class StreamService {
     this.streams$ = this._store$.pipe(select(selectors.selectStreams));
     this.streamMessages$ = this._store$.pipe(select(selectors.selectStreamMessages));
     this.activeStream$ = this._store$.pipe(select(selectors.selectActiveStream));
+    this.activeStreamMessages$ = this._store$.pipe(select(selectors.selectActiveStreamMessages));
   }
 
   getStreams() {

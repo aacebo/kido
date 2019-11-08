@@ -4,11 +4,16 @@
 html, body {
   height: 100%;
   overflow: hidden;
-  color: var(--text-muted);
+  color: var(--text-primary);
   font-size: 10pt;
-  background-color: var(--bg-darker);
+  background-color: var(--bg-darkest);
+  font-family: 'Proxima Nova Soft', 'Helvetica Neue', sans-serif;
 }
 
 *:focus {
   outline: none !important;
+}
+
+.muted {
+  color: var(--text-muted);
 }

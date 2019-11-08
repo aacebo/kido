@@ -1,12 +1,29 @@
 :host {
   display: flex;
+  padding: 10px;
+  border-bottom: 1px solid var(--hairline-regular);
+  cursor: pointer;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.active {
+    box-shadow: -13px 0 0 -8px var(--primary) inset;
+    opacity: 1;
+  }
 
   kido-img-icon {
     margin-right: 10px;
   }
 
-  .stream-list-item--name {
+  .stream-list-item--details {
     flex: 1 1 auto;
     margin: auto;
+
+    .stream-list-item--title {
+      font-size: 11pt;
+    }
   }
 }

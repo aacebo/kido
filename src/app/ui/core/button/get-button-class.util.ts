@@ -1,12 +1,11 @@
-import { Color } from '../../../core/enums';
+import { Color, Size } from '../enums';
 
 import { ButtonTheme } from './button-theme.enum';
-import { ButtonSize } from './button-size.enum';
 
 export function getButtonClass(
   _color: Color,
   _theme: ButtonTheme,
-  _size: ButtonSize,
+  _size: Size,
 ) {
   const map = { };
 
@@ -18,8 +17,8 @@ export function getButtonClass(
     }
   }
 
-  for (const size of Object.getOwnPropertyNames(ButtonSize)) {
-    map[`btn-${ButtonSize[size]}`] = _size === ButtonSize[size];
+  for (const size of Object.getOwnPropertyNames(Size)) {
+    map[`btn-${Size[size]}`] = _size === Size[size];
   }
 
   return map;

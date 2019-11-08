@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { ImgIconModule } from '../../ui/img-icon';
+import { SocketIconModule } from '../socket-icon';
+
 import { DropdownModule } from '../../ui/dropdown';
 import { ButtonModule } from '../../ui/button';
 import { InputModule } from '../../ui/input';
@@ -27,8 +28,9 @@ const declarations = [
     FormsModule,
     ReactiveFormsModule,
 
+    SocketIconModule,
+
     NgbModalModule,
-    ImgIconModule,
     DropdownModule,
     ButtonModule,
     InputModule,

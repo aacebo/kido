@@ -1,4 +1,7 @@
 :host {
-  width: 5px;
+  width: 10px;
+  position: absolute;
   cursor: col-resize;
+  height: 100%;
+  right: 0;
 }

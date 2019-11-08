@@ -10,6 +10,7 @@ import PouchDBFind from 'pouchdb-find';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { ResourcesModule } from './resources';
 
 import { TitlebarModule } from './features/titlebar';
@@ -17,8 +18,6 @@ import { ActionbarModule } from './features/actionbar';
 import { SidebarModule } from './features/sidebar';
 import { ToolbarModule } from './features/toolbar';
 import { StreamModule } from './features/stream';
-
-import { ButtonModule } from './ui/button';
 
 PouchDB.plugin(PouchDBFind);
 
@@ -35,14 +34,14 @@ PouchDB.plugin(PouchDBFind);
       maxAge: 10,
     }),
 
+    AppRoutingModule,
+
     ResourcesModule,
     TitlebarModule,
     ActionbarModule,
     SidebarModule,
     ToolbarModule,
     StreamModule,
-
-    ButtonModule,
   ],
 })
 export class AppModule { }

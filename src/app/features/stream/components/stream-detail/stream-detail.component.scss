@@ -1,3 +1,16 @@
-:host {
+.stream-detail {
   display: block;
+  padding: 10px;
+
+  .kido-input {
+    .form-control {
+      background-color: var(--bg-dark);
+    }
+  }
+
+  .kido-select {
+    .form-control {
+      font-weight: bold;
+    }
+  }
 }

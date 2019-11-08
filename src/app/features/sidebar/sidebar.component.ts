@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { IStream } from '../../resources/stream';
+import { IStream, IStreamMessage } from '../../resources/stream';
 
 @Component({
   selector: 'kido-sidebar',
@@ -10,6 +10,8 @@ import { IStream } from '../../resources/stream';
 })
 export class SidebarComponent {
   @Input() streams: IStream[] = [];
+  @Input() active?: string;
+  @Input() streamMessages: { [streamId: string]: IStreamMessage[] } = { };
 
   width = 200;
 

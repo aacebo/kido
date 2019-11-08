@@ -1,11 +1,10 @@
 import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
-import { Color } from '../../core/enums';
+import { Color, Size } from '../core/enums';
 
 import {
   ButtonTheme,
-  ButtonSize,
   getButtonClass,
 } from '../core/button';
 
@@ -24,7 +23,7 @@ import { DropdownPlacement } from './dropdown-placement.enum';
 export class DropdownComponent {
   @Input() color = Color.Primary;
   @Input() theme = ButtonTheme.Default;
-  @Input() size = ButtonSize.Medium;
+  @Input() size = Size.Medium;
   @Input() placement = [
     DropdownPlacement.BottomLeft,
     DropdownPlacement.BottomRight,

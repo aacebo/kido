@@ -1,10 +1,13 @@
 $theme-colors: (
-  'primary': rgb(25, 161, 1),
+  'primary': #00897B,
+  'secondary': #404040,
   'hairline-strong': #424242,
+  'hairline-regular': #434343,
   'text-muted': rgb(146, 145, 145),
-  'bg-dark': #424242,
+  'text-primary': #f0f0f0,
+  'bg-dark': #404040,
   'bg-darker': #303030,
-  'bg-darkest': #222222
+  'bg-darkest': #282828
 );
 
 @import '~bootstrap/scss/bootstrap';
