@@ -13,6 +13,7 @@ import {
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/addon/lint/lint.js';
+import 'codemirror/addon/fold/brace-fold.js';
 
 import { FormControlBase, formControlProvider } from '../core/form-control';
 import { NgForm, FormGroupDirective } from '@angular/forms';
@@ -52,8 +53,10 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
       value: this.value,
       lint: true,
       tabSize: 2,
-      autoCloseTags: true,
-    } as any);
+      foldGutter: true,
+      gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+      viewportMargin: Infinity,
+    });
 
     this.editor.on('change', this.onEditorChange.bind(this));
   }

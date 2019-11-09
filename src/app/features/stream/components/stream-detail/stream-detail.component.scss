@@ -1,17 +1,35 @@
 .stream-detail {
-  display: block;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
   padding: 10px;
 
   .stream-detail--form-group {
-    .kido-input {
-      .form-control {
-        background-color: var(--bg-dark);
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+
+    .stream-detail--form-header {
+      margin-bottom: 10px;
+
+      .kido-input {
+        .form-control {
+          background-color: var(--bg-dark);
+        }
+      }
+
+      .kido-select {
+        .form-control {
+          font-weight: bold;
+        }
       }
     }
 
-    .kido-select {
-      .form-control {
-        font-weight: bold;
+    .stream-detail--form-content {
+      flex: 1 1 auto;
+
+      kido-json-editor {
+        height: 50%;
       }
     }
   }

@@ -1,57 +1,61 @@
 <div class="stream-detail--form-group" [formGroup]="form">
-  <kido-input
-    formControlName="url"
-    size="lg"
-    placeholder="Url..."
-    required
-  >
-    <div kidoInputPrepend>
-      <kido-select
-        size="lg"
-        placeholder="Type..."
-        formControlName="type"
-      >
-        <kido-option [value]="StreamType.WebSocket">
-          <kido-socket-icon [type]="StreamType.WebSocket"></kido-socket-icon>
-          {{ STREAM_TYPE_LABELS[StreamType.WebSocket] }}
-        </kido-option>
+  <div class="stream-detail--form-header">
+    <kido-input
+      formControlName="url"
+      size="lg"
+      placeholder="Url..."
+      required
+    >
+      <div kidoInputPrepend>
+        <kido-select
+          size="lg"
+          placeholder="Type..."
+          formControlName="type"
+        >
+          <kido-option [value]="StreamType.WebSocket">
+            <kido-socket-icon [type]="StreamType.WebSocket"></kido-socket-icon>
+            {{ STREAM_TYPE_LABELS[StreamType.WebSocket] }}
+          </kido-option>
 
-        <kido-option [value]="StreamType.SignalR">
-          <kido-socket-icon [type]="StreamType.SignalR"></kido-socket-icon>
-          {{ STREAM_TYPE_LABELS[StreamType.SignalR] }}
-        </kido-option>
+          <kido-option [value]="StreamType.SignalR">
+            <kido-socket-icon [type]="StreamType.SignalR"></kido-socket-icon>
+            {{ STREAM_TYPE_LABELS[StreamType.SignalR] }}
+          </kido-option>
 
-        <kido-option [value]="StreamType.SocketIO">
-          <kido-socket-icon [type]="StreamType.SocketIO"></kido-socket-icon>
-          {{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}
-        </kido-option>
-      </kido-select>
-    </div>
+          <kido-option [value]="StreamType.SocketIO">
+            <kido-socket-icon [type]="StreamType.SocketIO"></kido-socket-icon>
+            {{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}
+          </kido-option>
+        </kido-select>
+      </div>
 
-    <div kidoInputAppend>
-      <button
-        kido-button
-        size="lg"
-        color="danger"
-        [disabled]="areEqual"
-        (click)="reset()"
-      >
-        <span class="fas fa-history"></span>
-      </button>
-    </div>
+      <div kidoInputAppend>
+        <button
+          kido-button
+          size="lg"
+          color="danger"
+          [disabled]="areEqual"
+          (click)="reset()"
+        >
+          <span class="fas fa-history"></span>
+        </button>
+      </div>
 
-    <div kidoInputAppend>
-      <button
-        kido-button
-        size="lg"
-        color="success"
-        [disabled]="form.invalid || areEqual"
-        (click)="save()"
-      >
-        <span class="fas fa-save"></span>
-      </button>
-    </div>
-  </kido-input>
+      <div kidoInputAppend>
+        <button
+          kido-button
+          size="lg"
+          color="success"
+          [disabled]="form.invalid || areEqual"
+          (click)="save()"
+        >
+          <span class="fas fa-save"></span>
+        </button>
+      </div>
+    </kido-input>
+  </div>
 
-  <kido-json-editor></kido-json-editor>
+  <div class="stream-detail--form-content">
+    <kido-json-editor></kido-json-editor>
+  </div>
 </div>
