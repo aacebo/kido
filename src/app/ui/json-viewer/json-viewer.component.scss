@@ -23,7 +23,7 @@ $type-colors: (
   .kido-json-viewer--node {
     display: block;
 
-    &.expandable > .kidp-json-viewer--node-toggler,
+    &.expandable > .kido-json-viewer--node-toggler,
     &.expandable > .kido-json-viewer--node-key {
       cursor: pointer;
     }
