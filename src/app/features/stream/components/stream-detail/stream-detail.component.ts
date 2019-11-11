@@ -21,7 +21,7 @@ export class StreamDetailComponent implements OnInit {
     this._stream = v;
 
     if (this.form) {
-      this.form.setValue(this._formStream);
+      this.form.reset(this._formStream);
     }
   }
   private _stream: IStream;

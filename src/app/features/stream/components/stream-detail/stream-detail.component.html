@@ -46,7 +46,7 @@
           kido-button
           size="lg"
           color="success"
-          [disabled]="form.invalid || areEqual"
+          [disabled]="form.invalid || form.pristine || areEqual"
           (click)="save()"
         >
           <span class="fas fa-save"></span>
