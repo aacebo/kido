@@ -11,6 +11,7 @@ $type-colors: (
 
 .kido-json-viewer {
   display: block;
+  position: relative;
   white-space: nowrap;
   padding-left: 12px;
   background-color: #282a36;
@@ -18,6 +19,11 @@ $type-colors: (
   &.kido-json-viewer--root-node {
     border: 1px solid var(--hairline-strong);
     padding: 5px 16px;
+  }
+
+  &.kido-json-viewer--raw {
+    white-space: pre;
+    color: #efefef;
   }
 
   .kido-json-viewer--node {
@@ -76,5 +82,11 @@ $type-colors: (
         transition: transform 0.1s ease-in;
       }
     }
+  }
+
+  .kido-json-viewer--view-toggle {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
   }
 }

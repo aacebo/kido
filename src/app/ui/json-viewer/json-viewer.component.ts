@@ -13,6 +13,7 @@ import { JsonViewerNodeType } from './json-viewer-node-type.enum';
   host: {
     class: 'kido-json-viewer',
     '[class.kido-json-viewer--root-node]': 'root',
+    '[class.kido-json-viewer--raw]': 'raw',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -39,9 +40,26 @@ export class JsonViewerComponent implements OnInit {
   }
   private _root = true;
 
+  @Input()
+  get raw() { return this._raw; }
+  set raw(v: boolean) {
+    this._raw = coerceBooleanProperty(v);
+  }
+  private _raw?: boolean;
+
+  @Input()
+  get toggler() { return this._toggler; }
+  set toggler(v: boolean) {
+    this._toggler = coerceBooleanProperty(v);
+  }
+  private _toggler?: boolean;
+
   nodes: IJsonViewerNode[] = [];
+  rawJson: string;
 
   ngOnInit() {
+    this.rawJson = JSON.stringify(this.json, undefined, 4);
+
     if (typeof this.json === 'object') {
       for (const key of Object.keys(this.json)) {
         this.nodes.push(this.parseJSON(key, this.json[key]));
@@ -57,6 +75,10 @@ export class JsonViewerComponent implements OnInit {
       e.preventDefault();
       node.expanded = !node.expanded;
     }
+  }
+
+  private stringifyJSON(json: any) {
+    return JSON.stringify(json, undefined, 2);
   }
 
   private parseJSON(key: string, value: any) {
@@ -86,12 +108,12 @@ export class JsonViewerComponent implements OnInit {
         node.description = 'null';
       } else if (Array.isArray(value)) {
         node.type = JsonViewerNodeType.Array;
-        node.description = `Array[${value.length}] ${JSON.stringify(value)}`;
+        node.description = `Array[${value.length}] ${this.stringifyJSON(value)}`;
       } else if (value instanceof Date) {
         node.type = JsonViewerNodeType.Date;
       } else {
         node.type = JsonViewerNodeType.Object;
-        node.description = `Object ${JSON.stringify(value)}`;
+        node.description = `Object ${this.stringifyJSON(value)}`;
       }
     }
 

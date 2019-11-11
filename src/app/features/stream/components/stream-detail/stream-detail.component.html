@@ -34,6 +34,7 @@
           kido-button
           size="lg"
           color="danger"
+          ngbTooltip="Revert"
           [disabled]="areEqual"
           (click)="reset()"
         >
@@ -46,10 +47,33 @@
           kido-button
           size="lg"
           color="success"
+          ngbTooltip="Save"
           [disabled]="form.invalid || form.pristine || areEqual"
           (click)="save()"
         >
           <span class="fas fa-save"></span>
+        </button>
+      </div>
+
+      <div kidoInputAppend>
+        <button
+          kido-button
+          size="lg"
+          color="info"
+          ngbTooltip="Connect"
+        >
+          <span class="fas fa-plug"></span>
+        </button>
+      </div>
+
+      <div kidoInputAppend>
+        <button
+          kido-button
+          size="lg"
+          color="info"
+          ngbTooltip="Send"
+        >
+          <span class="fas fa-paper-plane"></span>
         </button>
       </div>
     </kido-input>
@@ -62,7 +86,7 @@
 
     <kido-json-viewer
       [json]="json"
-      expanded
+      toggler
     ></kido-json-viewer>
   </div>
 </div>

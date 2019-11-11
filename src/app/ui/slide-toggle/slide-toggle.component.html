@@ -1,0 +1,15 @@
+<label
+  *ngIf="label"
+  class="kido-slide-toggle--label"
+>
+  {{ label }}
+</label>
+
+<label class="kido-slide-toggle--switch">
+  <input
+    class="kido-slide-toggle--checkbox"
+    type="checkbox"
+    [(ngModel)]="value"
+  />
+  <span class="kido-slide-toggle--slider"></span>
+</label>

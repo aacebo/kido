@@ -1,0 +1,60 @@
+.kido-slide-toggle {
+  display: inline-block;
+
+  .kido-slide-toggle--label {
+    display: block;
+    margin: 0;
+    text-align: center;
+    font-size: 8pt;
+  }
+
+  .kido-slide-toggle--switch {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 30px;
+    margin: 0;
+
+    .kido-slide-toggle--checkbox {
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      &:checked + .kido-slide-toggle--slider {
+        background-color: #2196F3;
+
+        &:before {
+          transform: translateX(21px);
+        }
+      }
+
+      &:focus + .kido-slide-toggle--slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+    }
+
+    .kido-slide-toggle--slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+
+      &:before {
+        position: absolute;
+        content: "";
+        height: 22px;
+        width: 22px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+    }
+  }
+}

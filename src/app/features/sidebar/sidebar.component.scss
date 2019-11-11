@@ -32,3 +32,9 @@
     background-color: var(--bg-darkest);
   }
 }
+
+@media only screen and (max-width: 750px) {
+  .kido-sidebar {
+    display: none !important;
+  }
+}
