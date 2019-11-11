@@ -26,10 +26,13 @@
     }
 
     .stream-detail--form-content {
+      display: flex;
+      flex-direction: column;
       flex: 1 1 auto;
 
-      kido-json-editor {
-        height: 50%;
+      .kido-json-viewer--root-node {
+        margin-top: 5px;
+        flex: 1 1 auto;
       }
     }
   }

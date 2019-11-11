@@ -21,6 +21,7 @@ export class UpdateStreamEffects {
         name: a.stream.name,
         url: a.stream.url,
         description: a.stream.description,
+        message: a.stream.message,
         createdAt: a.stream.createdAt,
       })
       .then(res => actions.updateStreamSuccess({ stream: res }))

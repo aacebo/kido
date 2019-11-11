@@ -21,6 +21,7 @@ export class AddStreamEffects {
         name: a.name,
         url: a.url,
         description: a.description,
+        message: null,
         createdAt: new Date().getTime(),
       })
       .then(res => actions.addStreamSuccess({ stream: res }))

@@ -1,0 +1,80 @@
+$type-colors: (
+  string: #f1fa8c,
+  number: #bd93f9,
+  boolean: #bd93f9,
+  date: #FF6B6B,
+  function: #ff79c6,
+
+  'null': #bd93f9,
+  undefined: #bd93f9
+);
+
+.kido-json-viewer {
+  display: block;
+  white-space: nowrap;
+  padding-left: 12px;
+  background-color: #282a36;
+
+  &.kido-json-viewer--root-node {
+    border: 1px solid var(--hairline-strong);
+    padding: 5px 16px;
+  }
+
+  .kido-json-viewer--node {
+    display: block;
+
+    &.expandable > .kidp-json-viewer--node-toggler,
+    &.expandable > .kido-json-viewer--node-key {
+      cursor: pointer;
+    }
+
+    &.expanded > .kido-json-viewer--node-toggler {
+      &:after {
+        transform: rotate(90deg);
+      }
+    }
+
+    @each $type, $color in $type-colors {
+      &.kido-json-viewer--node-type-#{$type} {
+        .kido-json-viewer--node-value {
+          color: $color;
+        }
+      }
+    }
+
+    .kido-json-viewer--node-key {
+      display: inline-block;
+      color: #66d9ef;
+      user-select: none;
+    }
+
+    .kido-json-viewer--node-value {
+      display: inline-block;
+      color: #999;
+    }
+
+    .kido-json-viewer--node-separator {
+      display: inline-block;
+      margin: 0 5px;
+      color: #fff;
+      user-select: none;
+    }
+
+    .kido-json-viewer--node-toggler {
+      position: absolute;
+      margin-left: -14px;
+      margin-top: 3px;
+      font-size: .8em;
+      line-height: 1.2em;
+      vertical-align: middle;
+      color: #787878;
+      user-select: none;
+
+      &:after {
+        display: inline-block;
+        content: "►";
+        transition: transform 0.1s ease-in;
+      }
+    }
+  }
+}

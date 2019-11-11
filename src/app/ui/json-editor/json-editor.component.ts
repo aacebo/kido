@@ -12,6 +12,7 @@ import {
 
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript.js';
+import 'codemirror/addon/edit/closebrackets';
 import 'codemirror/addon/lint/lint.js';
 import 'codemirror/addon/fold/brace-fold.js';
 
@@ -22,7 +23,7 @@ import { NgForm, FormGroupDirective } from '@angular/forms';
   moduleId: module.id,
   exportAs: 'kidoJsonEditor',
   selector: 'kido-json-editor',
-  templateUrl: './json-editor.component.html',
+  template: '<textarea #textarea></textarea>',
   styleUrls: ['./json-editor.component.scss'],
   host: { class: 'kido-json-editor' },
   providers: [formControlProvider(JsonEditorComponent)],
@@ -34,6 +35,19 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   readonly textarea: ElementRef<HTMLTextAreaElement>;
 
   editor: CodeMirror.EditorFromTextArea;
+
+  get value() { return this._value; }
+  set value(v: string) {
+    this._value = v;
+
+    if (this.editor && v !== this.editor.getValue()) {
+      this.editor.setValue(v || '');
+    }
+
+    this.cdr.markForCheck();
+    this.onChange(v);
+  }
+  protected _value?: string;
 
   constructor(
     readonly el: ElementRef<HTMLInputElement | HTMLTextAreaElement>,
@@ -50,15 +64,16 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
       theme: 'dracula',
       mode: 'application/json',
       readOnly: this.readonly,
-      value: this.value,
       lint: true,
       tabSize: 2,
       foldGutter: true,
       gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
       viewportMargin: Infinity,
+      autoCloseBrackets: true,
     });
 
     this.editor.on('change', this.onEditorChange.bind(this));
+    this.editor.setValue(this.value || '');
   }
 
   ngOnDestroy() {
@@ -68,6 +83,10 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   }
 
   private onEditorChange(editor: CodeMirror.EditorFromTextArea) {
-    this.value = editor.getValue();
+    const v = editor.getValue();
+
+    if (v !== this.value) {
+      this.value = v;
+    }
   }
 }

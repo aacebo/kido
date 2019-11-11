@@ -5,6 +5,6 @@ export interface IStreamMessage {
   readonly _rev?: string;
   readonly streamId: string;
   readonly type: StreamMessageType;
-  readonly content: any;
+  readonly content: string;
   readonly createdAt: number;
 }

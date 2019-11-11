@@ -56,6 +56,13 @@
   </div>
 
   <div class="stream-detail--form-content">
-    <kido-json-editor></kido-json-editor>
+    <kido-json-editor
+      formControlName="message"
+    ></kido-json-editor>
+
+    <kido-json-viewer
+      [json]="json"
+      expanded
+    ></kido-json-viewer>
   </div>
 </div>

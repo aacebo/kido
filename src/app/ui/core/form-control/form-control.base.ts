@@ -11,14 +11,14 @@ export class FormControlBase<T> implements ControlValueAccessor {
     this.cdr.markForCheck();
     this.onChange(v);
   }
-  private _value?: T;
+  protected _value?: T;
 
   @Input()
   get id() { return this._id; }
   set id(v: string) {
     this._id = v;
   }
-  private _id = `${++nextId}`;
+  protected _id = `${++nextId}`;
 
   @Input()
   get tabIndex() { return this._tabIndex; }
@@ -26,42 +26,42 @@ export class FormControlBase<T> implements ControlValueAccessor {
     this._tabIndex = coerceNumberProperty(v);
     this.el.nativeElement.tabIndex = this._tabIndex;
   }
-  private _tabIndex?: number;
+  protected _tabIndex?: number;
 
   @Input()
   get label() { return this._label; }
   set label(v: string) {
     this._label = v;
   }
-  private _label?: string;
+  protected _label?: string;
 
   @Input()
   get placeholder() { return this._placeholder; }
   set placeholder(v: string) {
     this._placeholder = v;
   }
-  private _placeholder?: string;
+  protected _placeholder?: string;
 
   @Input()
   get required() { return this._required; }
   set required(v: boolean) {
     this._required = coerceBooleanProperty(v);
   }
-  private _required?: boolean;
+  protected _required?: boolean;
 
   @Input()
   get disabled() { return this._disabled; }
   set disabled(v: boolean) {
     this._disabled = coerceBooleanProperty(v);
   }
-  private _disabled?: boolean;
+  protected _disabled?: boolean;
 
   @Input()
   get readonly() { return this._readonly; }
   set readonly(v: boolean) {
     this._readonly = coerceBooleanProperty(v);
   }
-  private _readonly?: boolean;
+  protected _readonly?: boolean;
 
   onChange: (v: any) => void = () => {};
   onTouch = () => {};

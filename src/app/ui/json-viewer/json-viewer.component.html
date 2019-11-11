@@ -1,0 +1,42 @@
+<div
+  *ngFor="let node of nodes"
+  class="kido-json-viewer--node"
+  [ngClass]="'kido-json-viewer--node-type-' + node.type"
+  [class.expandable]="node.expandable"
+  [class.expanded]="node.expanded"
+>
+  <div
+    *ngIf="node.expandable"
+    class="kido-json-viewer--node-toggler"
+    (click)="toggle($event, node)"
+  ></div>
+
+  <div
+    class="kido-json-viewer--node-key"
+    (click)="toggle($event, node)"
+  >
+    {{ node.key }}
+  </div>
+
+  <div class="kido-json-viewer--node-separator">
+    :
+  </div>
+
+  <div
+    *ngIf="!node.expanded || !node.expandable"
+    class="kido-json-viewer--node-value"
+  >
+    {{ node.description }}
+  </div>
+
+  <div
+    *ngIf="node.expanded && node.expandable"
+    class="kido-json-viewer--node-children"
+  >
+    <kido-json-viewer
+      [json]="node.value"
+      [expanded]="node.expanded"
+      [root]="false"
+    ></kido-json-viewer>
+  </div>
+</div>
