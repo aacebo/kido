@@ -39,12 +39,7 @@ export class StreamService {
   }
 
   addStream(streamType: StreamType, name: string, url?: string, description?: string) {
-    this._store$.dispatch(actions.addStream({
-      streamType,
-      name,
-      url,
-      description,
-    }));
+    this._store$.dispatch(actions.addStream({ streamType, name, url, description }));
   }
 
   updateStream(stream: Partial<IStream>) {
@@ -52,14 +47,22 @@ export class StreamService {
   }
 
   addMessage(streamId: string, messageType: StreamMessageType, content: any) {
-    this._store$.dispatch(actions.addMessage({
-      streamId,
-      messageType,
-      content,
-    }));
+    this._store$.dispatch(actions.addMessage({ streamId, messageType, content }));
   }
 
   setActive(streamId: string) {
     this._store$.dispatch(actions.setActive({ streamId }));
+  }
+
+  connect(streamType: StreamType, url: string, cb: (..._: any) => void) {
+    this._store$.dispatch(actions.connectStream({ streamType, url, cb }));
+  }
+
+  disconnect() {
+    this._store$.dispatch(actions.disconnectStream());
+  }
+
+  send(message: string) {
+    this._store$.dispatch(actions.sendStream({ message }));
   }
 }

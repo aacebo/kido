@@ -27,6 +27,8 @@ export class StreamDetailComponent implements OnInit {
   private _stream: IStream;
 
   @Output() update = new EventEmitter<Partial<IStream>>();
+  @Output() connect = new EventEmitter<void>();
+  @Output() send = new EventEmitter<string>();
 
   form: FormGroup;
   json = {

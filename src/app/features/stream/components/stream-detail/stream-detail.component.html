@@ -62,6 +62,7 @@
           color="info"
           ngbTooltip="Connect"
           [disabled]="!form.value.url"
+          (click)="connect.emit()"
         >
           <span class="fas fa-plug"></span>
         </button>
@@ -74,6 +75,7 @@
           color="info"
           ngbTooltip="Send"
           [disabled]="form.invalid || !form.value.message"
+          (click)="send.emit(form.value.message)"
         >
           <span class="fas fa-paper-plane"></span>
         </button>

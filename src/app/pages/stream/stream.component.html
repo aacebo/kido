@@ -3,4 +3,6 @@
   [stream]="stream"
   [messages]="streamService.activeStreamMessages$ | async"
   (update)="onUpdate($event)"
+  (connect)="onConnect(stream)"
+  (send)="onSend($event, stream)"
 ></kido-stream-detail>

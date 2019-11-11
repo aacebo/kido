@@ -15,6 +15,7 @@ import * as effects from './effects';
       effects.AddStreamEffects,
       effects.AddMessageEffects,
       effects.UpdateStreamEffects,
+      effects.ConnectStreamEffects,
     ]),
   ],
 })
