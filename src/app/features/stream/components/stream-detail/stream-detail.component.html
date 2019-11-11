@@ -35,7 +35,7 @@
           size="lg"
           color="danger"
           ngbTooltip="Revert"
-          [disabled]="areEqual"
+          [disabled]="areEqual || form.pristine"
           (click)="reset()"
         >
           <span class="fas fa-history"></span>
@@ -61,6 +61,7 @@
           size="lg"
           color="info"
           ngbTooltip="Connect"
+          [disabled]="!form.value.url"
         >
           <span class="fas fa-plug"></span>
         </button>
@@ -72,6 +73,7 @@
           size="lg"
           color="info"
           ngbTooltip="Send"
+          [disabled]="form.invalid || !form.value.message"
         >
           <span class="fas fa-paper-plane"></span>
         </button>

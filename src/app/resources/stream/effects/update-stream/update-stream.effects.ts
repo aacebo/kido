@@ -18,10 +18,10 @@ export class UpdateStreamEffects {
         _id: a.stream._id,
         _rev: a.stream._rev,
         type: a.stream.type,
-        name: a.stream.name,
-        url: a.stream.url,
-        description: a.stream.description,
-        message: a.stream.message,
+        name: a.stream.name ? a.stream.name.trim() : null,
+        url: a.stream.url ? a.stream.url.trim() : null,
+        description: a.stream.description ? a.stream.description.trim() : null,
+        message: a.stream.message ? a.stream.message.trim() : null,
         createdAt: a.stream.createdAt,
       })
       .then(res => actions.updateStreamSuccess({ stream: res }))

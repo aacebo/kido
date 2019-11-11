@@ -34,6 +34,13 @@ export class JsonViewerComponent implements OnInit {
   private _expanded?: boolean;
 
   @Input()
+  get deep() { return this._deep; }
+  set deep(v: boolean) {
+    this._deep = coerceBooleanProperty(v);
+  }
+  private _deep?: boolean;
+
+  @Input()
   get root() { return this._root; }
   set root(v: boolean) {
     this._root = coerceBooleanProperty(v);
@@ -87,7 +94,7 @@ export class JsonViewerComponent implements OnInit {
       key,
       value,
       description: `${value}`,
-      expanded: this.expanded,
+      expanded: this.deep ? this.expanded : false,
     };
 
     if (type === 'number' || type === 'bigint') {

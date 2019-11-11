@@ -18,10 +18,9 @@ export class AddStreamEffects {
       this._pouchService.put({
         _id: uuid(),
         type: a.streamType,
-        name: a.name,
-        url: a.url,
-        description: a.description,
-        message: null,
+        name: a.name ? a.name.trim() : null,
+        url: a.url ? a.url.trim() : null,
+        description: a.description ? a.description.trim() : null,
         createdAt: new Date().getTime(),
       })
       .then(res => actions.addStreamSuccess({ stream: res }))
