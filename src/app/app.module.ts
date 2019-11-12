@@ -41,6 +41,7 @@ PouchDB.plugin(PouchDBFind);
     ToastrModule.forRoot({
       progressBar: true,
       positionClass: 'toast-bottom-right',
+      timeOut: 3000,
     }),
     AppRoutingModule,
 

@@ -9,3 +9,10 @@
     {{ messages?.length || 0 }} Messages
   </div>
 </div>
+
+<div class="stream-list-item--actions">
+  <span
+    *ngIf="connected"
+    class="fas fa-wifi text-success"
+  ></span>
+</div>
