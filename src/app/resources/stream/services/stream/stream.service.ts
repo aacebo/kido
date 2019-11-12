@@ -13,20 +13,28 @@ import { StreamType, StreamMessageType } from '../../enums';
 })
 export class StreamService {
   readonly state$: Observable<IStreamState>;
-  readonly active$: Observable<string | undefined>;
+  readonly activeStreamId$: Observable<string | undefined>;
   readonly streams$: Observable<{ [streamId: string]: IStream }>;
   readonly streamMessages$: Observable<{ [streamId: string]: IStreamMessage[] }>;
+  readonly streamConnected$: Observable<{ [streamId: string]: boolean }>;
   readonly activeStream$: Observable<IStream | undefined>;
   readonly activeStreamMessages$: Observable<IStreamMessage[]>;
+  readonly activeStreamMessage$: Observable<IStreamMessage | undefined>;
+  readonly activeStreamMessageJson$: Observable<any | undefined>;
+  readonly activeStreamConnected$: Observable<boolean>;
   readonly entities$: Observable<IStream[]>;
 
   constructor(private readonly _store$: Store<IStreamState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
-    this.active$ = this._store$.pipe(select(selectors.selectActive));
+    this.activeStreamId$ = this._store$.pipe(select(selectors.selectActiveStreamId));
     this.streams$ = this._store$.pipe(select(selectors.selectStreams));
     this.streamMessages$ = this._store$.pipe(select(selectors.selectStreamMessages));
+    this.streamConnected$ = this._store$.pipe(select(selectors.selectStreamConnected));
     this.activeStream$ = this._store$.pipe(select(selectors.selectActiveStream));
     this.activeStreamMessages$ = this._store$.pipe(select(selectors.selectActiveStreamMessages));
+    this.activeStreamMessage$ = this._store$.pipe(select(selectors.selectActiveStreamMessage));
+    this.activeStreamMessageJson$ = this._store$.pipe(select(selectors.selectActiveStreamMessageJson));
+    this.activeStreamConnected$ = this._store$.pipe(select(selectors.selectActiveStreamConnected));
     this.entities$ = this._store$.pipe(select(selectors.selectEntities));
   }
 
@@ -54,15 +62,15 @@ export class StreamService {
     this._store$.dispatch(actions.setActive({ streamId }));
   }
 
-  connect(streamType: StreamType, url: string, cb: (..._: any) => void) {
-    this._store$.dispatch(actions.connectStream({ streamType, url, cb }));
+  connect(streamId: string, streamType: StreamType, url: string, cb: (..._: any) => void) {
+    this._store$.dispatch(actions.connectStream({ streamId, streamType, url, cb }));
   }
 
-  disconnect() {
-    this._store$.dispatch(actions.disconnectStream());
+  disconnect(streamId: string) {
+    this._store$.dispatch(actions.disconnectStream({ streamId }));
   }
 
-  send(message: string) {
-    this._store$.dispatch(actions.sendStream({ message }));
+  send(streamId: string, message: string) {
+    this._store$.dispatch(actions.sendStream({ streamId, message }));
   }
 }

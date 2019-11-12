@@ -12,6 +12,7 @@ import { STREAM_TYPE_ICON_URLS } from '../../constants';
 export class StreamListItemComponent {
   @Input() stream: IStream;
   @Input() messages: IStreamMessage[] = [];
+  @Input() connected?: boolean;
 
   readonly STREAM_TYPE_ICON_URLS = STREAM_TYPE_ICON_URLS;
 }

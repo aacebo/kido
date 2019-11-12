@@ -16,13 +16,17 @@ export class StreamComponent {
   }
 
   onConnect(e: IStream) {
-    this.streamService.connect(e.type, e.url, (v) => {
+    this.streamService.connect(e._id, e.type, e.url, (v) => {
       this.streamService.addMessage(e._id, StreamMessageType.Received, JSON.stringify(v));
     });
   }
 
+  onDisconnect(e: IStream) {
+    this.streamService.disconnect(e._id);
+  }
+
   onSend(e: string, stream: IStream) {
-    this.streamService.send(JSON.parse(e));
+    this.streamService.send(stream._id, JSON.parse(e));
     this.streamService.addMessage(stream._id, StreamMessageType.Sent, e);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { areEqual } from '../../../../core/utils';
+import { areEqual, isValidJSON } from '../../../../core/utils';
 import { IStream, IStreamMessage, StreamType } from '../../../../resources/stream';
 import { STREAM_TYPE_LABELS } from '../../constants';
 
@@ -15,6 +15,8 @@ import { STREAM_TYPE_LABELS } from '../../constants';
 })
 export class StreamDetailComponent implements OnInit {
   @Input() messages: IStreamMessage[] = [];
+  @Input() activeMessageJson?: any;
+  @Input() connected?: boolean;
   @Input()
   get stream() { return this._stream; }
   set stream(v: IStream) {
@@ -28,34 +30,20 @@ export class StreamDetailComponent implements OnInit {
 
   @Output() update = new EventEmitter<Partial<IStream>>();
   @Output() connect = new EventEmitter<void>();
+  @Output() disconnect = new EventEmitter<void>();
   @Output() send = new EventEmitter<string>();
 
   form: FormGroup;
-  json = {
-    test: 1,
-    test2: true,
-    test3: new Date(),
-    test4: 'testing123',
-    test5: {
-      anothertest: 'lol',
-    },
-    test6: [
-      'test',
-      {
-        'test-this': {
-          0: 1,
-        },
-      },
-    ],
-    test7: undefined,
-    test8: null,
-  };
 
   readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
   readonly StreamType = StreamType;
 
   get areEqual() {
     return areEqual(this.form.value, this._formStream);
+  }
+
+  get isValidJSON() {
+    return isValidJSON(this.form.value.message);
   }
 
   private get _formStream() {
@@ -89,5 +77,13 @@ export class StreamDetailComponent implements OnInit {
 
   reset() {
     this.form.reset(this._formStream);
+  }
+
+  toggle() {
+    if (this.connected) {
+      this.disconnect.emit();
+    } else {
+      this.connect.emit();
+    }
   }
 }

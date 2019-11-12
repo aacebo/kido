@@ -59,10 +59,10 @@
         <button
           kido-button
           size="lg"
-          color="info"
-          ngbTooltip="Connect"
+          [color]="connected ? 'danger' : 'info'"
+          [ngbTooltip]="connected ? 'Disconnect' : 'Connect'"
           [disabled]="!form.value.url"
-          (click)="connect.emit()"
+          (click)="toggle()"
         >
           <span class="fas fa-plug"></span>
         </button>
@@ -74,7 +74,7 @@
           size="lg"
           color="info"
           ngbTooltip="Send"
-          [disabled]="form.invalid || !form.value.message"
+          [disabled]="form.invalid || !form.value.message || !isValidJSON || !connected"
           (click)="send.emit(form.value.message)"
         >
           <span class="fas fa-paper-plane"></span>
@@ -89,7 +89,8 @@
     ></kido-json-editor>
 
     <kido-json-viewer
-      [json]="json"
+      *ngIf="activeMessageJson"
+      [json]="activeMessageJson"
       toggler
     ></kido-json-viewer>
   </div>

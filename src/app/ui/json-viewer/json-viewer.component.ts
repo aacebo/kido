@@ -23,6 +23,7 @@ export class JsonViewerComponent implements OnInit {
   get json() { return this._json; }
   set json(v: any) {
     this._json = v;
+    this.render();
   }
   private _json: any;
 
@@ -65,15 +66,7 @@ export class JsonViewerComponent implements OnInit {
   rawJson: string;
 
   ngOnInit() {
-    this.rawJson = JSON.stringify(this.json, undefined, 4);
-
-    if (typeof this.json === 'object') {
-      for (const key of Object.keys(this.json)) {
-        this.nodes.push(this.parseJSON(key, this.json[key]));
-      }
-    } else {
-      this.nodes = [this.parseJSON(`(${typeof this.json})`, this.json)];
-    }
+    this.render();
   }
 
   toggle(e: Event, node: IJsonViewerNode) {
@@ -128,5 +121,19 @@ export class JsonViewerComponent implements OnInit {
                       node.type === JsonViewerNodeType.Array;
 
     return node;
+  }
+
+  private render() {
+    this.rawJson = JSON.stringify(this.json, undefined, 4);
+
+    if (typeof this.json === 'object') {
+      this.nodes = [];
+
+      for (const key of Object.keys(this.json)) {
+        this.nodes.push(this.parseJSON(key, this.json[key]));
+      }
+    } else {
+      this.nodes = [this.parseJSON(`(${typeof this.json})`, this.json)];
+    }
   }
 }

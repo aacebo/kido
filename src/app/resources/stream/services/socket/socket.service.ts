@@ -1,30 +1,34 @@
+import { Injectable } from '@angular/core';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { ToastrService } from 'ngx-toastr';
 
 import { StreamType } from '../../enums';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class SocketService {
-  private _socket$?: WebSocketSubject<any>;
+  private _sockets: { [streamId: string]: WebSocketSubject<any> } = { };
 
   constructor(private readonly _toastr: ToastrService) { }
 
-  connect(type: StreamType, url: string, cb: (..._: any) => void) {
+  connect(streamId: string, type: StreamType, url: string, cb: (..._: any) => void) {
     if (type === StreamType.WebSocket) {
-      this._socket$ = webSocket(url);
+      this._sockets[streamId] = webSocket(url);
       this._toastr.success('Connected', 'Socket');
-      this._socket$.subscribe(
+      this._sockets[streamId].subscribe(
         v => cb(v),
         () => this._toastr.error('An error occurred', 'Socket'),
-        () => this._toastr.info('Disconnected', 'Socket'),
+        () => this._toastr.warning('Disconnected', 'Socket'),
       );
     }
   }
 
-  disconnect() {
-    this._socket$.complete();
+  disconnect(streamId: string) {
+    this._sockets[streamId].complete();
   }
 
-  send(message: string) {
-    this._socket$.next(message);
+  send(streamId: string, message: string) {
+    this._sockets[streamId].next(message);
   }
 }

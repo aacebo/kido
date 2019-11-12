@@ -5,7 +5,24 @@ import { IStreamState } from './stream.state';
 export const selectState = createFeatureSelector<IStreamState>('stream');
 export const selectStreams = createSelector(selectState, state => state.streams);
 export const selectStreamMessages = createSelector(selectState, state => state.streamMessages);
-export const selectActive = createSelector(selectState, state => state.active);
-export const selectActiveStream = createSelector(selectState, state => state.streams[state.active]);
-export const selectActiveStreamMessages = createSelector(selectState, state => state.streamMessages[state.active] || []);
+export const selectStreamConnected = createSelector(selectState, state => state.streamConnected);
+export const selectActiveStreamId = createSelector(selectState, state => state.activeStreamId);
+export const selectActiveStream = createSelector(selectState, state => state.streams[state.activeStreamId]);
+export const selectActiveStreamMessages = createSelector(selectState, state => state.streamMessages[state.activeStreamId] || []);
 export const selectEntities = createSelector(selectState, state => Object.values(state.streams));
+
+export const selectActiveStreamMessage = createSelector(selectState, state => {
+  if (state.streamMessages[state.activeStreamId]) {
+    return state.streamMessages[state.activeStreamId][0];
+  }
+
+  return undefined;
+});
+
+export const selectActiveStreamMessageJson = createSelector(selectActiveStreamMessage, message => {
+  return message ? JSON.parse(message.content) : undefined;
+});
+
+export const selectActiveStreamConnected = createSelector(selectState, state => {
+  return state.streamConnected[state.activeStreamId] || false;
+});

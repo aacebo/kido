@@ -11,13 +11,13 @@ export const streamMessages = createReducer<{ [streamId: string]: IStreamMessage
   on(actions.getMessages, (_) => ({ })),
   on(actions.getMessagesFailed, (_) => ({ })),
   on(actions.getMessagesSuccess, (_, a) => {
-    const map = { };
+    const map: { [streamId: string]: IStreamMessage[] } = { };
 
     for (const msg of a.messages) {
       if (map[msg.streamId] === undefined) {
         map[msg.streamId] = [msg];
       } else {
-        map[msg.streamId].push(msg);
+        map[msg.streamId].unshift(msg);
       }
     }
 
@@ -26,11 +26,9 @@ export const streamMessages = createReducer<{ [streamId: string]: IStreamMessage
   on(actions.addMessageSuccess, (_, a) => {
     const messages = _[a.message.streamId] || [];
 
-    messages.push(a.message);
-    _[a.message.streamId] = messages;
+    messages.unshift(a.message);
+    _[a.message.streamId] = [...messages];
 
-    return {
-      ..._,
-    };
+    return { ..._ };
   }),
 );

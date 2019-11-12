@@ -12,6 +12,7 @@ export class SidebarComponent {
   @Input() streams: IStream[] = [];
   @Input() active?: string;
   @Input() streamMessages: { [streamId: string]: IStreamMessage[] } = { };
+  @Input() streamConnected: { [streamId: string]: boolean } = { };
 
   width = 200;
 

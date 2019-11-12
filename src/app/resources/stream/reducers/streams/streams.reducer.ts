@@ -18,14 +18,10 @@ export const streams = createReducer<{ [streamId: string]: IStream }>(
   }),
   on(actions.addStreamSuccess, (_, a) => {
     _[a.stream._id] = a.stream;
-    return {
-      ..._,
-    };
+    return { ..._ };
   }),
   on(actions.updateStreamSuccess, (_, a) => {
     _[a.stream._id] = a.stream;
-    return {
-      ..._,
-    };
+    return { ..._ };
   }),
 );
