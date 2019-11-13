@@ -4,7 +4,9 @@ import { ToastrService } from 'ngx-toastr';
 
 import { areEqual, isValidJSON } from '../../../../core/utils';
 import { IStream, IStreamMessage, StreamType } from '../../../../resources/stream';
+
 import { STREAM_TYPE_LABELS } from '../../constants';
+import { Hotkeys } from '../../../../ui/hotkeys';
 
 @Component({
   selector: 'kido-stream-detail',
@@ -72,11 +74,14 @@ export class StreamDetailComponent implements OnInit {
     });
   }
 
+  @Hotkeys('ctrl+s')
   save() {
-    this.update.emit({
-      ...this.stream,
-      ...this.form.value,
-    });
+    if (!this.form.invalid && !this.form.pristine && !this.areEqual) {
+      this.update.emit({
+        ...this.stream,
+        ...this.form.value,
+      });
+    }
   }
 
   reset() {
