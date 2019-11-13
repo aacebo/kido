@@ -28,6 +28,7 @@
         *ngIf="!node.expanded || !node.expandable"
         class="kido-json-viewer--node-value"
         [kidoEllipsis]="node.description"
+        (click)="copy(node.description)"
       ></div>
 
       <div
@@ -38,6 +39,7 @@
           [json]="node.value"
           [expanded]="node.expanded"
           [root]="false"
+          (propertyValueClicked)="propertyValueClicked.emit($event)"
         ></kido-json-viewer>
       </div>
     </div>

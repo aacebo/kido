@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 import { areEqual, isValidJSON } from '../../../../core/utils';
 import { IStream, IStreamMessage, StreamType } from '../../../../resources/stream';
@@ -56,7 +57,10 @@ export class StreamDetailComponent implements OnInit {
     };
   }
 
-  constructor(private readonly _fb: FormBuilder) { }
+  constructor(
+    private readonly _fb: FormBuilder,
+    private readonly _toastr: ToastrService,
+  ) { }
 
   ngOnInit() {
     this.form = this._fb.group({
@@ -85,5 +89,10 @@ export class StreamDetailComponent implements OnInit {
     } else {
       this.connect.emit();
     }
+  }
+
+  async onPropertyValueClicked(e: string) {
+    await window.navigator.clipboard.writeText(e);
+    this._toastr.info('Copied to Clipboard!');
   }
 }

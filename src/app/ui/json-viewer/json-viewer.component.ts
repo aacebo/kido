@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { IJsonViewerNode } from './json-viewer-node.model';
@@ -62,6 +62,8 @@ export class JsonViewerComponent implements OnInit {
   }
   private _toggler?: boolean;
 
+  @Output() propertyValueClicked = new EventEmitter<string>();
+
   nodes: IJsonViewerNode[] = [];
   rawJson: string;
 
@@ -75,6 +77,10 @@ export class JsonViewerComponent implements OnInit {
       e.preventDefault();
       node.expanded = !node.expanded;
     }
+  }
+
+  copy(text: string) {
+    this.propertyValueClicked.emit(text);
   }
 
   private stringifyJSON(json: any) {
@@ -108,12 +114,12 @@ export class JsonViewerComponent implements OnInit {
         node.description = 'null';
       } else if (Array.isArray(value)) {
         node.type = JsonViewerNodeType.Array;
-        node.description = `Array[${value.length}] ${this.stringifyJSON(value)}`;
+        node.description = this.stringifyJSON(value);
       } else if (value instanceof Date) {
         node.type = JsonViewerNodeType.Date;
       } else {
         node.type = JsonViewerNodeType.Object;
-        node.description = `Object ${this.stringifyJSON(value)}`;
+        node.description = this.stringifyJSON(value);
       }
     }
 

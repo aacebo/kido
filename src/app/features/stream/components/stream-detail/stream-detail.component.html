@@ -92,6 +92,7 @@
       *ngIf="activeMessageJson"
       [json]="activeMessageJson"
       toggler
+      (propertyValueClicked)="onPropertyValueClicked($event)"
     ></kido-json-viewer>
   </div>
 </div>
