@@ -62,8 +62,8 @@ export class StreamService {
     this._store$.dispatch(actions.setActive({ streamId }));
   }
 
-  connect(streamId: string, streamType: StreamType, url: string, cb: (..._: any) => void) {
-    this._store$.dispatch(actions.connectStream({ streamId, streamType, url, cb }));
+  connect(streamId: string, streamType: StreamType, url: string) {
+    this._store$.dispatch(actions.connectStream({ streamId, streamType, url }));
   }
 
   disconnect(streamId: string) {

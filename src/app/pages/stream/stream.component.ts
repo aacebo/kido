@@ -16,9 +16,7 @@ export class StreamComponent {
   }
 
   onConnect(e: IStream) {
-    this.streamService.connect(e._id, e.type, e.url, (v) => {
-      this.streamService.addMessage(e._id, StreamMessageType.Received, JSON.stringify(v));
-    });
+    this.streamService.connect(e._id, e.type, e.url);
   }
 
   onDisconnect(e: IStream) {

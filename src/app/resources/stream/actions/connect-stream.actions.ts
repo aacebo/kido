@@ -8,7 +8,6 @@ export const connectStream = createAction(
     readonly streamId: string;
     readonly streamType: StreamType;
     readonly url: string;
-    readonly cb: (..._: any) => void;
   }>(),
 );
 
