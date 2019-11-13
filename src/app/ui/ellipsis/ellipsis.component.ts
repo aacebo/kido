@@ -18,10 +18,9 @@ export class EllipsisComponent implements OnInit {
   set maxLength(v: number) {
     this._maxLength = coerceNumberProperty(v);
   }
-  private _maxLength = 300;
+  private _maxLength = 50;
 
   content: string;
-  expanded?: boolean;
 
   ngOnInit() {
     this.content = this.text;
@@ -33,11 +32,9 @@ export class EllipsisComponent implements OnInit {
 
   expand() {
     this.content = this.text;
-    this.expanded = true;
   }
 
   collapse() {
     this.content = `${this.text.slice(0, this.maxLength)}`;
-    this.expanded = false;
   }
 }

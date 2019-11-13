@@ -1,3 +1,11 @@
 .kido-ellipsis {
+  display: inline-block;
 
+  .kido-ellipsis--content {
+    display: inline-block;
+  }
+
+  .kido-ellipsis--ellipsis {
+    display: inline-block;
+  }
 }

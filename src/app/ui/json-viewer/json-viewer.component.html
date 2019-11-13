@@ -1,51 +1,52 @@
-<ng-container *ngIf="!raw">
-  <div
-    *ngFor="let node of nodes"
-    class="kido-json-viewer--node"
-    [ngClass]="'kido-json-viewer--node-type-' + node.type"
-    [class.expandable]="node.expandable"
-    [class.expanded]="node.expanded"
-  >
+<div class="kido-json-viewer--nodes">
+  <ng-container *ngIf="!raw">
     <div
-      *ngIf="node.expandable"
-      class="kido-json-viewer--node-toggler"
-      (click)="toggle($event, node)"
-    ></div>
-
-    <div
-      class="kido-json-viewer--node-key"
-      (click)="toggle($event, node)"
+      *ngFor="let node of nodes"
+      class="kido-json-viewer--node"
+      [ngClass]="'kido-json-viewer--node-type-' + node.type"
+      [class.expandable]="node.expandable"
+      [class.expanded]="node.expanded"
     >
-      {{ node.key }}
-    </div>
+      <div
+        *ngIf="node.expandable"
+        class="kido-json-viewer--node-toggler"
+        (click)="toggle($event, node)"
+      ></div>
 
-    <div class="kido-json-viewer--node-separator">
-      :
-    </div>
+      <div
+        class="kido-json-viewer--node-key"
+        (click)="toggle($event, node)"
+      >
+        {{ node.key }}
+      </div>
 
-    <div
-      *ngIf="!node.expanded || !node.expandable"
-      class="kido-json-viewer--node-value"
-    >
-      {{ node.description }}
-    </div>
+      <div class="kido-json-viewer--node-separator">
+        :
+      </div>
 
-    <div
-      *ngIf="node.expanded && node.expandable"
-      class="kido-json-viewer--node-children"
-    >
-      <kido-json-viewer
-        [json]="node.value"
-        [expanded]="node.expanded"
-        [root]="false"
-      ></kido-json-viewer>
-    </div>
-  </div>
-</ng-container>
+      <div
+        *ngIf="!node.expanded || !node.expandable"
+        class="kido-json-viewer--node-value"
+        [kidoEllipsis]="node.description"
+      ></div>
 
-<ng-container *ngIf="raw">
-  {{ rawJson }}
-</ng-container>
+      <div
+        *ngIf="node.expanded && node.expandable"
+        class="kido-json-viewer--node-children"
+      >
+        <kido-json-viewer
+          [json]="node.value"
+          [expanded]="node.expanded"
+          [root]="false"
+        ></kido-json-viewer>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="raw">
+    {{ rawJson }}
+  </ng-container>
+</div>
 
 <kido-slide-toggle
   *ngIf="root && toggler"

@@ -15,6 +15,7 @@ $type-colors: (
   white-space: nowrap;
   padding-left: 12px;
   background-color: #282a36;
+  overflow-y: auto;
 
   &.kido-json-viewer--root-node {
     border: 1px solid var(--hairline-strong);
@@ -26,67 +27,71 @@ $type-colors: (
     color: #efefef;
   }
 
-  .kido-json-viewer--node {
-    display: block;
+  .kido-json-viewer--nodes {
+    height: 100%;
 
-    &.expandable > .kido-json-viewer--node-toggler,
-    &.expandable > .kido-json-viewer--node-key {
-      cursor: pointer;
-    }
+    .kido-json-viewer--node {
+      display: block;
 
-    &.expanded > .kido-json-viewer--node-toggler {
-      &:after {
-        transform: rotate(90deg);
+      &.expandable > .kido-json-viewer--node-toggler,
+      &.expandable > .kido-json-viewer--node-key {
+        cursor: pointer;
       }
-    }
 
-    @each $type, $color in $type-colors {
-      &.kido-json-viewer--node-type-#{$type} {
-        .kido-json-viewer--node-value {
-          color: $color;
+      &.expanded > .kido-json-viewer--node-toggler {
+        &:after {
+          transform: rotate(90deg);
         }
       }
-    }
 
-    .kido-json-viewer--node-key {
-      display: inline-block;
-      color: #66d9ef;
-      user-select: none;
-    }
+      @each $type, $color in $type-colors {
+        &.kido-json-viewer--node-type-#{$type} {
+          .kido-json-viewer--node-value {
+            color: $color;
+          }
+        }
+      }
 
-    .kido-json-viewer--node-value {
-      display: inline-block;
-      color: #999;
-    }
-
-    .kido-json-viewer--node-separator {
-      display: inline-block;
-      margin-right: 5px;
-      color: #fff;
-      user-select: none;
-    }
-
-    .kido-json-viewer--node-toggler {
-      position: absolute;
-      margin-left: -14px;
-      margin-top: 3px;
-      font-size: .8em;
-      line-height: 1.2em;
-      vertical-align: middle;
-      color: #787878;
-      user-select: none;
-
-      &:after {
+      .kido-json-viewer--node-key {
         display: inline-block;
-        content: "►";
-        transition: transform 0.1s ease-in;
+        color: #66d9ef;
+        user-select: none;
+      }
+
+      .kido-json-viewer--node-value {
+        display: inline-block;
+        color: #999;
+      }
+
+      .kido-json-viewer--node-separator {
+        display: inline-block;
+        margin-right: 5px;
+        color: #fff;
+        user-select: none;
+      }
+
+      .kido-json-viewer--node-toggler {
+        position: absolute;
+        margin-left: -14px;
+        margin-top: 3px;
+        font-size: .8em;
+        line-height: 1.2em;
+        vertical-align: middle;
+        color: #787878;
+        user-select: none;
+
+        &:after {
+          display: inline-block;
+          content: "►";
+          transition: transform 0.1s ease-in;
+        }
       }
     }
   }
 
   .kido-json-viewer--view-toggle {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
+    position: fixed;
+    right: 18px;
+    bottom: 40px;
   }
 }
