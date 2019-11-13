@@ -17,3 +17,9 @@ html, body {
 .muted {
   color: var(--text-muted);
 }
+
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

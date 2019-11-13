@@ -20,7 +20,7 @@
 
   .stream-list-item--details {
     flex: 1 1 auto;
-    margin: auto;
+    max-width: 80%;
 
     .stream-list-item--title {
       font-size: 11pt;

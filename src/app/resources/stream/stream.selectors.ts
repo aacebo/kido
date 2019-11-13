@@ -9,7 +9,9 @@ export const selectStreamConnected = createSelector(selectState, state => state.
 export const selectActiveStreamId = createSelector(selectState, state => state.activeStreamId);
 export const selectActiveStream = createSelector(selectState, state => state.streams[state.activeStreamId]);
 export const selectActiveStreamMessages = createSelector(selectState, state => state.streamMessages[state.activeStreamId] || []);
-export const selectEntities = createSelector(selectState, state => Object.values(state.streams));
+export const selectEntities = createSelector(selectState, state => {
+  return Object.values(state.streams).sort((one, two) => one.createdAt - two.createdAt);
+});
 
 export const selectActiveStreamMessage = createSelector(selectState, state => {
   if (state.streamMessages[state.activeStreamId]) {

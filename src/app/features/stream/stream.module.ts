@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { NgbModalModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbTooltipModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SocketIconModule } from '../socket-icon';
 
@@ -34,6 +34,7 @@ const declarations = [
 
     NgbModalModule,
     NgbTooltipModule,
+    NgbTabsetModule,
 
     DropdownModule,
     ButtonModule,

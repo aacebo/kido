@@ -74,7 +74,7 @@ export class StreamDetailComponent implements OnInit {
     });
   }
 
-  @Hotkeys('ctrl+s')
+  @Hotkeys('ctrl+s', 'Save')
   save() {
     if (!this.form.invalid && !this.form.pristine && !this.areEqual) {
       this.update.emit({

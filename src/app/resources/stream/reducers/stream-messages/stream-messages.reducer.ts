@@ -13,7 +13,7 @@ export const streamMessages = createReducer<{ [streamId: string]: IStreamMessage
   on(actions.getMessagesSuccess, (_, a) => {
     const map: { [streamId: string]: IStreamMessage[] } = { };
 
-    for (const msg of a.messages) {
+    for (const msg of a.messages.sort((one, two) => one.createdAt - two.createdAt)) {
       if (map[msg.streamId] === undefined) {
         map[msg.streamId] = [msg];
       } else {

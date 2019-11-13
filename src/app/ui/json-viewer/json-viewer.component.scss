@@ -15,11 +15,11 @@ $type-colors: (
   white-space: nowrap;
   padding-left: 12px;
   background-color: #282a36;
-  overflow-y: auto;
 
   &.kido-json-viewer--root-node {
     border: 1px solid var(--hairline-strong);
     padding: 5px 16px;
+    overflow-y: auto;
   }
 
   &.kido-json-viewer--raw {

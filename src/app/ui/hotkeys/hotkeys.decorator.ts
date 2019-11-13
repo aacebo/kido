@@ -1,6 +1,6 @@
 import { HotkeysService } from './hotkeys.service';
 
-export function Hotkeys(keys: string) {
+export function Hotkeys(keys: string, description: string) {
   const hotkeys = HotkeysService.instance;
 
   return (target: any, name: string) => {
@@ -12,7 +12,7 @@ export function Hotkeys(keys: string) {
         ngOnInit.bind(this)();
       }
 
-      hotkeys.register(keys, target[name].bind(this));
+      hotkeys.register(keys, description, target[name].bind(this));
     };
 
     target.ngOnDestroy = function() {

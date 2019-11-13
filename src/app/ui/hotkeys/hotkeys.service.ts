@@ -21,9 +21,10 @@ export class HotkeysService {
 
   private constructor() { }
 
-  register(keys: string, cb: () => void) {
+  register(keys: string, description: string, cb: () => void) {
     this._hotkeys[keys] = {
       keys,
+      description,
       cb,
     };
 
