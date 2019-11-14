@@ -11,6 +11,7 @@ import { InputModule } from '../../ui/input';
 import { SelectModule } from '../../ui/select';
 import { JsonEditorModule } from '../../ui/json-editor';
 import { JsonViewerModule } from '../../ui/json-viewer';
+import { MessengerModule } from '../../ui/messenger';
 
 import * as components from './components';
 
@@ -42,6 +43,7 @@ const declarations = [
     SelectModule,
     JsonEditorModule,
     JsonViewerModule,
+    MessengerModule,
   ],
 })
 export class StreamModule { }

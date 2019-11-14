@@ -1,0 +1,12 @@
+.kido-messenger {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  background-color: #282a36;
+  border: 1px solid var(--hairline-strong);
+  overflow-y: auto;
+
+  cdk-virtual-scroll-viewport {
+    height: 100%;
+  }
+}

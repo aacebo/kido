@@ -1,0 +1,8 @@
+<cdk-virtual-scroll-viewport itemSize="50">
+  <div *cdkVirtualFor="let message of messages">
+    <kido-message
+      [type]="message.type"
+      [createdAt]="message.createdAt"
+    >{{ message.content }}</kido-message>
+  </div>
+</cdk-virtual-scroll-viewport>

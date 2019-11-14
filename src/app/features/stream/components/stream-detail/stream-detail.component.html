@@ -87,12 +87,9 @@
     <ngb-tab title="Messenger">
       <ng-template ngbTabContent>
         <div class="stream-detail--form-content">
-          <kido-json-viewer
-            *ngIf="activeMessageJson"
-            [json]="activeMessageJson"
-            toggler
-            (propertyValueClicked)="onPropertyValueClicked($event)"
-          ></kido-json-viewer>
+          <kido-messenger
+            [messages]="messages"
+          ></kido-messenger>
 
           <kido-json-editor
             formControlName="message"
