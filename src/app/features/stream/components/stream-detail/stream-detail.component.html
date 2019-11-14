@@ -84,26 +84,20 @@
   </div>
 
   <ngb-tabset>
-    <ngb-tab title="Active">
+    <ngb-tab title="Messenger">
       <ng-template ngbTabContent>
         <div class="stream-detail--form-content">
-          <kido-json-editor
-            formControlName="message"
-          ></kido-json-editor>
-
           <kido-json-viewer
             *ngIf="activeMessageJson"
             [json]="activeMessageJson"
             toggler
             (propertyValueClicked)="onPropertyValueClicked($event)"
           ></kido-json-viewer>
-        </div>
-      </ng-template>
-    </ngb-tab>
 
-    <ngb-tab title="Chat">
-      <ng-template ngbTabContent>
-        Chat!
+          <kido-json-editor
+            formControlName="message"
+          ></kido-json-editor>
+        </div>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
