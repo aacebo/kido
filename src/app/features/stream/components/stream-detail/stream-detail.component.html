@@ -89,6 +89,7 @@
         <div class="stream-detail--form-content">
           <kido-messenger
             [messages]="messages"
+            (selected)="onMessageSelected($event)"
           ></kido-messenger>
 
           <kido-json-editor

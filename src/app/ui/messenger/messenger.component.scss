@@ -4,9 +4,22 @@
   flex: 1 1 auto;
   background-color: #282a36;
   border: 1px solid var(--hairline-strong);
-  overflow-y: auto;
 
   cdk-virtual-scroll-viewport {
     height: 100%;
+
+    .cdk-virtual-scroll-content-wrapper {
+      max-width: 100%;
+    }
+  }
+
+  kido-message {
+    .kido-message--bubble {
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(110%);
+      }
+    }
   }
 }

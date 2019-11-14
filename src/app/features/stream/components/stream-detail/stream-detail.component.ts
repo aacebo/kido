@@ -6,6 +6,7 @@ import { IStream, IStreamMessage, StreamType } from '../../../../resources/strea
 
 import { STREAM_TYPE_LABELS } from '../../constants';
 import { Hotkeys } from '../../../../ui/hotkeys';
+import { IMessage } from '../../../../ui/messenger';
 
 @Component({
   selector: 'kido-stream-detail',
@@ -17,7 +18,6 @@ import { Hotkeys } from '../../../../ui/hotkeys';
 })
 export class StreamDetailComponent implements OnInit {
   @Input() messages: IStreamMessage[] = [];
-  @Input() activeMessageJson?: any;
   @Input() connected?: boolean;
   @Input()
   get stream() { return this._stream; }
@@ -90,5 +90,9 @@ export class StreamDetailComponent implements OnInit {
     } else {
       this.connect.emit();
     }
+  }
+
+  onMessageSelected(e: IMessage) {
+    console.log(e);
   }
 }

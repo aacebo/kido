@@ -1,11 +1,64 @@
+$arrow-size: 8px;
+
 .kido-message {
-  height: 50px;
+  display: flex;
+  padding-bottom: 5px;
 
   &.kido-message--sent {
+    flex-direction: row-reverse;
+    padding-right: $arrow-size;
 
+    .kido-message--bubble {
+      background-color: var(--primary);
+      color: var(--white);
+
+      &:after {
+        left: 100%;
+        border-left: $arrow-size solid var(--primary);
+      }
+    }
   }
 
   &.kido-message--received {
+    flex-direction: row;
+    padding-left: $arrow-size;
 
+    .kido-message--bubble {
+      background-color: var(--bg-dark);
+      color: rgb(223, 219, 219);
+
+      &:after {
+        right: 100%;
+        border-right: $arrow-size solid var(--bg-dark);
+      }
+    }
+  }
+
+  .kido-message--bubble {
+    position: relative;
+    width: auto;
+    height: 100%;
+    max-width: 75%;
+    border-radius: 5px;
+    padding: 5px;
+
+    &:after {
+      content:"";
+      position: absolute;
+      height: 0;
+      width: 0;
+      top: 5px;
+      border: $arrow-size solid transparent;
+    }
+
+    .kido-message--bubble-text {
+      margin: auto;
+    }
+
+    .kido-message--bubble-timestamp {
+      font-size: 8pt;
+      padding-top: 3px;
+      color: rgb(201, 201, 201);
+    }
   }
 }

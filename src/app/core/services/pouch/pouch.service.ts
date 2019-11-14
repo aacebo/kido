@@ -10,7 +10,9 @@ export class PouchService<T = any> {
     this._db = new PouchDB<T>(`${this._prefix}${this._name}`, {
       revs_limit: 1,
       auto_compaction: true,
-      size: environment.maxQueue,
+      size: environment.maxDbSizeMb,
+      prefix: this._prefix,
+      name: this._name,
     });
   }
 

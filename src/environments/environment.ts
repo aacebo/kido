@@ -6,7 +6,8 @@ import { IEnvironment } from './environment.model';
 
 export const environment: IEnvironment = {
   production: false,
-  maxQueue: 100,
+  maxDbSizeMb: 100,
+  queueSize: 100,
 };
 
 /*

@@ -15,9 +15,9 @@ ngb-tabset {
       border: none !important;
 
       &.active {
-        color: var(--primary) !important;
+        color: var(--info) !important;
         font-weight: bold;
-        box-shadow: 0 -2px 0 0 var(--primary) inset !important;
+        box-shadow: 0 -2px 0 0 var(--info) inset !important;
       }
     }
   }

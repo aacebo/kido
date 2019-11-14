@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { MessageType } from './message-type.enum';
+import { IMessage } from './message.interface';
 
 @Component({
   moduleId: module.id,
@@ -18,6 +19,7 @@ import { MessageType } from './message-type.enum';
   encapsulation: ViewEncapsulation.None,
 })
 export class MessageComponent {
+  @Input() message: IMessage;
   @Input() type: MessageType;
   @Input()
   get createdAt() { return this._createdAt; }
@@ -26,5 +28,11 @@ export class MessageComponent {
   }
   private _createdAt: number;
 
+  @Output() selected = new EventEmitter<IMessage>();
+
   readonly MessageType = MessageType;
+
+  onClick() {
+    this.selected.emit(this.message);
+  }
 }

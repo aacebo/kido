@@ -1,1 +1,12 @@
-<ng-content></ng-content>
+<div
+  class="kido-message--bubble"
+  (click)="onClick()"
+>
+  <div class="kido-message--bubble-text ellipsis">
+    {{ message.content }}
+  </div>
+
+  <div class="kido-message--bubble-timestamp ellipsis">
+    {{ message.createdAt | kidoElapseTime }}
+  </div>
+</div>

@@ -19,8 +19,6 @@ export class StreamService {
   readonly streamConnected$: Observable<{ [streamId: string]: boolean }>;
   readonly activeStream$: Observable<IStream | undefined>;
   readonly activeStreamMessages$: Observable<IStreamMessage[]>;
-  readonly activeStreamMessage$: Observable<IStreamMessage | undefined>;
-  readonly activeStreamMessageJson$: Observable<any | undefined>;
   readonly activeStreamConnected$: Observable<boolean>;
   readonly entities$: Observable<IStream[]>;
 
@@ -32,8 +30,6 @@ export class StreamService {
     this.streamConnected$ = this._store$.pipe(select(selectors.selectStreamConnected));
     this.activeStream$ = this._store$.pipe(select(selectors.selectActiveStream));
     this.activeStreamMessages$ = this._store$.pipe(select(selectors.selectActiveStreamMessages));
-    this.activeStreamMessage$ = this._store$.pipe(select(selectors.selectActiveStreamMessage));
-    this.activeStreamMessageJson$ = this._store$.pipe(select(selectors.selectActiveStreamMessageJson));
     this.activeStreamConnected$ = this._store$.pipe(select(selectors.selectActiveStreamConnected));
     this.entities$ = this._store$.pipe(select(selectors.selectEntities));
   }
