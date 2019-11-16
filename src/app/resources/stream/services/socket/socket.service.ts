@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { WebSocketService } from '../../../../core/services';
+import { WebSocketService, SocketIOService } from '../../../../core/services';
 import { ISocketService } from '../../../../core/models';
 import { StreamType } from '../../enums';
 
@@ -14,16 +14,23 @@ export class SocketService {
     streamId: string,
     type: StreamType,
     url: string,
-    next: (v: any) => void,
-    error: (v: any) => void,
-    complete: () => void,
+    one: (v?: any) => void,
+    two: (v: any) => void,
+    three: () => void,
   ) {
     if (type === StreamType.WebSocket) {
       this._sockets[streamId] = new WebSocketService(
         url,
-        next,
-        error,
-        complete,
+        one,
+        two,
+        three,
+      );
+    } else if (type === StreamType.SocketIO) {
+      this._sockets[streamId] = new SocketIOService(
+        url,
+        one,
+        two,
+        three,
       );
     }
 

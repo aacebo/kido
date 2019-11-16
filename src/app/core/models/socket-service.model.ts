@@ -3,6 +3,5 @@ export interface ISocketService {
 
   connect: () => void;
   disconnect: () => void;
-  destroy: () => void;
   send: (v: any) => void;
 }
