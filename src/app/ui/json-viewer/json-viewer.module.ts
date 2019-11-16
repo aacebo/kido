@@ -12,6 +12,7 @@ import { JsonViewerComponent } from './json-viewer.component';
   imports: [
     CommonModule,
     FormsModule,
+
     SlideToggleModule,
     EllipsisModule,
   ],

@@ -1,4 +1,11 @@
-<div class="kido-ellipsis--content">{{ content }}</div>
+<div
+  class="kido-ellipsis--content"
+  [ngbTooltip]="text"
+  [disableTooltip]="content.length < maxLength"
+>
+  {{ content }}
+</div>
+
 <div
   *ngIf="content !== text"
   class="kido-ellipsis--ellipsis"
