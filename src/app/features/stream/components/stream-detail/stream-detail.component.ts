@@ -104,4 +104,8 @@ export class StreamDetailComponent implements OnInit {
     window.navigator.clipboard.writeText(e);
     this._toastr.info('Copied to Clipboard!');
   }
+
+  onClearJson() {
+    this.json = undefined;
+  }
 }

@@ -44,5 +44,6 @@ export class AppComponent implements OnInit {
 
   onMenu() {
     this.menu$.next(!this.menu$.value);
+    this._app.tick();
   }
 }
