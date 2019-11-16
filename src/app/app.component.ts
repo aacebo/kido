@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 import { ElectronService } from './core/services';
 import { ISystem, SystemService } from './resources/system';
@@ -12,6 +13,8 @@ import { AddStreamModalService } from './features/stream';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
+  readonly menu$ = new BehaviorSubject(true);
+
   constructor(
     readonly systemService: SystemService,
     readonly streamService: StreamService,
@@ -34,5 +37,9 @@ export class AppComponent implements OnInit {
         this.streamService.addStream(v.type, v.name, v.url, v.description);
       }
     });
+  }
+
+  onMenu() {
+    this.menu$.next(!this.menu$.value);
   }
 }

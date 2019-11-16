@@ -11,4 +11,5 @@ import { StreamType } from '../../resources/stream';
 })
 export class ToolbarComponent {
   @Output() add = new EventEmitter<StreamType | undefined>();
+  @Output() menu = new EventEmitter<void>();
 }

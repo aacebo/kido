@@ -15,7 +15,6 @@
 
   .kido-sidebar {
     flex: 0 0 auto;
-    display: flex;
     flex-direction: row;
     position: relative;
     min-width: 200px;
@@ -26,6 +25,10 @@
       flex: 1;
       max-width: 100%;
     }
+
+    @media only screen and (max-width: $sidebar-collapse-width) {
+      display: none !important;
+    }
   }
 
   .kido-sidebar--content {
@@ -35,11 +38,5 @@
     min-height: 0px;
     min-width: 0px;
     background-color: var(--bg-darkest);
-  }
-}
-
-@media only screen and (max-width: 750px) {
-  .kido-sidebar {
-    display: none !important;
   }
 }

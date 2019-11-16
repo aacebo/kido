@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { IStream, IStreamMessage } from '../../resources/stream';
 import { Hotkeys } from '../../ui/hotkeys';
@@ -15,6 +16,12 @@ export class SidebarComponent {
   @Input() active?: string;
   @Input() streamMessages: { [streamId: string]: IStreamMessage[] } = { };
   @Input() streamConnected: { [streamId: string]: boolean } = { };
+  @Input()
+  get open() { return this._open; }
+  set open(v: boolean) {
+    this._open = coerceBooleanProperty(v);
+  }
+  private _open?: boolean;
 
   width = 200;
 

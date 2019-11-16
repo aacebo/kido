@@ -13,4 +13,10 @@
   .spacer {
     flex: 1 1 auto;
   }
+
+  button {
+    @media only screen and (max-width: $sidebar-collapse-width) {
+      display: none !important;
+    }
+  }
 }

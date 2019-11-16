@@ -61,6 +61,7 @@ $type-colors: (
       .kido-json-viewer--node-value {
         display: inline-block;
         color: #999;
+        cursor: copy;
       }
 
       .kido-json-viewer--node-separator {
