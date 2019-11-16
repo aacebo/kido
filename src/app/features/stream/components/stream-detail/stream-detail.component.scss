@@ -41,6 +41,11 @@
         flex-direction: column;
         min-height: 0px;
         min-width: 0px;
+
+        kido-json-editor {
+          max-height: 50%;
+          overflow: auto;
+        }
       }
 
       .stream-detail--json {

@@ -10,10 +10,12 @@ import { AddStreamModalComponent } from '../../components/add-stream-modal';
 export class AddStreamModalService {
   private _ref?: NgbModalRef<typeof AddStreamModalComponent>;
 
-  constructor(private readonly _modalService: NgbModal) { }
+  constructor(
+    private readonly _modal: NgbModal,
+  ) { }
 
   open(type?: StreamType, cb?: (stream?: Partial<IStream>) => void) {
-    this._ref = this._modalService.open(AddStreamModalComponent, {
+    this._ref = this._modal.open(AddStreamModalComponent, {
       centered: true,
     });
 

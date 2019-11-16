@@ -4,5 +4,7 @@
   .CodeMirror {
     border: 1px solid var(--hairline-strong);
     height: auto;
+    width: fit-content;
+    min-width: 100%;
   }
 }

@@ -1,6 +1,6 @@
 <button
   kido-icon-button
-  (click)="menu.emit()"
+  (click)="onMenu()"
 >
   <span class="fas fa-bars"></span>
 </button>
@@ -8,5 +8,5 @@
 <div class="spacer"></div>
 
 <kido-add-stream-button
-  (add)="add.emit($event)"
+  (add)="onAdd($event)"
 ></kido-add-stream-button>

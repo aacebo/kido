@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ApplicationRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { ElectronService } from './core/services';
@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
     readonly streamService: StreamService,
     private readonly _addStreamModalService: AddStreamModalService,
     private readonly _electronService: ElectronService,
+    private readonly _app: ApplicationRef,
   ) { }
 
   ngOnInit() {
@@ -37,6 +38,8 @@ export class AppComponent implements OnInit {
         this.streamService.addStream(v.type, v.name, v.url, v.description);
       }
     });
+
+    this._app.tick();
   }
 
   onMenu() {
