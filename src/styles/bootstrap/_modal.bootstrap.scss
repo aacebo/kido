@@ -2,30 +2,34 @@
 
 $modal-padding: 10px 20px;
 
-.modal-content {
-  background-color: var(--bg-darkest);
-  box-shadow: $box-shadow-lg;
+.modal-dialog {
+  max-height: 80%;
 
-  .modal-header {
-    border-bottom: none;
-    padding: $modal-padding;
-    background-color: var(--bg-darker);
+  .modal-content {
+    background-color: var(--bg-darkest);
+    box-shadow: $box-shadow-lg;
 
-    .modal-title {
-      margin: auto;
-      flex: 1 1 auto;
-      color: var(--white);
-      font-weight: bold;
+    .modal-header {
+      border-bottom: none;
+      padding: $modal-padding;
+      background-color: var(--bg-darker);
+
+      .modal-title {
+        margin: auto;
+        flex: 1 1 auto;
+        color: var(--white);
+        font-weight: bold;
+      }
+
+      .modal-close-btn {
+        padding: 0;
+      }
     }
 
-    .modal-close-btn {
-      padding: 0;
+    .modal-footer {
+      padding: $modal-padding;
+      border-top: 1px solid var(--hairline-strong);
     }
-  }
-
-  .modal-footer {
-    padding: $modal-padding;
-    border-top: 1px solid var(--hairline-strong);
   }
 }
 

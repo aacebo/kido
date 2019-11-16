@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { StreamType, IStream } from '../../../../resources/stream';
-import { AddStreamModalComponent } from '../../components';
+import { AddStreamModalComponent } from '../../components/add-stream-modal';
 
 @Injectable({
   providedIn: 'root',

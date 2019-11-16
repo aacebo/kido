@@ -1,12 +1,12 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 import { areEqual, isValidJSON } from '../../../../core/utils';
 import { IStream, IStreamMessage, StreamType } from '../../../../resources/stream';
+import { Hotkeys } from '../../../../ui/hotkeys';
 
 import { STREAM_TYPE_LABELS } from '../../constants';
-import { Hotkeys } from '../../../../ui/hotkeys';
-import { IMessage } from '../../../../ui/messenger';
 
 @Component({
   selector: 'kido-stream-detail',
@@ -36,6 +36,7 @@ export class StreamDetailComponent implements OnInit {
   @Output() send = new EventEmitter<string>();
 
   form: FormGroup;
+  json?: any;
 
   readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
   readonly StreamType = StreamType;
@@ -58,7 +59,10 @@ export class StreamDetailComponent implements OnInit {
     };
   }
 
-  constructor(private readonly _fb: FormBuilder) { }
+  constructor(
+    private readonly _fb: FormBuilder,
+    private readonly _toastr: ToastrService,
+  ) { }
 
   ngOnInit() {
     this.form = this._fb.group({
@@ -92,7 +96,12 @@ export class StreamDetailComponent implements OnInit {
     }
   }
 
-  onMessageSelected(e: IMessage) {
-    console.log(e);
+  onMessageSelected(e: IStreamMessage) {
+    this.json = { root: JSON.parse(e.content) };
+  }
+
+  onPropertyValueClicked(e: string) {
+    window.navigator.clipboard.writeText(e);
+    this._toastr.info('Copied to Clipboard!');
   }
 }

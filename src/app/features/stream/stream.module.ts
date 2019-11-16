@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModalModule, NgbTooltipModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SocketIconModule } from '../socket-icon';
+import { ResizeModule } from '../resize';
 
 import { DropdownModule } from '../../ui/dropdown';
 import { ButtonModule } from '../../ui/button';
@@ -18,20 +19,23 @@ import * as components from './components';
 const declarations = [
   components.StreamListItemComponent,
   components.AddStreamButtonComponent,
-  components.AddStreamModalComponent,
   components.StreamDetailComponent,
+  components.AddStreamModalComponent,
 ];
 
 @NgModule({
   declarations,
   exports: declarations,
-  entryComponents: [components.AddStreamModalComponent],
+  entryComponents: [
+    components.AddStreamModalComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
 
     SocketIconModule,
+    ResizeModule,
 
     NgbModalModule,
     NgbTooltipModule,

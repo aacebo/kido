@@ -87,14 +87,33 @@
     <ngb-tab title="Messenger">
       <ng-template ngbTabContent>
         <div class="stream-detail--form-content">
-          <kido-messenger
-            [messages]="messages"
-            (selected)="onMessageSelected($event)"
-          ></kido-messenger>
+          <div
+            class="stream-detail--messenger"
+            [style.flex]="json ? '1 1 50%' : '1 1 auto'"
+          >
+            <kido-messenger
+              [messages]="messages"
+              (selected)="onMessageSelected($event)"
+            ></kido-messenger>
 
-          <kido-json-editor
-            formControlName="message"
-          ></kido-json-editor>
+            <kido-json-editor
+              formControlName="message"
+            ></kido-json-editor>
+          </div>
+
+          <div
+            *ngIf="json"
+            class="stream-detail--json"
+            [style.flex]="json ? '1 1 50%' : '1 1 auto'"
+          >
+            <kido-json-viewer
+              [json]="json"
+              expanded
+              deep
+              toggler
+              (propertyValueClicked)="onPropertyValueClicked($event)"
+            ></kido-json-viewer>
+          </div>
         </div>
       </ng-template>
     </ngb-tab>

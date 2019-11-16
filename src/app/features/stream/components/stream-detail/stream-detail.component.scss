@@ -31,15 +31,29 @@
 
     .stream-detail--form-content {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       flex: 1 1 auto;
       min-height: 0px;
       min-width: 0px;
 
-      .kido-json-viewer--root-node {
-        flex: 1 1 auto;
+      .stream-detail--messenger {
+        display: flex;
+        flex-direction: column;
         min-height: 0px;
         min-width: 0px;
+      }
+
+      .stream-detail--json {
+        display: flex;
+        flex-direction: column;
+        min-height: 0px;
+        min-width: 0px;
+
+        .kido-json-viewer--root-node {
+          flex: 1 1 auto;
+          min-height: 0px;
+          min-width: 0px;
+        }
       }
     }
   }
