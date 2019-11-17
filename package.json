@@ -37,6 +37,7 @@
     "pouchdb-find": "^7.1.1",
     "rxjs": "~6.4.0",
     "socket.io-client": "^2.3.0",
+    "socketio-wildcard": "^2.0.0",
     "tslib": "^1.10.0",
     "uuid": "^3.3.3",
     "zone.js": "~0.9.1"
@@ -54,6 +55,7 @@
     "@types/pouchdb": "^6.4.0",
     "@types/pouchdb-find": "^6.3.4",
     "@types/socket.io-client": "^1.4.32",
+    "@types/socketio-wildcard": "^2.0.1",
     "@types/uuid": "^3.4.6",
     "codelyzer": "^5.0.0",
     "electron": "~6.1.2",

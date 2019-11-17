@@ -1,4 +1,5 @@
 import * as io from 'socket.io-client';
+import ioWildcard from 'socketio-wildcard';
 import { Subject } from 'rxjs';
 
 import { ISocketService } from '../../models';
@@ -22,9 +23,11 @@ export class SocketIOService implements ISocketService {
       reconnection: false,
     });
 
+    ioWildcard(io.Manager)(this._socket$);
+
     this._socket$.on('connect', this._onConnect.bind(this));
     this._socket$.on('error', this._onError.bind(this));
-    this._socket$.on('event', this._onEvent.bind(this));
+    this._socket$.on('*', this._onEvent.bind(this));
     this._socket$.on('disconnect', this._onDisconnect.bind(this));
   }
 

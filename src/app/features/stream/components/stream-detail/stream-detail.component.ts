@@ -56,6 +56,7 @@ export class StreamDetailComponent implements OnInit {
       url: this.stream.url,
       description: this.stream.description,
       message: this.stream.message,
+      event: this.stream.event,
     };
   }
 
@@ -71,6 +72,7 @@ export class StreamDetailComponent implements OnInit {
       url: this._fb.control(this.stream.url),
       description: this._fb.control(this.stream.description),
       message: this._fb.control(this.stream.message),
+      event: this._fb.control(this.stream.event),
     });
   }
 

@@ -7,6 +7,7 @@ export interface IStream {
   readonly name: string;
   readonly description?: string;
   readonly type: StreamType;
+  readonly event?: string;
   readonly message?: string;
   readonly createdAt: number;
 }

@@ -28,8 +28,8 @@ export class SocketService {
     this._sockets[streamId].disconnect();
   }
 
-  send(streamId: string, message: string) {
-    this._sockets[streamId].send(message);
+  send(streamId: string, message: string, event?: string) {
+    this._sockets[streamId].send(message, event);
   }
 
   isConnected(streamId: string) {

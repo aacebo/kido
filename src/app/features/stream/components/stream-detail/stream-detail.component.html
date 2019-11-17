@@ -81,6 +81,14 @@
         </button>
       </div>
     </kido-input>
+
+    <kido-input
+      *ngIf="stream.type === StreamType.SocketIO"
+      formControlName="event"
+      size="lg"
+      placeholder="Event..."
+    >
+    </kido-input>
   </div>
 
   <ngb-tabset>
@@ -108,8 +116,6 @@
           >
             <kido-json-viewer
               [json]="json"
-              expanded
-              deep
               toggler
               (propertyValueClicked)="onPropertyValueClicked($event)"
             ></kido-json-viewer>

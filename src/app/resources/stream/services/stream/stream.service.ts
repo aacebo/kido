@@ -66,7 +66,7 @@ export class StreamService {
     this._store$.dispatch(actions.disconnectStream({ streamId }));
   }
 
-  sendMessage(streamId: string, message: string) {
-    this._store$.dispatch(actions.sendMessage({ streamId, message }));
+  sendMessage(streamId: string, message: string, event?: string) {
+    this._store$.dispatch(actions.sendMessage({ streamId, message, event }));
   }
 }

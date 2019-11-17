@@ -9,7 +9,7 @@ import { SocketService } from '../../services';
 export class SendMessageEffects {
   readonly sendMessage$ = createEffect(() => this._actions$.pipe(
     ofType(actions.sendMessage),
-    tap(a => this._socketService.send(a.streamId, a.message)),
+    tap(a => this._socketService.send(a.streamId, a.message, a.event)),
   ), { dispatch: false });
 
   constructor(
