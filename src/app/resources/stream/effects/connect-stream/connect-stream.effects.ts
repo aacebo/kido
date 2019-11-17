@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
 import * as actions from '../../actions';
+import { isValidJSON } from '../../../../core/utils';
 import { SocketService, StreamService } from '../../services';
 import { StreamMessageType } from '../../enums';
 import { IStreamState } from '../../stream.state';
@@ -49,7 +50,8 @@ export class ConnectStreamEffects {
   }
 
   private _onEvent(v: any, a: { streamId: string; }) {
-    this._streamService.addMessage(a.streamId, StreamMessageType.Received, JSON.stringify(v));
+    const json = typeof v === 'object' && isValidJSON(JSON.stringify(v));
+    this._streamService.addMessage(a.streamId, StreamMessageType.Received, json ? JSON.stringify(v) : v, json);
   }
 
   constructor(

@@ -6,5 +6,6 @@ export const sendMessage = createAction(
     readonly streamId: string;
     readonly message: string;
     readonly event?: string;
+    readonly json?: boolean;
   }>(),
 );

@@ -55,13 +55,6 @@ export class JsonViewerComponent implements OnInit {
   }
   private _raw?: boolean;
 
-  @Input()
-  get toggler() { return this._toggler; }
-  set toggler(v: boolean) {
-    this._toggler = coerceBooleanProperty(v);
-  }
-  private _toggler?: boolean;
-
   @Output() propertyValueClicked = new EventEmitter<string>();
 
   nodes: IJsonViewerNode[] = [];

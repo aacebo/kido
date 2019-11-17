@@ -9,5 +9,6 @@ export interface IStream {
   readonly type: StreamType;
   readonly event?: string;
   readonly message?: string;
+  readonly json?: boolean;
   readonly createdAt: number;
 }

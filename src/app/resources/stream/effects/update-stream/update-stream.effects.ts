@@ -23,6 +23,7 @@ export class UpdateStreamEffects {
         description: a.stream.description ? a.stream.description.trim() : null,
         message: a.stream.message ? a.stream.message.trim() : null,
         event: a.stream.event ? a.stream.event.trim() : null,
+        json: a.stream.json !== undefined ? a.stream.json : true,
         createdAt: a.stream.createdAt,
       })
       .then(res => actions.updateStreamSuccess({ stream: res }))

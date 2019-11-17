@@ -74,7 +74,7 @@
           size="lg"
           color="info"
           ngbTooltip="Send"
-          [disabled]="form.invalid || !form.value.message || !isValidJSON || !connected"
+          [disabled]="form.invalid || !form.value.message || (form.value.json && !isValidJSON) || !connected"
           (click)="send.emit(form.value.message)"
         >
           <span class="fas fa-paper-plane"></span>
@@ -97,7 +97,7 @@
         <div class="stream-detail--form-content">
           <div
             class="stream-detail--messenger"
-            [style.flex]="json ? '1 1 50%' : '1 1 auto'"
+            [style.flex]="message ? '1 1 50%' : '1 1 auto'"
           >
             <kido-messenger
               [messages]="messages"
@@ -107,26 +107,39 @@
             <kido-json-editor
               formControlName="message"
             ></kido-json-editor>
+
+            <kido-slide-toggle
+              class="stream-detail--message-json-toggler"
+              formControlName="json"
+              [label]="!form.value.json ? 'RAW' : 'JSON'"
+            ></kido-slide-toggle>
           </div>
 
           <div
-            *ngIf="json"
+            *ngIf="message"
             class="stream-detail--json"
-            [style.flex]="json ? '1 1 50%' : '1 1 auto'"
+            [style.flex]="message ? '1 1 50%' : '1 1 auto'"
           >
             <kido-json-viewer
-              [json]="json"
-              toggler
+              [json]="messageContent"
+              [raw]="!json"
               (propertyValueClicked)="onPropertyValueClicked($event)"
             ></kido-json-viewer>
 
             <button
               class="stream-detail--json-clear"
               kido-icon-button
-              (click)="onClearJson()"
+              (click)="onClearMessage()"
             >
               <span class="fas fa-times"></span>
             </button>
+
+            <kido-slide-toggle
+              class="stream-detail--viewer-json-toggler"
+              [label]="!json ? 'RAW' : 'JSON'"
+              [(ngModel)]="json"
+              [ngModelOptions]="{ standalone: true }"
+            ></kido-slide-toggle>
           </div>
         </div>
       </ng-template>

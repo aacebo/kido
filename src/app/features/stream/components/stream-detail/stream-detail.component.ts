@@ -36,7 +36,9 @@ export class StreamDetailComponent implements OnInit {
   @Output() send = new EventEmitter<string>();
 
   form: FormGroup;
-  json?: any;
+  message?: IStreamMessage;
+  messageContent?: any;
+  json = true;
 
   readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
   readonly StreamType = StreamType;
@@ -57,6 +59,7 @@ export class StreamDetailComponent implements OnInit {
       description: this.stream.description,
       message: this.stream.message,
       event: this.stream.event,
+      json: this.stream.json,
     };
   }
 
@@ -73,6 +76,7 @@ export class StreamDetailComponent implements OnInit {
       description: this._fb.control(this.stream.description),
       message: this._fb.control(this.stream.message),
       event: this._fb.control(this.stream.event),
+      json: this._fb.control(this.stream.json),
     });
   }
 
@@ -98,16 +102,18 @@ export class StreamDetailComponent implements OnInit {
     }
   }
 
-  onMessageSelected(e: IStreamMessage) {
-    this.json = { root: JSON.parse(e.content) };
-  }
-
   onPropertyValueClicked(e: string) {
     window.navigator.clipboard.writeText(e);
     this._toastr.info('Copied to Clipboard!');
   }
 
-  onClearJson() {
-    this.json = undefined;
+  onMessageSelected(e: IStreamMessage) {
+    this.message = e;
+    this.messageContent = { root: e.json ? JSON.parse(e.content) : e.content };
+  }
+
+  onClearMessage() {
+    this.message = undefined;
+    this.messageContent = undefined;
   }
 }

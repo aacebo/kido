@@ -38,6 +38,7 @@
 
       .stream-detail--messenger {
         display: flex;
+        position: relative;
         flex-direction: column;
         min-height: 0px;
         min-width: 0px;
@@ -45,6 +46,16 @@
         kido-json-editor {
           max-height: 50%;
           overflow: auto;
+
+          .CodeMirror {
+            min-height: 60px;
+          }
+        }
+
+        .stream-detail--message-json-toggler {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
         }
       }
 
@@ -65,6 +76,12 @@
           position: absolute;
           right: 10px;
           top: 10px;
+        }
+
+        .stream-detail--viewer-json-toggler {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
         }
       }
     }

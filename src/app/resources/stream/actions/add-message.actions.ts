@@ -9,6 +9,7 @@ export const addMessage = createAction(
     readonly streamId: string;
     readonly messageType: StreamMessageType;
     readonly content: any;
+    readonly json?: boolean;
   }>(),
 );
 

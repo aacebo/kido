@@ -49,10 +49,3 @@
     {{ rawJson }}
   </ng-container>
 </div>
-
-<kido-slide-toggle
-  *ngIf="root && toggler"
-  class="kido-json-viewer--view-toggle"
-  [label]="raw ? 'RAW' : 'JSON'"
-  [(ngModel)]="raw"
-></kido-slide-toggle>

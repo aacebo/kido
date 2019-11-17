@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
-import { SlideToggleModule } from '../slide-toggle';
 import { EllipsisModule } from '../ellipsis';
 import { JsonViewerComponent } from './json-viewer.component';
 
@@ -11,9 +9,6 @@ import { JsonViewerComponent } from './json-viewer.component';
   exports: [JsonViewerComponent],
   imports: [
     CommonModule,
-    FormsModule,
-
-    SlideToggleModule,
     EllipsisModule,
   ],
 })
