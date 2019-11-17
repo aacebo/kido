@@ -44,7 +44,7 @@ export class ConnectStreamEffects {
   }
 
   private _onError(error: Error, a: { streamId: string; }) {
-    this._store$.dispatch(actions.connectStreamFailed({ error }));
+    this._store$.dispatch(actions.connectStreamFailed({ error, streamId: a.streamId }));
     this._streamService.disconnect(a.streamId);
   }
 

@@ -18,5 +18,5 @@ export const connectStreamSuccess = createAction(
 
 export const connectStreamFailed = createAction(
   '[STREAM] ConnectStreamFailed',
-  props<{ readonly error: Error }>(),
+  props<{ readonly streamId: string; readonly error: Error }>(),
 );

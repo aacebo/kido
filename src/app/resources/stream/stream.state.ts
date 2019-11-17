@@ -8,6 +8,7 @@ export interface IStreamState {
   readonly streams: { [streamId: string]: IStream };
   readonly streamMessages: { [streamId: string]: IStreamMessage[] };
   readonly streamConnected: { [streamId: string]: boolean };
+  readonly streamConnecting: { [streamId: string]: boolean };
 }
 
 export function reducers(state: IStreamState, action: Action) {
@@ -16,5 +17,6 @@ export function reducers(state: IStreamState, action: Action) {
     streams: fromReducers.streams,
     streamMessages: fromReducers.streamMessages,
     streamConnected: fromReducers.streamConnected,
+    streamConnecting: fromReducers.streamConnecting,
   })(state, action);
 }

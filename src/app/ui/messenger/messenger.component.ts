@@ -61,7 +61,7 @@ export class MessengerComponent implements AfterViewInit {
     this._resizeTimer = setTimeout(() => {
       this.virtualScrollViewport.checkViewportSize();
       this._scrollToBottom();
-    }, 200);
+    }, 100);
   }
 
   onClick(message: IMessage) {

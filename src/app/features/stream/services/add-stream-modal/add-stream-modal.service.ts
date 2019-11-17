@@ -15,11 +15,16 @@ export class AddStreamModalService {
   ) { }
 
   open(type?: StreamType, cb?: (stream?: Partial<IStream>) => void) {
-    this._ref = this._modal.open(AddStreamModalComponent, {
-      centered: true,
-    });
+    if (!this._modal.hasOpenModals()) {
+      this._ref = this._modal.open(AddStreamModalComponent, {
+        centered: true,
+      });
 
-    this._ref.componentInstance.type = type;
-    this._ref.result.then((res: Partial<IStream>) => cb(res), () => cb());
+      this._ref.componentInstance.type = type;
+      this._ref.result.then(
+        (res: Partial<IStream>) => cb(res),
+        () => cb(),
+      );
+    }
   }
 }
