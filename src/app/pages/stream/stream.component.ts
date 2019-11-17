@@ -24,7 +24,7 @@ export class StreamComponent {
   }
 
   onSend(e: string, stream: IStream) {
-    this.streamService.send(stream._id, JSON.parse(e));
+    this.streamService.sendMessage(stream._id, JSON.parse(e));
     this.streamService.addMessage(stream._id, StreamMessageType.Sent, e);
   }
 }

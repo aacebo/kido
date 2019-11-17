@@ -11,12 +11,12 @@ export const connectStream = createAction(
   }>(),
 );
 
-export const disconnectStream = createAction(
-  '[STREAM] DisconnectStream',
+export const connectStreamSuccess = createAction(
+  '[STREAM] ConnectStreamSuccess',
   props<{ readonly streamId: string }>(),
 );
 
-export const sendStream = createAction(
-  '[STREAM] SendStream',
-  props<{ readonly streamId: string, readonly message: string }>(),
+export const connectStreamFailed = createAction(
+  '[STREAM] ConnectStreamFailed',
+  props<{ readonly error: Error }>(),
 );

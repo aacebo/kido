@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 
 export const streamConnected = createReducer<{ [streamId: string]: boolean }>(
   { },
-  on(actions.connectStream, (_, a) => ({
+  on(actions.connectStreamSuccess, (_, a) => ({
     ..._,
     [a.streamId]: true,
   })),

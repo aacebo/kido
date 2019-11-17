@@ -10,28 +10,11 @@ import { StreamType } from '../../enums';
 export class SocketService {
   private _sockets: { [streamId: string]: ISocketService } = { };
 
-  create(
-    streamId: string,
-    type: StreamType,
-    url: string,
-    one: (v?: any) => void,
-    two: (v: any) => void,
-    three: () => void,
-  ) {
+  create(streamId: string, type: StreamType, url: string) {
     if (type === StreamType.WebSocket) {
-      this._sockets[streamId] = new WebSocketService(
-        url,
-        one,
-        two,
-        three,
-      );
+      this._sockets[streamId] = new WebSocketService(url);
     } else if (type === StreamType.SocketIO) {
-      this._sockets[streamId] = new SocketIOService(
-        url,
-        one,
-        two,
-        three,
-      );
+      this._sockets[streamId] = new SocketIOService(url);
     }
 
     return this._sockets[streamId];
@@ -50,6 +33,6 @@ export class SocketService {
   }
 
   isConnected(streamId: string) {
-    return !this._sockets[streamId].closed;
+    return !this._sockets[streamId].disconnected;
   }
 }

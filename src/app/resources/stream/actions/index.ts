@@ -5,3 +5,5 @@ export * from './add-message.actions';
 export * from './set-active.actions';
 export * from './update-stream.actions';
 export * from './connect-stream.actions';
+export * from './disconnect-stream.actions';
+export * from './send-message.actions';
