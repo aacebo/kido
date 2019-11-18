@@ -14,7 +14,7 @@ export class WebSocketService implements ISocketService {
   private readonly _connected$ = new Subject<void>();
   private readonly _disconnected$ = new Subject<void>();
   private readonly _error$ = new Subject<any>();
-  private readonly _event$ = new Subject<any>();
+  private readonly _event$ = new Subject<{ e: string, v: any }>();
   private readonly _maxConnectionChecks = 50;
   private _checks = 0;
 
@@ -45,7 +45,7 @@ export class WebSocketService implements ISocketService {
   }
 
   private _onNext(v: any) {
-    this._event$.next(v);
+    this._event$.next({ e: 'message', v });
   }
 
   private _onComplete() {

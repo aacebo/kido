@@ -5,7 +5,7 @@ export interface ISocketService {
   readonly connected$: Observable<void>;
   readonly disconnected$: Observable<void>;
   readonly error$: Observable<any>;
-  readonly event$: Observable<any>;
+  readonly event$: Observable<{ e: string; v: any }>;
 
   connect: () => void;
   disconnect: () => void;

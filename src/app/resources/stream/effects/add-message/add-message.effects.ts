@@ -19,6 +19,7 @@ export class AddMessageEffects {
         streamId: a.streamId,
         type: a.messageType,
         content: a.content,
+        event: a.event,
         json: a.json,
         createdAt: new Date().getTime(),
       })

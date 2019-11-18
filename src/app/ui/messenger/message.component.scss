@@ -40,7 +40,7 @@ $arrow-size: 8px;
     height: 100%;
     max-width: 75%;
     border-radius: 5px;
-    padding: 5px;
+    padding: 5px 10px;
 
     &:after {
       content:"";
@@ -49,6 +49,12 @@ $arrow-size: 8px;
       width: 0;
       top: 5px;
       border: $arrow-size solid transparent;
+    }
+
+    .kido-message--bubble-event {
+      font-size: 8pt;
+      padding-bottom: 3px;
+      color: rgb(201, 201, 201);
     }
 
     .kido-message--bubble-text {

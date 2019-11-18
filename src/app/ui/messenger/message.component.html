@@ -2,6 +2,10 @@
   class="kido-message--bubble"
   (click)="onClick()"
 >
+  <div class="kido-message--bubble-event ellipsis">
+    {{ message.event }}
+  </div>
+
   <div class="kido-message--bubble-text ellipsis">
     {{ message.content }}
   </div>

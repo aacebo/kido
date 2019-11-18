@@ -50,8 +50,8 @@ export class StreamService {
     this._store$.dispatch(actions.updateStream({ stream }));
   }
 
-  addMessage(streamId: string, messageType: StreamMessageType, content: any, json?: boolean) {
-    this._store$.dispatch(actions.addMessage({ streamId, messageType, content, json }));
+  addMessage(streamId: string, messageType: StreamMessageType, content: any, event?: string, json?: boolean) {
+    this._store$.dispatch(actions.addMessage({ streamId, messageType, content, event, json }));
   }
 
   setActive(streamId: string) {

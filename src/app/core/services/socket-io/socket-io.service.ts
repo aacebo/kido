@@ -1,8 +1,8 @@
 import * as io from 'socket.io-client';
-import ioWildcard from 'socketio-wildcard';
 import { Subject } from 'rxjs';
 
 import { ISocketService } from '../../models';
+import { socketIOWildcard } from '../../utils/socket-io-wildcard';
 
 export class SocketIOService implements ISocketService {
   get disconnected() { return this._socket$.disconnected; }
@@ -15,7 +15,7 @@ export class SocketIOService implements ISocketService {
   private readonly _connected$ = new Subject<void>();
   private readonly _disconnected$ = new Subject<void>();
   private readonly _error$ = new Subject<any>();
-  private readonly _event$ = new Subject<any>();
+  private readonly _event$ = new Subject<{ e: string, v: any }>();
 
   constructor(private readonly _url: string) {
     this._socket$ = io(this._url, {
@@ -23,7 +23,7 @@ export class SocketIOService implements ISocketService {
       reconnection: false,
     });
 
-    ioWildcard(io.Manager)(this._socket$);
+    socketIOWildcard(io.Manager)(this._socket$);
 
     this._socket$.on('connect', this._onConnect.bind(this));
     this._socket$.on('error', this._onError.bind(this));
@@ -51,8 +51,11 @@ export class SocketIOService implements ISocketService {
     this._disconnected$.next();
   }
 
-  private _onEvent(e: any) {
-    this._event$.next(e);
+  private _onEvent(e: { event: string, value: any }) {
+    this._event$.next({
+      e: e.event,
+      v: e.value,
+    });
   }
 
   private _onError(err: any) {

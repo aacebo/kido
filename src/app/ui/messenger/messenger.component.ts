@@ -41,7 +41,7 @@ export class MessengerComponent implements AfterViewInit {
   set itemSize(v: number) {
     this._itemSize = coerceNumberProperty(v);
   }
-  private _itemSize = 50;
+  private _itemSize = 70;
 
   @Output() selected = new EventEmitter<IMessage>();
 

@@ -20,7 +20,7 @@ export class ConnectStreamEffects {
       socket.connected$.subscribe(() => this._onConnect(a));
       socket.disconnected$.subscribe(() => this._onDisconnect(a));
       socket.error$.subscribe(err => this._onError(err, a));
-      socket.event$.subscribe(v => this._onEvent(v, a));
+      socket.event$.subscribe(e => this._onEvent(e, a));
 
       this._socketService.connect(a.streamId);
     }),
@@ -49,9 +49,15 @@ export class ConnectStreamEffects {
     this._streamService.disconnect(a.streamId);
   }
 
-  private _onEvent(v: any, a: { streamId: string; }) {
-    const json = typeof v === 'object' && isValidJSON(JSON.stringify(v));
-    this._streamService.addMessage(a.streamId, StreamMessageType.Received, json ? JSON.stringify(v) : v, json);
+  private _onEvent(e: { e: string, v: any }, a: { streamId: string; }) {
+    const json = typeof e.v === 'object' && isValidJSON(JSON.stringify(e.v, undefined, 2));
+    this._streamService.addMessage(
+      a.streamId,
+      StreamMessageType.Received,
+      json ? JSON.stringify(e.v, undefined, 2) : e.v,
+      e.e,
+      json,
+    );
   }
 
   constructor(
