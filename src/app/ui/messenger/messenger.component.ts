@@ -25,6 +25,7 @@ import { IMessage } from './message.interface';
   encapsulation: ViewEncapsulation.None,
 })
 export class MessengerComponent implements AfterViewInit {
+  @Input() active?: string;
   @Input()
   get messages() { return this._messages; }
   set messages(v: IMessage[]) {

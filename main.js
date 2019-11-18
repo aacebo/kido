@@ -30,9 +30,10 @@ function createWindow () {
     show: false,
     autoHideMenuBar: true,
     darkTheme: true,
-    title: 'Koda',
+    title: 'Kido',
     frame: process.platform === 'darwin' ? false : true,
     titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'default',
+    icon: path.join(__dirname, 'dist/assets/icon/png/64x64.png'),
     backgroundColor: '#424242',
     webPreferences: {
       nodeIntegration: true,

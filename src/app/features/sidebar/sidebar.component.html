@@ -8,7 +8,6 @@
       *ngFor="let stream of streams"
       [class.active]="stream._id === active"
       [stream]="stream"
-      [messages]="streamMessages[stream._id]"
       [connected]="streamConnected[stream._id]"
       [routerLink]="['/stream/', stream._id]"
     ></kido-stream-list-item>

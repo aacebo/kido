@@ -106,6 +106,7 @@
           >
             <kido-messenger
               [messages]="messages"
+              [active]="message?._id"
               (selected)="onMessageSelected($event)"
             ></kido-messenger>
 

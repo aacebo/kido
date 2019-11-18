@@ -14,11 +14,14 @@ import { IMessage } from './message.interface';
     class: 'kido-message',
     '[class.kido-message--sent]': 'type === MessageType.Sent',
     '[class.kido-message--received]': 'type === MessageType.Received',
+    '[class.kido-message--json]': 'message.json',
+    '[class.kido-message--active]': 'active === message._id',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class MessageComponent {
+  @Input() active?: string;
   @Input() message: IMessage;
   @Input() type: MessageType;
   @Input()

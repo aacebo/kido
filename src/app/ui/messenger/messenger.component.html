@@ -4,6 +4,7 @@
   <kido-message
     *cdkVirtualFor="let message of messages"
     [style.height.px]="itemSize"
+    [active]="active"
     [message]="message"
     [type]="message.type"
     [createdAt]="message.createdAt"

@@ -5,5 +5,6 @@ export interface IMessage {
   readonly type: MessageType;
   readonly content: string;
   readonly event?: string;
+  readonly json?: boolean;
   readonly createdAt: number;
 }
