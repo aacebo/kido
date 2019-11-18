@@ -8,5 +8,6 @@ export interface IStreamMessage {
   readonly content: string;
   readonly event?: string;
   readonly json?: boolean;
+  readonly size?: number;
   readonly createdAt: number;
 }

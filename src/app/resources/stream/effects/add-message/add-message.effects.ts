@@ -21,6 +21,7 @@ export class AddMessageEffects {
         content: a.content,
         event: a.event,
         json: a.json,
+        size: Buffer.from(a.content).length,
         createdAt: new Date().getTime(),
       })
       .then(res => actions.addMessageSuccess({ message: res }))
