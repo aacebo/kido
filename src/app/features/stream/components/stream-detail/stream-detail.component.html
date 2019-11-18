@@ -83,7 +83,7 @@
     </kido-input>
 
     <kido-input
-      *ngIf="stream.type === StreamType.SocketIO"
+      *ngIf="stream.type !== StreamType.WebSocket"
       formControlName="event"
       size="lg"
       placeholder="Event..."
