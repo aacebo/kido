@@ -1,5 +1,5 @@
 export interface IEnvironment {
   readonly production: boolean;
-  readonly queueSize: number;
+  readonly maxMessages: number;
   readonly maxDbSizeMb: number;
 }

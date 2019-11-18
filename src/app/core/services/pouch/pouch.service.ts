@@ -3,11 +3,11 @@ import PouchDB from 'pouchdb';
 import { environment } from '../../../../environments/environment';
 
 export class PouchService<T = any> {
-  private readonly _prefix = 'koda--';
+  private readonly _prefix = 'kido--';
   private readonly _db: PouchDB.Database<T>;
 
   constructor(private readonly _name: string) {
-    this._db = new PouchDB<T>(`${this._prefix}${this._name}`, {
+    this._db = new PouchDB<T>(`${this._name}`, {
       revs_limit: 1,
       auto_compaction: true,
       size: environment.maxDbSizeMb,
@@ -33,8 +33,19 @@ export class PouchService<T = any> {
     return this._db.get(_id);
   }
 
-  async get() {
-    return await this._db.find({ selector: {  } });
+  async get(page?: number, size?: number, limit?: number) {
+    await this._db.createIndex({
+      index: { fields: ['createdAt'] },
+    });
+
+    return await this._db.find({
+      limit,
+      skip: (page && size) ? (page * size) : undefined,
+      selector: { },
+      sort: [{
+        createdAt: 'desc',
+      }],
+    });
   }
 
   async remove(_id: string) {
