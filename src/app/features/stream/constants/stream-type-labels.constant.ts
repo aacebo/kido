@@ -4,4 +4,5 @@ export const STREAM_TYPE_LABELS = {
   [StreamType.SignalR]: 'SignalR',
   [StreamType.SocketIO]: 'Socket.IO',
   [StreamType.WebSocket]: 'Websocket',
+  [StreamType.SockJS]: 'SockJS',
 };

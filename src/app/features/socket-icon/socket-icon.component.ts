@@ -12,6 +12,7 @@ import { STREAM_TYPE_ABBR } from './stream-type-abbr.constant';
     '[class.websocket]': 'type === StreamType.WebSocket',
     '[class.signalr]': 'type === StreamType.SignalR',
     '[class.socket-io]': 'type === StreamType.SocketIO',
+    '[class.sockjs]': 'type === StreamType.SockJS',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

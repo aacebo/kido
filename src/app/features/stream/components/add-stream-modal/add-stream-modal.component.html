@@ -34,6 +34,11 @@
       <kido-socket-icon [type]="StreamType.SocketIO"></kido-socket-icon>
       {{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}
     </kido-option>
+
+    <kido-option [value]="StreamType.SockJS">
+      <kido-socket-icon [type]="StreamType.SockJS"></kido-socket-icon>
+      {{ STREAM_TYPE_LABELS[StreamType.SockJS] }}
+    </kido-option>
   </kido-select>
 
   <kido-input

@@ -26,4 +26,12 @@
     <kido-socket-icon [type]="StreamType.SocketIO"></kido-socket-icon>
     {{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}
   </button>
+
+  <button
+    kidoDropdownItem
+    (click)="add.emit(StreamType.SockJS)"
+  >
+    <kido-socket-icon [type]="StreamType.SockJS"></kido-socket-icon>
+    {{ STREAM_TYPE_LABELS[StreamType.SockJS] }}
+  </button>
 </kido-split-dropdown>
