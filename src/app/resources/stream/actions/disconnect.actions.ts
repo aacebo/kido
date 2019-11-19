@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-export const disconnectStream = createAction(
-  '[STREAM] DisconnectStream',
+export const disconnect = createAction(
+  '[STREAM] Disconnect',
   props<{ readonly streamId: string }>(),
 );

@@ -16,7 +16,7 @@ export class StreamComponent {
   ) { }
 
   onUpdate(e: Partial<IStream>) {
-    this.streamService.updateStream(e);
+    this.streamService.update(e);
   }
 
   onConnect(e: IStream) {

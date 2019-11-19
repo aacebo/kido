@@ -7,15 +7,15 @@ import { PouchService } from '../../../../core/services';
 import { IStream } from '../../models';
 
 @Injectable()
-export class GetStreamsEffects {
+export class GetEffects {
   private readonly _pouchService = new PouchService<IStream>('streams');
 
-  readonly getStreams$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.getStreams),
+  readonly get$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.get),
     switchMap(() =>
       this._pouchService.get()
-        .then(res => actions.getStreamsSuccess({ streams: res.docs }))
-        .catch(error => actions.getStreamsFailed({ error })),
+        .then(res => actions.getSuccess({ streams: res.docs }))
+        .catch(error => actions.getFailed({ error })),
     ),
   ));
 

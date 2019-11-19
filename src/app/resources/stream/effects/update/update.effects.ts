@@ -8,11 +8,11 @@ import { PouchService } from '../../../../core/services';
 import { IStream } from '../../models';
 
 @Injectable()
-export class UpdateStreamEffects {
+export class UpdateEffects {
   private readonly _pouchService = new PouchService<IStream>('streams');
 
-  readonly updateStream$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.updateStream),
+  readonly update$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.update),
     switchMap(a =>
       this._pouchService.put({
         _id: a.stream._id,
@@ -26,21 +26,21 @@ export class UpdateStreamEffects {
         json: a.stream.json !== undefined ? a.stream.json : true,
         createdAt: a.stream.createdAt,
       })
-      .then(res => actions.updateStreamSuccess({ stream: res }))
-      .catch(error => actions.updateStreamFailed({ error })),
+      .then(res => actions.updateSuccess({ stream: res }))
+      .catch(error => actions.updateFailed({ error })),
     ),
   ));
 
-  readonly updateStreamSuccess$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.updateStreamSuccess),
+  readonly updateSuccess$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.updateSuccess),
     tap(a => this._toastr.success(
       `Stream ${a.stream.name} updated`,
       'Update Success',
     )),
   ), { dispatch: false });
 
-  readonly updateStreamFailed$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.updateStreamFailed),
+  readonly updateFailed$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.updateFailed),
     tap(a => this._toastr.error(
       `${a.error.message}`,
       'Update Failed',

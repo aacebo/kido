@@ -30,14 +30,14 @@ export class AppComponent implements OnInit {
       this.systemService.add(system);
     });
 
-    this.streamService.getStreams();
+    this.streamService.get();
     this._messageService.get();
   }
 
   onAdd(e?: StreamType) {
     this._addStreamModalService.open(e, (v?: Partial<IStream>) => {
       if (v) {
-        this.streamService.addStream(v.type, v.name, v.url, v.description);
+        this.streamService.add(v.type, v.name, v.url, v.description);
       }
     });
 

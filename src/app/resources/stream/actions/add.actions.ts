@@ -3,8 +3,8 @@ import { createAction, props } from '@ngrx/store';
 import { StreamType } from '../enums';
 import { IStream } from '../models';
 
-export const addStream = createAction(
-  '[STREAM] AddStream',
+export const add = createAction(
+  '[STREAM] Add',
   props<{
     readonly streamType: StreamType;
     readonly name: string;
@@ -13,12 +13,12 @@ export const addStream = createAction(
   }>(),
 );
 
-export const addStreamSuccess = createAction(
-  '[STREAM] AddStreamSuccess',
+export const addSuccess = createAction(
+  '[STREAM] AddSuccess',
   props<{ readonly stream: IStream }>(),
 );
 
-export const addStreamFailed = createAction(
-  '[STREAM] AddStreamFailed',
+export const addFailed = createAction(
+  '[STREAM] AddFailed',
   props<{ readonly error: Error }>(),
 );

@@ -2,17 +2,17 @@ import { createReducer, on } from '@ngrx/store';
 
 import * as actions from '../../actions';
 
-export const streamConnecting = createReducer<{ [streamId: string]: boolean }>(
+export const connecting = createReducer<{ [streamId: string]: boolean }>(
   { },
-  on(actions.connectStream, (_, a) => ({
+  on(actions.connect, (_, a) => ({
     ..._,
     [a.streamId]: true,
   })),
-  on(actions.connectStreamSuccess, (_, a) => ({
+  on(actions.connectSuccess, (_, a) => ({
     ..._,
     [a.streamId]: false,
   })),
-  on(actions.connectStreamFailed, (_, a) => ({
+  on(actions.connectFailed, (_, a) => ({
     ..._,
     [a.streamId]: false,
   })),

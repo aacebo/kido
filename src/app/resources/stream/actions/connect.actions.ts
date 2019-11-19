@@ -2,8 +2,8 @@ import { createAction, props } from '@ngrx/store';
 
 import { StreamType } from '../enums';
 
-export const connectStream = createAction(
-  '[STREAM] ConnectStream',
+export const connect = createAction(
+  '[STREAM] Connect',
   props<{
     readonly streamId: string;
     readonly streamType: StreamType;
@@ -11,12 +11,12 @@ export const connectStream = createAction(
   }>(),
 );
 
-export const connectStreamSuccess = createAction(
-  '[STREAM] ConnectStreamSuccess',
+export const connectSuccess = createAction(
+  '[STREAM] ConnectSuccess',
   props<{ readonly streamId: string }>(),
 );
 
-export const connectStreamFailed = createAction(
-  '[STREAM] ConnectStreamFailed',
+export const connectFailed = createAction(
+  '[STREAM] ConnectFailed',
   props<{ readonly streamId: string; readonly error: Error }>(),
 );

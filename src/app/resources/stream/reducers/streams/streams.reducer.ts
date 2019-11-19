@@ -5,9 +5,9 @@ import { IStream } from '../../models';
 
 export const streams = createReducer<{ [streamId: string]: IStream }>(
   { },
-  on(actions.getStreams, (_) => ({ })),
-  on(actions.getStreamsFailed, (_) => ({ })),
-  on(actions.getStreamsSuccess, (_, a) => {
+  on(actions.get, (_) => ({ })),
+  on(actions.getFailed, (_) => ({ })),
+  on(actions.getSuccess, (_, a) => {
     const map = { };
 
     for (const stream of a.streams.sort((one, two) => one.createdAt - two.createdAt)) {
@@ -16,11 +16,11 @@ export const streams = createReducer<{ [streamId: string]: IStream }>(
 
     return map;
   }),
-  on(actions.addStreamSuccess, (_, a) => {
+  on(actions.addSuccess, (_, a) => {
     _[a.stream._id] = a.stream;
     return { ..._ };
   }),
-  on(actions.updateStreamSuccess, (_, a) => {
+  on(actions.updateSuccess, (_, a) => {
     _[a.stream._id] = a.stream;
     return { ..._ };
   }),

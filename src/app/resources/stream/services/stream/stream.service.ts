@@ -13,33 +13,33 @@ import { StreamType } from '../../enums';
 })
 export class StreamService {
   readonly state$: Observable<IStreamState>;
-  readonly activeStreamId$: Observable<string | undefined>;
+  readonly activeId$: Observable<string | undefined>;
   readonly streams$: Observable<{ [streamId: string]: IStream }>;
-  readonly streamConnected$: Observable<{ [streamId: string]: boolean }>;
-  readonly activeStream$: Observable<IStream | undefined>;
-  readonly activeStreamConnected$: Observable<boolean>;
+  readonly connected$: Observable<{ [streamId: string]: boolean }>;
+  readonly active$: Observable<IStream | undefined>;
+  readonly activeConnected$: Observable<boolean>;
   readonly entities$: Observable<IStream[]>;
 
   constructor(private readonly _store$: Store<IStreamState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
-    this.activeStreamId$ = this._store$.pipe(select(selectors.selectActiveStreamId));
+    this.activeId$ = this._store$.pipe(select(selectors.selectActiveId));
     this.streams$ = this._store$.pipe(select(selectors.selectStreams));
-    this.streamConnected$ = this._store$.pipe(select(selectors.selectStreamConnected));
-    this.activeStream$ = this._store$.pipe(select(selectors.selectActiveStream));
-    this.activeStreamConnected$ = this._store$.pipe(select(selectors.selectActiveStreamConnected));
+    this.connected$ = this._store$.pipe(select(selectors.selectConnected));
+    this.active$ = this._store$.pipe(select(selectors.selectActive));
+    this.activeConnected$ = this._store$.pipe(select(selectors.selectActiveConnected));
     this.entities$ = this._store$.pipe(select(selectors.selectEntities));
   }
 
-  getStreams() {
-    this._store$.dispatch(actions.getStreams());
+  get() {
+    this._store$.dispatch(actions.get());
   }
 
-  addStream(streamType: StreamType, name: string, url?: string, description?: string) {
-    this._store$.dispatch(actions.addStream({ streamType, name, url, description }));
+  add(streamType: StreamType, name: string, url?: string, description?: string) {
+    this._store$.dispatch(actions.add({ streamType, name, url, description }));
   }
 
-  updateStream(stream: Partial<IStream>) {
-    this._store$.dispatch(actions.updateStream({ stream }));
+  update(stream: Partial<IStream>) {
+    this._store$.dispatch(actions.update({ stream }));
   }
 
   setActive(streamId: string) {
@@ -47,10 +47,10 @@ export class StreamService {
   }
 
   connect(streamId: string, streamType: StreamType, url: string) {
-    this._store$.dispatch(actions.connectStream({ streamId, streamType, url }));
+    this._store$.dispatch(actions.connect({ streamId, streamType, url }));
   }
 
   disconnect(streamId: string) {
-    this._store$.dispatch(actions.disconnectStream({ streamId }));
+    this._store$.dispatch(actions.disconnect({ streamId }));
   }
 }

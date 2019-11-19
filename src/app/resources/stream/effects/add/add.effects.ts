@@ -9,11 +9,11 @@ import { IStream } from '../../models';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
-export class AddStreamEffects {
+export class AddEffects {
   private readonly _pouchService = new PouchService<IStream>('streams');
 
-  readonly addStream$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.addStream),
+  readonly add$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.add),
     switchMap(a =>
       this._pouchService.put({
         _id: uuid(),
@@ -24,21 +24,21 @@ export class AddStreamEffects {
         json: true,
         createdAt: new Date().getTime(),
       })
-      .then(res => actions.addStreamSuccess({ stream: res }))
-      .catch(error => actions.addStreamFailed({ error })),
+      .then(res => actions.addSuccess({ stream: res }))
+      .catch(error => actions.addFailed({ error })),
     ),
   ));
 
-  readonly addStreamSuccess$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.addStreamSuccess),
+  readonly addSuccess$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.addSuccess),
     tap(a => this._toastr.success(
       `Stream ${a.stream.name} added`,
       'Add Success',
     )),
   ), { dispatch: false });
 
-  readonly addStreamFailed$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.addStreamFailed),
+  readonly addFailed$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.addFailed),
     tap(a => this._toastr.error(
       `${a.error.message}`,
       'Add Failed',

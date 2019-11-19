@@ -1,9 +1,9 @@
 <kido-titlebar *ngIf="systemService.isMac$ | async"></kido-titlebar>
 <kido-sidebar
   [class.mac]="systemService.isMac$ | async"
-  [active]="streamService.activeStreamId$ | async"
+  [active]="streamService.activeId$ | async"
   [streams]="streamService.entities$ | async"
-  [streamConnected]="streamService.streamConnected$ | async"
+  [streamConnected]="streamService.connected$ | async"
   [open]="menu$ | async"
 >
   <kido-toolbar

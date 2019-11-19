@@ -7,9 +7,9 @@ import * as actions from '../../actions';
 import { SocketService } from '../../services';
 
 @Injectable()
-export class DisconnectStreamEffects {
-  readonly disconnectStream$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.disconnectStream),
+export class DisconnectEffects {
+  readonly disconnect$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.disconnect),
     tap(a => {
       if (this._socketService.isConnected(a.streamId)) {
         this._socketService.disconnect(a.streamId);

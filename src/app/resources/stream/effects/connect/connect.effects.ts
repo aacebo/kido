@@ -11,9 +11,9 @@ import { SocketService, StreamService } from '../../services';
 import { IStreamState } from '../../stream.state';
 
 @Injectable()
-export class ConnectStreamEffects {
-  readonly connectStream$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.connectStream),
+export class ConnectEffects {
+  readonly connect$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.connect),
     tap(a => {
       const socket = this._socketService.create(a.streamId, a.streamType, a.url);
 
@@ -26,18 +26,18 @@ export class ConnectStreamEffects {
     }),
   ), { dispatch: false });
 
-  readonly connectStreamSuccess$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.connectStreamSuccess),
+  readonly connectSuccess$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.connectSuccess),
     tap(() => this._toastr.success('Connected', 'Socket')),
   ), { dispatch: false });
 
-  readonly connectStreamFailed$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.connectStreamFailed),
+  readonly connectFailed$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.connectFailed),
     tap(() => this._toastr.error('Error', 'Socket')),
   ), { dispatch: false });
 
   private _onConnect(a: { streamId: string; }) {
-    this._store$.dispatch(actions.connectStreamSuccess(a));
+    this._store$.dispatch(actions.connectSuccess(a));
   }
 
   private _onDisconnect(a: { streamId: string; }) {
@@ -45,7 +45,7 @@ export class ConnectStreamEffects {
   }
 
   private _onError(error: Error, a: { streamId: string; }) {
-    this._store$.dispatch(actions.connectStreamFailed({ error, streamId: a.streamId }));
+    this._store$.dispatch(actions.connectFailed({ error, streamId: a.streamId }));
     this._streamService.disconnect(a.streamId);
   }
 

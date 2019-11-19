@@ -4,17 +4,17 @@ import { IStream } from './models';
 import * as fromReducers from './reducers';
 
 export interface IStreamState {
-  readonly activeStreamId?: string;
+  readonly activeId?: string;
   readonly streams: { [streamId: string]: IStream };
-  readonly streamConnected: { [streamId: string]: boolean };
-  readonly streamConnecting: { [streamId: string]: boolean };
+  readonly connected: { [streamId: string]: boolean };
+  readonly connecting: { [streamId: string]: boolean };
 }
 
 export function reducers(state: IStreamState, action: Action) {
   return combineReducers<IStreamState>({
-    activeStreamId: fromReducers.activeStreamId,
+    activeId: fromReducers.activeId,
     streams: fromReducers.streams,
-    streamConnected: fromReducers.streamConnected,
-    streamConnecting: fromReducers.streamConnecting,
+    connected: fromReducers.connected,
+    connecting: fromReducers.connecting,
   })(state, action);
 }
