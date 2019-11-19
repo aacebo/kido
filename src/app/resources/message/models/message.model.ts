@@ -1,10 +1,10 @@
-import { StreamMessageType } from '../enums';
+import { MessageType } from '../enums';
 
-export interface IStreamMessage {
+export interface IMessage {
   readonly _id: string;
   readonly _rev?: string;
   readonly streamId: string;
-  readonly type: StreamMessageType;
+  readonly type: MessageType;
   readonly content: string;
   readonly event?: string;
   readonly json?: boolean;

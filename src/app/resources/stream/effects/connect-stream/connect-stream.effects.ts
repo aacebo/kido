@@ -6,8 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 
 import * as actions from '../../actions';
 import { isValidJSON } from '../../../../core/utils';
+import { MessageService, MessageType } from '../../../message';
 import { SocketService, StreamService } from '../../services';
-import { StreamMessageType } from '../../enums';
 import { IStreamState } from '../../stream.state';
 
 @Injectable()
@@ -51,9 +51,9 @@ export class ConnectStreamEffects {
 
   private _onEvent(e: { e: string, v: any }, a: { streamId: string; }) {
     const json = typeof e.v === 'object' && isValidJSON(JSON.stringify(e.v, undefined, 2));
-    this._streamService.addMessage(
+    this._messageService.add(
       a.streamId,
-      StreamMessageType.Received,
+      MessageType.Received,
       json ? JSON.stringify(e.v, undefined, 2) : e.v,
       e.e,
       json,
@@ -65,6 +65,7 @@ export class ConnectStreamEffects {
     private readonly _store$: Store<IStreamState>,
     private readonly _socketService: SocketService,
     private readonly _streamService: StreamService,
+    private readonly _messageService: MessageService,
     private readonly _toastr: ToastrService,
   ) { }
 }

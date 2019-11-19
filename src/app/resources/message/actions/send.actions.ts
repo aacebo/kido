@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-export const sendMessage = createAction(
-  '[STREAM] SendMessage',
+export const send = createAction(
+  '[MESSAGE] Send',
   props<{
     readonly streamId: string;
     readonly message: string;

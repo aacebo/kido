@@ -11,13 +11,10 @@ import * as effects from './effects';
     StoreModule.forFeature('stream', reducers),
     EffectsModule.forFeature([
       effects.GetStreamsEffects,
-      effects.GetMessagesEffects,
       effects.AddStreamEffects,
-      effects.AddMessageEffects,
       effects.UpdateStreamEffects,
       effects.ConnectStreamEffects,
       effects.DisconnectStreamEffects,
-      effects.SendMessageEffects,
     ]),
   ],
 })

@@ -3,12 +3,12 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
 import * as actions from '../../actions';
-import { SocketService } from '../../services';
+import { SocketService } from '../../../stream/services/socket';
 
 @Injectable()
-export class SendMessageEffects {
-  readonly sendMessage$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.sendMessage),
+export class SendEffects {
+  readonly send$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.send),
     tap(a => this._socketService.send(a.streamId, a.message, a.event)),
   ), { dispatch: false });
 

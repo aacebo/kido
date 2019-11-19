@@ -1,4 +1,4 @@
-export enum StreamMessageType {
+export enum MessageType {
   Sent = 'sent',
   Received = 'received',
 }

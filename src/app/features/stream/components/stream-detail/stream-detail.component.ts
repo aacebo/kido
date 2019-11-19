@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { areEqual, isValidJSON } from '../../../../core/utils';
-import { IStream, IStreamMessage, StreamType } from '../../../../resources/stream';
+import { IStream, StreamType } from '../../../../resources/stream';
+import { IMessage } from '../../../../resources/message';
 import { Hotkeys } from '../../../../ui/hotkeys';
 
 import { STREAM_TYPE_LABELS } from '../../constants';
@@ -17,7 +18,7 @@ import { STREAM_TYPE_LABELS } from '../../constants';
   encapsulation: ViewEncapsulation.None,
 })
 export class StreamDetailComponent implements OnInit {
-  @Input() messages: IStreamMessage[] = [];
+  @Input() messages: { [streamId: string]: IMessage[] } = { };
   @Input() connected?: boolean;
   @Input()
   get stream() { return this._stream; }
@@ -36,7 +37,7 @@ export class StreamDetailComponent implements OnInit {
   @Output() send = new EventEmitter<string>();
 
   form: FormGroup;
-  message?: IStreamMessage;
+  message?: IMessage;
   messageContent?: any;
   json = true;
 
@@ -107,7 +108,7 @@ export class StreamDetailComponent implements OnInit {
     this._toastr.info('Copied to Clipboard!');
   }
 
-  onMessageSelected(e: IStreamMessage) {
+  onMessageSelected(e: IMessage) {
     this.message = e;
     this.messageContent = { root: e.json ? JSON.parse(e.content) : e.content };
   }

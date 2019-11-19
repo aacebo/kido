@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
-import { StreamService, IStream, StreamMessageType } from '../../resources/stream';
+import { StreamService, IStream } from '../../resources/stream';
+import { MessageService, MessageType } from '../../resources/message';
 
 @Component({
   selector: 'kido-stream',
@@ -9,7 +10,10 @@ import { StreamService, IStream, StreamMessageType } from '../../resources/strea
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StreamComponent {
-  constructor(readonly streamService: StreamService) { }
+  constructor(
+    readonly streamService: StreamService,
+    readonly messageService: MessageService,
+  ) { }
 
   onUpdate(e: Partial<IStream>) {
     this.streamService.updateStream(e);
@@ -24,7 +28,7 @@ export class StreamComponent {
   }
 
   onSend(e: string, stream: IStream) {
-    this.streamService.sendMessage(stream._id, stream.json ? JSON.parse(e) : e, stream.event, stream.json);
-    this.streamService.addMessage(stream._id, StreamMessageType.Sent, e, stream.event || 'message', stream.json);
+    this.messageService.send(stream._id, stream.json ? JSON.parse(e) : e, stream.event, stream.json);
+    this.messageService.add(stream._id, MessageType.Sent, e, stream.event || 'message', stream.json);
   }
 }

@@ -5,14 +5,14 @@ import * as uuid from 'uuid';
 
 import * as actions from '../../actions';
 import { PouchService } from '../../../../core/services';
-import { IStreamMessage } from '../../models';
+import { IMessage } from '../../models';
 
 @Injectable()
-export class AddMessageEffects {
-  private readonly _pouchService = new PouchService<IStreamMessage>('messages');
+export class AddEffects {
+  private readonly _pouchService = new PouchService<IMessage>('messages');
 
-  readonly addMessage$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.addMessage),
+  readonly add$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.add),
     switchMap(a =>
       this._pouchService.put({
         _id: uuid(),
@@ -24,8 +24,8 @@ export class AddMessageEffects {
         size: Buffer.from(a.content).length,
         createdAt: new Date().getTime(),
       })
-      .then(res => actions.addMessageSuccess({ message: res }))
-      .catch(error => actions.addMessageFailed({ error })),
+      .then(res => actions.addSuccess({ message: res }))
+      .catch(error => actions.addFailed({ error })),
     ),
   ));
 
