@@ -1,7 +1,12 @@
 {
   "name": "kido",
   "version": "0.0.0",
+  "description": "a socket debugger/tester",
   "main": "main.js",
+  "author": {
+    "name": "Alexander Acebo",
+    "email": "aacebowork@gmail.com"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng build --base-href ./ && electron .",
