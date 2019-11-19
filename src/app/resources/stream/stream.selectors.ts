@@ -15,3 +15,7 @@ export const selectEntities = createSelector(selectState, state => {
 export const selectActiveConnected = createSelector(selectState, state => {
   return state.connected[state.activeId] || false;
 });
+
+export const selectActiveConnecting = createSelector(selectState, state => {
+  return state.connecting[state.activeId] || false;
+});

@@ -69,7 +69,8 @@
           [disabled]="!form.value.url"
           (click)="toggle()"
         >
-          <span class="fas fa-plug"></span>
+          <span *ngIf="!connecting" class="fas fa-plug"></span>
+          <span *ngIf="connecting" class="spinner-border spinner-border-sm"></span>
         </button>
       </div>
 

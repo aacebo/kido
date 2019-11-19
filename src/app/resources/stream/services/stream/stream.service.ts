@@ -18,6 +18,7 @@ export class StreamService {
   readonly connected$: Observable<{ [streamId: string]: boolean }>;
   readonly active$: Observable<IStream | undefined>;
   readonly activeConnected$: Observable<boolean>;
+  readonly activeConnecting$: Observable<boolean>;
   readonly entities$: Observable<IStream[]>;
 
   constructor(private readonly _store$: Store<IStreamState>) {
@@ -27,6 +28,7 @@ export class StreamService {
     this.connected$ = this._store$.pipe(select(selectors.selectConnected));
     this.active$ = this._store$.pipe(select(selectors.selectActive));
     this.activeConnected$ = this._store$.pipe(select(selectors.selectActiveConnected));
+    this.activeConnecting$ = this._store$.pipe(select(selectors.selectActiveConnecting));
     this.entities$ = this._store$.pipe(select(selectors.selectEntities));
   }
 

@@ -3,6 +3,7 @@
   [stream]="stream"
   [messages]="messageService.messages$ | async"
   [connected]="streamService.activeConnected$ | async"
+  [connecting]="streamService.activeConnecting$ | async"
   (update)="onUpdate($event)"
   (connect)="onConnect(stream)"
   (disconnect)="onDisconnect(stream)"
