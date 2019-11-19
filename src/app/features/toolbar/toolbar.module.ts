@@ -8,6 +8,10 @@ import { ToolbarComponent } from './toolbar.component';
 @NgModule({
   declarations: [ToolbarComponent],
   exports: [ToolbarComponent],
-  imports: [CommonModule, StreamModule, ButtonModule],
+  imports: [
+    CommonModule,
+    StreamModule,
+    ButtonModule,
+  ],
 })
 export class ToolbarModule { }
