@@ -48,15 +48,11 @@ export class PouchService<T = any> {
     });
   }
 
-  async remove(_id: string) {
-    const item = await this.getOne(_id);
+  async remove(_id: string, _rev: string) {
+    const res = await this._db.remove(_id, _rev);
 
-    if (item) {
-      const res = await this._db.remove(item);
-
-      if (!res.ok) {
-        throw new Error('ERROR: could not remove');
-      }
+    if (!res.ok) {
+      throw new Error('ERROR: could not remove');
     }
   }
 }

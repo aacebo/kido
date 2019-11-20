@@ -13,7 +13,7 @@ export const selectEntities = createSelector(selectState, state => {
 });
 
 export const selectActiveConnected = createSelector(selectState, state => {
-  return state.connected[state.activeId] || false;
+  return state.connected[state.activeId] || undefined;
 });
 
 export const selectActiveConnecting = createSelector(selectState, state => {

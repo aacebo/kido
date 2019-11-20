@@ -19,7 +19,7 @@ import { STREAM_TYPE_LABELS } from '../../constants';
 })
 export class StreamDetailComponent implements OnInit {
   @Input() messages: { [streamId: string]: IMessage[] } = { };
-  @Input() connected?: boolean;
+  @Input() connected?: Date;
   @Input() connecting?: boolean;
   @Input()
   get stream() { return this._stream; }

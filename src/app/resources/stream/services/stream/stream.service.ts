@@ -15,9 +15,9 @@ export class StreamService {
   readonly state$: Observable<IStreamState>;
   readonly activeId$: Observable<string | undefined>;
   readonly streams$: Observable<{ [streamId: string]: IStream }>;
-  readonly connected$: Observable<{ [streamId: string]: boolean }>;
+  readonly connected$: Observable<{ [streamId: string]: Date }>;
   readonly active$: Observable<IStream | undefined>;
-  readonly activeConnected$: Observable<boolean>;
+  readonly activeConnected$: Observable<Date>;
   readonly activeConnecting$: Observable<boolean>;
   readonly entities$: Observable<IStream[]>;
 

@@ -31,14 +31,6 @@ export class UpdateEffects {
     ),
   ));
 
-  readonly updateSuccess$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.updateSuccess),
-    tap(a => this._toastr.success(
-      `Stream ${a.stream.name} updated`,
-      'Update Success',
-    )),
-  ), { dispatch: false });
-
   readonly updateFailed$ = createEffect(() => this._actions$.pipe(
     ofType(actions.updateFailed),
     tap(a => this._toastr.error(

@@ -29,14 +29,6 @@ export class AddEffects {
     ),
   ));
 
-  readonly addSuccess$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.addSuccess),
-    tap(a => this._toastr.success(
-      `Stream ${a.stream.name} added`,
-      'Add Success',
-    )),
-  ), { dispatch: false });
-
   readonly addFailed$ = createEffect(() => this._actions$.pipe(
     ofType(actions.addFailed),
     tap(a => this._toastr.error(

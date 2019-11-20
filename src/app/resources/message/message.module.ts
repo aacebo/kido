@@ -13,6 +13,7 @@ import * as effects from './effects';
       effects.AddEffects,
       effects.GetEffects,
       effects.SendEffects,
+      effects.RemoveEffects,
     ]),
   ],
 })

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap } from 'rxjs/operators';
 
+import { environment } from '../../../../../environments/environment';
+
 import * as actions from '../../actions';
 import { PouchService } from '../../../../core/services';
 import { IMessage } from '../../models';
@@ -13,7 +15,7 @@ export class GetEffects {
   readonly get$ = createEffect(() => this._actions$.pipe(
     ofType(actions.get),
     switchMap(() =>
-      this._pouchService.get()
+      this._pouchService.get(1, environment.maxMessages, environment.maxMessages)
         .then(res => actions.getSuccess({ messages: res.docs }))
         .catch(error => actions.getFailed({ error })),
     ),

@@ -10,5 +10,5 @@ import { IStream } from '../../../../resources/stream';
 })
 export class StreamListItemComponent {
   @Input() stream: IStream;
-  @Input() connected?: boolean;
+  @Input() connected?: Date;
 }

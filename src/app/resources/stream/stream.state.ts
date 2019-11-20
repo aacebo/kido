@@ -6,7 +6,7 @@ import * as fromReducers from './reducers';
 export interface IStreamState {
   readonly activeId?: string;
   readonly streams: { [streamId: string]: IStream };
-  readonly connected: { [streamId: string]: boolean };
+  readonly connected: { [streamId: string]: Date };
   readonly connecting: { [streamId: string]: boolean };
 }
 

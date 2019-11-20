@@ -1,7 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { environment } from '../../../../../environments/environment';
-
 import * as actions from '../../actions';
 import { IMessage } from '../../models';
 
@@ -11,10 +9,8 @@ export const messages = createReducer<{ [streamId: string]: IMessage[] }>(
   on(actions.getFailed, (_) => ({ })),
   on(actions.getSuccess, (_, a) => {
     const map: { [streamId: string]: IMessage[] } = { };
-    const msgs = a.messages.sort((one: any, two: any) => one.createdAt - two.createdAt)
-                           .slice(a.messages.length - environment.maxMessages, a.messages.length);
 
-    for (const msg of msgs) {
+    for (const msg of a.messages) {
       if (map[msg.streamId] === undefined) {
         map[msg.streamId] = [msg];
       } else {
@@ -28,12 +24,21 @@ export const messages = createReducer<{ [streamId: string]: IMessage[] }>(
     const msgs = _[a.message.streamId] || [];
 
     msgs.push(a.message);
+    _[a.message.streamId] = [...msgs];
 
-    if (messages.length > environment.maxMessages) {
-      msgs.shift();
+    return { ..._ };
+  }),
+  on(actions.remove, (_, a) => {
+    const msgs = _[a.streamId] || [];
+
+    for (let i = 0; i < msgs.length; i++) {
+      if (msgs[i]._id === a._id) {
+        msgs.splice(i, 1);
+        break;
+      }
     }
 
-    _[a.message.streamId] = [...msgs];
+    _[a.streamId] = [...msgs];
 
     return { ..._ };
   }),
