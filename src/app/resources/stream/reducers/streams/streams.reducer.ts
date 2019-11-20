@@ -10,7 +10,7 @@ export const streams = createReducer<{ [streamId: string]: IStream }>(
   on(actions.getSuccess, (_, a) => {
     const map = { };
 
-    for (const stream of a.streams.sort((one, two) => one.createdAt - two.createdAt)) {
+    for (const stream of a.streams) {
       map[stream._id] = stream;
     }
 

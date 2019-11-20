@@ -15,7 +15,7 @@ export class GetEffects {
   readonly get$ = createEffect(() => this._actions$.pipe(
     ofType(actions.get),
     switchMap(() =>
-      this._pouchService.get(1, environment.maxMessages, environment.maxMessages)
+      this._pouchService.get(0, environment.maxMessages, environment.maxMessages)
         .then(res => actions.getSuccess({ messages: res.docs }))
         .catch(error => actions.getFailed({ error })),
     ),

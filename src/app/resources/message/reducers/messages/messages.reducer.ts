@@ -14,7 +14,7 @@ export const messages = createReducer<{ [streamId: string]: IMessage[] }>(
       if (map[msg.streamId] === undefined) {
         map[msg.streamId] = [msg];
       } else {
-        map[msg.streamId].push(msg);
+        map[msg.streamId].unshift(msg);
       }
     }
 
