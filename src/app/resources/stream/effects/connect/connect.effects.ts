@@ -26,11 +26,6 @@ export class ConnectEffects {
     }),
   ), { dispatch: false });
 
-  readonly connectSuccess$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.connectSuccess),
-    tap(() => this._toastr.success('Connected', 'Socket')),
-  ), { dispatch: false });
-
   readonly connectFailed$ = createEffect(() => this._actions$.pipe(
     ofType(actions.connectFailed),
     tap(() => this._toastr.error('Error', 'Socket')),

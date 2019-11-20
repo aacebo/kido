@@ -1,12 +1,38 @@
+@mixin kidoIconButtonColor($color) {
+  &.btn-#{$color} {
+    color: var(--#{$color});
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+
+      &:disabled {
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
 .kido-icon-button {
   background-color: transparent !important;
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-  color: var(--text-muted);
 
-  &:hover {
-    color: var(--white);
+  @include kidoIconButtonColor('primary');
+  @include kidoIconButtonColor('success');
+  @include kidoIconButtonColor('danger');
+  @include kidoIconButtonColor('warning');
+  @include kidoIconButtonColor('info');
+  @include kidoIconButtonColor('light');
+  @include kidoIconButtonColor('dark');
+
+  &.btn-secondary {
+    color: var(--text-muted);
+
+    &:hover {
+      color: var(--white);
+    }
   }
 }
 

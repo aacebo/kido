@@ -23,3 +23,8 @@ export const addFailed = createAction(
   '[MESSAGE] AddFailed',
   props<{ readonly error: Error }>(),
 );
+
+export const addComplete = createAction(
+  '[MESSAGE] AddComplete',
+  props<{ readonly streamId: string; readonly messages: IMessage[] }>(),
+);

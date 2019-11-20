@@ -20,12 +20,8 @@ export const messages = createReducer<{ [streamId: string]: IMessage[] }>(
 
     return map;
   }),
-  on(actions.addSuccess, (_, a) => {
-    const msgs = _[a.message.streamId] || [];
-
-    msgs.push(a.message);
-    _[a.message.streamId] = [...msgs];
-
+  on(actions.addComplete, (_, a) => {
+    _[a.streamId] = [...a.messages];
     return { ..._ };
   }),
   on(actions.remove, (_, a) => {

@@ -73,19 +73,6 @@
           <span *ngIf="connecting" class="spinner-border spinner-border-sm"></span>
         </button>
       </div>
-
-      <div kidoInputAppend>
-        <button
-          kido-button
-          size="lg"
-          color="info"
-          ngbTooltip="Send"
-          [disabled]="form.invalid || !form.value.message || (form.value.json && !isValidJSON) || !connected"
-          (click)="send.emit(form.value.message)"
-        >
-          <span class="fas fa-paper-plane"></span>
-        </button>
-      </div>
     </kido-input>
 
     <kido-input
@@ -120,6 +107,18 @@
               formControlName="json"
               [label]="!form.value.json ? 'RAW' : 'JSON'"
             ></kido-slide-toggle>
+
+            <button
+              class="stream-detail--message-send"
+              kido-button
+              size="lg"
+              color="info"
+              ngbTooltip="Send"
+              [disabled]="form.invalid || !form.value.message || (form.value.json && !isValidJSON) || !connected"
+              (click)="send.emit(form.value.message)"
+            >
+              <span class="fas fa-paper-plane"></span>
+            </button>
           </div>
 
           <div
@@ -136,6 +135,7 @@
             <button
               class="stream-detail--json-clear"
               kido-icon-button
+              color="secondary"
               (click)="onClearMessage()"
             >
               <span class="fas fa-times"></span>
