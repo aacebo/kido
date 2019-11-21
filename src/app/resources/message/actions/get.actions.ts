@@ -4,11 +4,12 @@ import { IMessage } from '../models';
 
 export const get = createAction(
   '[MESSAGE] Get',
+  props<{ readonly streamId: string }>(),
 );
 
 export const getSuccess = createAction(
   '[MESSAGE] GetSuccess',
-  props<{ readonly messages: IMessage[] }>(),
+  props<{ readonly streamId: string; readonly messages: IMessage[] }>(),
 );
 
 export const getFailed = createAction(

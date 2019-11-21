@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 import { environment } from '../../../../../environments/environment';
 
@@ -14,12 +15,23 @@ export class GetEffects {
 
   readonly get$ = createEffect(() => this._actions$.pipe(
     ofType(actions.get),
-    switchMap(() =>
-      this._pouchService.get(0, environment.maxMessages, environment.maxMessages)
-        .then(res => actions.getSuccess({ messages: res.docs }))
+    switchMap(a =>
+      this._pouchService.get(0, environment.maxMessages, environment.maxMessages, { streamId: a.streamId })
+        .then(res => actions.getSuccess({ streamId: a.streamId, messages: res.docs }))
         .catch(error => actions.getFailed({ error })),
     ),
   ));
 
-  constructor(private readonly _actions$: Actions) { }
+  readonly getFailed$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.getFailed),
+    tap(err => this._toastr.error(
+      `${err.error.message}`,
+      'Error',
+    )),
+  ), { dispatch: false });
+
+  constructor(
+    private readonly _actions$: Actions,
+    private readonly _toastr: ToastrService,
+  ) { }
 }

@@ -5,8 +5,6 @@ import { ElectronService } from './core/services';
 import { ISystem, SystemService } from './resources/system';
 import { StreamService, StreamType, IStream } from './resources/stream';
 import { AddStreamModalService } from './features/stream';
-import { MessageService } from './resources/message';
-
 @Component({
   selector: 'kido-root',
   templateUrl: './app.component.html',
@@ -19,7 +17,6 @@ export class AppComponent implements OnInit {
   constructor(
     readonly systemService: SystemService,
     readonly streamService: StreamService,
-    private readonly _messageService: MessageService,
     private readonly _addStreamModalService: AddStreamModalService,
     private readonly _electronService: ElectronService,
     private readonly _app: ApplicationRef,
@@ -31,7 +28,6 @@ export class AppComponent implements OnInit {
     });
 
     this.streamService.get();
-    this._messageService.get();
   }
 
   onAdd(e?: StreamType) {

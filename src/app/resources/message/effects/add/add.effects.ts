@@ -40,7 +40,7 @@ export class AddEffects {
       map(v => ({
         streamId: a.message.streamId,
         message: a.message,
-        messages: v[a.message.streamId],
+        messages: v[a.message.streamId] || [],
       })),
     )),
     map(a => {

@@ -33,15 +33,18 @@ export class PouchService<T = any> {
     return this._db.get(_id);
   }
 
-  async get(page?: number, size?: number, limit?: number) {
+  async get(page?: number, size?: number, limit?: number, filter?: any) {
     await this._db.createIndex({
-      index: { fields: ['createdAt'] },
+      index: { fields: ['createdAt', ...(filter ? Object.keys(filter) : [])] },
     });
 
     return await this._db.find({
       limit,
       skip: (page && size) ? (page * size) : undefined,
-      selector: { },
+      selector: {
+        ...filter,
+        createdAt: { $gt: null },
+      },
       sort: [{
         createdAt: 'desc',
       }],

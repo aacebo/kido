@@ -35,7 +35,7 @@ PouchDB.plugin(PouchDBFind);
     EffectsModule.forRoot([ ]),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
-      maxAge: 10,
+      maxAge: 100,
     }),
 
     ToastrModule.forRoot({

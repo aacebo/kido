@@ -20,8 +20,8 @@ export class MessageService {
     this.messages$ = this._store$.pipe(select(selectors.selectMessages));
   }
 
-  get() {
-    this._store$.dispatch(actions.get());
+  get(streamId: string) {
+    this._store$.dispatch(actions.get({ streamId }));
   }
 
   add(streamId: string, messageType: MessageType, content: any, event?: string, json?: boolean) {

@@ -4,21 +4,10 @@ import * as actions from '../../actions';
 import { IMessage } from '../../models';
 
 export const messages = createReducer<{ [streamId: string]: IMessage[] }>(
-  undefined,
-  on(actions.get, (_) => ({ })),
-  on(actions.getFailed, (_) => ({ })),
+  { },
   on(actions.getSuccess, (_, a) => {
-    const map: { [streamId: string]: IMessage[] } = { };
-
-    for (const msg of a.messages) {
-      if (map[msg.streamId] === undefined) {
-        map[msg.streamId] = [msg];
-      } else {
-        map[msg.streamId].unshift(msg);
-      }
-    }
-
-    return map;
+    _[a.streamId] = [...a.messages];
+    return { ..._ };
   }),
   on(actions.addComplete, (_, a) => {
     _[a.streamId] = [...a.messages];
@@ -35,7 +24,6 @@ export const messages = createReducer<{ [streamId: string]: IMessage[] }>(
     }
 
     _[a.streamId] = [...msgs];
-
     return { ..._ };
   }),
 );
