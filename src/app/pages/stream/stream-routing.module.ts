@@ -10,10 +10,6 @@ const routes: Routes = [
     component: StreamComponent,
     resolve: { stream: StreamResolver },
   },
-  {
-    path: '',
-    component: StreamComponent,
-  },
 ];
 
 @NgModule({

@@ -8,9 +8,10 @@ import {
   HostListener,
   Output,
   EventEmitter,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { CdkVirtualScrollViewport, CdkVirtualForOf } from '@angular/cdk/scrolling';
 
 import { IMessage } from './message.interface';
 
@@ -30,10 +31,6 @@ export class MessengerComponent implements AfterViewInit {
   get messages() { return this._messages; }
   set messages(v: IMessage[]) {
     this._messages = v || [];
-
-    if (this.virtualScrollViewport && this._messages.length > 0) {
-      this.onResize();
-    }
   }
   private _messages: IMessage[] = [];
 
@@ -49,9 +46,18 @@ export class MessengerComponent implements AfterViewInit {
   @ViewChild(CdkVirtualScrollViewport, { static: false })
   readonly virtualScrollViewport: CdkVirtualScrollViewport;
 
+  @ViewChild(CdkVirtualForOf, { static: false })
+  readonly virtualForOf: CdkVirtualForOf<IMessage>;
+
   private _resizeTimer: NodeJS.Timer;
 
-  ngAfterViewInit() { }
+  constructor(private readonly _cdr: ChangeDetectorRef) { }
+
+  ngAfterViewInit() {
+    this.virtualForOf.dataStream.subscribe(() => {
+      setTimeout(() => this._scrollToBottom(), 100);
+    });
+  }
 
   @HostListener('window:resize')
   onResize() {
@@ -70,6 +76,7 @@ export class MessengerComponent implements AfterViewInit {
   }
 
   private _scrollToBottom() {
-    this.virtualScrollViewport.scrollToIndex(this._messages.length);
+    this.virtualScrollViewport.scrollTo({ bottom: 0 });
+    this._cdr.markForCheck();
   }
 }
