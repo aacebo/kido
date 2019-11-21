@@ -6,7 +6,7 @@ import { IMessage } from '../../models';
 export const messages = createReducer<{ [streamId: string]: IMessage[] }>(
   { },
   on(actions.getSuccess, (_, a) => {
-    _[a.streamId] = [...a.messages];
+    _[a.streamId] = [...a.messages.sort((one, two) => one.createdAt - two.createdAt)];
     return { ..._ };
   }),
   on(actions.addComplete, (_, a) => {
