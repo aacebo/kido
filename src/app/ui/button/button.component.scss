@@ -16,6 +16,10 @@
   @include kidoIconButtonColor('light');
   @include kidoIconButtonColor('dark');
 
+  &:hover {
+    background-color: var(--bg-dark) !important;
+  }
+
   &.btn-secondary {
     &:hover {
       color: var(--white);

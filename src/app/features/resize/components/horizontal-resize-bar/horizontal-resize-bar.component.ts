@@ -4,10 +4,18 @@ import { Component, ChangeDetectionStrategy, Output, HostListener, EventEmitter 
   selector: 'kido-horizontal-resize-bar',
   template: '',
   styleUrls: ['./horizontal-resize-bar.component.scss'],
+  host: {
+    class: 'kido-horizontal-resize-bar',
+    '[class.kido-horizontal-resize-bar--resizing]': 'resizing',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HorizontalResizeBarComponent {
   @Output() onresize = new EventEmitter<number>();
+
+  get resizing() {
+    return this._x !== undefined;
+  }
 
   private _x?: number;
 

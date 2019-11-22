@@ -10,10 +10,6 @@
     padding-top: $titlebar-height;
   }
 
-  .spacer {
-    flex: 1 1 auto;
-  }
-
   button {
     margin-right: 5px;
 
@@ -25,6 +21,32 @@
       @media only screen and (max-width: $sidebar-collapse-width) {
         display: none !important;
       }
+    }
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .toolbar--title {
+    flex: 1 1 auto;
+    color: var(--white);
+    font-weight: bold;
+    max-width: 100%;
+    margin-left: 5px;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+
+      span {
+        display: inline-block;
+      }
+    }
+
+    span {
+      display: none;
+      margin-left: 5px;
     }
   }
 }

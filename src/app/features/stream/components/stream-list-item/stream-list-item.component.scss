@@ -9,7 +9,7 @@
   }
 
   &.active {
-    box-shadow: -13px 0 0 -8px var(--info) inset;
+    box-shadow: -12px 0 0 -8px var(--info) inset;
     opacity: 1;
   }
 
@@ -19,7 +19,7 @@
 
   .stream-list-item--details {
     flex: 1 1 auto;
-    max-width: 80%;
+    max-width: 70%;
 
     .stream-list-item--title {
       font-size: 11pt;

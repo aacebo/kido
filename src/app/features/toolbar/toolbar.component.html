@@ -7,7 +7,18 @@
   <span class="fas fa-bars"></span>
 </button>
 
-<div class="spacer"></div>
+<div
+  *ngIf="stream"
+  class="toolbar--title ellipsis"
+>
+  {{ stream?.name }}
+  <span class="fas fa-pencil-alt"></span>
+</div>
+
+<div
+  *ngIf="!stream"
+  class="spacer"
+></div>
 
 <button
   *ngIf="stream"
