@@ -10,7 +10,13 @@
     {{ message.content }}
   </div>
 
-  <div class="kido-message--bubble-timestamp ellipsis">
-    {{ message.createdAt | kidoElapseTime }}, {{ message.size | kidoBytesToString }}
+  <div class="kido-message--bubble-footer ellipsis">
+    <div class="kido-message--bubble-timestamp">
+      {{ message.createdAt | kidoElapseTime }}
+    </div>
+
+    <div class="kido-message--bubble-size">
+      {{ message.size | kidoBytesToString }}
+    </div>
   </div>
 </div>
