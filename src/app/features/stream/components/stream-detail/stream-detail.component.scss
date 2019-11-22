@@ -48,13 +48,15 @@
           overflow: auto;
 
           .CodeMirror {
+            border-left-color: transparent;
+            border-right-color: transparent;
             min-height: 60px;
           }
         }
 
         .stream-detail--message-json-toggler {
           position: absolute;
-          right: 70px;
+          right: 55px;
           bottom: 10px;
           z-index: 2;
         }
@@ -82,8 +84,8 @@
 
         .stream-detail--json-clear {
           position: absolute;
-          right: 10px;
-          top: 10px;
+          right: 5px;
+          top: 5px;
         }
 
         .stream-detail--viewer-json-toggler {

@@ -1,4 +1,5 @@
 @import '../box-shadow';
+@import '../variables';
 
 $modal-padding: 10px 20px;
 
@@ -8,11 +9,11 @@ $modal-padding: 10px 20px;
   .modal-content {
     background-color: var(--bg-darkest);
     box-shadow: $box-shadow-lg;
+    border-radius: $border-radius;
 
     .modal-header {
       border-bottom: none;
       padding: $modal-padding;
-      background-color: var(--bg-darker);
 
       .modal-title {
         margin: auto;
@@ -28,7 +29,7 @@ $modal-padding: 10px 20px;
 
     .modal-footer {
       padding: $modal-padding;
-      border-top: 1px solid var(--hairline-strong);
+      border-top: none;
     }
   }
 }

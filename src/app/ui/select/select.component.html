@@ -1,5 +1,5 @@
 <label *ngIf="label" tabindex="-1" [for]="id">
-  {{ label }}
+  {{ label }} <span *ngIf="required">*</span>
 </label>
 
 <div ngbDropdown>

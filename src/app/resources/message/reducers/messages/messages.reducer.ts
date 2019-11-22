@@ -26,4 +26,8 @@ export const messages = createReducer<{ [streamId: string]: IMessage[] }>(
     _[a.streamId] = [...msgs];
     return { ..._ };
   }),
+  on(actions.removeAllSuccess, (_, a) => {
+    _[a.streamId] = undefined;
+    return { ..._ };
+  }),
 );

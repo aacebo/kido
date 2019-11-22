@@ -1,0 +1,15 @@
+@mixin kidoIconButtonColor($color) {
+  &.btn-#{$color} {
+    opacity: 0.5;
+
+    &:hover {
+      color: var(--#{$color});
+      opacity: 1;
+
+      &:disabled {
+        color: initial;
+        opacity: 0.5;
+      }
+    }
+  }
+}

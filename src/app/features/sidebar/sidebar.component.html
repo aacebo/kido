@@ -1,16 +1,24 @@
 <div
+  *ngIf="open"
   class="kido-sidebar"
   [style.width.px]="width"
-  [style.display]="open ? 'flex' : 'none'"
 >
-  <div class="kido-sidebar--side-content">
+  <div
+    class="kido-sidebar--side-content"
+    [class.kido-sidebar--empty]="streams.length === 0"
+  >
     <kido-stream-list-item
       *ngFor="let stream of streams"
       [class.active]="stream._id === active"
       [stream]="stream"
-      [connected]="streamConnected[stream._id]"
-      [routerLink]="['/stream/', stream._id]"
+      [connected]="connected[stream._id]"
+      (click)="navigate(stream)"
     ></kido-stream-list-item>
+
+    <span
+      *ngIf="streams.length === 0"
+      class="fas fa-cubes"
+    ></span>
   </div>
 
   <kido-horizontal-resize-bar

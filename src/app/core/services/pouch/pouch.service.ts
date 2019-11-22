@@ -58,4 +58,8 @@ export class PouchService<T = any> {
       throw new Error('ERROR: could not remove');
     }
   }
+
+  bulk(docs: PouchDB.Core.Document<T>[]) {
+    return this._db.bulkDocs(docs);
+  }
 }

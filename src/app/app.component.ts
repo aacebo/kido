@@ -1,10 +1,12 @@
-import { Component, ChangeDetectionStrategy, OnInit, ApplicationRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { ElectronService } from './core/services';
 import { ISystem, SystemService } from './resources/system';
 import { StreamService, StreamType, IStream } from './resources/stream';
+import { MessageService } from './resources/message';
 import { AddStreamModalService } from './features/stream';
+
 @Component({
   selector: 'kido-root',
   templateUrl: './app.component.html',
@@ -17,9 +19,9 @@ export class AppComponent implements OnInit {
   constructor(
     readonly systemService: SystemService,
     readonly streamService: StreamService,
+    private readonly _messageService: MessageService,
     private readonly _addStreamModalService: AddStreamModalService,
     private readonly _electronService: ElectronService,
-    private readonly _app: ApplicationRef,
   ) { }
 
   ngOnInit() {
@@ -36,12 +38,21 @@ export class AppComponent implements OnInit {
         this.streamService.add(v.type, v.name, v.url, v.description);
       }
     });
+  }
 
-    this._app.tick();
+  onRemove(e: IStream) {
+    this.streamService.remove(e._id, e._rev);
+  }
+
+  onClear(e: IStream) {
+    this._messageService.removeAll(e._id);
   }
 
   onMenu() {
     this.menu$.next(!this.menu$.value);
-    this._app.tick();
+  }
+
+  onSelected(e: IStream) {
+    this.streamService.setActive(e._id);
   }
 }

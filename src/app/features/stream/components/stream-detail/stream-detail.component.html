@@ -2,13 +2,11 @@
   <div class="stream-detail--form-header">
     <kido-input
       formControlName="url"
-      size="lg"
       placeholder="Url..."
       required
     >
       <div kidoInputPrepend>
         <kido-select
-          size="lg"
           placeholder="Type..."
           formControlName="type"
         >
@@ -37,7 +35,6 @@
       <div kidoInputAppend>
         <button
           kido-button
-          size="lg"
           color="danger"
           ngbTooltip="Revert"
           [disabled]="areEqual || form.pristine"
@@ -50,7 +47,6 @@
       <div kidoInputAppend>
         <button
           kido-button
-          size="lg"
           color="success"
           ngbTooltip="Save"
           [disabled]="form.invalid || form.pristine || areEqual"
@@ -63,7 +59,6 @@
       <div kidoInputAppend>
         <button
           kido-button
-          size="lg"
           [color]="connected ? 'danger' : 'info'"
           [ngbTooltip]="connected ? 'Disconnect' : 'Connect'"
           [disabled]="!form.value.url"
@@ -76,9 +71,8 @@
     </kido-input>
 
     <kido-input
-      *ngIf="stream.type !== StreamType.WebSocket && stream.type !== StreamType.SockJS"
+      *ngIf="form?.value.type !== StreamType.WebSocket && form?.value.type !== StreamType.SockJS"
       formControlName="event"
-      size="lg"
       placeholder="Event..."
     >
     </kido-input>
@@ -102,16 +96,18 @@
               formControlName="message"
             ></kido-json-editor>
 
-            <kido-slide-toggle
-              class="stream-detail--message-json-toggler"
-              formControlName="json"
-              [label]="!form.value.json ? 'RAW' : 'JSON'"
-            ></kido-slide-toggle>
+            <kido-checkbox
+             class="stream-detail--message-json-toggler"
+             formControlName="json"
+             color="info"
+             [ngbTooltip]="!form.value.json ? 'Plain/Text' : 'JSON'"
+            >
+              <span class="fas fa-code"></span>
+            </kido-checkbox>
 
             <button
               class="stream-detail--message-send"
               kido-button
-              size="lg"
               color="info"
               ngbTooltip="Send"
               [disabled]="form.invalid || !form.value.message || (form.value.json && !isValidJSON) || !connected"
@@ -141,12 +137,15 @@
               <span class="fas fa-times"></span>
             </button>
 
-            <kido-slide-toggle
+            <kido-checkbox
               class="stream-detail--viewer-json-toggler"
-              [label]="!json ? 'RAW' : 'JSON'"
+              color="info"
               [(ngModel)]="json"
               [ngModelOptions]="{ standalone: true }"
-            ></kido-slide-toggle>
+              [ngbTooltip]="!json ? 'Plain/Text' : 'JSON'"
+            >
+              <span class="fas fa-code"></span>
+            </kido-checkbox>
           </div>
         </div>
       </ng-template>

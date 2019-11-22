@@ -1,4 +1,5 @@
 <button
+  class="toolbar--menu-btn"
   kido-icon-button
   color="secondary"
   (click)="onMenu()"
@@ -8,6 +9,35 @@
 
 <div class="spacer"></div>
 
-<kido-add-stream-button
-  (add)="onAdd($event)"
-></kido-add-stream-button>
+<button
+  *ngIf="stream"
+  kido-icon-button
+  color="danger"
+  ngbTooltip="Clear Stream Messages"
+  container="body"
+  (click)="onClear()"
+>
+  <span class="fas fa-ban"></span>
+</button>
+
+<button
+  *ngIf="stream"
+  kido-icon-button
+  color="danger"
+  ngbTooltip="Delete Stream"
+  container="body"
+  (click)="onRemove()"
+>
+  <span class="fas fa-trash-alt"></span>
+</button>
+
+<button
+  kido-button
+  color="info"
+  theme="outline"
+  ngbTooltip="Add Stream"
+  container="body"
+  (click)="onAdd()"
+>
+  <span class="fas fa-plus"></span>
+</button>

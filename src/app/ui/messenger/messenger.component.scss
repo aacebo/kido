@@ -1,9 +1,8 @@
 .kido-messenger {
   display: flex;
+  position: relative;
   flex-direction: column;
   flex: 1 1 auto;
-  background-color: #282a36;
-  border: 1px solid var(--hairline-strong);
 
   cdk-virtual-scroll-viewport {
     height: 100%;
@@ -19,6 +18,26 @@
 
       &:hover {
         filter: brightness(110%);
+      }
+    }
+  }
+
+  .kido-messenger--empty {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+
+    div {
+      margin: auto;
+      text-align: center;
+
+      &.fas {
+        font-size: 55pt;
+        display: block;
+        margin-bottom: 15px;
       }
     }
   }

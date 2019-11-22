@@ -14,6 +14,7 @@ import * as effects from './effects';
       effects.GetEffects,
       effects.SendEffects,
       effects.RemoveEffects,
+      effects.RemoveAllEffects,
     ]),
   ],
 })

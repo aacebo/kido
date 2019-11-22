@@ -7,6 +7,7 @@ export const selectStreams = createSelector(selectState, state => state.streams)
 export const selectConnected = createSelector(selectState, state => state.connected);
 export const selectActiveId = createSelector(selectState, state => state.activeId);
 export const selectActive = createSelector(selectState, state => state.streams[state.activeId]);
+export const selectLoading = createSelector(selectState, state => state.loading);
 
 export const selectEntities = createSelector(selectState, state => {
   return Object.values(state.streams).sort((one, two) => one.createdAt - two.createdAt);

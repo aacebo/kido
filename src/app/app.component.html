@@ -3,13 +3,17 @@
   [class.mac]="systemService.isMac$ | async"
   [active]="streamService.activeId$ | async"
   [streams]="streamService.entities$ | async"
-  [streamConnected]="streamService.connected$ | async"
+  [connected]="streamService.connected$ | async"
   [open]="menu$ | async"
+  (selected)="onSelected($event)"
 >
   <kido-toolbar
     [class.mac]="systemService.isMac$ | async"
+    [stream]="streamService.active$ | async"
     (add)="onAdd($event)"
     (menu)="onMenu()"
+    (remove)="onRemove($event)"
+    (clear)="onClear($event)"
   ></kido-toolbar>
 
   <router-outlet></router-outlet>

@@ -24,4 +24,9 @@ export const streams = createReducer<{ [streamId: string]: IStream }>(
     _[a.stream._id] = a.stream;
     return { ..._ };
   }),
+  on(actions.removeSuccess, (_, a) => {
+    _[a.streamId] = undefined;
+    delete _[a.streamId];
+    return { ..._ };
+  }),
 );

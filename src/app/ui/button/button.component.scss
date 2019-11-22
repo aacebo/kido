@@ -1,23 +1,12 @@
-@mixin kidoIconButtonColor($color) {
-  &.btn-#{$color} {
-    color: var(--#{$color});
-    opacity: 0.5;
-
-    &:hover {
-      opacity: 1;
-
-      &:disabled {
-        opacity: 0.5;
-      }
-    }
-  }
-}
+@import '../../../styles/variables';
+@import './button';
 
 .kido-icon-button {
   background-color: transparent !important;
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
+  color: var(--text-muted);
 
   @include kidoIconButtonColor('primary');
   @include kidoIconButtonColor('success');
@@ -28,8 +17,6 @@
   @include kidoIconButtonColor('dark');
 
   &.btn-secondary {
-    color: var(--text-muted);
-
     &:hover {
       color: var(--white);
     }
@@ -37,7 +24,7 @@
 }
 
 .kido-button {
-  font-weight: bold;
+  border-radius: $border-radius;
 
   &.btn-secondary {
     color: var(--text-muted);

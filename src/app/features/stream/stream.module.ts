@@ -13,13 +13,12 @@ import { SelectModule } from '../../ui/select';
 import { JsonEditorModule } from '../../ui/json-editor';
 import { JsonViewerModule } from '../../ui/json-viewer';
 import { MessengerModule } from '../../ui/messenger';
-import { SlideToggleModule } from '../../ui/slide-toggle';
+import { CheckboxModule } from '../../ui/checkbox';
 
 import * as components from './components';
 
 const declarations = [
   components.StreamListItemComponent,
-  components.AddStreamButtonComponent,
   components.StreamDetailComponent,
   components.AddStreamModalComponent,
 ];
@@ -49,7 +48,7 @@ const declarations = [
     JsonEditorModule,
     JsonViewerModule,
     MessengerModule,
-    SlideToggleModule,
+    CheckboxModule,
   ],
 })
 export class StreamModule { }

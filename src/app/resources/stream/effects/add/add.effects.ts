@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap, tap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 import * as uuid from 'uuid';
 
 import * as actions from '../../actions';
 import { PouchService } from '../../../../core/services';
 import { IStream } from '../../models';
-import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AddEffects {
@@ -29,6 +30,13 @@ export class AddEffects {
     ),
   ));
 
+  readonly addSuccess$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.addSuccess),
+    tap(a => {
+      this._router.navigate(['stream', a.stream._id]);
+    }),
+  ), { dispatch: false });
+
   readonly addFailed$ = createEffect(() => this._actions$.pipe(
     ofType(actions.addFailed),
     tap(a => this._toastr.error(
@@ -40,5 +48,6 @@ export class AddEffects {
   constructor(
     private readonly _actions$: Actions,
     private readonly _toastr: ToastrService,
+    private readonly _router: Router,
   ) { }
 }

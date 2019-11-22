@@ -14,6 +14,7 @@ import { StreamType } from '../../enums';
 export class StreamService {
   readonly state$: Observable<IStreamState>;
   readonly activeId$: Observable<string | undefined>;
+  readonly loading$: Observable<boolean>;
   readonly streams$: Observable<{ [streamId: string]: IStream }>;
   readonly connected$: Observable<{ [streamId: string]: Date }>;
   readonly active$: Observable<IStream | undefined>;
@@ -24,6 +25,7 @@ export class StreamService {
   constructor(private readonly _store$: Store<IStreamState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
     this.activeId$ = this._store$.pipe(select(selectors.selectActiveId));
+    this.loading$ = this._store$.pipe(select(selectors.selectLoading));
     this.streams$ = this._store$.pipe(select(selectors.selectStreams));
     this.connected$ = this._store$.pipe(select(selectors.selectConnected));
     this.active$ = this._store$.pipe(select(selectors.selectActive));
@@ -54,5 +56,9 @@ export class StreamService {
 
   disconnect(streamId: string) {
     this._store$.dispatch(actions.disconnect({ streamId }));
+  }
+
+  remove(streamId: string, _rev: string) {
+    this._store$.dispatch(actions.remove({ streamId, _rev }));
   }
 }

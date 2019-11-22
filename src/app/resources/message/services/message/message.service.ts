@@ -32,6 +32,10 @@ export class MessageService {
     this._store$.dispatch(actions.remove({ streamId, _id, _rev }));
   }
 
+  removeAll(streamId: string) {
+    this._store$.dispatch(actions.removeAll({ streamId }));
+  }
+
   send(streamId: string, message: string, event?: string, json?: boolean) {
     this._store$.dispatch(actions.send({ streamId, message, event, json }));
   }

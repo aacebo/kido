@@ -11,3 +11,11 @@
     (selected)="onClick($event)"
   ></kido-message>
 </cdk-virtual-scroll-viewport>
+
+<div
+  *ngIf="messages.length === 0"
+  class="kido-messenger--empty"
+>
+ <div class="fas fa-comments"></div>
+ <div>You don't have any messages...</div>
+</div>

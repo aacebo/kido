@@ -1,0 +1,19 @@
+.kido-checkbox {
+  label {
+    cursor: pointer;
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none !important;
+
+    &:hover {
+      background-color: transparent;
+      border-color: transparent;
+    }
+
+    &.active {
+      background-color: initial;
+      border-color: initial;
+      box-shadow: initial !important;
+    }
+  }
+}

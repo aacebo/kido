@@ -26,4 +26,9 @@ export const activeId = createReducer<string | undefined>(
 
     return active;
   }),
+  on(actions.removeSuccess, (_, a) => {
+    const active = (_ === a.streamId) ? undefined : _;
+    localStorage.setItem(environment.activeStreamKey, active);
+    return active;
+  }),
 );

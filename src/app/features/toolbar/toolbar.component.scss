@@ -15,8 +15,16 @@
   }
 
   button {
-    @media only screen and (max-width: $sidebar-collapse-width) {
-      display: none !important;
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.toolbar--menu-btn {
+      @media only screen and (max-width: $sidebar-collapse-width) {
+        display: none !important;
+      }
     }
   }
 }

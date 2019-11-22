@@ -16,6 +16,7 @@ import * as effects from './effects';
       effects.ConnectEffects,
       effects.DisconnectEffects,
       effects.SetActiveEffects,
+      effects.RemoveEffects,
     ]),
   ],
 })

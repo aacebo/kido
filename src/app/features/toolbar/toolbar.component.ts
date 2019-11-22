@@ -1,7 +1,6 @@
-import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Output, EventEmitter, Input } from '@angular/core';
 
-import { StreamType } from '../../resources/stream';
-import { Hotkeys } from '../../ui/hotkeys';
+import { StreamType, IStream } from '../../resources/stream';
 
 @Component({
   selector: 'kido-toolbar',
@@ -11,16 +10,26 @@ import { Hotkeys } from '../../ui/hotkeys';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarComponent {
+  @Input() stream?: IStream;
+
   @Output() add = new EventEmitter<StreamType | undefined>();
+  @Output() remove = new EventEmitter<IStream>();
+  @Output() clear = new EventEmitter<IStream>();
   @Output() menu = new EventEmitter<void>();
 
-  @Hotkeys('ctrl+m', 'Toggle Side Menu')
   onMenu() {
     this.menu.emit();
   }
 
-  @Hotkeys('ctrl+n', 'Add New Stream')
-  onAdd(e: StreamType) {
+  onAdd(e?: StreamType) {
     this.add.emit(e);
+  }
+
+  onRemove() {
+    this.remove.emit(this.stream);
+  }
+
+  onClear() {
+    this.clear.emit(this.stream);
   }
 }

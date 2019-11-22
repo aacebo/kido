@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ButtonModule } from '../../ui/button';
-import { StreamModule } from '../stream';
 import { ToolbarComponent } from './toolbar.component';
 
 @NgModule({
@@ -10,7 +10,7 @@ import { ToolbarComponent } from './toolbar.component';
   exports: [ToolbarComponent],
   imports: [
     CommonModule,
-    StreamModule,
+    NgbTooltipModule,
     ButtonModule,
   ],
 })
