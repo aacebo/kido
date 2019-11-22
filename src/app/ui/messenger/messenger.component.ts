@@ -55,7 +55,7 @@ export class MessengerComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.virtualForOf.dataStream.subscribe(() => {
-      setTimeout(() => this._scrollToBottom(), 100);
+      setTimeout(() => this._scrollToBottom(), 0);
     });
   }
 
@@ -68,7 +68,7 @@ export class MessengerComponent implements AfterViewInit {
     this._resizeTimer = setTimeout(() => {
       this.virtualScrollViewport.checkViewportSize();
       this._scrollToBottom();
-    }, 100);
+    }, 200);
   }
 
   onClick(message: IMessage) {
