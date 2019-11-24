@@ -16,8 +16,8 @@ export class RemoveEffects {
     ofType(actions.remove),
     switchMap(a =>
       this._pouchService.remove(a.streamId, a._rev)
-      .then(() => actions.removeSuccess({ streamId: a.streamId }))
-      .catch(error => actions.removeFailed({ error })),
+        .then(() => actions.removeSuccess({ streamId: a.streamId }))
+        .catch(error => actions.removeFailed({ error })),
     ),
   ));
 

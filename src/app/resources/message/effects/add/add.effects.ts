@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { switchMap, tap, map, take } from 'rxjs/operators';
+import { switchMap, tap, take, map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import * as uuid from 'uuid';
 
@@ -37,21 +37,27 @@ export class AddEffects {
     ofType(actions.addSuccess),
     switchMap(a => this._messageService.messages$.pipe(
       take(1),
-      map(v => ({
-        streamId: a.message.streamId,
+      map(messages => ({
         message: a.message,
-        messages: v[a.message.streamId] || [],
+        messages,
       })),
     )),
-    map(a => {
-      a.messages.push(a.message);
+    switchMap(async (a) => {
+      const messages = a.messages[a.message.streamId] || [];
+      messages.push(a.message);
 
-      if (a.messages.length > environment.maxMessages) {
-        const msg = a.messages.shift();
-        this._messageService.remove(msg.streamId, msg._id, msg._rev);
+      if (messages.length > environment.maxMessages) {
+        const removed = messages.shift();
+        await this._pouchService.remove(
+          removed._id,
+          removed._rev,
+        );
       }
 
-      return actions.addComplete({ streamId: a.streamId, messages: a.messages });
+      return actions.addComplete({
+        streamId: a.message.streamId,
+        messages,
+      });
     }),
   ));
 

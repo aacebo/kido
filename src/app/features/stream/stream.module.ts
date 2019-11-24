@@ -5,6 +5,7 @@ import { NgbModalModule, NgbTooltipModule, NgbTabsetModule } from '@ng-bootstrap
 
 import { SocketIconModule } from '../socket-icon';
 import { ResizeModule } from '../resize';
+import { ConnectionIconModule } from '../connection-icon';
 
 import { DropdownModule } from '../../ui/dropdown';
 import { ButtonModule } from '../../ui/button';
@@ -36,6 +37,7 @@ const declarations = [
 
     SocketIconModule,
     ResizeModule,
+    ConnectionIconModule,
 
     NgbModalModule,
     NgbTooltipModule,

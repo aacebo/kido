@@ -11,12 +11,6 @@
   }
 
   button {
-    margin-right: 5px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-
     &.toolbar--menu-btn {
       @media only screen and (max-width: $sidebar-collapse-width) {
         display: none !important;
@@ -29,24 +23,37 @@
   }
 
   .toolbar--title {
-    flex: 1 1 auto;
-    color: var(--white);
-    font-weight: bold;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
     max-width: 100%;
     margin-left: 5px;
     cursor: pointer;
 
-    &:hover {
-      text-decoration: underline;
+    .toolbar--title-text {
+      color: var(--white);
+      font-weight: bold;
+
+      &:hover {
+        text-decoration: underline;
+
+        span {
+          position: absolute;
+          display: inline-block;
+          font-size: 10pt;
+        }
+      }
 
       span {
-        display: inline-block;
+        display: none;
+        margin-left: 5px;
       }
     }
 
-    span {
-      display: none;
-      margin-left: 5px;
+    .toolbar--title-subtext {
+      font-size: 10pt;
+      color: var(--text-muted);
     }
   }
 }

@@ -7,8 +7,7 @@
 </div>
 
 <div class="stream-list-item--actions">
-  <span
-    *ngIf="connected"
-    class="fas fa-signal text-success"
-  ></span>
+  <kido-connection-icon
+    [type]="connected ? 'connected' : 'disconnected'"
+  ></kido-connection-icon>
 </div>

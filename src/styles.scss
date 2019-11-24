@@ -22,3 +22,7 @@ html, body {
   overflow: hidden;
   white-space: nowrap;
 }
+
+*:disabled {
+  cursor: not-allowed;
+}

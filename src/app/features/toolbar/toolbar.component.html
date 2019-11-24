@@ -11,8 +11,14 @@
   *ngIf="stream"
   class="toolbar--title ellipsis"
 >
-  {{ stream?.name }}
-  <span class="fas fa-pencil-alt"></span>
+  <div class="toolbar--title-text ellipsis">
+    {{ stream.name }}
+    <span class="fas fa-pencil-alt"></span>
+  </div>
+
+  <div class="toolbar--title-subtext ellipsis">
+    {{ stream.description }}
+  </div>
 </div>
 
 <div
@@ -43,9 +49,8 @@
 </button>
 
 <button
-  kido-button
+  kido-icon-button
   color="info"
-  theme="outline"
   ngbTooltip="Add Stream"
   container="body"
   (click)="onAdd()"
