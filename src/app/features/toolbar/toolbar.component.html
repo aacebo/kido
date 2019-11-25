@@ -10,6 +10,7 @@
 <div
   *ngIf="stream"
   class="toolbar--title ellipsis"
+  (click)="onAdd(stream)"
 >
   <div class="toolbar--title-text ellipsis">
     {{ stream.name }}

@@ -1,1 +1,1 @@
-export * from './add-stream-modal';
+export * from './stream-modal';

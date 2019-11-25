@@ -3,9 +3,9 @@ import { BehaviorSubject } from 'rxjs';
 
 import { ElectronService } from './core/services';
 import { ISystem, SystemService } from './resources/system';
-import { StreamService, StreamType, IStream } from './resources/stream';
+import { StreamService, IStream } from './resources/stream';
 import { MessageService } from './resources/message';
-import { AddStreamModalService } from './features/stream';
+import { StreamModalService } from './features/stream';
 
 @Component({
   selector: 'kido-root',
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     readonly systemService: SystemService,
     readonly streamService: StreamService,
     private readonly _messageService: MessageService,
-    private readonly _addStreamModalService: AddStreamModalService,
+    private readonly _streamModalService: StreamModalService,
     private readonly _electronService: ElectronService,
   ) { }
 
@@ -32,10 +32,17 @@ export class AppComponent implements OnInit {
     this.streamService.get();
   }
 
-  onAdd(e?: StreamType) {
-    this._addStreamModalService.open(e, (v?: Partial<IStream>) => {
+  onAdd(e: IStream) {
+    this._streamModalService.open(e, (v?: Partial<IStream>) => {
       if (v) {
-        this.streamService.add(v.type, v.name, v.url, v.description);
+        if (e) {
+          this.streamService.update({
+            ...e,
+            ...v,
+          });
+        } else {
+          this.streamService.add(v.type, v.name, v.url, v.description);
+        }
       }
     });
   }

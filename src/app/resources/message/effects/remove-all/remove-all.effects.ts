@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { switchMap, tap, map, take } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
 import * as actions from '../../actions';
 import { PouchService } from '../../../../core/services';
 import { IMessage } from '../../models';
-import { MessageService } from '../../services';
 
 @Injectable()
 export class RemoveAllEffects {
@@ -14,17 +13,7 @@ export class RemoveAllEffects {
 
   readonly removeAll$ = createEffect(() => this._actions$.pipe(
     ofType(actions.removeAll),
-    switchMap(a => this._messageService.messages$.pipe(
-      take(1),
-      map(v => ({
-        streamId: a.streamId,
-        messages: v[a.streamId] || [],
-      })),
-    )),
-    switchMap(a => this._pouchService.bulk(a.messages.map(v => ({
-        ...v,
-        _deleted: true,
-      })))
+    switchMap(a => this._pouchService.removeWhere({ streamId: a.streamId })
         .then(() => actions.removeAllSuccess({ streamId: a.streamId }))
         .catch(error => actions.removeAllFailed({ error })),
     ),
@@ -41,6 +30,5 @@ export class RemoveAllEffects {
   constructor(
     private readonly _actions$: Actions,
     private readonly _toastr: ToastrService,
-    private readonly _messageService: MessageService,
   ) { }
 }

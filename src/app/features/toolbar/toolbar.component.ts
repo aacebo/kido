@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Output, EventEmitter, Input } from '@angular/core';
 
-import { StreamType, IStream } from '../../resources/stream';
+import { IStream } from '../../resources/stream';
 
 @Component({
   selector: 'kido-toolbar',
@@ -12,7 +12,7 @@ import { StreamType, IStream } from '../../resources/stream';
 export class ToolbarComponent {
   @Input() stream?: IStream;
 
-  @Output() add = new EventEmitter<StreamType | undefined>();
+  @Output() add = new EventEmitter<IStream | undefined>();
   @Output() remove = new EventEmitter<IStream>();
   @Output() clear = new EventEmitter<IStream>();
   @Output() menu = new EventEmitter<void>();
@@ -21,8 +21,8 @@ export class ToolbarComponent {
     this.menu.emit();
   }
 
-  onAdd(e?: StreamType) {
-    this.add.emit(e);
+  onAdd(stream?: IStream) {
+    this.add.emit(stream);
   }
 
   onRemove() {

@@ -21,14 +21,14 @@ import * as components from './components';
 const declarations = [
   components.StreamListItemComponent,
   components.StreamDetailComponent,
-  components.AddStreamModalComponent,
+  components.StreamModalComponent,
 ];
 
 @NgModule({
   declarations,
   exports: declarations,
   entryComponents: [
-    components.AddStreamModalComponent,
+    components.StreamModalComponent,
   ],
   imports: [
     CommonModule,

@@ -2,17 +2,17 @@ import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { StreamType } from '../../../../resources/stream';
+import { StreamType, IStream } from '../../../../resources/stream';
 import { STREAM_TYPE_LABELS } from '../../constants';
 
 @Component({
-  selector: 'kido-add-stream-modal',
-  templateUrl: './add-stream-modal.component.html',
-  styleUrls: ['./add-stream-modal.component.scss'],
+  selector: 'kido-stream-modal',
+  templateUrl: './stream-modal.component.html',
+  styleUrls: ['./stream-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddStreamModalComponent implements OnInit {
-  @Input() type?: StreamType;
+export class StreamModalComponent implements OnInit {
+  @Input() stream?: IStream;
 
   form: FormGroup;
 
@@ -26,10 +26,10 @@ export class AddStreamModalComponent implements OnInit {
 
   ngOnInit() {
     this.form = this._fb.group({
-      type: this._fb.control(this.type),
-      name: this._fb.control(undefined),
-      url: this._fb.control(undefined),
-      description: this._fb.control(undefined),
+      type: this._fb.control(this.stream ? this.stream.type : undefined),
+      name: this._fb.control(this.stream ? this.stream.name : undefined),
+      url: this._fb.control(this.stream ? this.stream.url : undefined),
+      description: this._fb.control(this.stream ? this.stream.description : undefined),
     });
   }
 
