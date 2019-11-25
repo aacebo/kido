@@ -31,17 +31,28 @@ export class ConnectEffects {
     tap(() => this._toastr.error('Error', 'Socket')),
   ), { dispatch: false });
 
+  constructor(
+    private readonly _actions$: Actions,
+    private readonly _store$: Store<IStreamState>,
+    private readonly _socketService: SocketService,
+    private readonly _streamService: StreamService,
+    private readonly _messageService: MessageService,
+    private readonly _toastr: ToastrService,
+  ) { }
+
   private _onConnect(a: { streamId: string; }) {
     this._store$.dispatch(actions.connectSuccess(a));
   }
 
   private _onDisconnect(a: { streamId: string; }) {
     this._streamService.disconnect(a.streamId);
+    this._messageService.save(a.streamId);
   }
 
   private _onError(error: Error, a: { streamId: string; }) {
     this._store$.dispatch(actions.connectFailed({ error, streamId: a.streamId }));
     this._streamService.disconnect(a.streamId);
+    this._messageService.save(a.streamId);
   }
 
   private _onEvent(e: { e: string, v: any }, a: { streamId: string; }) {
@@ -54,13 +65,4 @@ export class ConnectEffects {
       json,
     );
   }
-
-  constructor(
-    private readonly _actions$: Actions,
-    private readonly _store$: Store<IStreamState>,
-    private readonly _socketService: SocketService,
-    private readonly _streamService: StreamService,
-    private readonly _messageService: MessageService,
-    private readonly _toastr: ToastrService,
-  ) { }
 }

@@ -10,11 +10,10 @@ import * as effects from './effects';
   imports: [
     StoreModule.forFeature('message', reducers),
     EffectsModule.forFeature([
-      effects.AddEffects,
       effects.GetEffects,
       effects.SendEffects,
-      effects.RemoveEffects,
       effects.RemoveAllEffects,
+      effects.SaveEffects,
     ]),
   ],
 })

@@ -1,7 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
 import { MessageType } from '../enums';
-import { IMessage } from '../models';
 
 export const add = createAction(
   '[MESSAGE] Add',
@@ -12,19 +11,4 @@ export const add = createAction(
     readonly event?: string;
     readonly json?: boolean;
   }>(),
-);
-
-export const addSuccess = createAction(
-  '[MESSAGE] AddSuccess',
-  props<{ readonly message: IMessage }>(),
-);
-
-export const addFailed = createAction(
-  '[MESSAGE] AddFailed',
-  props<{ readonly error: Error }>(),
-);
-
-export const addComplete = createAction(
-  '[MESSAGE] AddComplete',
-  props<{ readonly streamId: string; readonly messages: IMessage[] }>(),
 );

@@ -62,4 +62,12 @@ export class PouchService<T = any> {
   bulk(docs: PouchDB.Core.Document<T>[]) {
     return this._db.bulkDocs(docs);
   }
+
+  async removeWhere(filter: any) {
+    const docs = await this.get(0, environment.maxMessages, environment.maxMessages, filter);
+    return this._db.bulkDocs(docs.docs.map(d => ({
+      ...d,
+      _deleted: true,
+    })));
+  }
 }

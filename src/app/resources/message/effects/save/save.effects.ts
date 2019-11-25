@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { switchMap, tap, map, take } from 'rxjs/operators';
+import { switchMap, tap, take, map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+
+import { environment } from '../../../../../environments/environment';
 
 import * as actions from '../../actions';
 import { PouchService } from '../../../../core/services';
@@ -9,11 +11,11 @@ import { IMessage } from '../../models';
 import { MessageService } from '../../services';
 
 @Injectable()
-export class RemoveAllEffects {
+export class SaveEffects {
   private readonly _pouchService = new PouchService<IMessage>('messages');
 
-  readonly removeAll$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.removeAll),
+  readonly save$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.save),
     switchMap(a => this._messageService.messages$.pipe(
       take(1),
       map(v => ({
@@ -21,20 +23,20 @@ export class RemoveAllEffects {
         messages: v[a.streamId] || [],
       })),
     )),
-    switchMap(a => this._pouchService.bulk(a.messages.map(v => ({
-        ...v,
-        _deleted: true,
-      })))
-        .then(() => actions.removeAllSuccess({ streamId: a.streamId }))
-        .catch(error => actions.removeAllFailed({ error })),
-    ),
+    switchMap(async (a) => {
+      await this._pouchService.removeWhere({ streamId: a.streamId });
+      await this._pouchService.bulk(a.messages);
+      return this._pouchService.get(0, environment.maxMessages, environment.maxMessages, { streamId: a.streamId })
+                               .then(res => actions.saveSuccess({ streamId: a.streamId, messages: res.docs }))
+                               .catch(error => actions.saveFailed({ error }));
+    }),
   ));
 
-  readonly removeAllFailed$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.removeAllFailed),
+  readonly saveFailed$ = createEffect(() => this._actions$.pipe(
+    ofType(actions.saveFailed),
     tap(err => this._toastr.error(
       `${err.error.message}`,
-      'Remove All Failed',
+      'Error',
     )),
   ), { dispatch: false });
 
