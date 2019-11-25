@@ -2,9 +2,14 @@
   display: block;
 
   .CodeMirror {
-    border: 1px solid var(--hairline-strong);
+    border: 1px solid var(--hairline-soft);
+    background-color: transparent !important;
     height: auto;
     width: fit-content;
     min-width: 100%;
+
+    .CodeMirror-gutters {
+      background-color: transparent !important;
+    }
   }
 }

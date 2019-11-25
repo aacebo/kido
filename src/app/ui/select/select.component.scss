@@ -23,14 +23,14 @@
   }
 
   label {
-    color: var(--white);
+    color: var(--text-primary);
   }
 
   .form-control {
     display: flex;
     background-color: var(--bg-darker);
-    border-color: var(--hairline-regular);
-    color: var(--white);
+    border-color: var(--hairline-soft);
+    color: var(--text-primary);
     outline: none;
     box-shadow: none;
     resize: none;
@@ -70,7 +70,7 @@
       color: var(--text-primary);
 
       &:hover {
-        color: var(--white);
+        color: var(--text-primary);
         background-color: var(--bg-darker);
         filter: brightness(120%);
       }

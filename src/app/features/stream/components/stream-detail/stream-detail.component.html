@@ -12,22 +12,22 @@
         >
           <kido-option [value]="StreamType.WebSocket">
             <kido-socket-icon [type]="StreamType.WebSocket"></kido-socket-icon>
-            {{ STREAM_TYPE_LABELS[StreamType.WebSocket] }}
+            <span class="kido-option--text">{{ STREAM_TYPE_LABELS[StreamType.WebSocket] }}</span>
           </kido-option>
 
           <kido-option [value]="StreamType.SignalR">
             <kido-socket-icon [type]="StreamType.SignalR"></kido-socket-icon>
-            {{ STREAM_TYPE_LABELS[StreamType.SignalR] }}
+            <span class="kido-option--text">{{ STREAM_TYPE_LABELS[StreamType.SignalR] }}</span>
           </kido-option>
 
           <kido-option [value]="StreamType.SocketIO">
             <kido-socket-icon [type]="StreamType.SocketIO"></kido-socket-icon>
-            {{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}
+            <span class="kido-option--text">{{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}</span>
           </kido-option>
 
           <kido-option [value]="StreamType.SockJS">
             <kido-socket-icon [type]="StreamType.SockJS"></kido-socket-icon>
-            {{ STREAM_TYPE_LABELS[StreamType.SockJS] }}
+            <span class="kido-option--text">{{ STREAM_TYPE_LABELS[StreamType.SockJS] }}</span>
           </kido-option>
         </kido-select>
       </div>
@@ -90,6 +90,7 @@
               [messages]="messages[stream?._id]"
               [active]="message?._id"
               (selected)="onMessageSelected($event)"
+              (action)="onMessageAction($event)"
             ></kido-messenger>
 
             <kido-json-editor

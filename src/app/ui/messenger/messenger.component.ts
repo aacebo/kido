@@ -14,6 +14,7 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { CdkVirtualScrollViewport, CdkVirtualForOf } from '@angular/cdk/scrolling';
 
 import { IMessage } from './message.interface';
+import { MessageAction } from './message-action.enum';
 
 @Component({
   moduleId: module.id,
@@ -42,6 +43,7 @@ export class MessengerComponent implements AfterViewInit {
   private _itemSize = 90;
 
   @Output() selected = new EventEmitter<IMessage>();
+  @Output() action = new EventEmitter<{ message: IMessage; action: MessageAction }>();
 
   @ViewChild(CdkVirtualScrollViewport, { static: false })
   readonly virtualScrollViewport: CdkVirtualScrollViewport;
@@ -71,8 +73,15 @@ export class MessengerComponent implements AfterViewInit {
     }, 200);
   }
 
-  onClick(message: IMessage) {
-    this.selected.emit(message);
+  onClick(e: IMessage) {
+    this.selected.emit(e);
+  }
+
+  onAction(e: MessageAction, message: IMessage) {
+    this.action.emit({
+      message,
+      action: e,
+    });
   }
 
   private _scrollToBottom() {

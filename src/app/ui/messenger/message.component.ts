@@ -3,6 +3,7 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { MessageType } from './message-type.enum';
 import { IMessage } from './message.interface';
+import { MessageAction } from './message-action.enum';
 
 @Component({
   moduleId: module.id,
@@ -32,10 +33,17 @@ export class MessageComponent {
   private _createdAt: number;
 
   @Output() selected = new EventEmitter<IMessage>();
+  @Output() action = new EventEmitter<MessageAction>();
 
   readonly MessageType = MessageType;
+  readonly MessageAction = MessageAction;
 
   onClick() {
     this.selected.emit(this.message);
+  }
+
+  onAction(e: Event, action: MessageAction) {
+    e.stopImmediatePropagation();
+    this.action.emit(action);
   }
 }

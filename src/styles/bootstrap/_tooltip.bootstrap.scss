@@ -5,6 +5,17 @@
     opacity: 1 !important;
   }
 
+  &.tooltip-json {
+    .tooltip-inner {
+      max-height: 500px;
+      max-width: 500px;
+      text-align: start;
+      white-space: pre;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
   .tooltip-inner {
     padding: 10px;
     border-radius: $border-radius;

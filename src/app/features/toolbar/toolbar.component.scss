@@ -2,9 +2,10 @@
 
 :host {
   display: flex;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+  box-shadow: none;
+  border-bottom: 1px solid var(--hairline-soft);
   background-color: var(--bg-darkest);
-  color: var(--white);
+  color: var(--text-primary);
 
   &.mac {
     padding-top: $titlebar-height;
@@ -32,7 +33,7 @@
     cursor: pointer;
 
     .toolbar--title-text {
-      color: var(--white);
+      color: var(--text-primary);
       font-weight: bold;
 
       &:hover {

@@ -16,15 +16,17 @@
       margin-bottom: 10px;
       padding: 10px;
 
-      .kido-input {
-        .form-control {
-          background-color: var(--bg-dark);
-        }
-      }
-
       .kido-select {
         .form-control {
           font-weight: bold;
+
+          kido-socket-icon {
+            margin-right: 0;
+          }
+
+          .kido-option--text {
+            display: none;
+          }
         }
       }
     }
@@ -50,6 +52,7 @@
           .CodeMirror {
             border-left-color: transparent;
             border-right-color: transparent;
+            border-bottom-color: transparent;
             min-height: 60px;
           }
         }

@@ -22,7 +22,7 @@
 
   &.btn-secondary {
     &:hover {
-      color: var(--white);
+      color: var(--text-primary);
     }
   }
 }
@@ -35,7 +35,7 @@
     border-color: transparent;
 
     &:hover {
-      color: var(--white);
+      color: var(--text-primary);
       background-color: var(--secondary);
       filter: brightness(120%);
     }

@@ -8,6 +8,7 @@ import { IMessage } from '../../../../resources/message';
 import { Hotkeys } from '../../../../ui/hotkeys';
 
 import { STREAM_TYPE_LABELS } from '../../constants';
+import { MessageAction } from '../../../../ui/messenger';
 
 @Component({
   selector: 'kido-stream-detail',
@@ -36,6 +37,7 @@ export class StreamDetailComponent implements OnInit {
   @Output() connect = new EventEmitter<void>();
   @Output() disconnect = new EventEmitter<void>();
   @Output() send = new EventEmitter<string>();
+  @Output() deleteMessage = new EventEmitter<IMessage>();
 
   form: FormGroup;
   message?: IMessage;
@@ -112,6 +114,12 @@ export class StreamDetailComponent implements OnInit {
   onMessageSelected(e: IMessage) {
     this.message = e;
     this.messageContent = { root: e.json ? JSON.parse(e.content) : e.content };
+  }
+
+  onMessageAction(e: { message: IMessage; action: MessageAction }) {
+    if (e.action === MessageAction.Delete) {
+      this.deleteMessage.emit(e.message);
+    }
   }
 
   onClearMessage() {

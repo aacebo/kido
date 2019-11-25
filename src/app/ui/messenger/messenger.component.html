@@ -9,6 +9,7 @@
     [type]="message.type"
     [createdAt]="message.createdAt"
     (selected)="onClick($event)"
+    (action)="onAction($event, message)"
   ></kido-message>
 </cdk-virtual-scroll-viewport>
 

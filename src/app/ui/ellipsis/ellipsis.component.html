@@ -2,6 +2,7 @@
   class="kido-ellipsis--content"
   [ngbTooltip]="text"
   [disableTooltip]="content.length < maxLength"
+  [tooltipClass]="json ? 'tooltip-json' : undefined"
   container="body"
 >
   {{ content }}

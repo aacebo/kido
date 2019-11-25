@@ -6,10 +6,11 @@ ngb-tabset {
   min-width: 0px;
 
   .nav-tabs {
-    border-bottom: 1px solid var(--hairline-regular);
+    border-bottom: 1px solid var(--hairline-soft);
     margin-bottom: 2px;
 
     .nav-link {
+      font-size: 10pt;
       color: var(--text-muted) !important;
       background-color: transparent !important;
       border: none !important;
