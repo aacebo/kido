@@ -1,4 +1,6 @@
 $arrow-size: 8px;
+$border-size: 1px;
+$inner-arrow-size: 7px;
 
 .kido-message {
   display: flex;
@@ -21,7 +23,12 @@ $arrow-size: 8px;
 
       &:after {
         left: 100%;
-        border-left: $arrow-size solid var(--bg-darker);
+        border-left: $arrow-size solid var(--hairline-strong);
+      }
+
+      &:before {
+        left: 100%;
+        border-left: $inner-arrow-size solid var(--bg-darker);
       }
     }
   }
@@ -35,7 +42,12 @@ $arrow-size: 8px;
 
       &:after {
         right: 100%;
-        border-right: $arrow-size solid var(--bg-darker);
+        border-right: $arrow-size solid var(--hairline-strong);
+      }
+
+      &:before {
+        right: 100%;
+        border-right: $inner-arrow-size solid var(--bg-darker);
       }
     }
   }
@@ -56,16 +68,26 @@ $arrow-size: 8px;
     border-radius: 3px;
     padding: 8px 10px;
     background-color: var(--bg-darker);
-    border: 1px solid var(--hairline-soft);
+    border: $border-size solid var(--hairline-strong);
     color: var(--text-primary);
 
     &:after {
-      content:"";
+      content: "";
       position: absolute;
       height: 0;
       width: 0;
       top: 5px;
       border: $arrow-size solid transparent;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      height: 0;
+      width: 0;
+      top: 6px;
+      z-index: 2;
+      border: $inner-arrow-size solid transparent;
     }
 
     &:hover {
@@ -81,8 +103,8 @@ $arrow-size: 8px;
       display: none;
 
       .btn {
-        background-color: var(--bg-darker);
-        border: 1px solid var(--hairline-soft);
+        background-color: var(--bg-darkest);
+        border: 1px solid var(--hairline-strong);
       }
     }
 
