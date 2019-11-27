@@ -39,7 +39,7 @@ function createWindow () {
     title: 'Kido',
     frame: process.platform === 'darwin' ? false : true,
     titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'default',
-    icon: path.join(__dirname, 'dist/assets/icon', getIcon()),
+    icon: path.join(__dirname, 'assets/icon', getIcon()),
     backgroundColor: '#424242',
     webPreferences: {
       nodeIntegration: true,
@@ -49,7 +49,7 @@ function createWindow () {
 
   mainWindow.loadURL(
     url.format({
-      pathname: path.join(__dirname, `/dist/index.html`),
+      pathname: path.join(__dirname, `/index.html`),
       protocol: "file:",
       slashes: true,
     })
