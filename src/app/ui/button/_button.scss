@@ -3,8 +3,8 @@
     opacity: 0.5;
 
     &:hover {
-      color: var(--#{$color});
-      opacity: 1;
+      color: var(--#{$color}) !important;
+      opacity: 1 !important;
 
       &:disabled {
         color: initial;

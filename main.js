@@ -31,6 +31,8 @@ function createWindow () {
   mainWindow = new electron.BrowserWindow({
     width: 900,
     height: 600,
+    minWidth: 600,
+    minHeight: 600,
     show: false,
     autoHideMenuBar: true,
     darkTheme: true,

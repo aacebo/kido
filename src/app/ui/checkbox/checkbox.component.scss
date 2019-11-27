@@ -1,19 +1,32 @@
+@mixin kidoCheckboxColor($color) {
+  &.kido-checkbox--#{$color} {
+    &:hover,
+    &.active {
+      color: var(--#{$color});
+    }
+  }
+}
+
 .kido-checkbox {
   label {
     cursor: pointer;
     background-color: transparent;
     border-color: transparent;
     box-shadow: none !important;
+    color: var(--text-muted);
 
     &:hover {
       background-color: transparent;
       border-color: transparent;
     }
 
-    &.active {
-      background-color: initial;
-      border-color: initial;
-      box-shadow: initial !important;
-    }
+    @include kidoCheckboxColor('info');
+    @include kidoCheckboxColor('success');
+    @include kidoCheckboxColor('danger');
+    @include kidoCheckboxColor('warning');
+    @include kidoCheckboxColor('primary');
+    @include kidoCheckboxColor('secondary');
+    @include kidoCheckboxColor('light');
+    @include kidoCheckboxColor('dark');
   }
 }

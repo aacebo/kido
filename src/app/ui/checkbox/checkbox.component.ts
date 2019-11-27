@@ -2,8 +2,7 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRe
 import { NgForm, FormGroupDirective } from '@angular/forms';
 
 import { FormControlBase, formControlProvider } from '../core/form-control';
-import { Color, Size } from '../core/enums';
-import { ButtonTheme, getButtonClass } from '../core/button';
+import { Color } from '../core/enums';
 
 @Component({
   moduleId: module.id,
@@ -18,16 +17,6 @@ import { ButtonTheme, getButtonClass } from '../core/button';
 })
 export class CheckboxComponent extends FormControlBase<boolean> {
   @Input() color = Color.Primary;
-  @Input() theme = ButtonTheme.Default;
-  @Input() size = Size.Medium;
-
-  get classes() {
-    return getButtonClass(
-      this.color,
-      this.theme,
-      this.size,
-    );
-  }
 
   constructor(
     readonly cdr: ChangeDetectorRef,

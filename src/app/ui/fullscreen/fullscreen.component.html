@@ -1,0 +1,15 @@
+<button
+  class="kido-fullscreen--toggle"
+  kido-icon-button
+  color="secondary"
+  (click)="fullscreen = !fullscreen"
+>
+  <span
+    class="fas"
+    [class.fa-expand]="!fullscreen"
+    [class.fa-compress]="fullscreen"
+  >
+  </span>
+</button>
+
+<ng-content></ng-content>

@@ -108,7 +108,7 @@
 
             <button
               class="stream-detail--message-send"
-              kido-button
+              kido-icon-button
               color="info"
               ngbTooltip="Send"
               [disabled]="form.invalid || !form.value.message || (form.value.json && !isValidJSON) || !connected"
@@ -120,6 +120,7 @@
 
           <div
             *ngIf="message"
+            kidoFullscreen
             class="stream-detail--json"
             [style.flex]="message ? '1 1 50%' : '1 1 auto'"
           >

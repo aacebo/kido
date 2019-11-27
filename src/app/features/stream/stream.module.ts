@@ -15,6 +15,7 @@ import { JsonEditorModule } from '../../ui/json-editor';
 import { JsonViewerModule } from '../../ui/json-viewer';
 import { MessengerModule } from '../../ui/messenger';
 import { CheckboxModule } from '../../ui/checkbox';
+import { FullscreenModule } from '../../ui/fullscreen';
 
 import * as components from './components';
 
@@ -51,6 +52,7 @@ const declarations = [
     JsonViewerModule,
     MessengerModule,
     CheckboxModule,
+    FullscreenModule,
   ],
 })
 export class StreamModule { }
