@@ -22,7 +22,7 @@ function loadExtensions() {
 }
 
 function getIcon() {
-  return process.platform === 'linux' ? 'png/48x48.png' : 'icns/48x48.icns';
+  return process.platform === 'linux' ? 'png/64x64.png' : 'icns/64x64.icns';
 }
 
 function createWindow () {
@@ -39,7 +39,7 @@ function createWindow () {
     title: 'Kido',
     frame: process.platform === 'darwin' ? false : true,
     titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'default',
-    icon: path.join(__dirname, 'assets/icon', getIcon()),
+    icon: path.join(__dirname, 'assets/logo', getIcon()),
     backgroundColor: '#424242',
     webPreferences: {
       nodeIntegration: true,
