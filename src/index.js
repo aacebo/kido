@@ -57,7 +57,10 @@ function createWindow () {
 
   mainWindow.webContents.on('dom-ready', () => {
     mainWindow.show();
-    mainWindow.webContents.openDevTools();
+
+    if (dev) {
+      mainWindow.webContents.openDevTools();
+    }
 
     mainWindow.webContents.send('system', {
       pid: process.pid,
