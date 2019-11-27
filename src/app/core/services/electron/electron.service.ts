@@ -1,10 +1,10 @@
 import { Injectable, NgZone } from '@angular/core';
 import {
+  App,
   BrowserWindow,
   IpcRenderer,
-  Remote,
   MenuItemConstructorOptions,
-  App,
+  Remote,
 } from 'electron';
 
 @Injectable({

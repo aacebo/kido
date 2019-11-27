@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { tap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
+import { tap } from 'rxjs/operators';
 
-import * as actions from '../../actions';
 import { isValidJSON } from '../../../../core/utils';
 import { MessageService, MessageType } from '../../../message';
+import * as actions from '../../actions';
 import { SocketService, StreamService } from '../../services';
 import { IStreamState } from '../../stream.state';
 

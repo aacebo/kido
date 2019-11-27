@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { PipesModule } from '../core/pipes';
 import { ButtonModule } from '../button';
-import { MessengerComponent } from './messenger.component';
+import { PipesModule } from '../core/pipes';
 import { MessageComponent } from './message.component';
+import { MessengerComponent } from './messenger.component';
 
 const declarations = [
   MessengerComponent,

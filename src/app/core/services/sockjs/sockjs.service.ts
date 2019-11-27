@@ -1,5 +1,5 @@
-import SockJS from 'sockjs-client';
 import { Subject } from 'rxjs';
+import SockJS from 'sockjs-client';
 
 import { ISocketService } from '../../models';
 

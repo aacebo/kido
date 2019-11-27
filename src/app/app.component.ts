@@ -1,11 +1,11 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { ElectronService } from './core/services';
-import { ISystem, SystemService } from './resources/system';
-import { StreamService, IStream } from './resources/stream';
-import { MessageService } from './resources/message';
 import { StreamModalService } from './features/stream';
+import { MessageService } from './resources/message';
+import { IStream, StreamService } from './resources/stream';
+import { ISystem, SystemService } from './resources/system';
 
 @Component({
   selector: 'kido-root',

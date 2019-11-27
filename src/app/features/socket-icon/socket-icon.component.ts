@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { StreamType } from '../../resources/stream';
 import { STREAM_TYPE_ABBR } from './stream-type-abbr.constant';

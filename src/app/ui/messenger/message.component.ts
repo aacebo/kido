@@ -1,9 +1,9 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
+import { MessageAction } from './message-action.enum';
 import { MessageType } from './message-type.enum';
 import { IMessage } from './message.interface';
-import { MessageAction } from './message-action.enum';
 
 @Component({
   moduleId: module.id,

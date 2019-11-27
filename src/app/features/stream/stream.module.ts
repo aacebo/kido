@@ -1,21 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { NgbModalModule, NgbTooltipModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModalModule, NgbTabsetModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { SocketIconModule } from '../socket-icon';
-import { ResizeModule } from '../resize';
 import { ConnectionIconModule } from '../connection-icon';
+import { ResizeModule } from '../resize';
+import { SocketIconModule } from '../socket-icon';
 
-import { DropdownModule } from '../../ui/dropdown';
 import { ButtonModule } from '../../ui/button';
+import { CheckboxModule } from '../../ui/checkbox';
+import { DropdownModule } from '../../ui/dropdown';
+import { FullscreenModule } from '../../ui/fullscreen';
 import { InputModule } from '../../ui/input';
-import { SelectModule } from '../../ui/select';
 import { JsonEditorModule } from '../../ui/json-editor';
 import { JsonViewerModule } from '../../ui/json-viewer';
 import { MessengerModule } from '../../ui/messenger';
-import { CheckboxModule } from '../../ui/checkbox';
-import { FullscreenModule } from '../../ui/fullscreen';
+import { SelectModule } from '../../ui/select';
 
 import * as components from './components';
 

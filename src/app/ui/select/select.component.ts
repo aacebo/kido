@@ -1,20 +1,20 @@
 import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
-  Optional,
-  ElementRef,
-  ContentChildren,
-  QueryList,
   AfterContentInit,
-  Input,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  Input,
+  Optional,
+  QueryList,
+  ViewEncapsulation,
 } from '@angular/core';
+import { FormGroupDirective, NgForm } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NgForm, FormGroupDirective } from '@angular/forms';
 
-import { FormControlBase, formControlProvider, getFormControlClass } from '../core/form-control';
 import { Size } from '../core/enums';
+import { FormControlBase, formControlProvider, getFormControlClass } from '../core/form-control';
 import { OptionComponent } from './option.component';
 
 @Component({

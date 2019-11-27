@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { ButtonModule } from '../button';
 import { FullscreenComponent } from './fullscreen.component';

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
-import * as actions from '../../actions';
 import { SocketService } from '../../../stream/services/socket';
+import * as actions from '../../actions';
 
 @Injectable()
 export class SendEffects {

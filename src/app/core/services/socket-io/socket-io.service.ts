@@ -1,5 +1,5 @@
-import * as io from 'socket.io-client';
 import { Subject } from 'rxjs';
+import * as io from 'socket.io-client';
 
 import { ISocketService } from '../../models';
 import { socketIOWildcard } from '../../utils/socket-io-wildcard';

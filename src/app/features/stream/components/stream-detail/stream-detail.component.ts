@@ -1,14 +1,14 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { areEqual, isValidJSON } from '../../../../core/utils';
-import { IStream, StreamType } from '../../../../resources/stream';
 import { IMessage } from '../../../../resources/message';
+import { IStream, StreamType } from '../../../../resources/stream';
 import { Hotkeys } from '../../../../ui/hotkeys';
 
-import { STREAM_TYPE_LABELS } from '../../constants';
 import { MessageAction } from '../../../../ui/messenger';
+import { STREAM_TYPE_LABELS } from '../../constants';
 
 @Component({
   selector: 'kido-stream-detail',

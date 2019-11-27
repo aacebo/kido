@@ -4,9 +4,9 @@ import { switchMap, tap } from 'rxjs/operators';
 
 import { environment } from '../../../../../environments/environment';
 
-import * as actions from '../../actions';
 import { PouchService } from '../../../../core/services';
 import { MessageService } from '../../../message';
+import * as actions from '../../actions';
 import { IStream } from '../../models';
 
 @Injectable()

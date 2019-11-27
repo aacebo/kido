@@ -1,7 +1,7 @@
-import { combineReducers, Action } from '@ngrx/store';
+import { Action, combineReducers } from '@ngrx/store';
 
-import * as fromReducers from './reducers';
 import { ISystem } from './models';
+import * as fromReducers from './reducers';
 
 export interface ISystemState {
   readonly system?: ISystem;

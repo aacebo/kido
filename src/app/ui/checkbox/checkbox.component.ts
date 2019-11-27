@@ -1,8 +1,8 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, Optional, Input } from '@angular/core';
-import { NgForm, FormGroupDirective } from '@angular/forms';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Optional, ViewEncapsulation } from '@angular/core';
+import { FormGroupDirective, NgForm } from '@angular/forms';
 
-import { FormControlBase, formControlProvider } from '../core/form-control';
 import { Color } from '../core/enums';
+import { FormControlBase, formControlProvider } from '../core/form-control';
 
 @Component({
   moduleId: module.id,

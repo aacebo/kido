@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as actions from '../../actions';
+import { MessageType } from '../../enums';
 import * as selectors from '../../message.selectors';
 import { IMessageState } from '../../message.state';
 import { IMessage } from '../../models';
-import { MessageType } from '../../enums';
 
 @Injectable({
   providedIn: 'root',

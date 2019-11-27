@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 
-import { SystemModule } from './system';
-import { StreamModule } from './stream';
 import { MessageModule } from './message';
+import { StreamModule } from './stream';
+import { SystemModule } from './system';
 
 @NgModule({
   imports: [

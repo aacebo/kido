@@ -1,4 +1,4 @@
-import { combineReducers, Action } from '@ngrx/store';
+import { Action, combineReducers } from '@ngrx/store';
 
 import { IStream } from './models';
 import * as fromReducers from './reducers';

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Output, HostListener, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Output } from '@angular/core';
 
 @Component({
   selector: 'kido-horizontal-resize-bar',

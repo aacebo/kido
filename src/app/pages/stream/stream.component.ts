@@ -1,7 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { StreamService, IStream } from '../../resources/stream';
-import { MessageService, MessageType, IMessage } from '../../resources/message';
+import { IMessage, MessageService, MessageType } from '../../resources/message';
+import { IStream, StreamService } from '../../resources/stream';
 
 @Component({
   selector: 'kido-stream',

@@ -1,20 +1,20 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
-  Input,
-  ViewChild,
-  AfterViewInit,
-  HostListener,
-  Output,
-  EventEmitter,
-  ChangeDetectorRef,
-} from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
-import { CdkVirtualScrollViewport, CdkVirtualForOf } from '@angular/cdk/scrolling';
+import { CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 
-import { IMessage } from './message.interface';
 import { MessageAction } from './message-action.enum';
+import { IMessage } from './message.interface';
 
 @Component({
   moduleId: module.id,

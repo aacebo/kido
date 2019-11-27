@@ -1,23 +1,23 @@
 import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
-  ViewChild,
-  ElementRef,
   AfterViewInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Optional,
+  Component,
+  ElementRef,
   OnDestroy,
+  Optional,
+  ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 
 import CodeMirror from 'codemirror';
-import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/addon/edit/closebrackets';
-import 'codemirror/addon/lint/lint.js';
 import 'codemirror/addon/fold/brace-fold.js';
+import 'codemirror/addon/lint/lint.js';
+import 'codemirror/mode/javascript/javascript.js';
 
+import { FormGroupDirective, NgForm } from '@angular/forms';
 import { FormControlBase, formControlProvider } from '../core/form-control';
-import { NgForm, FormGroupDirective } from '@angular/forms';
 
 @Component({
   moduleId: module.id,

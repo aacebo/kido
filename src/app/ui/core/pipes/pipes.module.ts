@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import { ElapseTimePipe } from './elapse-time';
 import { BytesToStringPipe } from './bytes-to-string';
+import { ElapseTimePipe } from './elapse-time';
 
 const declarations = [
   ElapseTimePipe,

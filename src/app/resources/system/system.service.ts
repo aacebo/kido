@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { ISystem } from './models';
 import * as actions from './system.actions';
 import * as selectors from './system.selectors';
 import { ISystemState } from './system.state';
-import { ISystem } from './models';
 
 @Injectable({
   providedIn: 'root',

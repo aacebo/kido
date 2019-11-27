@@ -1,8 +1,8 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
-import { IJsonViewerNode } from './json-viewer-node.model';
 import { JsonViewerNodeType } from './json-viewer-node-type.enum';
+import { IJsonViewerNode } from './json-viewer-node.model';
 
 @Component({
   moduleId: module.id,

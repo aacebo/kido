@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as actions from '../../actions';
+import { StreamType } from '../../enums';
+import { IStream } from '../../models';
 import * as selectors from '../../stream.selectors';
 import { IStreamState } from '../../stream.state';
-import { IStream } from '../../models';
-import { StreamType } from '../../enums';
 
 @Injectable({
   providedIn: 'root',

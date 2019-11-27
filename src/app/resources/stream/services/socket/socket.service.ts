@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { StreamType } from '../../enums';
 import { ISocketService } from '../../../../core/models';
 import {
-  WebSocketService,
-  SocketIOService,
   SignalrService,
+  SocketIOService,
   SockjsService,
+  WebSocketService,
 } from '../../../../core/services';
+import { StreamType } from '../../enums';
 
 @Injectable({
   providedIn: 'root',

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { tap, switchMap, map, take } from 'rxjs/operators';
+import { map, switchMap, take, tap } from 'rxjs/operators';
 
-import * as actions from '../../actions';
 import { MessageService } from '../../../message';
+import * as actions from '../../actions';
 
 @Injectable()
 export class SetActiveEffects {

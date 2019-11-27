@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from '@angular/core';
-import { SafeUrl } from '@angular/platform-browser';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   moduleId: module.id,

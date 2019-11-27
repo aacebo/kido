@@ -1,9 +1,9 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Optional, ChangeDetectorRef } from '@angular/core';
-import { NgForm, FormGroupDirective } from '@angular/forms';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Optional, ViewEncapsulation } from '@angular/core';
+import { FormGroupDirective, NgForm } from '@angular/forms';
 
-import { FormControlBase, formControlProvider, getFormControlClass } from '../core/form-control';
 import { Size } from '../core/enums';
+import { FormControlBase, formControlProvider, getFormControlClass } from '../core/form-control';
 
 @Component({
   moduleId: module.id,

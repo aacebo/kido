@@ -1,4 +1,4 @@
-import { combineReducers, Action } from '@ngrx/store';
+import { Action, combineReducers } from '@ngrx/store';
 
 import { IMessage } from './models';
 import * as fromReducers from './reducers';

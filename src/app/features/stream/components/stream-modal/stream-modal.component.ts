@@ -1,8 +1,8 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { StreamType, IStream } from '../../../../resources/stream';
+import { IStream, StreamType } from '../../../../resources/stream';
 import { STREAM_TYPE_LABELS } from '../../constants';
 
 @Component({

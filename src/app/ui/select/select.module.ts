@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { SelectComponent } from './select.component';
 import { OptionComponent } from './option.component';
+import { SelectComponent } from './select.component';
 
 @NgModule({
   declarations: [SelectComponent, OptionComponent],
