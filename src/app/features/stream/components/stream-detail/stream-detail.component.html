@@ -36,6 +36,7 @@
         <button
           kido-button
           color="danger"
+          theme="outline"
           ngbTooltip="Revert"
           [disabled]="areEqual || form.pristine"
           (click)="reset()"
@@ -48,6 +49,7 @@
         <button
           kido-button
           color="success"
+          theme="outline"
           ngbTooltip="Save"
           [disabled]="form.invalid || form.pristine || areEqual"
           (click)="save()"
@@ -59,6 +61,7 @@
       <div kidoInputAppend>
         <button
           kido-button
+          [theme]="connected ? '' : 'outline'"
           [color]="connected ? 'danger' : 'info'"
           [ngbTooltip]="connected ? 'Disconnect' : 'Connect'"
           [disabled]="!form.value.url"

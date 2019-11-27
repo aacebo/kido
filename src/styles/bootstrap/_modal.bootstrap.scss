@@ -1,8 +1,6 @@
 @import '../box-shadow';
 @import '../variables';
 
-$modal-padding: 10px 20px;
-
 .modal-dialog {
   max-height: 80%;
 
@@ -13,7 +11,6 @@ $modal-padding: 10px 20px;
 
     .modal-header {
       border-bottom: none;
-      padding: $modal-padding;
 
       .modal-title {
         margin: auto;
@@ -28,7 +25,6 @@ $modal-padding: 10px 20px;
     }
 
     .modal-footer {
-      padding: $modal-padding;
       border-top: none;
     }
   }

@@ -67,7 +67,8 @@
   <button
     kido-button
     color="success"
-    [disabled]="form.invalid"
+    theme="outline"
+    [disabled]="form.invalid || form.pristine"
     (click)="save()"
   >
     <span class="fas fa-save"></span> Save
