@@ -24,6 +24,16 @@
     <button
       kido-button
       color="secondary"
+      ngbTooltip="Copy"
+      container="body"
+      (click)="onAction($event, MessageAction.Copy)"
+    >
+      <span class="far fa-clipboard"></span>
+    </button>
+
+    <button
+      kido-button
+      color="secondary"
       ngbTooltip="Delete"
       container="body"
       (click)="onAction($event, MessageAction.Delete)"

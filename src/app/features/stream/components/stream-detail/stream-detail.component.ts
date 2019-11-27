@@ -119,6 +119,8 @@ export class StreamDetailComponent implements OnInit {
   onMessageAction(e: { message: IMessage; action: MessageAction }) {
     if (e.action === MessageAction.Delete) {
       this.deleteMessage.emit(e.message);
+    } else if (e.action === MessageAction.Copy) {
+      this.onPropertyValueClicked(e.message.content);
     }
   }
 
