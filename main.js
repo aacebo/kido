@@ -29,7 +29,7 @@ function createWindow () {
   loadExtensions();
 
   mainWindow = new electron.BrowserWindow({
-    width: electron.screen.getPrimaryDisplay().bounds.width / 2,
+    width: 900,
     height: 600,
     show: false,
     autoHideMenuBar: true,

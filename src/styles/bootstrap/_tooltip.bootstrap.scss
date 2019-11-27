@@ -1,5 +1,10 @@
 @import '../variables';
 
+$tooltip-border-width: 0.0625rem;
+$tooltip-border-color: var(--hairline-strong);
+$tooltip-arrow-width: 0.8rem;
+$tooltip-arrow-height: 0.4rem;
+
 .tooltip {
   &.show {
     opacity: 1 !important;
@@ -16,8 +21,87 @@
     }
   }
 
+  &.bs-tooltip-top {
+    .arrow {
+      height: $tooltip-arrow-height + $tooltip-border-width;
+
+      &:after {
+        top: 0;
+        border-width: (($tooltip-arrow-height - $tooltip-border-width) (($tooltip-arrow-width - ($tooltip-border-width * 4)) / 2) 0);
+        border-top-color: $tooltip-arrow-color;
+        right: $tooltip-border-width * 2;
+      }
+
+      &:before {
+        border-top-color: $tooltip-border-color;
+        border-width: $tooltip-arrow-height ($tooltip-arrow-width / 2) 0 !important;
+      }
+    }
+  }
+
+  &.bs-tooltip-bottom {
+    .arrow {
+      &:after {
+        bottom: -$tooltip-border-width;
+        border-width: 0 (($tooltip-arrow-width - ($tooltip-border-width * 4)) / 2) $tooltip-arrow-height;
+        border-bottom-color: $tooltip-arrow-color;
+        right: $tooltip-border-width * 2;
+      }
+
+      &:before {
+        border-bottom-color: $tooltip-border-color;
+        border-width: 0 ($tooltip-arrow-width / 2) $tooltip-arrow-height !important;
+      }
+    }
+  }
+
+  &.bs-tooltip-left {
+    .arrow {
+      &:after {
+        left: -$tooltip-border-width;
+        border-width: (($tooltip-arrow-width - ($tooltip-border-width * 4)) / 2) 0 (($tooltip-arrow-width - ($tooltip-border-width * 4)) / 2) $tooltip-arrow-height;
+        border-left-color: $tooltip-arrow-color;
+        top: $tooltip-border-width * 2;
+      }
+
+      &:before {
+        border-left-color: $tooltip-border-color;
+        border-width: ($tooltip-arrow-width / 2) 0 ($tooltip-arrow-width / 2) $tooltip-arrow-height !important;
+      }
+    }
+  }
+
+  &.bs-tooltip-right {
+    .arrow {
+      &:after {
+        right: -$tooltip-border-width;
+        border-width: (($tooltip-arrow-width - ($tooltip-border-width * 4)) / 2) $tooltip-arrow-height (($tooltip-arrow-width - ($tooltip-border-width * 4)) / 2) 0;
+        border-right-color: $tooltip-arrow-color;
+        top: $tooltip-border-width * 2;
+      }
+
+      &:before {
+        border-right-color: $tooltip-border-color;
+        border-width: ($tooltip-arrow-width / 2) $tooltip-arrow-height ($tooltip-arrow-width / 2) 0 !important;
+      }
+    }
+  }
+
   .tooltip-inner {
     padding: 10px;
     border-radius: $border-radius;
+    border: $tooltip-border-width solid $tooltip-border-color;
+  }
+
+  .arrow {
+    height: $tooltip-arrow-height;
+
+    &:after {
+      z-index: 2;
+      position: absolute;
+      content: "";
+      border-color: transparent;
+      border-style: solid;
+    }
   }
 }
