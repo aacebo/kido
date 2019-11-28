@@ -1,7 +1,10 @@
-const electron = require('electron')
+const electron = require('electron');
+const dev = require('electron-is-dev');
+const updater = require('electron-updater');
+const log = require('electron-log');
+
 const url = require('url');
 const path = require('path');
-const dev = require('electron-is-dev');
 const dotenv = require('dotenv');
 const os = require('os');
 
@@ -25,8 +28,15 @@ function getIcon() {
   return process.platform === 'linux' ? 'png/64x64.png' : 'icns/64x64.icns';
 }
 
+function updates() {
+  log.transports.file.level = 'debug'
+  updater.autoUpdater.logger = log
+  updater.autoUpdater.checkForUpdatesAndNotify()
+}
+
 function createWindow () {
   loadExtensions();
+  updates();
 
   mainWindow = new electron.BrowserWindow({
     width: 900,

@@ -8,17 +8,54 @@
     "email": "aacebowork@gmail.com"
   },
   "scripts": {
+    "postinstall": "install-app-deps",
     "ng": "ng",
-    "start": "ng build --base-href ./ && electron .",
-    "build": "ng build --base-href ./",
-    "build:prod": "ng build --prod --base-href ./",
+    "start": "rimraf dist && ng build --base-href ./ && electron .",
+    "build": "rimraf dist && ng build --base-href ./",
+    "build:prod": "rimraf dist && ng build --prod --base-href ./",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pkg": "electron-packager . --overwrite --all --out=pkg",
-    "pkg:win": "electron-packager . --overwrite --platform=win32 --out=pkg",
-    "pkg:linux": "electron-packager . --overwrite --platform=linux --out=pkg",
-    "pkg:mac": "electron-packager . --overwrite --platform=darwin --out=pkg"
+    "pkg": "rimraf pkg && npm run build:prod && electron-builder",
+    "pkg:win": "rimraf pkg && npm run build:prod && electron-builder --win",
+    "pkg:mac": "rimraf pkg && npm run build:prod && electron-builder --mac",
+    "pkg:linux": "rimraf pkg && npm run build:prod && electron-builder --linux"
+  },
+  "build": {
+    "appId": "org.kido",
+    "directories": {
+      "output": "pkg"
+    },
+    "files": [
+      "dist"
+    ],
+    "mac": {
+      "category": "public.sockets"
+    },
+    "nsis": {
+      "createDesktopShortcut": "always"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "category": "Sockets",
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    }
   },
   "private": true,
   "dependencies": {
@@ -41,7 +78,10 @@
     "codemirror": "^5.49.2",
     "date-fns": "^2.7.0",
     "dotenv": "^8.2.0",
+    "electron": "~6.1.2",
     "electron-is-dev": "^1.1.0",
+    "electron-log": "^3.0.9",
+    "electron-updater": "^4.2.0",
     "mousetrap": "^1.6.3",
     "ngx-toastr": "^11.2.1",
     "pouchdb": "^7.1.1",
@@ -69,8 +109,7 @@
     "@types/sockjs-client": "^1.1.1",
     "@types/uuid": "^3.4.6",
     "codelyzer": "^5.0.0",
-    "electron": "~6.1.2",
-    "electron-packager": "^14.1.1",
+    "electron-builder": "^21.2.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
