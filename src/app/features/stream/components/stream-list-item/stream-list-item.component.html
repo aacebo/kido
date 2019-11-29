@@ -9,5 +9,13 @@
 <div class="stream-list-item--actions">
   <kido-connection-icon
     [type]="connected ? 'connected' : 'disconnected'"
+    [ngbTooltip]="elapseTpl"
+    [disableTooltip]="!connected"
+    container="body"
+    placement="right"
   ></kido-connection-icon>
 </div>
+
+<ng-template #elapseTpl>
+  {{ connected | kidoElapseTime }}
+</ng-template>
