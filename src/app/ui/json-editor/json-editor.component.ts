@@ -1,9 +1,11 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
+  Input,
   OnDestroy,
   Optional,
   ViewChild,
@@ -31,6 +33,17 @@ import { FormControlBase, formControlProvider } from '../core/form-control';
   encapsulation: ViewEncapsulation.None,
 })
 export class JsonEditorComponent extends FormControlBase<string> implements AfterViewInit, OnDestroy {
+  @Input()
+  get raw() { return this._raw; }
+  set raw(v: boolean) {
+    this._raw = coerceBooleanProperty(v);
+
+    if (this.editor) {
+      this.editor.setOption('mode', this._mode);
+    }
+  }
+  protected _raw?: boolean;
+
   @ViewChild('textarea', { static: false })
   readonly textarea: ElementRef<HTMLTextAreaElement>;
 
@@ -49,6 +62,10 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   }
   protected _value?: string;
 
+  private get _mode() {
+    return this._raw ? 'text/plain' : 'application/json';
+  }
+
   constructor(
     readonly el: ElementRef<HTMLInputElement | HTMLTextAreaElement>,
     readonly cdr: ChangeDetectorRef,
@@ -62,7 +79,7 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
     this.editor = CodeMirror.fromTextArea(this.textarea.nativeElement, {
       lineNumbers: true,
       theme: 'dracula',
-      mode: 'application/json',
+      mode: this._mode,
       readOnly: this.readonly,
       lint: true,
       tabSize: 2,
