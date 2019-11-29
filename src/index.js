@@ -28,15 +28,36 @@ function getIcon() {
   return process.platform === 'linux' ? 'png/64x64.png' : 'icns/64x64.icns';
 }
 
-function updates() {
-  log.transports.file.level = 'debug'
-  updater.autoUpdater.logger = log
-  updater.autoUpdater.checkForUpdatesAndNotify()
+async function updates() {
+  log.transports.file.level = dev ? 'debug' : 'info';
+  updater.autoUpdater.logger = log;
+
+  updater.autoUpdater.on('checking-for-update', () => {
+    mainWindow.webContents.send('update--checking-for-update');
+  });
+
+  updater.autoUpdater.on('update-available', (...args) => {
+    mainWindow.webContents.send('update--update-available', args);
+  });
+
+  updater.autoUpdater.on('update-not-available', (...args) => {
+    mainWindow.webContents.send('update--update-not-available', args);
+  });
+
+  updater.autoUpdater.on('download-progress', (...args) => {
+    mainWindow.webContents.send('update--download-progress', args);
+  });
+
+  updater.autoUpdater.on('update-downloaded', (...args) => {
+    mainWindow.webContents.send('update--update-downloaded', args);
+  });
+
+  const res = await updater.autoUpdater.checkForUpdatesAndNotify();
+  console.log(res);
 }
 
 function createWindow () {
   loadExtensions();
-  updates();
 
   mainWindow = new electron.BrowserWindow({
     width: 900,
@@ -67,6 +88,7 @@ function createWindow () {
 
   mainWindow.webContents.on('dom-ready', () => {
     mainWindow.show();
+    updates();
 
     if (dev) {
       mainWindow.webContents.openDevTools();

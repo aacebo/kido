@@ -7,6 +7,19 @@
     "name": "Alexander Acebo",
     "email": "aacebowork@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aacebo/kido.git"
+  },
+  "keywords": [
+    "electron",
+    "angular",
+    "sockets",
+    "socket.io",
+    "sockjs",
+    "signalr",
+    "ngrx"
+  ],
   "scripts": {
     "postinstall": "install-app-deps",
     "ng": "ng",
@@ -23,17 +36,36 @@
   },
   "build": {
     "appId": "org.kido",
-    "directories": {
-      "output": "pkg"
-    },
+    "productName": "Kido",
     "files": [
       "dist"
     ],
+    "publish": {
+      "provider": "github",
+      "private": true,
+      "owner": "Alexander Acebo",
+      "vPrefixedTagName": true,
+      "host": "github.com",
+      "protocol": "https"
+    },
+    "directories": {
+      "output": "pkg"
+    },
     "mac": {
       "category": "public.sockets"
     },
-    "nsis": {
-      "createDesktopShortcut": "always"
+    "win": {
+      "icon": "icons/icon.ico",
+      "target": [
+        "squirrel"
+      ]
+    },
+    "linux": {
+      "category": "Sockets",
+      "target": [
+        "AppImage",
+        "deb"
+      ]
     },
     "dmg": {
       "contents": [
@@ -47,13 +79,6 @@
           "type": "link",
           "path": "/Applications"
         }
-      ]
-    },
-    "linux": {
-      "category": "Sockets",
-      "target": [
-        "AppImage",
-        "deb"
       ]
     }
   },
@@ -78,7 +103,6 @@
     "codemirror": "^5.49.2",
     "date-fns": "^2.7.0",
     "dotenv": "^8.2.0",
-    "electron": "~6.1.2",
     "electron-is-dev": "^1.1.0",
     "electron-log": "^3.0.9",
     "electron-updater": "^4.2.0",
@@ -109,6 +133,7 @@
     "@types/sockjs-client": "^1.1.1",
     "@types/uuid": "^3.4.6",
     "codelyzer": "^5.0.0",
+    "electron": "~6.1.2",
     "electron-builder": "^21.2.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",

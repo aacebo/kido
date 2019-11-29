@@ -29,6 +29,18 @@ export class AppComponent implements OnInit {
       this.systemService.add(system);
     });
 
+    this._electronService.on('update--checking-for-update', () => {
+      console.log('update--checking-for-update');
+    });
+
+    this._electronService.on('update--update-available', () => {
+      console.log('update--update-available');
+    });
+
+    this._electronService.on('update--update-not-available', () => {
+      console.log('update--update-not-available');
+    });
+
     this.streamService.get();
   }
 
