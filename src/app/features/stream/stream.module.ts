@@ -11,7 +11,6 @@ import { ButtonModule } from '../../ui/button';
 import { CheckboxModule } from '../../ui/checkbox';
 import { DropdownModule } from '../../ui/dropdown';
 import { ElapseTimeModule } from '../../ui/elapse-time';
-import { FullscreenModule } from '../../ui/fullscreen';
 import { InputModule } from '../../ui/input';
 import { JsonEditorModule } from '../../ui/json-editor';
 import { JsonViewerModule } from '../../ui/json-viewer';
@@ -53,7 +52,6 @@ const declarations = [
     JsonViewerModule,
     MessengerModule,
     CheckboxModule,
-    FullscreenModule,
     ElapseTimeModule,
   ],
 })

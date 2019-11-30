@@ -42,7 +42,7 @@
     ],
     "publish": {
       "provider": "github",
-      "private": true,
+      "private": false,
       "owner": "Alexander Acebo",
       "vPrefixedTagName": true,
       "host": "github.com",

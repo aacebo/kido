@@ -111,16 +111,14 @@ export class StreamDetailComponent implements OnInit {
     this._toastr.info('Copied to Clipboard!');
   }
 
-  onMessageSelected(e: IMessage) {
-    this.message = e;
-    this.messageContent = { root: e.json ? JSON.parse(e.content) : e.content };
-  }
-
   onMessageAction(e: { message: IMessage; action: MessageAction }) {
     if (e.action === MessageAction.Delete) {
       this.deleteMessage.emit(e.message);
     } else if (e.action === MessageAction.Copy) {
       this.onPropertyValueClicked(e.message.content);
+    } else if (e.action === MessageAction.OpenSide) {
+      this.message = e.message;
+      this.messageContent = { root: e.message.json ? JSON.parse(e.message.content) : e.message.content };
     }
   }
 

@@ -92,7 +92,6 @@
             <kido-messenger
               [messages]="messages[stream?._id]"
               [active]="message?._id"
-              (selected)="onMessageSelected($event)"
               (action)="onMessageAction($event)"
             ></kido-messenger>
 
@@ -124,7 +123,6 @@
 
           <div
             *ngIf="message"
-            kidoFullscreen
             class="stream-detail--json"
             [style.flex]="message ? '1 1 50%' : '1 1 auto'"
           >

@@ -1,7 +1,4 @@
-<div
-  class="kido-message--bubble"
-  (click)="onClick()"
->
+<div class="kido-message--bubble">
   <div class="kido-message--bubble-event ellipsis">
     {{ message.event }}
   </div>
@@ -21,6 +18,26 @@
   </div>
 
   <div class="kido-message--bubble-actions btn-group btn-group-sm">
+    <button
+      kido-button
+      color="secondary"
+      ngbTooltip="Open To Side"
+      container="body"
+      (click)="onAction($event, MessageAction.OpenSide)"
+    >
+      <span class="fas fa-columns"></span>
+    </button>
+
+    <button
+      kido-button
+      color="secondary"
+      ngbTooltip="Open In New Window"
+      container="body"
+      (click)="onAction($event, MessageAction.Open)"
+    >
+      <span class="fas fa-external-link-alt"></span>
+    </button>
+
     <button
       kido-button
       color="secondary"

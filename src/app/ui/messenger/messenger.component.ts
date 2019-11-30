@@ -42,7 +42,6 @@ export class MessengerComponent implements AfterViewInit {
   }
   private _itemSize = 90;
 
-  @Output() selected = new EventEmitter<IMessage>();
   @Output() action = new EventEmitter<{ message: IMessage; action: MessageAction }>();
 
   @ViewChild(CdkVirtualScrollViewport, { static: false })
@@ -71,10 +70,6 @@ export class MessengerComponent implements AfterViewInit {
       this.virtualScrollViewport.checkViewportSize();
       this._scrollToBottom();
     }, 200);
-  }
-
-  onClick(e: IMessage) {
-    this.selected.emit(e);
   }
 
   onAction(e: MessageAction, message: IMessage) {

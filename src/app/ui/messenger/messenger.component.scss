@@ -14,8 +14,6 @@
 
   kido-message {
     .kido-message--bubble {
-      cursor: pointer;
-
       &:hover {
         filter: brightness(110%);
       }
