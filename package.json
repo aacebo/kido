@@ -23,9 +23,9 @@
   "scripts": {
     "postinstall": "install-app-deps",
     "ng": "ng",
-    "start": "rimraf dist && ng build --base-href ./ && electron .",
-    "build": "rimraf dist && ng build --base-href ./",
-    "build:prod": "rimraf dist && ng build --prod --base-href ./",
+    "start": "rimraf dist && ng build && electron .",
+    "build": "rimraf dist && ng build",
+    "build:prod": "rimraf dist && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

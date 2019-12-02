@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
+import { ElectronService } from '../../core/services';
 import { IMessage, MessageService, MessageType } from '../../resources/message';
 import { IStream, StreamService } from '../../resources/stream';
 
@@ -13,6 +14,7 @@ export class StreamComponent {
   constructor(
     readonly streamService: StreamService,
     readonly messageService: MessageService,
+    private readonly _electronService: ElectronService,
   ) { }
 
   onUpdate(e: Partial<IStream>) {
@@ -34,5 +36,16 @@ export class StreamComponent {
 
   onDeleteMessage(e: IMessage) {
     this.messageService.remove(e.streamId, e._id);
+  }
+
+  onSelectMessage(e?: IMessage) {
+    this.messageService.setActive(e ? e._id : undefined);
+  }
+
+  onOpenMessage(e: IMessage) {
+    this._electronService.send('open', {
+      title: 'Message',
+      path: `/message/${e._id}`,
+    });
   }
 }

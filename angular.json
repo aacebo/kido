@@ -46,7 +46,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/index.js"
+              "src/index.js",
+              "src/electron"
             ],
             "styles": [
               "src/styles.scss",

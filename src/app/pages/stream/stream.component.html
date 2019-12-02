@@ -1,5 +1,6 @@
 <kido-stream-detail
   *ngIf="streamService.active$ | async; let stream"
+  [activeMessage]="messageService.active$ | async"
   [stream]="stream"
   [messages]="messageService.messages$ | async"
   [connected]="streamService.activeConnected$ | async"
@@ -9,4 +10,6 @@
   (disconnect)="onDisconnect(stream)"
   (send)="onSend($event, stream)"
   (deleteMessage)="onDeleteMessage($event)"
+  (selectMessage)="onSelectMessage($event)"
+  (openMessage)="onOpenMessage($event)"
 ></kido-stream-detail>

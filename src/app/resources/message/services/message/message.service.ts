@@ -3,8 +3,8 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as actions from '../../actions';
-import { MessageType } from '../../enums';
 import * as selectors from '../../message.selectors';
+import { MessageType } from '../../enums';
 import { IMessageState } from '../../message.state';
 import { IMessage } from '../../models';
 
@@ -13,10 +13,14 @@ import { IMessage } from '../../models';
 })
 export class MessageService {
   readonly state$: Observable<IMessageState>;
+  readonly activeId$: Observable<string | undefined>;
+  readonly active$: Observable<IMessage | undefined>;
   readonly messages$: Observable<{ [streamId: string]: IMessage[] }>;
 
   constructor(private readonly _store$: Store<IMessageState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
+    this.activeId$ = this._store$.pipe(select(selectors.selectActiveId));
+    this.active$ = this._store$.pipe(select(selectors.selectActive));
     this.messages$ = this._store$.pipe(select(selectors.selectMessages));
   }
 
@@ -42,5 +46,9 @@ export class MessageService {
 
   save(streamId: string) {
     this._store$.dispatch(actions.save({ streamId }));
+  }
+
+  setActive(messageId?: string) {
+    this._store$.dispatch(actions.setActive({ messageId }));
   }
 }

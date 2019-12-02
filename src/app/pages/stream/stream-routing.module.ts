@@ -5,11 +5,6 @@ import { StreamComponent } from './stream.component';
 import { StreamResolver } from './stream.resolver';
 
 const routes: Routes = [
-  // {
-  //   path: ':id',
-  //   component: StreamComponent,
-  //   resolve: { stream: StreamResolver },
-  // },
   {
     path: '',
     component: StreamComponent,

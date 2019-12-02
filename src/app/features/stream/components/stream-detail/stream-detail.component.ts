@@ -22,6 +22,7 @@ export class StreamDetailComponent implements OnInit {
   @Input() messages: { [streamId: string]: IMessage[] } = { };
   @Input() connected?: Date;
   @Input() connecting?: boolean;
+
   @Input()
   get stream() { return this._stream; }
   set stream(v: IStream) {
@@ -33,15 +34,29 @@ export class StreamDetailComponent implements OnInit {
   }
   private _stream: IStream;
 
+  @Input()
+  get activeMessage() { return this._activeMessage; }
+  set activeMessage(v: IMessage) {
+    if (v !== this._activeMessage) {
+      this.activeMessageJSON = v ? {
+        root: v.json ? JSON.parse(v.content) : v.content,
+      } : undefined;
+    }
+
+    this._activeMessage = v;
+  }
+  private _activeMessage?: IMessage;
+
   @Output() update = new EventEmitter<Partial<IStream>>();
   @Output() connect = new EventEmitter<void>();
   @Output() disconnect = new EventEmitter<void>();
   @Output() send = new EventEmitter<string>();
   @Output() deleteMessage = new EventEmitter<IMessage>();
+  @Output() selectMessage = new EventEmitter<IMessage | undefined>();
+  @Output() openMessage = new EventEmitter<IMessage>();
 
   form: FormGroup;
-  message?: IMessage;
-  messageContent?: any;
+  activeMessageJSON?: any;
   json = true;
 
   readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
@@ -117,13 +132,13 @@ export class StreamDetailComponent implements OnInit {
     } else if (e.action === MessageAction.Copy) {
       this.onPropertyValueClicked(e.message.content);
     } else if (e.action === MessageAction.OpenSide) {
-      this.message = e.message;
-      this.messageContent = { root: e.message.json ? JSON.parse(e.message.content) : e.message.content };
+      this.selectMessage.emit(e.message);
+    } else if (e.action === MessageAction.Open) {
+      this.openMessage.emit(e.message);
     }
   }
 
   onClearMessage() {
-    this.message = undefined;
-    this.messageContent = undefined;
+    this.selectMessage.emit();
   }
 }

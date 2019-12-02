@@ -87,11 +87,11 @@
         <div class="stream-detail--form-content">
           <div
             class="stream-detail--messenger"
-            [style.flex]="message ? '1 1 50%' : '1 1 auto'"
+            [style.flex]="activeMessage ? '1 1 50%' : '1 1 auto'"
           >
             <kido-messenger
               [messages]="messages[stream?._id]"
-              [active]="message?._id"
+              [active]="activeMessage?._id"
               (action)="onMessageAction($event)"
             ></kido-messenger>
 
@@ -122,12 +122,12 @@
           </div>
 
           <div
-            *ngIf="message"
+            *ngIf="activeMessage"
             class="stream-detail--json"
-            [style.flex]="message ? '1 1 50%' : '1 1 auto'"
+            [style.flex]="activeMessage ? '1 1 50%' : '1 1 auto'"
           >
             <kido-json-viewer
-              [json]="messageContent"
+              [json]="activeMessageJSON"
               [raw]="!json"
               (propertyValueClicked)="onPropertyValueClicked($event)"
             ></kido-json-viewer>
