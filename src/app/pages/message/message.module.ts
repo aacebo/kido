@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { JsonViewerModule } from '../../ui/json-viewer';
+
 import { MessageComponent } from './message.component';
 import { MessageRoutingModule } from './message-routing.module';
 
@@ -9,6 +11,7 @@ import { MessageRoutingModule } from './message-routing.module';
   imports: [
     CommonModule,
     MessageRoutingModule,
+    JsonViewerModule,
   ],
 })
 export class MessageModule { }

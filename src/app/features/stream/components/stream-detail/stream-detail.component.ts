@@ -19,6 +19,8 @@ import { STREAM_TYPE_LABELS } from '../../constants';
   encapsulation: ViewEncapsulation.None,
 })
 export class StreamDetailComponent implements OnInit {
+  @Input() activeMessage?: IMessage;
+  @Input() activeMessageContent?: any;
   @Input() messages: { [streamId: string]: IMessage[] } = { };
   @Input() connected?: Date;
   @Input() connecting?: boolean;
@@ -33,19 +35,6 @@ export class StreamDetailComponent implements OnInit {
     }
   }
   private _stream: IStream;
-
-  @Input()
-  get activeMessage() { return this._activeMessage; }
-  set activeMessage(v: IMessage) {
-    if (v !== this._activeMessage) {
-      this.activeMessageJSON = v ? {
-        root: v.json ? JSON.parse(v.content) : v.content,
-      } : undefined;
-    }
-
-    this._activeMessage = v;
-  }
-  private _activeMessage?: IMessage;
 
   @Output() update = new EventEmitter<Partial<IStream>>();
   @Output() connect = new EventEmitter<void>();

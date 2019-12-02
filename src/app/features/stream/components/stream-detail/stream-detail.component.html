@@ -127,7 +127,7 @@
             [style.flex]="activeMessage ? '1 1 50%' : '1 1 auto'"
           >
             <kido-json-viewer
-              [json]="activeMessageJSON"
+              [json]="activeMessageContent"
               [raw]="!json"
               (propertyValueClicked)="onPropertyValueClicked($event)"
             ></kido-json-viewer>

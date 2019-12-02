@@ -1,1 +1,6 @@
-<p>message works!</p>
+<kido-json-viewer
+  expanded
+  deep
+  [json]="messageService.activeContent$ | async"
+  (propertyValueClicked)="onPropertyValueClicked($event)"
+></kido-json-viewer>
