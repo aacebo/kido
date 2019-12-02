@@ -97,6 +97,7 @@
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@ng-bootstrap/ng-bootstrap": "^5.1.2",
     "@ngrx/effects": "^8.4.0",
+    "@ngrx/router-store": "^8.5.2",
     "@ngrx/store": "^8.4.0",
     "@ngrx/store-devtools": "^8.4.0",
     "bootstrap": "^4.3.1",

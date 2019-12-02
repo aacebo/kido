@@ -6,6 +6,7 @@ import { StreamModalService } from './features/stream';
 import { MessageService } from './resources/message';
 import { IStream, StreamService } from './resources/stream';
 import { ISystem, SystemService } from './resources/system';
+import { RouterService } from './resources/router';
 
 @Component({
   selector: 'kido-root',
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
   constructor(
     readonly systemService: SystemService,
     readonly streamService: StreamService,
+    readonly routerService: RouterService,
     private readonly _messageService: MessageService,
     private readonly _streamModalService: StreamModalService,
     private readonly _electronService: ElectronService,

@@ -4,10 +4,11 @@
   [active]="streamService.activeId$ | async"
   [streams]="streamService.entities$ | async"
   [connected]="streamService.connected$ | async"
-  [open]="menu$ | async"
+  [open]="(menu$ | async) && !(routerService.dialog$ | async)"
   (selected)="onSelected($event)"
 >
   <kido-toolbar
+    *ngIf="!(routerService.dialog$ | async)"
     [class.mac]="systemService.isMac$ | async"
     [stream]="streamService.active$ | async"
     (add)="onAdd($event)"
@@ -18,4 +19,6 @@
 
   <router-outlet></router-outlet>
 </kido-sidebar>
-<kido-actionbar></kido-actionbar>
+<kido-actionbar
+  *ngIf="!(routerService.dialog$ | async)"
+></kido-actionbar>
