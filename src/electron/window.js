@@ -44,6 +44,8 @@ module.exports = function window(options, uri) {
     win.webContents.send('system', {
       pid: process.pid,
       platform: process.platform,
+      version: electron.app.getVersion(),
+      build: dev ? 'development' : 'production',
     });
   });
 
