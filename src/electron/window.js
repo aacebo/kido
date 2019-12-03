@@ -4,7 +4,7 @@ const dev = require('electron-is-dev');
 const url = require('url');
 
 function icon() {
-  return process.platform === 'linux' ? 'png/64x64.png' : 'icns/64x64.icns';
+  return process.platform === 'linux' ? 'png/512x512.png' : 'icns/512x512.icns';
 }
 
 const DEFAULT_OPTIONS = {
@@ -13,7 +13,7 @@ const DEFAULT_OPTIONS = {
   show: false,
   frame: process.platform === 'darwin' ? false : true,
   titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'default',
-  icon: path.join(__dirname, 'assets/logo', icon()),
+  icon: path.join(__dirname, '../assets/logo', icon()),
   backgroundColor: '#424242',
   webPreferences: {
     nodeIntegration: true,

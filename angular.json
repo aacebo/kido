@@ -44,6 +44,8 @@
             "tsConfig": "tsconfig.app.json",
             "aot": false,
             "assets": [
+              "src/dev.env",
+              "src/prod.env",
               "src/favicon.ico",
               "src/assets",
               "src/index.js",

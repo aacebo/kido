@@ -1,4 +1,5 @@
 const electron = require('electron');
+const dev = require('electron-is-dev');
 const dotenv = require('dotenv');
 
 const update = require('./electron/update');
@@ -6,7 +7,10 @@ const extensions = require('./electron/extensions');
 const window = require('./electron/window');
 const menu = require('./electron/menu');
 
-dotenv.config();
+dotenv.config({
+  debug: dev,
+  path: `${__dirname}/${dev ? 'dev' : 'prod'}.env`,
+});
 
 let mainWindow;
 

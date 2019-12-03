@@ -24,11 +24,11 @@
     "postinstall": "install-app-deps",
     "ng": "ng",
     "start": "rimraf dist && ng build && electron .",
-    "build": "rimraf dist && ng build",
-    "build:prod": "rimraf dist && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "build": "rimraf dist && ng build",
+    "build:prod": "rimraf dist && ng build --prod",
     "pkg": "rimraf pkg && npm run build:prod && electron-builder",
     "pkg:win": "rimraf pkg && npm run build:prod && electron-builder --win",
     "pkg:mac": "rimraf pkg && npm run build:prod && electron-builder --mac",
@@ -40,28 +40,21 @@
     "files": [
       "dist"
     ],
-    "publish": {
+    "publish": [{
       "provider": "github",
-      "private": false,
-      "owner": "Alexander Acebo",
-      "vPrefixedTagName": true,
-      "host": "github.com",
-      "protocol": "https"
-    },
+      "owner": "aacebo"
+    }],
     "directories": {
-      "output": "pkg"
+      "output": "pkg",
+      "buildResources": "dist/assets"
     },
     "mac": {
+      "icon": "logo/png/512x512.png",
       "category": "public.sockets"
     },
-    "win": {
-      "icon": "icons/icon.ico",
-      "target": [
-        "squirrel"
-      ]
-    },
     "linux": {
-      "category": "Sockets",
+      "icon": "assets/logo/png/512x512.png",
+      "category": "development.debugger",
       "target": [
         "AppImage",
         "deb"

@@ -26,6 +26,7 @@ module.exports = async function update() {
     mainWindow.webContents.send('update--update-downloaded', args);
   });
 
-  const res = await updater.autoUpdater.checkForUpdatesAndNotify();
-  console.log(res);
+  if (!dev) {
+    await updater.autoUpdater.checkForUpdatesAndNotify();
+  }
 }

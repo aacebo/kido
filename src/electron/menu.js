@@ -6,9 +6,15 @@ module.exports = function menu(mainWindow) {
     {
       label: 'File',
       submenu: [
-        { label: 'About', click: () => about(mainWindow) },
+        { label: 'About Kido', click: () => about(mainWindow) },
         { type: 'separator' },
         { label: 'Exit', click: () => app.quit() },
+      ],
+    },
+    {
+      label: 'View',
+      submenu: [
+        { label: 'Toggle Developer Tools', click: () => mainWindow.webContents.openDevTools() }
       ],
     },
   ]));
