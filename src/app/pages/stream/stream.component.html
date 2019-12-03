@@ -1,16 +1,36 @@
-<kido-stream-detail
-  *ngIf="streamService.active$ | async; let stream"
-  [activeMessage]="messageService.active$ | async"
-  [activeMessageContent]="messageService.activeContent$ | async"
-  [stream]="stream"
-  [messages]="messageService.messages$ | async"
-  [connected]="streamService.activeConnected$ | async"
-  [connecting]="streamService.activeConnecting$ | async"
-  (update)="onUpdate($event)"
-  (connect)="onConnect(stream)"
-  (disconnect)="onDisconnect(stream)"
-  (send)="onSend($event, stream)"
-  (deleteMessage)="onDeleteMessage($event)"
-  (selectMessage)="onSelectMessage($event)"
-  (openMessage)="onOpenMessage($event)"
-></kido-stream-detail>
+<kido-sidebar
+  [class.mac]="systemService.isMac$ | async"
+  [active]="streamService.activeId$ | async"
+  [streams]="streamService.entities$ | async"
+  [connected]="streamService.connected$ | async"
+  [open]="menu$ | async"
+  (selected)="onSelected($event)"
+>
+  <kido-toolbar
+    [class.mac]="systemService.isMac$ | async"
+    [stream]="streamService.active$ | async"
+    (add)="onAdd($event)"
+    (menu)="onMenu()"
+    (remove)="onRemove($event)"
+    (clear)="onClear($event)"
+  ></kido-toolbar>
+
+  <kido-stream-detail
+    *ngIf="streamService.active$ | async; let stream"
+    [activeMessage]="messageService.active$ | async"
+    [activeMessageContent]="messageService.activeContent$ | async"
+    [stream]="stream"
+    [messages]="messageService.messages$ | async"
+    [connected]="streamService.activeConnected$ | async"
+    [connecting]="streamService.activeConnecting$ | async"
+    (update)="onUpdate($event)"
+    (connect)="onConnect(stream)"
+    (disconnect)="onDisconnect(stream)"
+    (send)="onSend($event, stream)"
+    (deleteMessage)="onDeleteMessage($event)"
+    (selectMessage)="onSelectMessage($event)"
+    (openMessage)="onOpenMessage($event)"
+  ></kido-stream-detail>
+</kido-sidebar>
+
+<kido-actionbar></kido-actionbar>

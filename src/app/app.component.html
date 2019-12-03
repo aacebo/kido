@@ -1,24 +1,2 @@
 <kido-titlebar *ngIf="systemService.isMac$ | async"></kido-titlebar>
-<kido-sidebar
-  [class.mac]="systemService.isMac$ | async"
-  [active]="streamService.activeId$ | async"
-  [streams]="streamService.entities$ | async"
-  [connected]="streamService.connected$ | async"
-  [open]="(menu$ | async) && !(routerService.dialog$ | async)"
-  (selected)="onSelected($event)"
->
-  <kido-toolbar
-    *ngIf="!(routerService.dialog$ | async)"
-    [class.mac]="systemService.isMac$ | async"
-    [stream]="streamService.active$ | async"
-    (add)="onAdd($event)"
-    (menu)="onMenu()"
-    (remove)="onRemove($event)"
-    (clear)="onClear($event)"
-  ></kido-toolbar>
-
-  <router-outlet></router-outlet>
-</kido-sidebar>
-<kido-actionbar
-  *ngIf="!(routerService.dialog$ | async)"
-></kido-actionbar>
+<router-outlet></router-outlet>

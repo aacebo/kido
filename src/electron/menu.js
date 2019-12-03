@@ -4,7 +4,7 @@ const about = require('./about');
 module.exports = function menu(mainWindow) {
   Menu.setApplicationMenu(Menu.buildFromTemplate([
     {
-      label: 'Menu',
+      label: 'File',
       submenu: [
         { label: 'About', click: () => about(mainWindow) },
         { type: 'separator' },

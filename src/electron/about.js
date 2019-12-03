@@ -8,6 +8,7 @@ module.exports = function about(parent) {
     fullscreenable: false,
     minimizable: false,
     maximizable: false,
+    modal: true,
     parent,
   }, '/about');
 }

@@ -1,8 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { RouterReducerState } from '@ngrx/router-store';
 
-import { DIALOG_ROUTES } from './constants';
-
 export const selectState = createFeatureSelector<RouterReducerState>('router');
 export const selectRouterState = createSelector(selectState, state => state ? state.state : undefined);
 export const selectNavigationId = createSelector(selectState, state => state ? state.navigationId : undefined);
@@ -17,8 +15,4 @@ export const selectActivatedRoute = createSelector(selectRouterState, state => {
 
     return route;
   }
-});
-
-export const selectDialog = createSelector(selectRouterState, state => {
-  return state ? DIALOG_ROUTES.includes(state.root.firstChild.routeConfig.path) : false;
 });

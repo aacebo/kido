@@ -1,8 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 import { ElectronService } from '../../core/services';
+import { StreamModalService } from '../../features/stream';
+
 import { IMessage, MessageService, MessageType } from '../../resources/message';
 import { IStream, StreamService } from '../../resources/stream';
+import { SystemService } from '../../resources/system';
 
 @Component({
   selector: 'kido-stream',
@@ -11,10 +15,14 @@ import { IStream, StreamService } from '../../resources/stream';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StreamComponent implements OnInit {
+  readonly menu$ = new BehaviorSubject(true);
+
   constructor(
+    readonly systemService: SystemService,
     readonly streamService: StreamService,
     readonly messageService: MessageService,
     private readonly _electronService: ElectronService,
+    private readonly _streamModalService: StreamModalService,
   ) { }
 
   ngOnInit() {
@@ -50,5 +58,36 @@ export class StreamComponent implements OnInit {
     this._electronService.send('open', {
       path: `/message/${e._id}`,
     });
+  }
+
+  onAdd(e: IStream) {
+    this._streamModalService.open(e, (v?: Partial<IStream>) => {
+      if (v) {
+        if (e) {
+          this.streamService.update({
+            ...e,
+            ...v,
+          });
+        } else {
+          this.streamService.add(v.type, v.name, v.url, v.description);
+        }
+      }
+    });
+  }
+
+  onRemove(e: IStream) {
+    this.streamService.remove(e._id, e._rev);
+  }
+
+  onClear(e: IStream) {
+    this.messageService.removeAll(e._id);
+  }
+
+  onMenu() {
+    this.menu$.next(!this.menu$.value);
+  }
+
+  onSelected(e: IStream) {
+    this.streamService.setActive(e._id);
   }
 }

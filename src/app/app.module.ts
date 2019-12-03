@@ -16,11 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ResourcesModule } from './resources';
 
-import { ActionbarModule } from './features/actionbar';
-import { SidebarModule } from './features/sidebar';
 import { StreamModule } from './features/stream';
 import { TitlebarModule } from './features/titlebar';
-import { ToolbarModule } from './features/toolbar';
 
 PouchDB.plugin(PouchDBFind);
 
@@ -47,9 +44,6 @@ PouchDB.plugin(PouchDBFind);
 
     ResourcesModule,
     TitlebarModule,
-    ActionbarModule,
-    SidebarModule,
-    ToolbarModule,
     StreamModule,
   ],
 })
