@@ -42,8 +42,6 @@ export class AppComponent implements OnInit {
     this._electronService.on('update--update-not-available', () => {
       console.log('update--update-not-available');
     });
-
-    this.streamService.get();
   }
 
   onAdd(e: IStream) {

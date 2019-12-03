@@ -12,7 +12,7 @@ import {
   name: 'kidoElapseTime',
 })
 export class ElapseTimePipe implements PipeTransform {
-  transform(v: number) {
+  transform(v: number | Date) {
     const now = new Date();
     const date = new Date(v);
 

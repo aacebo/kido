@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { ElectronService } from '../../core/services';
 import { IMessage, MessageService, MessageType } from '../../resources/message';
@@ -10,12 +10,16 @@ import { IStream, StreamService } from '../../resources/stream';
   styleUrls: ['./stream.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StreamComponent {
+export class StreamComponent implements OnInit {
   constructor(
     readonly streamService: StreamService,
     readonly messageService: MessageService,
     private readonly _electronService: ElectronService,
   ) { }
+
+  ngOnInit() {
+    this.streamService.get();
+  }
 
   onUpdate(e: Partial<IStream>) {
     this.streamService.update(e);

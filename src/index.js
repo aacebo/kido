@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const update = require('./electron/update');
 const extensions = require('./electron/extensions');
 const window = require('./electron/window');
+const menu = require('./electron/menu');
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ let mainWindow;
 function createWindow() {
   extensions();
   update();
+  menu();
 
   mainWindow = window({
     width: 900,

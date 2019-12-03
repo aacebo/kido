@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 import { MessageService } from '../../resources/message';
+import { StreamService } from '../../resources/stream';
 
 @Component({
   selector: 'kido-message',
@@ -9,11 +10,16 @@ import { MessageService } from '../../resources/message';
   styleUrls: ['./message.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MessageComponent {
+export class MessageComponent implements OnInit {
   constructor(
     readonly messageService: MessageService,
+    private readonly _streamService: StreamService,
     private readonly _toastr: ToastrService,
   ) { }
+
+  ngOnInit() {
+    this._streamService.get();
+  }
 
   onPropertyValueClicked(e: string) {
     window.navigator.clipboard.writeText(e);

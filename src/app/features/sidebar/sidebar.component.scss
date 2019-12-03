@@ -8,7 +8,8 @@
   background-color: var(--bg-darkest);
 
   &.mac {
-    .kido-sidebar {
+    .kido-sidebar,
+    .kido-sidebar--content {
       padding-top: $titlebar-height;
     }
   }
