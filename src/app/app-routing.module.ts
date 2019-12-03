@@ -11,12 +11,16 @@ const routes: Routes = [
     path: 'message',
     loadChildren: () => import('./pages/message/message.module').then(m => m.MessageModule),
   },
+  {
+    path: 'about',
+    loadChildren: () => import('./pages/about/about.module').then(m => m.AboutModule),
+  },
 ];
 
 @NgModule({
+  exports: [RouterModule],
   imports: [
     RouterModule.forRoot(routes, { useHash: true }),
   ],
-  exports: [RouterModule],
 })
 export class AppRoutingModule { }

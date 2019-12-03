@@ -13,7 +13,6 @@ let mainWindow;
 function createWindow() {
   extensions();
   update();
-  menu();
 
   mainWindow = window({
     width: 900,
@@ -23,9 +22,10 @@ function createWindow() {
     title: 'Kido',
   });
 
+  menu(mainWindow);
+
   electron.ipcMain.on('open', (_, args) => {
     window({
-      title: `Kido - ${args.title}`,
       parent: mainWindow,
       modal: args.modal,
     }, args.path);

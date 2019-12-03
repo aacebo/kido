@@ -48,7 +48,6 @@ export class StreamComponent implements OnInit {
 
   onOpenMessage(e: IMessage) {
     this._electronService.send('open', {
-      title: 'Message',
       path: `/message/${e._id}`,
     });
   }
