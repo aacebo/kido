@@ -29,21 +29,24 @@
     "e2e": "ng e2e",
     "build": "rimraf dist && ng build",
     "build:prod": "rimraf dist && ng build --prod",
+    "publish": "rimraf pkg && npm run build:prod && electron-builder --publish always",
     "pkg": "rimraf pkg && npm run build:prod && electron-builder",
     "pkg:win": "rimraf pkg && npm run build:prod && electron-builder --win",
     "pkg:mac": "rimraf pkg && npm run build:prod && electron-builder --mac",
     "pkg:linux": "rimraf pkg && npm run build:prod && electron-builder --linux"
   },
   "build": {
-    "appId": "org.kido",
+    "appId": "Kido",
     "productName": "Kido",
     "files": [
       "dist"
     ],
-    "publish": [{
-      "provider": "github",
-      "owner": "aacebo"
-    }],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "aacebo"
+      }
+    ],
     "directories": {
       "output": "pkg",
       "buildResources": "dist/assets"

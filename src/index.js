@@ -9,7 +9,7 @@ const menu = require('./electron/menu');
 
 dotenv.config({
   debug: dev,
-  path: `${__dirname}/${dev ? 'dev' : 'prod'}.env`,
+  path: `${__dirname}/.env`,
 });
 
 let mainWindow;
@@ -23,10 +23,10 @@ function createWindow() {
     minWidth: 600,
     minHeight: 600,
     title: 'Kido',
+  }, undefined, () => {
+    menu(mainWindow);
+    update(mainWindow);
   });
-
-  menu(mainWindow);
-  update(mainWindow);
 
   electron.ipcMain.on('open', (_, args) => {
     window({

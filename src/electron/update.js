@@ -6,6 +6,14 @@ module.exports = async function update(mainWindow) {
   log.transports.file.level = dev ? 'debug' : 'info';
   updater.autoUpdater.logger = log;
 
+  updater.autoUpdater.setFeedURL({
+    provider: 'github',
+    repo: 'kido',
+    owner: 'aacebo',
+    private: true,
+    token: process.env.GH_TOKEN,
+  });
+
   updater.autoUpdater.on('checking-for-update', () => {
     mainWindow.webContents.send('update--checking-for-update');
   });
@@ -26,11 +34,5 @@ module.exports = async function update(mainWindow) {
     mainWindow.webContents.send('update--update-downloaded', args);
   });
 
-  mainWindow.webContents.send('log', 'hit');
-
-  if (!dev) {
-    mainWindow.webContents.send('log', 'updating...');
-    const res = await updater.autoUpdater.checkForUpdates();
-    mainWindow.webContents.send('log', res);
-  }
+  await updater.autoUpdater.checkForUpdates();
 }

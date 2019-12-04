@@ -21,7 +21,7 @@ const DEFAULT_OPTIONS = {
   },
 };
 
-module.exports = function window(options, uri) {
+module.exports = function window(options, uri, onReady) {
   const win = new electron.BrowserWindow({
     ...DEFAULT_OPTIONS,
     ...options,
@@ -47,6 +47,10 @@ module.exports = function window(options, uri) {
       version: electron.app.getVersion(),
       build: dev ? 'development' : 'production',
     });
+
+    if (onReady) {
+      onReady();
+    }
   });
 
   return win;
