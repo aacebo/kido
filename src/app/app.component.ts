@@ -4,6 +4,7 @@ import { ElectronService } from './core/services';
 import { ISystem, SystemService } from './resources/system';
 import { LogService } from './resources/log';
 import { UpdateService } from './resources/update';
+import { RouterService } from './resources/router';
 
 @Component({
   selector: 'kido-root',
@@ -14,6 +15,7 @@ import { UpdateService } from './resources/update';
 export class AppComponent implements OnInit {
   constructor(
     readonly systemService: SystemService,
+    readonly routerService: RouterService,
     private readonly _electronService: ElectronService,
     private readonly _logService: LogService,
     private readonly _updateService: UpdateService,

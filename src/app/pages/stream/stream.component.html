@@ -33,4 +33,6 @@
   ></kido-stream-detail>
 </kido-sidebar>
 
-<kido-actionbar></kido-actionbar>
+<kido-actionbar
+  [availableUpdate]="updateService.available$ | async"
+></kido-actionbar>

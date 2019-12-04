@@ -1,2 +1,5 @@
-<kido-titlebar *ngIf="systemService.isMac$ | async"></kido-titlebar>
+<kido-titlebar
+  *ngIf="systemService.isMac$ | async"
+  [style.position]="(routerService.isModal$ | async) ? 'relative' : 'fixed'"
+></kido-titlebar>
 <router-outlet></router-outlet>

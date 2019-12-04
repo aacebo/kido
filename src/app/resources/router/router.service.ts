@@ -14,11 +14,13 @@ export class RouterService {
   readonly routerState$: Observable<SerializedRouterStateSnapshot | undefined>;
   readonly navigationId$: Observable<number | undefined>;
   readonly activatedRoute$: Observable<ActivatedRouteSnapshot | undefined>;
+  readonly isModal$: Observable<boolean>;
 
   constructor(private readonly _store$: Store<RouterReducerState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
     this.routerState$ = this._store$.pipe(select(selectors.selectRouterState));
     this.navigationId$ = this._store$.pipe(select(selectors.selectNavigationId));
     this.activatedRoute$ = this._store$.pipe(select(selectors.selectActivatedRoute));
+    this.isModal$ = this._store$.pipe(select(selectors.selectIsModal));
   }
 }

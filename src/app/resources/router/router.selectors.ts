@@ -16,3 +16,11 @@ export const selectActivatedRoute = createSelector(selectRouterState, state => {
     return route;
   }
 });
+
+export const selectIsModal = createSelector(selectRouterState, state => {
+  if (state) {
+    return state.root.firstChild.routeConfig.path !== 'stream';
+  }
+
+  return false;
+});

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'kido-actionbar',
@@ -6,4 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./actionbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ActionbarComponent { }
+export class ActionbarComponent {
+  @Input() availableUpdate?: boolean;
+}

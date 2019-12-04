@@ -6,4 +6,8 @@
   border-top: 1px solid var(--hairline-soft);
   background-color: var(--bg-darker);
   color: var(--text-muted);
+
+  .fas, .far {
+    margin: 0 5px;
+  }
 }
