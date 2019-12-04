@@ -31,6 +31,7 @@
     "build:prod": "rimraf dist && ng build --prod",
     "publish": "rimraf pkg && npm run build:prod && electron-builder --publish always",
     "pkg": "rimraf pkg && npm run build:prod && electron-builder",
+    "pkg:all": "rimraf pkg && npm run build:prod && electron-builder -mwl",
     "pkg:win": "rimraf pkg && npm run build:prod && electron-builder --win",
     "pkg:mac": "rimraf pkg && npm run build:prod && electron-builder --mac",
     "pkg:linux": "rimraf pkg && npm run build:prod && electron-builder --linux"
@@ -56,7 +57,7 @@
       "category": "public.sockets"
     },
     "linux": {
-      "icon": "assets/logo/png/512x512.png",
+      "icon": "logo/png/512x512.png",
       "category": "development.debugger",
       "target": [
         "AppImage",

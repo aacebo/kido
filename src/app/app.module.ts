@@ -12,12 +12,14 @@ import PouchDB from 'pouchdb';
 import PouchDBFind from 'pouchdb-find';
 
 import { environment } from '../environments/environment';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { ResourcesModule } from './resources';
+import { CoreModule } from './core';
 
 import { StreamModule } from './features/stream';
 import { TitlebarModule } from './features/titlebar';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 PouchDB.plugin(PouchDBFind);
 
@@ -41,8 +43,9 @@ PouchDB.plugin(PouchDBFind);
       timeOut: 3000,
     }),
     AppRoutingModule,
-
     ResourcesModule,
+    CoreModule,
+
     TitlebarModule,
     StreamModule,
   ],
