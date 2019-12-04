@@ -7,7 +7,6 @@ import { StreamModalService } from '../../features/stream';
 import { IMessage, MessageService, MessageType } from '../../resources/message';
 import { IStream, StreamService } from '../../resources/stream';
 import { SystemService } from '../../resources/system';
-import { UpdateService } from '../../resources/update';
 
 @Component({
   selector: 'kido-stream',
@@ -22,7 +21,6 @@ export class StreamComponent implements OnInit {
     readonly systemService: SystemService,
     readonly streamService: StreamService,
     readonly messageService: MessageService,
-    readonly updateService: UpdateService,
     private readonly _electronService: ElectronService,
     private readonly _streamModalService: StreamModalService,
   ) { }

@@ -1,13 +1,9 @@
-const window = require('./window');
+const { dialog, app } = require('electron');
+const dev = require('electron-is-dev');
 
 module.exports = function about(parent) {
-  window({
-    width: 300,
-    height: 220,
-    resizable: false,
-    fullscreenable: false,
-    minimizable: false,
-    maximizable: false,
-    parent,
-  }, '/about');
+  dialog.showMessageBox(parent, {
+    message: 'About Kido',
+    detail: `${app.getVersion()} (${dev ? 'development' : 'production'})`,
+  });
 }

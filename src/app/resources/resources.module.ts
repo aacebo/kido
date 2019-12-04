@@ -5,7 +5,6 @@ import { StreamModule } from './stream';
 import { SystemModule } from './system';
 import { RouterModule } from './router';
 import { LogModule } from './log';
-import { UpdateModule } from './update';
 
 @NgModule({
   imports: [
@@ -14,7 +13,6 @@ import { UpdateModule } from './update';
     MessageModule,
     RouterModule,
     LogModule,
-    UpdateModule,
   ],
 })
 export class ResourcesModule { }
