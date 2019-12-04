@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this._electronService.on('log', args => console.log(args));
     this._electronService.on('system', (system: ISystem) => {
       this.systemService.add(system);
     });

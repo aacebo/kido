@@ -2,7 +2,7 @@ const updater = require('electron-updater');
 const log = require('electron-log');
 const dev = require('electron-is-dev');
 
-module.exports = async function update() {
+module.exports = async function update(mainWindow) {
   log.transports.file.level = dev ? 'debug' : 'info';
   updater.autoUpdater.logger = log;
 
@@ -26,7 +26,11 @@ module.exports = async function update() {
     mainWindow.webContents.send('update--update-downloaded', args);
   });
 
+  mainWindow.webContents.send('log', 'hit');
+
   if (!dev) {
-    await updater.autoUpdater.checkForUpdatesAndNotify();
+    mainWindow.webContents.send('log', 'updating...');
+    const res = await updater.autoUpdater.checkForUpdates();
+    mainWindow.webContents.send('log', res);
   }
 }

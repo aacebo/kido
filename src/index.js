@@ -16,7 +16,6 @@ let mainWindow;
 
 function createWindow() {
   extensions();
-  update();
 
   mainWindow = window({
     width: 900,
@@ -27,6 +26,7 @@ function createWindow() {
   });
 
   menu(mainWindow);
+  update(mainWindow);
 
   electron.ipcMain.on('open', (_, args) => {
     window({
