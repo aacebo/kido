@@ -27,5 +27,7 @@ module.exports = function update(mainWindow) {
     });
   });
 
-  autoUpdater.checkForUpdates();
+  if (process.env.GH_TOKEN) {
+    autoUpdater.checkForUpdates();
+  }
 }

@@ -14,10 +14,12 @@ import { LogType } from './enums';
 export class LogService {
   readonly state$: Observable<ILogState>;
   readonly logs$: Observable<{ [createdAt: number]: ILog }>;
+  readonly entities$: Observable<ILog[]>;
 
   constructor(private readonly _store$: Store<ILogState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
     this.logs$ = this._store$.pipe(select(selectors.selectLogs));
+    this.entities$ = this._store$.pipe(select(selectors.selectEntities));
   }
 
   create(message: any, logType = LogType.Info) {

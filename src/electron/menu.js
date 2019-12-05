@@ -16,7 +16,7 @@ module.exports = function menu(mainWindow) {
             if (update.updateInfo.version === app.getVersion()) {
               dialog.showMessageBox(mainWindow, {
                 message: 'Your Up To Date!',
-                detail: 'Thanks for keeping Kido updated.'
+                detail: 'Thanks for keeping Kido updated.',
               });
             } else {
               dialog.showMessageBox(mainWindow, {
