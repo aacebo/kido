@@ -5,10 +5,12 @@
     &:hover {
       color: var(--#{$color}) !important;
       opacity: 1 !important;
+    }
 
-      &:disabled {
-        color: initial;
-        opacity: 0.5;
+    &:disabled {
+      &:hover {
+        color: var(--text-muted) !important;
+        opacity: 0.5 !important;
       }
     }
   }

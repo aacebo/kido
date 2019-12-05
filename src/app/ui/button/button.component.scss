@@ -6,7 +6,7 @@
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-  color: var(--text-muted);
+  color: var(--text-muted) !important;
 
   @include kidoIconButtonColor('primary');
   @include kidoIconButtonColor('success');
@@ -18,6 +18,12 @@
 
   &:hover {
     background-color: var(--bg-dark) !important;
+  }
+
+  &:disabled {
+    &:hover {
+      background-color: transparent !important;
+    }
   }
 
   &.btn-secondary {
