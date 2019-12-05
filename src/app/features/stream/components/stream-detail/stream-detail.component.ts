@@ -59,6 +59,13 @@ export class StreamDetailComponent implements OnInit {
     return isValidJSON(this.form.value.message);
   }
 
+  get notSendable() {
+    return this.form.invalid ||
+           !this.form.value.message ||
+           (this.form.value.json && !this.isValidJSON) ||
+           !this.connected;
+  }
+
   private get _formStream() {
     return {
       type: this.stream.type,
@@ -103,6 +110,13 @@ export class StreamDetailComponent implements OnInit {
     if (this.isValidJSON) {
       const ctrl = this.form.get('message');
       ctrl.setValue(JSON.stringify(JSON.parse(ctrl.value), undefined, 2));
+    }
+  }
+
+  @Hotkeys('ctrl+enter', 'Send Message')
+  sendMessage() {
+    if (!this.notSendable) {
+      this.send.emit(this.form.value.message);
     }
   }
 

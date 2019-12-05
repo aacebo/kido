@@ -24,6 +24,7 @@ export class ToolbarComponent {
     this.add.emit(stream);
   }
 
+  @Hotkeys('ctrl+m', 'Toggle Menu')
   onMenu() {
     this.menu.emit();
   }

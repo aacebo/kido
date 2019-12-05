@@ -114,8 +114,8 @@
               kido-icon-button
               color="info"
               ngbTooltip="Send"
-              [disabled]="form.invalid || !form.value.message || (form.value.json && !isValidJSON) || !connected"
-              (click)="send.emit(form.value.message)"
+              [disabled]="notSendable"
+              (click)="sendMessage()"
             >
               <span class="fas fa-paper-plane"></span>
             </button>

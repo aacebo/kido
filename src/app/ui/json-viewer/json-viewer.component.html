@@ -37,6 +37,7 @@
       >
         <kido-json-viewer
           [json]="node.value"
+          [deep]="deep"
           [expanded]="node.expanded"
           [root]="false"
           (propertyValueClicked)="propertyValueClicked.emit($event)"
