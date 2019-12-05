@@ -1,3 +1,5 @@
+import { NgZone } from '@angular/core';
+
 import { HotkeysService } from './hotkeys.service';
 
 export function Hotkeys(keys: string, description: string) {
@@ -12,7 +14,12 @@ export function Hotkeys(keys: string, description: string) {
         ngOnInit.bind(this)();
       }
 
-      hotkeys.register(keys, description, target[name].bind(this));
+      hotkeys.register(
+        keys,
+        description,
+        target[name].bind(this),
+        new NgZone({ enableLongStackTrace: false }),
+      );
     };
 
     target.ngOnDestroy = function() {

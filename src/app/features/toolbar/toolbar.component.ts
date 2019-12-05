@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { Hotkeys } from '../../ui/hotkeys';
 import { IStream } from '../../resources/stream';
 
 @Component({
@@ -18,12 +19,13 @@ export class ToolbarComponent {
   @Output() clear = new EventEmitter<IStream>();
   @Output() menu = new EventEmitter<void>();
 
-  onMenu() {
-    this.menu.emit();
-  }
-
+  @Hotkeys('ctrl+n', 'Add New Stream')
   onAdd(stream?: IStream) {
     this.add.emit(stream);
+  }
+
+  onMenu() {
+    this.menu.emit();
   }
 
   onRemove() {

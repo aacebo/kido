@@ -98,6 +98,14 @@ export class StreamDetailComponent implements OnInit {
     }
   }
 
+  @Hotkeys('ctrl+f', 'Format')
+  format() {
+    if (this.isValidJSON) {
+      const ctrl = this.form.get('message');
+      ctrl.setValue(JSON.stringify(JSON.parse(ctrl.value), undefined, 2));
+    }
+  }
+
   reset() {
     this.form.reset(this._formStream);
   }

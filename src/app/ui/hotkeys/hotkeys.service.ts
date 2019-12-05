@@ -1,3 +1,4 @@
+import { NgZone } from '@angular/core';
 import * as mousetrap from 'mousetrap';
 
 import { IHotkey } from './hotkey.interface';
@@ -21,14 +22,16 @@ export class HotkeysService {
 
   private constructor() { }
 
-  register(keys: string, description: string, cb: () => void) {
+  register(keys: string, description: string, cb: () => void, zone: NgZone) {
     this._hotkeys[keys] = {
       keys,
       description,
       cb,
     };
 
-    mousetrap.bind(keys, cb);
+    mousetrap.bind(keys, () => {
+      zone.run(() => cb());
+    });
   }
 
   deregister(keys: string) {
