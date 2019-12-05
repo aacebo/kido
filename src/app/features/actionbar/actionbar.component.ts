@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Output, EventEmitter } from '@angular/core';
+
+import { Hotkeys } from '../../ui/hotkeys';
 
 @Component({
   selector: 'kido-actionbar',
@@ -6,4 +8,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./actionbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ActionbarComponent { }
+export class ActionbarComponent {
+  @Output() add = new EventEmitter<void>();
+
+  @Hotkeys('ctrl+n', 'Add New Stream')
+  onAdd() {
+    this.add.emit();
+  }
+}

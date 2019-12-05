@@ -14,19 +14,18 @@ export class ToolbarComponent {
   @Input() stream?: IStream;
   @Input() connected?: Date;
 
-  @Output() add = new EventEmitter<IStream | undefined>();
+  @Output() edit = new EventEmitter<IStream>();
   @Output() remove = new EventEmitter<IStream>();
   @Output() clear = new EventEmitter<IStream>();
   @Output() menu = new EventEmitter<void>();
 
-  @Hotkeys('ctrl+n', 'Add New Stream')
-  onAdd(stream?: IStream) {
-    this.add.emit(stream);
-  }
-
   @Hotkeys('ctrl+m', 'Toggle Menu')
   onMenu() {
     this.menu.emit();
+  }
+
+  onEdit(stream?: IStream) {
+    this.edit.emit(stream);
   }
 
   onRemove() {

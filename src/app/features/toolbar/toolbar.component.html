@@ -10,7 +10,7 @@
 <div
   *ngIf="stream"
   class="toolbar--title ellipsis"
-  (click)="onAdd(stream)"
+  (click)="onEdit(stream)"
 >
   <div class="toolbar--title-text ellipsis">
     {{ stream.name }}
@@ -51,15 +51,4 @@
   (click)="onRemove()"
 >
   <span class="fas fa-trash-alt"></span>
-</button>
-
-<button
-  kido-icon-button
-  color="info"
-  ngbTooltip="Add Stream"
-  container="body"
-  placement="bottom-right"
-  (click)="onAdd()"
->
-  <span class="fas fa-plus"></span>
 </button>
