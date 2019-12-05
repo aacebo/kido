@@ -26,6 +26,7 @@ export class SocketIOService implements ISocketService {
     socketIOWildcard(io.Manager)(this._socket$);
 
     this._socket$.on('connect', this._onConnect.bind(this));
+    this._socket$.on('connect_error', this._onError.bind(this));
     this._socket$.on('error', this._onError.bind(this));
     this._socket$.on('*', this._onEvent.bind(this));
     this._socket$.on('disconnect', this._onDisconnect.bind(this));
