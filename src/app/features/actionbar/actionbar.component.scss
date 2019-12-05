@@ -9,17 +9,25 @@
   color: var(--text-muted);
 
   .fas, .far {
-    margin: 0 5px;
+    font-size: 10pt;
+    margin: auto 5px auto 10px;
     cursor: pointer;
-    margin-left: 10px;
     transition: color 0.15s ease-in-out;
 
     &:first-child {
       margin-left: 0;
     }
 
+    &:last-child {
+      margin-right: 0;
+    }
+
     &:hover {
       color: var(--blood-orange);
     }
+  }
+
+  .spacer {
+    flex: 1 1 auto;
   }
 }
