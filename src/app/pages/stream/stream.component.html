@@ -9,6 +9,7 @@
   <kido-toolbar
     [class.mac]="systemService.isMac$ | async"
     [stream]="streamService.active$ | async"
+    [connected]="streamService.activeConnected$ | async"
     (add)="onAdd($event)"
     (menu)="onMenu()"
     (remove)="onRemove($event)"

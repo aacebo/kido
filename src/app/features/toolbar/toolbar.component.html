@@ -34,6 +34,7 @@
   ngbTooltip="Clear Stream Messages"
   container="body"
   placement="bottom-right"
+  [disabled]="connected"
   (click)="onClear()"
 >
   <span class="fas fa-ban"></span>
@@ -46,6 +47,7 @@
   ngbTooltip="Delete Stream"
   container="body"
   placement="bottom-right"
+  [disabled]="connected"
   (click)="onRemove()"
 >
   <span class="fas fa-trash-alt"></span>

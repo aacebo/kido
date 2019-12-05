@@ -18,6 +18,7 @@ export class MessageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    document.title = 'Kido - Message';
     this._streamService.get();
   }
 

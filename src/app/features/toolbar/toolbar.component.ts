@@ -11,6 +11,7 @@ import { IStream } from '../../resources/stream';
 })
 export class ToolbarComponent {
   @Input() stream?: IStream;
+  @Input() connected?: Date;
 
   @Output() add = new EventEmitter<IStream | undefined>();
   @Output() remove = new EventEmitter<IStream>();
