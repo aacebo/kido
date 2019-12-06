@@ -1,9 +1,9 @@
 const electron = require('electron');
 const dev = require('electron-is-dev');
+const devtools = require('electron-devtools-installer');
 const dotenv = require('dotenv');
 
 const update = require('./electron/update');
-const extensions = require('./electron/extensions');
 const window = require('./electron/window');
 const menu = require('./electron/menu');
 
@@ -15,7 +15,7 @@ dotenv.config({
 let mainWindow;
 
 function createWindow() {
-  extensions();
+  devtools.default(devtools.REDUX_DEVTOOLS);
 
   mainWindow = window({
     width: 900,

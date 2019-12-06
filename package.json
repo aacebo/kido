@@ -101,6 +101,7 @@
     "codemirror": "^5.49.2",
     "date-fns": "^2.7.0",
     "dotenv": "^8.2.0",
+    "electron-devtools-installer": "^2.2.4",
     "electron-is-dev": "^1.1.0",
     "electron-log": "^3.0.9",
     "electron-updater": "^4.2.0",
