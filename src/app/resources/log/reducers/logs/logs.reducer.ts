@@ -1,20 +1,21 @@
 import { createReducer, on } from '@ngrx/store';
 
-import * as actions from '../../log.actions';
+import * as actions from '../../actions';
 import { ILog } from '../../models';
 
-export const logs = createReducer<{ [createdAt: number]: ILog }>(
+export const logs = createReducer<{ [logId: number]: ILog }>(
   { },
-  on(actions.create, (_, a) => {
-    const log: ILog = {
-      type: a.logType,
-      message: a.message,
-      createdAt: new Date().getTime(),
-    };
+  on(actions.addSuccess, (_, a) => ({
+    ..._,
+    [a.log._id]: a.log,
+  })),
+  on(actions.getSuccess, (_, a) => {
+    const map: { [logId: string]: ILog } = { };
 
-    return {
-      ..._,
-      [log.createdAt]: log,
-    };
+    for (const log of a.logs) {
+      map[log._id] = log;
+    }
+
+    return map;
   }),
 );

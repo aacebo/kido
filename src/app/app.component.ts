@@ -20,12 +20,14 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._electronService.on('log', args => {
-      this._logService.create(args);
+    this._electronService.on('log', (log) => {
+      this._logService.add(log.message, log.type);
     });
 
     this._electronService.on('system', (system: ISystem) => {
       this.systemService.add(system);
     });
+
+    this._logService.get();
   }
 }

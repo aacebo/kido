@@ -8,6 +8,7 @@ export const environment: IEnvironment = {
   production: false,
   maxDbSizeMb: 50,
   maxMessages: 100,
+  maxLogs: 100,
   activeStreamKey: 'kido--active-id',
 };
 
