@@ -4,7 +4,7 @@ import { ILog } from './models';
 import * as fromReducers from './reducers';
 
 export interface ILogState {
-  readonly logs: { [logId: string]: ILog };
+  readonly logs: ILog[];
 }
 
 export function reducers(state: ILogState, action: Action) {

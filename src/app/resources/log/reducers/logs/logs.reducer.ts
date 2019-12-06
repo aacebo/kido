@@ -1,21 +1,20 @@
 import { createReducer, on } from '@ngrx/store';
 
+import { environment } from '../../../../../environments/environment';
+
 import * as actions from '../../actions';
 import { ILog } from '../../models';
 
-export const logs = createReducer<{ [logId: number]: ILog }>(
-  { },
-  on(actions.addSuccess, (_, a) => ({
-    ..._,
-    [a.log._id]: a.log,
-  })),
-  on(actions.getSuccess, (_, a) => {
-    const map: { [logId: string]: ILog } = { };
+export const logs = createReducer<ILog[]>(
+  [ ],
+  on(actions.addSuccess, (_, a) => {
+    _.push(a.log);
 
-    for (const log of a.logs) {
-      map[log._id] = log;
+    if (environment.maxLogs > _.length) {
+      _.shift();
     }
 
-    return map;
+    return [..._];
   }),
+  on(actions.getSuccess, (_, a) => a.logs),
 );
