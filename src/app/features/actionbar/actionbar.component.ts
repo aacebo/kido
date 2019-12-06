@@ -10,9 +10,15 @@ import { Hotkeys } from '../../ui/hotkeys';
 })
 export class ActionbarComponent {
   @Output() add = new EventEmitter<void>();
+  @Output() logs = new EventEmitter<void>();
 
   @Hotkeys('ctrl+n', 'Add New Stream')
   onAdd() {
     this.add.emit();
+  }
+
+  @Hotkeys('ctrl+l', 'System Logs')
+  onLogs() {
+    this.logs.emit();
   }
 }

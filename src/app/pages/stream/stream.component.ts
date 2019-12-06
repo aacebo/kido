@@ -60,6 +60,12 @@ export class StreamComponent implements OnInit {
     });
   }
 
+  onOpenLogs() {
+    this._electronService.send('open', {
+      path: '/logs',
+    });
+  }
+
   onAdd(e: IStream) {
     this._streamModalService.open(e, (v?: Partial<IStream>) => {
       if (v) {

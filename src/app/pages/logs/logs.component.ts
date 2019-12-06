@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'kido-logs',
@@ -6,4 +6,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./logs.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LogsComponent { }
+export class LogsComponent implements OnInit {
+  ngOnInit() {
+    document.title = 'Kido - Logs';
+  }
+}
