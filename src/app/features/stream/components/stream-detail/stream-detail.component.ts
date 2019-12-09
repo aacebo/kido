@@ -39,7 +39,7 @@ export class StreamDetailComponent implements OnInit {
   @Output() update = new EventEmitter<Partial<IStream>>();
   @Output() connect = new EventEmitter<void>();
   @Output() disconnect = new EventEmitter<void>();
-  @Output() send = new EventEmitter<string>();
+  @Output() send = new EventEmitter<IStream>();
   @Output() deleteMessage = new EventEmitter<IMessage>();
   @Output() selectMessage = new EventEmitter<IMessage | undefined>();
   @Output() openMessage = new EventEmitter<IMessage>();
@@ -116,7 +116,10 @@ export class StreamDetailComponent implements OnInit {
   @Hotkeys('ctrl+enter', 'Send Message')
   sendMessage() {
     if (!this.notSendable) {
-      this.send.emit(this.form.value.message);
+      this.send.emit({
+        ...this.stream,
+        ...this.form.value,
+      });
     }
   }
 

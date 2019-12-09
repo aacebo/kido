@@ -83,6 +83,7 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
       readOnly: this.readonly,
       lint: true,
       tabSize: 2,
+      autofocus: true,
       foldGutter: true,
       gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
       viewportMargin: Infinity,

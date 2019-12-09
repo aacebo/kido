@@ -41,9 +41,9 @@ export class StreamComponent implements OnInit {
     this.streamService.disconnect(e._id);
   }
 
-  onSend(e: string, stream: IStream) {
-    this.messageService.send(stream._id, stream.json ? JSON.parse(e) : e, stream.event, stream.json);
-    this.messageService.add(stream._id, MessageType.Sent, e, stream.event || 'message', stream.json);
+  onSend(e: IStream) {
+    this.messageService.send(e._id, e.json ? JSON.parse(e.message) : e.message, e.event, e.json);
+    this.messageService.add(e._id, MessageType.Sent, e.message, e.event || 'message', e.json);
   }
 
   onDeleteMessage(e: IMessage) {
