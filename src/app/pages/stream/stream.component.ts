@@ -66,7 +66,7 @@ export class StreamComponent implements OnInit {
     });
   }
 
-  onAdd(e: IStream) {
+  onAdd(e?: IStream) {
     this._streamModalService.open(e, (v?: Partial<IStream>) => {
       if (v) {
         if (e) {
