@@ -6,13 +6,10 @@
   flex: 1 1 auto;
   min-height: 0px;
   min-width: 0px;
+  padding-top: $titlebar-height - 7px;
 
   kido-json-viewer {
     flex: 1;
     border: none;
-
-    &.kido-json-viewer--root-node {
-      margin-top: $titlebar-height - 7px;
-    }
   }
 }

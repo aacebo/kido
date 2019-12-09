@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { LogModule as LogFeatureModule } from '../../features/log';
+
 import { LogsComponent } from './logs.component';
 import { LogsRoutingModule } from './logs-routing.module';
 
@@ -9,6 +11,7 @@ import { LogsRoutingModule } from './logs-routing.module';
   imports: [
     CommonModule,
     LogsRoutingModule,
+    LogFeatureModule,
   ],
 })
 export class LogsModule { }

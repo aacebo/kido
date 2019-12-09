@@ -1,1 +1,4 @@
-<p>logs works!</p>
+<kido-log-card
+  *ngFor="let log of logService.logs$ | async"
+  [log]="log"
+></kido-log-card>
