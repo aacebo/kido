@@ -18,7 +18,7 @@ $type-colors: (
 
   &.kido-json-viewer--root-node {
     border: 1px solid var(--hairline-soft);
-    padding: 10px 26px;
+    padding: 10px 0 10px 20px;
     overflow-y: auto;
   }
 
@@ -31,16 +31,21 @@ $type-colors: (
     height: 100%;
 
     .kido-json-viewer--node {
-      display: block;
+      display: flex;
 
-      &.expandable > .kido-json-viewer--node-toggler,
-      &.expandable > .kido-json-viewer--node-key {
+      &.expandable > .kido-json-viewer--node-key-container {
         cursor: pointer;
       }
 
-      &.expanded > .kido-json-viewer--node-toggler {
+      &.expanded > .kido-json-viewer--node-key-container > .kido-json-viewer--node-toggler {
         &:after {
           transform: rotate(90deg);
+        }
+      }
+
+      &.expanded {
+        &.expandable {
+          flex-direction: column;
         }
       }
 
@@ -52,40 +57,43 @@ $type-colors: (
         }
       }
 
-      .kido-json-viewer--node-key {
-        display: inline-block;
-        color: #66d9ef;
-        user-select: none;
+      .kido-json-viewer--node-key-container {
+        display: flex;
+
+        .kido-json-viewer--node-key {
+          color: #66d9ef;
+          user-select: none;
+        }
+
+        .kido-json-viewer--node-separator {
+          margin-right: 5px;
+          color: #fff;
+          user-select: none;
+        }
+
+        .kido-json-viewer--node-toggler {
+          position: absolute;
+          margin-left: -14px;
+          margin-top: 5px;
+          font-size: .8em;
+          line-height: 1.2em;
+          vertical-align: middle;
+          color: #787878;
+          user-select: none;
+
+          &:after {
+            display: inline-block;
+            content: "►";
+            transition: transform 0.1s ease-in;
+          }
+        }
       }
 
       .kido-json-viewer--node-value {
-        display: inline-block;
+        flex: 1;
+        overflow-x: hidden;
         color: #999;
         cursor: copy;
-      }
-
-      .kido-json-viewer--node-separator {
-        display: inline-block;
-        margin-right: 5px;
-        color: #fff;
-        user-select: none;
-      }
-
-      .kido-json-viewer--node-toggler {
-        position: absolute;
-        margin-left: -14px;
-        margin-top: 5px;
-        font-size: .8em;
-        line-height: 1.2em;
-        vertical-align: middle;
-        color: #787878;
-        user-select: none;
-
-        &:after {
-          display: inline-block;
-          content: "►";
-          transition: transform 0.1s ease-in;
-        }
       }
     }
   }

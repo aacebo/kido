@@ -8,20 +8,23 @@
       [class.expanded]="node.expanded"
     >
       <div
-        *ngIf="node.expandable"
-        class="kido-json-viewer--node-toggler"
-        (click)="toggle($event, node)"
-      ></div>
-
-      <div
-        class="kido-json-viewer--node-key"
+        class="kido-json-viewer--node-key-container"
         (click)="toggle($event, node)"
       >
-        {{ node.key }}
-      </div>
+        <div
+          *ngIf="node.expandable"
+          class="kido-json-viewer--node-toggler"
+        ></div>
 
-      <div class="kido-json-viewer--node-separator">
-        :
+        <div
+          class="kido-json-viewer--node-key"
+        >
+          {{ node.key }}
+        </div>
+
+        <div class="kido-json-viewer--node-separator">
+          :
+        </div>
       </div>
 
       <div
