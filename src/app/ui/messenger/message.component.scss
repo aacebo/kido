@@ -8,9 +8,24 @@ $inner-arrow-size: 7px;
   padding-bottom: 5px;
 
   &.kido-message--active {
-    .kido-message--bubble {
-      max-width: 100%;
-      width: 100%;
+    &.kido-message--received {
+      .kido-message--bubble {
+        border-color: var(--info);
+
+        &:after {
+          border-right-color: var(--info);
+        }
+      }
+    }
+
+    &.kido-message--sent {
+      .kido-message--bubble {
+        border-color: var(--success);
+
+        &:after {
+          border-left-color: var(--success);
+        }
+      }
     }
   }
 
