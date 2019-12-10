@@ -45,7 +45,6 @@ export class StreamDetailComponent implements OnInit {
   @Output() openMessage = new EventEmitter<IMessage>();
 
   form: FormGroup;
-  activeMessageJSON?: any;
   json = true;
 
   readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
