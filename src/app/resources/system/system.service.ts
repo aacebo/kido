@@ -2,26 +2,32 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { ISystem } from './models';
-import * as actions from './system.actions';
-import * as selectors from './system.selectors';
 import { ISystemState } from './system.state';
+import { ISystem } from './models';
+import * as actions from './actions';
+import * as selectors from './system.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SystemService {
   readonly state$: Observable<ISystemState>;
-  readonly system$: Observable<ISystem>;
+  readonly system$: Observable<ISystem | undefined>;
   readonly isMac$: Observable<boolean>;
+  readonly online$: Observable<boolean | undefined>;
 
   constructor(private readonly _store$: Store<ISystemState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
     this.system$ = this._store$.pipe(select(selectors.selectSystem));
     this.isMac$ = this._store$.pipe(select(selectors.selectIsMac));
+    this.online$ = this._store$.pipe(select(selectors.selectOnline));
   }
 
-  add(system: ISystem) {
-    this._store$.dispatch(actions.add({ system }));
+  setSystem(system: ISystem) {
+    this._store$.dispatch(actions.setSystem({ system }));
+  }
+
+  setOnline(online: boolean) {
+    this._store$.dispatch(actions.setOnline({ online }));
   }
 }

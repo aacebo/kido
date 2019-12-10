@@ -50,12 +50,11 @@
         kido-json-editor {
           max-height: 50%;
           overflow: auto;
+          padding: 0px 5px 5px 5px;
 
           .CodeMirror {
-            border-left-color: transparent;
-            border-right-color: transparent;
-            border-bottom-color: transparent;
             min-height: 60px;
+            border-radius: $border-radius;
           }
         }
 

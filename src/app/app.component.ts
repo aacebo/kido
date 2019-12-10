@@ -25,9 +25,18 @@ export class AppComponent implements OnInit {
     });
 
     this._electronService.on('system', (system: ISystem) => {
-      this.systemService.add(system);
+      this.systemService.setSystem(system);
     });
 
+    window.addEventListener('online', () => {
+      this.systemService.setOnline(true);
+    });
+
+    window.addEventListener('offline', () => {
+      this.systemService.setOnline(false);
+    });
+
+    this.systemService.setOnline(navigator.onLine);
     this._logService.get();
   }
 }

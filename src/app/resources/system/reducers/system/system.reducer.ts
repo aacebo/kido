@@ -1,9 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 
 import { ISystem } from '../../models';
-import * as actions from '../../system.actions';
+import * as actions from '../../actions';
 
 export const system = createReducer<ISystem | undefined>(
   undefined,
-  on(actions.add, (_, a) => a.system),
+  on(actions.setSystem, (_, a) => a.system),
 );

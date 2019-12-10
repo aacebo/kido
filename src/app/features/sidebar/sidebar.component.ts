@@ -22,7 +22,7 @@ export class SidebarComponent {
 
   @Output() selected = new EventEmitter<IStream>();
 
-  width = 200;
+  width = 150;
 
   onResize(e: number) {
     this.width += e;

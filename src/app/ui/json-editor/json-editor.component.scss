@@ -2,18 +2,8 @@
   display: block;
 
   .CodeMirror {
-    border: 1px solid transparent;
-    background-color: transparent !important;
     height: auto;
     width: fit-content;
     min-width: 100%;
-
-    &.CodeMirror-focused {
-      border-color: var(--hairline-soft);
-    }
-
-    .CodeMirror-gutters {
-      background-color: transparent !important;
-    }
   }
 }
