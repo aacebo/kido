@@ -11,7 +11,7 @@ export class ErrorHandler implements NgErrorHandler {
   ) { }
 
   handleError(err: Error) {
-    this._logService.add(err, LogType.Error);
+    this._logService.add(err.message, LogType.Error);
     this._toastrService.error(err.message);
   }
 }
