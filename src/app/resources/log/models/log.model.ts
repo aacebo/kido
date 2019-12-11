@@ -5,5 +5,6 @@ export interface ILog {
   readonly _rev?: string;
   readonly type: LogType;
   readonly message: string;
+  readonly context: string;
   readonly createdAt: number;
 }

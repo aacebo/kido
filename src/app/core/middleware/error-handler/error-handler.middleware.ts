@@ -1,5 +1,6 @@
 import { ErrorHandler as NgErrorHandler, Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import * as util from 'util';
 
 import { LogService, LogType } from '../../../resources/log';
 
@@ -11,7 +12,7 @@ export class ErrorHandler implements NgErrorHandler {
   ) { }
 
   handleError(err: Error) {
-    this._logService.add(err.message, LogType.Error);
+    this._logService.add(util.inspect(err), 'ErrorHandler', LogType.Error);
     this._toastrService.error(err.message);
   }
 }

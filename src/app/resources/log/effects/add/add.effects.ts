@@ -19,6 +19,7 @@ export class AddEffects {
         _id: uuid(),
         type: a.logType,
         message: a.message,
+        context: a.context,
         createdAt: new Date().getTime(),
       })
       .then(res => actions.addSuccess({ log: res }))
