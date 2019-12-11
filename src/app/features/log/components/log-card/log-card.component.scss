@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  position: relative;
+  border-radius: 3px;
+  padding: 8px 10px;
+  margin: 5px 10px;
+  background-color: var(--bg-darker);
+  border: 1px solid var(--hairline-strong);
+  color: var(--text-primary);
+
+  &.kido-log-card--info {
+    box-shadow: -12px 0 0 -8px var(--info) inset;
+
+    .kido-log-card--icon {
+      color: var(--info);
+    }
+  }
+
+  &.kido-log-card--warning {
+    box-shadow: -12px 0 0 -8px var(--warning) inset;
+
+    .kido-log-card--icon {
+      color: var(--warning);
+    }
+  }
+
+  &.kido-log-card--error {
+    box-shadow: -12px 0 0 -8px var(--danger) inset;
+
+    .kido-log-card--icon {
+      color: var(--danger);
+    }
+  }
+
+  .kido-log-card--icon {
+    margin-right: 10px;
+  }
+}

@@ -1,0 +1,10 @@
+<div class="kido-log-card--icon">
+  <span
+    class="fas"
+    [class.fa-info]="log.type === LogType.Info"
+    [class.fa-exclamation-triangle]="log.type === LogType.Warning"
+    [class.fa-times]="log.type === LogType.Error"
+  ></span>
+</div>
+
+{{ log.message }}

@@ -7,4 +7,13 @@
   min-height: 0px;
   min-width: 0px;
   padding-top: $titlebar-height - 7px;
+
+  .logs {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0px;
+    min-width: 0px;
+    overflow-y: auto;
+  }
 }
