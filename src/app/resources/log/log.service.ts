@@ -24,7 +24,7 @@ export class LogService {
     this._store$.dispatch(actions.get());
   }
 
-  add(message: any, logType = LogType.Info) {
+  add(message: string, logType = LogType.Info) {
     this._store$.dispatch(actions.add({ logType, message }));
   }
 }

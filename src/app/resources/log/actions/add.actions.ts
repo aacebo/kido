@@ -5,7 +5,7 @@ import { ILog } from '../models';
 
 export const add = createAction(
   '[LOG] Add',
-  props<{ readonly logType: LogType; readonly message: any }>(),
+  props<{ readonly logType: LogType; readonly message: string }>(),
 );
 
 export const addSuccess = createAction(
