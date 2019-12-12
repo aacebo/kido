@@ -1,12 +1,15 @@
-<div class="kido-log-card--icon">
-  <span
-    class="fas"
-    [class.fa-info]="log.type === LogType.Info"
-    [class.fa-exclamation-triangle]="log.type === LogType.Warning"
-    [class.fa-times]="log.type === LogType.Error"
-  ></span>
-</div>
+<div class="kido-log-card--body">
+  <div class="kido-log-card--message">
+    <pre>{{ log.message }}</pre>
+  </div>
 
-<div class="kido-log-card--message">
-  <pre>{{ log.message }}</pre>
+  <div class="kido-log-card--message-footer">
+    <div>
+      {{ log.context }}
+    </div>
+
+    <div class="kido-log-card--message-timestamp">
+      {{ log.createdAt | kidoElapseTime }}
+    </div>
+  </div>
 </div>

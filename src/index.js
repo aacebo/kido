@@ -26,11 +26,6 @@ function createWindow() {
   }, undefined, () => {
     menu(mainWindow);
     update(mainWindow);
-
-    mainWindow.webContents.send('log', {
-      message: `Started at ${new Date().toLocaleString()}`,
-      type: 'info',
-    });
   });
 
   electron.ipcMain.on('open', (_, args) => {
