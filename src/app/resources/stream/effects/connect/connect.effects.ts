@@ -14,6 +14,8 @@ import { isValidJSON } from '../../../../core/utils';
 import { SocketService, StreamService } from '../../services';
 import { IStreamState } from '../../stream.state';
 
+const LOG_CONTEXT = '[STREAM] - ConnectEffect';
+
 @Injectable()
 export class ConnectEffects {
   readonly connect$ = createEffect(() => this._actions$.pipe(
@@ -45,17 +47,19 @@ export class ConnectEffects {
     private readonly _toastr: ToastrService,
   ) { }
 
-  private _onConnect(a: { streamId: string; }) {
+  private _onConnect(a: { streamId: string; url: string }) {
     this._store$.dispatch(actions.connectSuccess(a));
+    this._logService.add(`Connected to ${a.url}`, LOG_CONTEXT, LogType.Info);
   }
 
-  private _onDisconnect(a: { streamId: string; }) {
+  private _onDisconnect(a: { streamId: string; url: string }) {
     this._streamService.disconnect(a.streamId);
     this._messageService.save(a.streamId);
+    this._logService.add(`Disconnected from ${a.url}`, LOG_CONTEXT, LogType.Info);
   }
 
   private _onError(error: Error, a: { streamId: string; }) {
-    this._logService.add(util.inspect(error), '[STREAM] - ConnectEffect', LogType.Error);
+    this._logService.add(util.inspect(error), LOG_CONTEXT, LogType.Error);
     this._store$.dispatch(actions.connectFailed({ error, streamId: a.streamId }));
     this._streamService.disconnect(a.streamId);
     this._messageService.save(a.streamId);
