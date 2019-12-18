@@ -1,4 +1,7 @@
-<div class="logs">
+<div
+  class="logs"
+  [class.mac]="systemService.isMac$ | async"
+>
   <kido-log-card
     *ngFor="let log of logService.logs$ | async"
     [log]="log"

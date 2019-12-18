@@ -6,7 +6,6 @@
   flex: 1 1 auto;
   min-height: 0px;
   min-width: 0px;
-  padding-top: $titlebar-height - 7px;
 
   .logs {
     display: flex;
@@ -15,5 +14,9 @@
     min-height: 0px;
     min-width: 0px;
     overflow-y: auto;
+
+    &.mac {
+      padding-top: $titlebar-height - 7px;
+    }
   }
 }

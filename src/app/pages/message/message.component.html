@@ -1,6 +1,7 @@
 <kido-json-viewer
   expanded
   deep
+  [class.mac]="systemService.isMac$ | async"
   [json]="messageService.activeContent$ | async"
   (propertyValueClicked)="onPropertyValueClicked($event)"
 ></kido-json-viewer>

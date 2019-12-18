@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { MessageService } from '../../resources/message';
 import { StreamService } from '../../resources/stream';
+import { SystemService } from '../../resources/system';
 
 @Component({
   selector: 'kido-message',
@@ -12,6 +13,7 @@ import { StreamService } from '../../resources/stream';
 })
 export class MessageComponent implements OnInit {
   constructor(
+    readonly systemService: SystemService,
     readonly messageService: MessageService,
     private readonly _streamService: StreamService,
     private readonly _toastr: ToastrService,
