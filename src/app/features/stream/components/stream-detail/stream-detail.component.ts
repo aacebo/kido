@@ -37,7 +37,7 @@ export class StreamDetailComponent implements OnInit {
   private _stream: IStream;
 
   @Output() update = new EventEmitter<Partial<IStream>>();
-  @Output() connect = new EventEmitter<void>();
+  @Output() connect = new EventEmitter<IStream>();
   @Output() disconnect = new EventEmitter<void>();
   @Output() send = new EventEmitter<IStream>();
   @Output() deleteMessage = new EventEmitter<IMessage>();
@@ -130,7 +130,10 @@ export class StreamDetailComponent implements OnInit {
     if (this.connected) {
       this.disconnect.emit();
     } else {
-      this.connect.emit();
+      this.connect.emit({
+        ...this.stream,
+        ...this.form.value,
+      });
     }
   }
 

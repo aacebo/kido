@@ -34,19 +34,19 @@ export class SockjsService implements ISocketService {
     this._socket$.send(message);
   }
 
-  private _onEvent(v: any) {
-    this._event$.next({ e: 'message', v });
+  private _onEvent(_: WebSocket, e: SockJS.MessageEvent) {
+    this._event$.next({ e: 'message', v: e });
   }
 
   private _onConnect() {
-
+    this._connected$.next();
   }
 
   private _onDisconnect() {
     this._disconnected$.next();
   }
 
-  private _onError(err: any) {
-    this._error$.next(err);
+  private _onError(_: WebSocket, e: Event) {
+    this._error$.next(e);
   }
 }

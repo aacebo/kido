@@ -25,7 +25,7 @@
     [connected]="streamService.activeConnected$ | async"
     [connecting]="streamService.activeConnecting$ | async"
     (update)="onUpdate($event)"
-    (connect)="onConnect(stream)"
+    (connect)="onConnect($event)"
     (disconnect)="onDisconnect(stream)"
     (send)="onSend($event)"
     (deleteMessage)="onDeleteMessage($event)"
