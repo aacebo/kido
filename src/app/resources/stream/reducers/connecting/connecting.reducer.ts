@@ -16,4 +16,8 @@ export const connecting = createReducer<{ [streamId: string]: boolean }>(
     ..._,
     [a.streamId]: false,
   })),
+  on(actions.disconnect, (_, a) => ({
+    ..._,
+    [a.streamId]: false,
+  })),
 );
