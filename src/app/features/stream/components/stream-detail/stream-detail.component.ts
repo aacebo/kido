@@ -44,11 +44,10 @@ export class StreamDetailComponent implements OnInit {
   @Output() selectMessage = new EventEmitter<IMessage | undefined>();
   @Output() openMessage = new EventEmitter<IMessage>();
 
-  form: FormGroup;
-  json = true;
-
   readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
   readonly StreamType = StreamType;
+
+  form: FormGroup;
 
   get areEqual() {
     return areEqual(this.form.value, this._formStream);

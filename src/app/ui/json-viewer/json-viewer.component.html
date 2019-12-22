@@ -1,55 +1,94 @@
-<div class="kido-json-viewer--nodes">
-  <ng-container *ngIf="!raw">
-    <div
-      *ngFor="let node of nodes"
-      class="kido-json-viewer--node"
-      [ngClass]="'kido-json-viewer--node-type-' + node.type"
-      [class.expandable]="node.expandable"
-      [class.expanded]="node.expanded"
-    >
+<div
+  *ngIf="root"
+  class="kido-json-viewer--actionbar"
+>
+  <span
+    class="fas fa-code"
+    container="body"
+    [class.active]="!raw"
+    [ngbTooltip]="raw ? 'JSON' : 'Plain/Text'"
+    (click)="raw = !raw"
+  ></span>
+
+  <span
+    class="fas"
+    container="body"
+    [class.fa-expand-alt]="!expanded"
+    [class.fa-compress-alt]="expanded"
+    [ngbTooltip]="expanded ? 'Collapse All' : 'Expand All'"
+    (click)="expanded ? collapseAll() : expandAll()"
+  ></span>
+
+  <span
+    class="far fa-copy"
+    ngbTooltip="Copy"
+    container="body"
+    (click)="copy(rawJson)"
+  ></span>
+
+  <div class="spacer"></div>
+
+  <span
+    *ngIf="closeable"
+    class="fas fa-times"
+    (click)="closeClicked.emit()"
+  ></span>
+</div>
+
+<div class="kido-json-viewer--content">
+  <div class="kido-json-viewer--nodes">
+    <ng-container *ngIf="!raw">
       <div
-        class="kido-json-viewer--node-key-container"
-        (click)="toggle($event, node)"
+        *ngFor="let node of nodes"
+        class="kido-json-viewer--node"
+        [ngClass]="'kido-json-viewer--node-type-' + node.type"
+        [class.expandable]="node.expandable"
+        [class.expanded]="node.expanded"
       >
         <div
-          *ngIf="node.expandable"
-          class="kido-json-viewer--node-toggler"
+          class="kido-json-viewer--node-key-container"
+          (click)="toggle($event, node)"
+        >
+          <div
+            *ngIf="node.expandable"
+            class="kido-json-viewer--node-toggler"
+          ></div>
+
+          <div
+            class="kido-json-viewer--node-key"
+          >
+            {{ node.key }}
+          </div>
+
+          <div class="kido-json-viewer--node-separator">
+            :
+          </div>
+        </div>
+
+        <div
+          *ngIf="!node.expanded || !node.expandable"
+          class="kido-json-viewer--node-value"
+          [kidoEllipsis]="node.description"
+          (click)="copy(node.description)"
         ></div>
 
         <div
-          class="kido-json-viewer--node-key"
+          *ngIf="node.expanded && node.expandable"
+          class="kido-json-viewer--node-children"
         >
-          {{ node.key }}
-        </div>
-
-        <div class="kido-json-viewer--node-separator">
-          :
+          <kido-json-viewer
+            [json]="node.value"
+            [deep]="deep"
+            [expanded]="node.expanded"
+            [root]="false"
+            (propertyValueClicked)="propertyValueClicked.emit($event)"
+          ></kido-json-viewer>
         </div>
       </div>
+    </ng-container>
 
-      <div
-        *ngIf="!node.expanded || !node.expandable"
-        class="kido-json-viewer--node-value"
-        [kidoEllipsis]="node.description"
-        (click)="copy(node.description)"
-      ></div>
-
-      <div
-        *ngIf="node.expanded && node.expandable"
-        class="kido-json-viewer--node-children"
-      >
-        <kido-json-viewer
-          [json]="node.value"
-          [deep]="deep"
-          [expanded]="node.expanded"
-          [root]="false"
-          (propertyValueClicked)="propertyValueClicked.emit($event)"
-        ></kido-json-viewer>
-      </div>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="raw">
-    {{ rawJson }}
-  </ng-container>
+    <ng-container *ngIf="raw">
+      {{ rawJson }}
+    </ng-container>
+  </div>
 </div>

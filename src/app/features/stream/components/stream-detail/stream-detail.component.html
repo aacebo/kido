@@ -113,35 +113,17 @@
             [style.flex]="activeMessage ? '1 1 50%' : '1 1 auto'"
           >
             <kido-json-viewer
+              closeable
               [json]="activeMessageContent"
-              [raw]="!json"
               (propertyValueClicked)="onPropertyValueClicked($event)"
+              (closeClicked)="onClearMessage()"
             ></kido-json-viewer>
-
-            <button
-              class="stream-detail--json-clear"
-              kido-icon-button
-              color="secondary"
-              (click)="onClearMessage()"
-            >
-              <span class="fas fa-times"></span>
-            </button>
-
-            <kido-checkbox
-              class="stream-detail--viewer-json-toggler"
-              color="info"
-              [(ngModel)]="json"
-              [ngModelOptions]="{ standalone: true }"
-              [ngbTooltip]="!json ? 'Plain/Text' : 'JSON'"
-            >
-              <span class="fas fa-code"></span>
-            </kido-checkbox>
           </div>
         </div>
       </ng-template>
     </ngb-tab>
 
-    <ngb-tab title="Network">
+    <ngb-tab title="Settings">
       <ng-template ngbTabContent>
 
       </ng-template>

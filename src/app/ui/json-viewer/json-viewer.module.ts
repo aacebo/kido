@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { EllipsisModule } from '../ellipsis';
 import { JsonViewerComponent } from './json-viewer.component';
 
@@ -9,6 +11,7 @@ import { JsonViewerComponent } from './json-viewer.component';
   exports: [JsonViewerComponent],
   imports: [
     CommonModule,
+    NgbTooltipModule,
     EllipsisModule,
   ],
 })

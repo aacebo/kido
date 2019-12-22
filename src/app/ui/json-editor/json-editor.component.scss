@@ -4,11 +4,16 @@ $background-color: #282a36;
 
 .kido-json-editor {
   display: block;
-  border: 1px solid transparent;
+  border: 1px solid var(--hairline-regular);
   border-radius: $border-radius;
+  opacity: 0.5;
 
   &.kido-json-editor--invalid {
     border: 1px solid var(--danger);
+  }
+
+  &.kido-json-editor--focused {
+    opacity: 1;
   }
 
   .CodeMirror {

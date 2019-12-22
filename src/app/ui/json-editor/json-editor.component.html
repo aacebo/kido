@@ -3,17 +3,15 @@
 <div class="kido-json-editor--actionbar">
   <span
     class="fas fa-code"
-    ngbTooltip="Code"
-    placement="top"
     container="body"
     [class.active]="!raw"
+    [ngbTooltip]="raw ? 'JSON' : 'Plain/Text'"
     (click)="rawChanged.emit(!raw)"
   ></span>
 
   <span
     class="fas fa-align-left"
     ngbTooltip="Beautify"
-    placement="top"
     container="body"
     [class.disabled]="raw"
     [disableTooltip]="raw"
@@ -23,7 +21,6 @@
   <span
     class="far fa-copy"
     ngbTooltip="Copy"
-    placement="top"
     container="body"
     (click)="onCopy()"
   ></span>
@@ -33,7 +30,6 @@
   <span
     class="fas fa-paper-plane"
     ngbTooltip="Send"
-    placement="top"
     container="body"
     [class.disabled]="invalid"
     [disableTooltip]="invalid"

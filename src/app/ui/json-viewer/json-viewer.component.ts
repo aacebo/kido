@@ -55,7 +55,15 @@ export class JsonViewerComponent implements OnInit {
   }
   private _raw?: boolean;
 
+  @Input()
+  get closeable() { return this._closeable; }
+  set closeable(v: boolean) {
+    this._closeable = coerceBooleanProperty(v);
+  }
+  private _closeable?: boolean;
+
   @Output() propertyValueClicked = new EventEmitter<string>();
+  @Output() closeClicked = new EventEmitter<void>();
 
   nodes: IJsonViewerNode[] = [];
   rawJson: string;
@@ -74,6 +82,18 @@ export class JsonViewerComponent implements OnInit {
 
   copy(text: string) {
     this.propertyValueClicked.emit(text);
+  }
+
+  expandAll() {
+    this.deep = true;
+    this.expanded = true;
+    this.render();
+  }
+
+  collapseAll() {
+    this.deep = false;
+    this.expanded = false;
+    this.render();
   }
 
   private stringifyJSON(json: any) {

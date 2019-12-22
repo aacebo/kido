@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 $type-colors: (
   string: #f1fa8c,
   number: #bd93f9,
@@ -10,16 +12,19 @@ $type-colors: (
 );
 
 .kido-json-viewer {
-  display: block;
+  display: flex;
+  flex-direction: column;
   position: relative;
   white-space: nowrap;
-  padding-left: 12px;
   font-size: 10pt;
 
   &.kido-json-viewer--root-node {
     border: 1px solid var(--hairline-soft);
-    padding: 10px 0 10px 20px;
-    overflow-y: auto;
+
+    .kido-json-viewer--content {
+      overflow-y: auto;
+      padding: 0px 0 0px 20px;
+    }
   }
 
   &.kido-json-viewer--raw {
@@ -27,73 +32,111 @@ $type-colors: (
     color: #efefef;
   }
 
-  .kido-json-viewer--nodes {
-    height: 100%;
+  .kido-json-viewer--actionbar {
+    display: flex;
+    font-size: 10pt;
+    padding: 3px;
 
-    .kido-json-viewer--node {
-      display: flex;
+    .spacer {
+      flex: 1 1 auto;
+    }
 
-      &.expandable > .kido-json-viewer--node-key-container {
-        cursor: pointer;
+    span {
+      border-radius: $border-radius;
+      padding: 10px;
+      opacity: 0.7;
+      transition: opacity 0.15s ease-in-out;
+      cursor: pointer;
+      margin-right: 3px;
+
+      &:last-child {
+        margin-right: 0;
       }
 
-      &.expanded > .kido-json-viewer--node-key-container > .kido-json-viewer--node-toggler {
-        &:after {
-          transform: rotate(90deg);
-        }
+      &:hover,
+      &.active {
+        opacity: 1;
+        background-color: var(--bg-dark);
       }
 
-      &.expanded {
-        &.expandable {
-          flex-direction: column;
-        }
+      &.disabled {
+        cursor: not-allowed;
+        opacity: 0.3 !important;
+        background-color: transparent !important;
       }
+    }
+  }
 
-      @each $type, $color in $type-colors {
-        &.kido-json-viewer--node-type-#{$type} {
-          .kido-json-viewer--node-value {
-            color: $color;
-          }
-        }
-      }
+  .kido-json-viewer--content {
+    padding-left: 12px;
+    position: relative;
 
-      .kido-json-viewer--node-key-container {
+    .kido-json-viewer--nodes {
+      .kido-json-viewer--node {
         display: flex;
 
-        .kido-json-viewer--node-key {
-          color: #66d9ef;
-          user-select: none;
+        &.expandable > .kido-json-viewer--node-key-container {
+          cursor: pointer;
         }
 
-        .kido-json-viewer--node-separator {
-          margin-right: 5px;
-          color: #fff;
-          user-select: none;
-        }
-
-        .kido-json-viewer--node-toggler {
-          position: absolute;
-          margin-left: -14px;
-          margin-top: 5px;
-          font-size: .8em;
-          line-height: 1.2em;
-          vertical-align: middle;
-          color: #787878;
-          user-select: none;
-
+        &.expanded > .kido-json-viewer--node-key-container > .kido-json-viewer--node-toggler {
           &:after {
-            display: inline-block;
-            content: "►";
-            transition: transform 0.1s ease-in;
+            transform: rotate(90deg);
           }
         }
-      }
 
-      .kido-json-viewer--node-value {
-        flex: 1;
-        overflow-x: hidden;
-        color: #999;
-        cursor: copy;
+        &.expanded {
+          &.expandable {
+            flex-direction: column;
+          }
+        }
+
+        @each $type, $color in $type-colors {
+          &.kido-json-viewer--node-type-#{$type} {
+            .kido-json-viewer--node-value {
+              color: $color;
+            }
+          }
+        }
+
+        .kido-json-viewer--node-key-container {
+          display: flex;
+
+          .kido-json-viewer--node-key {
+            color: #66d9ef;
+            user-select: none;
+          }
+
+          .kido-json-viewer--node-separator {
+            margin-right: 5px;
+            color: #fff;
+            user-select: none;
+          }
+
+          .kido-json-viewer--node-toggler {
+            position: absolute;
+            margin-left: -14px;
+            margin-top: 5px;
+            font-size: .8em;
+            line-height: 1.2em;
+            vertical-align: middle;
+            color: #787878;
+            user-select: none;
+
+            &:after {
+              display: inline-block;
+              content: "►";
+              transition: transform 0.1s ease-in;
+            }
+          }
+        }
+
+        .kido-json-viewer--node-value {
+          flex: 1;
+          overflow-x: hidden;
+          color: #999;
+          cursor: copy;
+        }
       }
     }
   }
