@@ -98,27 +98,10 @@
             <kido-json-editor
               formControlName="message"
               [raw]="!form.value.json"
+              (rawChanged)="onJsonChanged($event)"
+              (copyValue)="onPropertyValueClicked($event)"
+              (send)="sendMessage()"
             ></kido-json-editor>
-
-            <kido-checkbox
-             class="stream-detail--message-json-toggler"
-             formControlName="json"
-             color="info"
-             [ngbTooltip]="!form.value.json ? 'Plain/Text' : 'JSON'"
-            >
-              <span class="fas fa-code"></span>
-            </kido-checkbox>
-
-            <button
-              class="stream-detail--message-send"
-              kido-icon-button
-              color="info"
-              ngbTooltip="Send"
-              [disabled]="notSendable"
-              (click)="sendMessage()"
-            >
-              <span class="fas fa-paper-plane"></span>
-            </button>
           </div>
 
           <div

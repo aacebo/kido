@@ -50,26 +50,7 @@
         kido-json-editor {
           max-height: 50%;
           overflow: auto;
-          padding: 0px 5px 5px 5px;
-
-          .CodeMirror {
-            min-height: 60px;
-            border-radius: $border-radius;
-          }
-        }
-
-        .stream-detail--message-json-toggler {
-          position: absolute;
-          right: 50px;
-          bottom: 5px;
-          z-index: 2;
-        }
-
-        .stream-detail--message-send {
-          position: absolute;
-          right: 5px;
-          bottom: 5px;
-          z-index: 2;
+          margin: 0px 5px 5px 5px;
         }
       }
 

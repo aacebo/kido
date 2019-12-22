@@ -137,6 +137,10 @@ export class StreamDetailComponent implements OnInit {
     }
   }
 
+  onJsonChanged(e: boolean) {
+    this.form.get('json').setValue(!e);
+  }
+
   onPropertyValueClicked(e: string) {
     window.navigator.clipboard.writeText(e);
     this._toastr.info('Copied to Clipboard!');

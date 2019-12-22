@@ -1,9 +1,59 @@
+@import '../../../styles/variables';
+
+$background-color: #282a36;
+
 .kido-json-editor {
   display: block;
+  border: 1px solid transparent;
+
+  &.kido-json-editor--invalid {
+    border: 1px solid var(--danger);
+  }
 
   .CodeMirror {
     height: auto;
     width: fit-content;
     min-width: 100%;
+    min-height: 60px;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+
+  .kido-json-editor--actionbar {
+    display: flex;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    background-color: $background-color;
+    font-size: 10pt;
+    padding: 3px;
+
+    .spacer {
+      flex: 1 1 auto;
+    }
+
+    span {
+      border-radius: $border-radius;
+      padding: 10px;
+      opacity: 0.7;
+      transition: opacity 0.15s ease-in-out;
+      cursor: pointer;
+      margin-right: 3px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover,
+      &.active {
+        opacity: 1;
+        background-color: lighten($background-color, 10%);
+      }
+
+      &.disabled {
+        cursor: not-allowed;
+        opacity: 0.3 !important;
+        background-color: transparent !important;
+      }
+    }
   }
 }

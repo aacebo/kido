@@ -10,7 +10,10 @@ import {
   Optional,
   ViewChild,
   ViewEncapsulation,
+  Output,
+  EventEmitter,
 } from '@angular/core';
+import { FormGroupDirective, NgForm } from '@angular/forms';
 
 import CodeMirror from 'codemirror';
 import 'codemirror/addon/edit/closebrackets';
@@ -18,16 +21,19 @@ import 'codemirror/addon/fold/brace-fold.js';
 import 'codemirror/addon/lint/lint.js';
 import 'codemirror/mode/javascript/javascript.js';
 
-import { FormGroupDirective, NgForm } from '@angular/forms';
 import { FormControlBase, formControlProvider } from '../core/form-control';
+import { isValidJSON } from '../../core/utils';
 
 @Component({
   moduleId: module.id,
   exportAs: 'kidoJsonEditor',
   selector: 'kido-json-editor',
-  template: '<textarea #textarea></textarea>',
+  templateUrl: './json-editor.component.html',
   styleUrls: ['./json-editor.component.scss'],
-  host: { class: 'kido-json-editor' },
+  host: {
+    class: 'kido-json-editor',
+    '[class.kido-json-editor--invalid]': 'invalid && !raw',
+  },
   providers: [formControlProvider(JsonEditorComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -44,11 +50,6 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   }
   protected _raw?: boolean;
 
-  @ViewChild('textarea', { static: false })
-  readonly textarea: ElementRef<HTMLTextAreaElement>;
-
-  editor: CodeMirror.EditorFromTextArea;
-
   get value() { return this._value; }
   set value(v: string) {
     this._value = v;
@@ -61,6 +62,16 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
     this.onChange(v);
   }
   protected _value?: string;
+
+  @Output() rawChanged = new EventEmitter<boolean>();
+  @Output() copyValue = new EventEmitter<string>();
+  @Output() send = new EventEmitter<string>();
+
+  @ViewChild('textarea', { static: false })
+  readonly textarea: ElementRef<HTMLTextAreaElement>;
+
+  editor: CodeMirror.EditorFromTextArea;
+  invalid = false;
 
   private get _mode() {
     return this._raw ? 'text/plain' : 'application/json';
@@ -100,8 +111,26 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
     }
   }
 
+  onCopy() {
+    this.copyValue.emit(this.editor.getValue());
+  }
+
+  onBeautify() {
+    const v = this.editor.getValue();
+    this.invalid = !isValidJSON(v);
+
+    if (!this.invalid) {
+      this.editor.setValue(JSON.stringify(JSON.parse(v), undefined, 2));
+    }
+  }
+
+  onSend() {
+    this.send.emit(this.editor.getValue());
+  }
+
   private onEditorChange(editor: CodeMirror.EditorFromTextArea) {
     const v = editor.getValue();
+    this.invalid = !isValidJSON(v);
 
     if (v !== this.value) {
       this.value = v;
