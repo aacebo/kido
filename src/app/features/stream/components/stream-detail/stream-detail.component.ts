@@ -139,6 +139,7 @@ export class StreamDetailComponent implements OnInit {
 
   onJsonChanged(e: boolean) {
     this.form.get('json').setValue(!e);
+    this.form.markAsDirty();
   }
 
   onPropertyValueClicked(e: string) {

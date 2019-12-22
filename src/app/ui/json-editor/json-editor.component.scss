@@ -5,6 +5,7 @@ $background-color: #282a36;
 .kido-json-editor {
   display: block;
   border: 1px solid transparent;
+  border-radius: $border-radius;
 
   &.kido-json-editor--invalid {
     border: 1px solid var(--danger);
@@ -15,14 +16,10 @@ $background-color: #282a36;
     width: fit-content;
     min-width: 100%;
     min-height: 60px;
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
   }
 
   .kido-json-editor--actionbar {
     display: flex;
-    border-bottom-left-radius: $border-radius;
-    border-bottom-right-radius: $border-radius;
     background-color: $background-color;
     font-size: 10pt;
     padding: 3px;

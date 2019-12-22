@@ -116,11 +116,13 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   }
 
   onBeautify() {
-    const v = this.editor.getValue();
-    this.invalid = !isValidJSON(v);
+    if (!this.raw) {
+      const v = this.editor.getValue();
+      this.invalid = !isValidJSON(v);
 
-    if (!this.invalid) {
-      this.editor.setValue(JSON.stringify(JSON.parse(v), undefined, 2));
+      if (!this.invalid) {
+        this.editor.setValue(JSON.stringify(JSON.parse(v), undefined, 2));
+      }
     }
   }
 
