@@ -10,6 +10,8 @@
   kido-json-viewer {
     flex: 1;
     border: none;
+    min-height: 0px;
+    min-width: 0px;
 
     &.mac {
       padding-top: $titlebar-height - 7px;
