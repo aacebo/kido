@@ -31,9 +31,12 @@ import { isValidJSON } from '../../core/utils';
   templateUrl: './json-editor.component.html',
   styleUrls: ['./json-editor.component.scss'],
   host: {
+    tabindex: '-1',
     class: 'kido-json-editor',
     '[class.kido-json-editor--invalid]': 'invalid && !raw',
     '[class.kido-json-editor--focused]': 'focused',
+    '(focus)': 'onFocus()',
+    '(blur)': 'onBlur()',
   },
   providers: [formControlProvider(JsonEditorComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -105,7 +108,7 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
 
     this.editor.on('change', this.onEditorChange.bind(this));
     this.editor.on('focus', this.onFocus.bind(this));
-    this.editor.on('blur', (this.onFocus.bind(this)));
+    this.editor.on('blur', this.onBlur.bind(this));
     this.editor.setValue(this.value || '');
   }
 
@@ -134,6 +137,16 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
     this.send.emit(this.editor.getValue());
   }
 
+  onFocus() {
+    this.focused = true;
+    this.cdr.markForCheck();
+  }
+
+  onBlur() {
+    this.focused = false;
+    this.cdr.markForCheck();
+  }
+
   private onEditorChange(editor: CodeMirror.EditorFromTextArea) {
     const v = editor.getValue();
     this.invalid = !isValidJSON(v);
@@ -141,10 +154,5 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
     if (v !== this.value) {
       this.value = v;
     }
-  }
-
-  private onFocus(editor: CodeMirror.EditorFromTextArea) {
-    this.focused = editor.hasFocus();
-    this.cdr.markForCheck();
   }
 }
