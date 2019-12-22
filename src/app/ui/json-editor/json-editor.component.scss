@@ -6,15 +6,16 @@ $background-color: #282a36;
   display: block;
   border: 1px solid var(--hairline-regular);
   border-radius: $border-radius;
-  opacity: 0.5;
-  transition: opacity 0.15s ease-in-out;
+  background-color: $background-color;
 
   &.kido-json-editor--invalid {
     border: 1px solid var(--danger);
   }
 
   &.kido-json-editor--focused {
-    opacity: 1;
+    .kido-json-editor--actionbar {
+      opacity: 1;
+    }
   }
 
   .CodeMirror {
@@ -26,9 +27,10 @@ $background-color: #282a36;
 
   .kido-json-editor--actionbar {
     display: flex;
-    background-color: $background-color;
     font-size: 10pt;
     padding: 3px;
+    opacity: 0.5;
+    transition: opacity 0.15s ease-in-out;
 
     .spacer {
       flex: 1 1 auto;
