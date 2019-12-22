@@ -19,7 +19,7 @@ export class ToolbarComponent {
   @Output() clear = new EventEmitter<IStream>();
   @Output() menu = new EventEmitter<void>();
 
-  @Hotkeys('ctrl+m', 'Toggle Menu')
+  @Hotkeys('mod+m', 'Toggle Menu')
   onMenu() {
     this.menu.emit();
   }

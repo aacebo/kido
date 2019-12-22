@@ -94,7 +94,7 @@ export class StreamDetailComponent implements OnInit {
     });
   }
 
-  @Hotkeys('ctrl+s', 'Save')
+  @Hotkeys('mod+s', 'Save')
   save() {
     if (!this.form.invalid && !this.form.pristine && !this.areEqual) {
       this.update.emit({
@@ -104,7 +104,7 @@ export class StreamDetailComponent implements OnInit {
     }
   }
 
-  @Hotkeys('ctrl+f', 'Format')
+  @Hotkeys('mod+f', 'Format')
   format() {
     if (this.isValidJSON) {
       const ctrl = this.form.get('message');
@@ -112,7 +112,7 @@ export class StreamDetailComponent implements OnInit {
     }
   }
 
-  @Hotkeys('ctrl+enter', 'Send Message')
+  @Hotkeys('mod+enter', 'Send Message')
   sendMessage() {
     if (!this.notSendable) {
       this.send.emit({
