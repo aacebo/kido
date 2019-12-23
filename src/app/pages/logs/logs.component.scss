@@ -16,7 +16,7 @@
     overflow-y: auto;
 
     &.mac {
-      padding-top: $titlebar-height - 7px;
+      padding: ($titlebar-height - 2px) 5px 0 5px
     }
   }
 }
