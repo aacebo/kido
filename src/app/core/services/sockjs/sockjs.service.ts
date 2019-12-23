@@ -2,9 +2,14 @@ import { Subject } from 'rxjs';
 import SockJS from 'sockjs-client';
 
 import { ISocketService } from '../../models';
+import { WebsocketReadyState } from '../../enums';
 
 export class SockjsService implements ISocketService {
-  get disconnected() { return this._socket$.readyState === this._socket$.CLOSED; }
+  get disconnected() {
+    return this._socket$.readyState === WebsocketReadyState.Closing ||
+           this._socket$.readyState === WebsocketReadyState.Closed;
+  }
+
   get connected$() { return this._connected$.asObservable(); }
   get disconnected$() { return this._disconnected$.asObservable(); }
   get error$() { return this._error$.asObservable(); }
@@ -34,8 +39,8 @@ export class SockjsService implements ISocketService {
     this._socket$.send(message);
   }
 
-  private _onEvent(_: WebSocket, e: SockJS.MessageEvent) {
-    this._event$.next({ e: 'message', v: e });
+  private _onEvent(e: SockJS.MessageEvent) {
+    this._event$.next({ e: e.type, v: e.data });
   }
 
   private _onConnect() {
