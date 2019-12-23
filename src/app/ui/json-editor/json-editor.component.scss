@@ -3,7 +3,8 @@
 $background-color: #282a36;
 
 .kido-json-editor {
-  display: block;
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--hairline-regular);
   border-radius: $border-radius;
   background-color: $background-color;
@@ -20,9 +21,12 @@ $background-color: #282a36;
 
   .CodeMirror {
     height: auto;
-    width: fit-content;
     min-width: 100%;
     min-height: 60px;
+
+    .CodeMirror-scrollbar-filler {
+      background-color: transparent !important;
+    }
   }
 
   .kido-json-editor--actionbar {

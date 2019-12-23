@@ -6,7 +6,7 @@
     container="body"
     [class.active]="!raw"
     [ngbTooltip]="raw ? 'JSON' : 'Plain/Text'"
-    (click)="rawChanged.emit(!raw)"
+    (click)="rawChange.emit(!raw)"
   ></span>
 
   <span
@@ -19,20 +19,31 @@
   ></span>
 
   <span
+    *ngIf="copyable"
     class="far fa-copy"
     ngbTooltip="Copy"
     container="body"
     (click)="onCopy()"
   ></span>
 
+  <span
+    *ngIf="expandable"
+    class="fas fa-expand-arrows-alt"
+    ngbTooltip="Expand Editor"
+    container="body"
+    (click)="onExpand()"
+  ></span>
+
   <div class="spacer"></div>
 
   <span
-    class="fas fa-paper-plane"
-    ngbTooltip="Send"
+    *ngIf="sendable"
+    class="fas"
+    [ngClass]="sendIcon"
+    [ngbTooltip]="sendTooltip"
     container="body"
-    [class.disabled]="invalid"
-    [disableTooltip]="invalid"
+    [class.disabled]="!raw && invalid"
+    [disableTooltip]="!raw && invalid"
     (click)="onSend()"
   ></span>
 </div>

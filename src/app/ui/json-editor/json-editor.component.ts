@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -14,15 +14,18 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { FormGroupDirective, NgForm } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import CodeMirror from 'codemirror';
 import 'codemirror/addon/edit/closebrackets';
 import 'codemirror/addon/fold/brace-fold.js';
 import 'codemirror/addon/lint/lint.js';
 import 'codemirror/mode/javascript/javascript.js';
+import 'codemirror/addon/scroll/simplescrollbars.js';
 
 import { FormControlBase, formControlProvider } from '../core/form-control';
 import { isValidJSON } from '../../core/utils';
+import { JsonEditorModalComponent } from './json-editor-modal.component';
 
 @Component({
   moduleId: module.id,
@@ -43,16 +46,51 @@ import { isValidJSON } from '../../core/utils';
   encapsulation: ViewEncapsulation.None,
 })
 export class JsonEditorComponent extends FormControlBase<string> implements AfterViewInit, OnDestroy {
+  @Input() sendIcon = 'fa-paper-plane';
+  @Input() sendTooltip = 'Send';
+
+  @Input()
+  get viewportMargin() { return this._viewportMargin; }
+  set viewportMargin(v: number) {
+    this._viewportMargin = coerceNumberProperty(v);
+  }
+  private _viewportMargin = Infinity;
+
   @Input()
   get raw() { return this._raw; }
   set raw(v: boolean) {
+    if (v !== this._raw) {
+      this.rawChange.emit(v);
+    }
+
     this._raw = coerceBooleanProperty(v);
 
     if (this.editor) {
       this.editor.setOption('mode', this._mode);
     }
   }
-  protected _raw?: boolean;
+  private _raw?: boolean;
+
+  @Input()
+  get sendable() { return this._sendable; }
+  set sendable(v: boolean) {
+    this._sendable = coerceBooleanProperty(v);
+  }
+  private _sendable?: boolean;
+
+  @Input()
+  get expandable() { return this._expandable; }
+  set expandable(v: boolean) {
+    this._expandable = coerceBooleanProperty(v);
+  }
+  private _expandable?: boolean;
+
+  @Input()
+  get copyable() { return this._copyable; }
+  set copyable(v: boolean) {
+    this._copyable = coerceBooleanProperty(v);
+  }
+  private _copyable?: boolean;
 
   get value() { return this._value; }
   set value(v: string) {
@@ -67,7 +105,7 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   }
   protected _value?: string;
 
-  @Output() rawChanged = new EventEmitter<boolean>();
+  @Output() rawChange = new EventEmitter<boolean>();
   @Output() copyValue = new EventEmitter<string>();
   @Output() send = new EventEmitter<string>();
 
@@ -87,6 +125,7 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
     readonly cdr: ChangeDetectorRef,
     @Optional() readonly ngForm: NgForm,
     @Optional() readonly ngFormGroup: FormGroupDirective,
+    private readonly _modal: NgbModal,
   ) {
     super(el, cdr, ngForm, ngFormGroup);
   }
@@ -102,7 +141,7 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
       autofocus: true,
       foldGutter: true,
       gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
-      viewportMargin: Infinity,
+      viewportMargin: this._viewportMargin,
       autoCloseBrackets: true,
     });
 
@@ -135,6 +174,18 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
 
   onSend() {
     this.send.emit(this.editor.getValue());
+  }
+
+  onExpand() {
+    this.onBlur();
+
+    const ref = this._modal.open(JsonEditorModalComponent, { size: 'xl' });
+    ref.componentInstance.value = this.value;
+    ref.componentInstance.raw = this.raw;
+
+    ref.result.then(v => {
+      this.value = v;
+    }, () => {});
   }
 
   onFocus() {

@@ -1,0 +1,9 @@
+.kido-json-editor-modal {
+  kido-json-editor {
+    height: auto;
+
+    .CodeMirror {
+      height: 500px;
+    }
+  }
+}

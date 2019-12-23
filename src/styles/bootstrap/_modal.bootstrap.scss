@@ -2,7 +2,8 @@
 @import '../variables';
 
 .modal-dialog {
-  max-height: 80%;
+  max-width: 80% !important;
+  overflow: auto;
 
   .modal-content {
     background-color: var(--bg-darkest);

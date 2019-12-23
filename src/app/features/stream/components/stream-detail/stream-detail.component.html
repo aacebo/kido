@@ -99,9 +99,12 @@
             ></kido-messenger>
 
             <kido-json-editor
+              sendable
+              expandable
+              copyable
               formControlName="message"
               [raw]="!form.value.json"
-              (rawChanged)="onJsonChanged($event)"
+              (rawChange)="onJsonChanged($event)"
               (copyValue)="onPropertyValueClicked($event)"
               (send)="sendMessage()"
             ></kido-json-editor>

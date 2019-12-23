@@ -10,9 +10,7 @@ import { StreamModalComponent } from '../../components/stream-modal';
 export class StreamModalService {
   private _ref?: NgbModalRef<typeof StreamModalComponent>;
 
-  constructor(
-    private readonly _modal: NgbModal,
-  ) { }
+  constructor(private readonly _modal: NgbModal) { }
 
   open(stream?: IStream, cb?: (stream?: Partial<IStream>) => void) {
     if (!this._modal.hasOpenModals()) {
