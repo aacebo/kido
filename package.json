@@ -1,6 +1,6 @@
 {
   "name": "kido",
-  "version": "0.0.1-rc.1",
+  "version": "0.0.1-rc.2",
   "description": "a socket debugger/tester",
   "main": "dist/index.js",
   "author": {
@@ -29,12 +29,13 @@
     "e2e": "ng e2e",
     "build": "rimraf dist && ng build",
     "build:prod": "rimraf dist && ng build --prod",
-    "publish": "rimraf pkg && npm run build:prod && electron-builder --publish always",
-    "pkg": "rimraf pkg && npm run build:prod && electron-builder",
-    "pkg:all": "rimraf pkg && npm run build:prod && electron-builder -mwl",
-    "pkg:win": "rimraf pkg && npm run build:prod && electron-builder --win",
-    "pkg:mac": "rimraf pkg && npm run build:prod && electron-builder --mac",
-    "pkg:linux": "rimraf pkg && npm run build:prod && electron-builder --linux"
+    "publish": "rimraf pkg && npm run build:prod && npm run sign && electron-builder -ml --publish always",
+    "pkg": "rimraf pkg && npm run build:prod && npm run sign && electron-builder",
+    "pkg:all": "rimraf pkg && npm run build:prod && npm run sign && electron-builder -ml",
+    "pkg:win": "rimraf pkg && npm run build:prod && npm run sign && electron-builder --win",
+    "pkg:mac": "rimraf pkg && npm run build:prod && npm run sign && electron-builder --mac",
+    "pkg:linux": "rimraf pkg && npm run build:prod && npm run sign && electron-builder --linux",
+    "sign": "export CSC_LINK=$(pwd)\"/kido-dev-signed-cert.p12\" && export CSC_KEY_PASSWORD=\"password\""
   },
   "build": {
     "appId": "Kido",
