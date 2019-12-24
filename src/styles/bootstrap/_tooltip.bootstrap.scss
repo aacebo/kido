@@ -90,7 +90,7 @@ $tooltip-arrow-height: 0.4rem;
 
   .tooltip-inner {
     padding: 10px;
-    border-radius: $border-radius;
+    border-radius: $border-radius-lg;
     border: $tooltip-border-width solid $tooltip-border-color;
   }
 

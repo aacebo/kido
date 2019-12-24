@@ -37,7 +37,6 @@ import { JsonEditorModalComponent } from './json-editor-modal.component';
     tabindex: '-1',
     class: 'kido-json-editor',
     '[class.kido-json-editor--invalid]': 'invalid && !raw',
-    '[class.kido-json-editor--focused]': 'focused',
     '(focus)': 'onFocus()',
     '(blur)': 'onBlur()',
   },
@@ -114,14 +113,13 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
 
   editor: CodeMirror.EditorFromTextArea;
   invalid = false;
-  focused = false;
 
   private get _mode() {
     return this._raw ? 'text/plain' : 'application/json';
   }
 
   constructor(
-    readonly el: ElementRef<HTMLInputElement | HTMLTextAreaElement>,
+    readonly el: ElementRef<HTMLElement>,
     readonly cdr: ChangeDetectorRef,
     @Optional() readonly ngForm: NgForm,
     @Optional() readonly ngFormGroup: FormGroupDirective,
@@ -177,8 +175,6 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   }
 
   onExpand() {
-    this.onBlur();
-
     const ref = this._modal.open(JsonEditorModalComponent, { size: 'xl' });
     ref.componentInstance.value = this.value;
     ref.componentInstance.raw = this.raw;
@@ -189,13 +185,11 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   }
 
   onFocus() {
-    this.focused = true;
-    this.cdr.markForCheck();
+    this.el.nativeElement.classList.add('kido-json-editor--focused');
   }
 
   onBlur() {
-    this.focused = false;
-    this.cdr.markForCheck();
+    this.el.nativeElement.classList.remove('kido-json-editor--focused');
   }
 
   private onEditorChange(editor: CodeMirror.EditorFromTextArea) {

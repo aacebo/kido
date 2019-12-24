@@ -29,7 +29,7 @@
 
   .form-control {
     display: flex;
-    background-color: var(--bg-darker);
+    background-color: transparent;
     border-color: var(--hairline-soft);
     color: var(--text-primary);
     outline: none;
@@ -42,10 +42,6 @@
       &:focus {
         filter: none;
       }
-    }
-
-    &:focus {
-      background-color: var(--bg-darkest);
     }
 
     span {

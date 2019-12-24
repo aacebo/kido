@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 $arrow-size: 8px;
 $border-size: 1px;
 $inner-arrow-size: 7px;
@@ -82,7 +84,7 @@ $inner-arrow-size: 7px;
     height: 100%;
     max-width: 75%;
     min-width: 150px;
-    border-radius: 3px;
+    border-radius: $border-radius-md;
     padding: 8px 10px;
     background-color: var(--bg-darker);
     border: $border-size solid var(--hairline-strong);
@@ -120,8 +122,19 @@ $inner-arrow-size: 7px;
       display: none;
 
       .btn {
-        background-color: var(--bg-obsidian);
+        background-color: var(--bg-darkest);
         border: 1px solid var(--hairline-strong);
+        border-radius: $border-radius-md;
+
+        &:not(:last-child) {
+          border-top-right-radius: 0px;
+          border-bottom-right-radius: 0px;
+        }
+
+        &:not(:first-child) {
+          border-top-left-radius: 0px;
+          border-bottom-left-radius: 0px;
+        }
       }
     }
 
@@ -135,7 +148,7 @@ $inner-arrow-size: 7px;
       max-width: 100%;
       width: 100%;
       font-size: 10pt;
-      border-radius: 2px;
+      border-radius: $border-radius-sm;
       padding: 3px 5px;
       background-color: var(--bg-obsidian);
     }

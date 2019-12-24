@@ -6,7 +6,7 @@ $background-color: #282a36;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--hairline-regular);
-  border-radius: $border-radius;
+  border-radius: $border-radius-md;
   background-color: $background-color;
 
   &.kido-json-editor--invalid {
@@ -23,6 +23,8 @@ $background-color: #282a36;
     height: auto;
     min-width: 100%;
     min-height: 60px;
+    border-top-left-radius: $border-radius-md;
+    border-top-right-radius: $border-radius-md;
 
     .CodeMirror-scrollbar-filler {
       background-color: transparent !important;
@@ -41,7 +43,7 @@ $background-color: #282a36;
     }
 
     span {
-      border-radius: $border-radius;
+      border-radius: $border-radius-md;
       padding: 10px;
       opacity: 0.7;
       transition: opacity 0.15s ease-in-out;

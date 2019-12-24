@@ -8,20 +8,20 @@
   .modal-content {
     background-color: var(--bg-darkest);
     box-shadow: $box-shadow-lg;
-    border-radius: $border-radius;
+    border-radius: $border-radius-lg;
 
     .modal-header {
       border-bottom: none;
-      padding: 10px 10px 10px 15px;
-      box-shadow: 12px 0 0 -8px var(--info) inset;
-      border-top-left-radius: $border-radius;
-      border-top-right-radius: $border-radius;
+      padding: 20px 20px 10px 20px;
+      border-top-left-radius: $border-radius-lg;
+      border-top-right-radius: $border-radius-lg;
 
       .modal-title {
         margin: auto;
         flex: 1 1 auto;
         color: var(--text-primary);
         font-weight: bold;
+        font-size: 16pt;
       }
 
       .modal-close-btn {
@@ -30,14 +30,14 @@
     }
 
     .modal-body {
-      padding: 10px;
+      padding: 10px 20px 10px 20px;
     }
 
     .modal-footer {
       border-top: none;
-      padding: 10px;
-      border-bottom-left-radius: $border-radius;
-      border-bottom-right-radius: $border-radius;
+      padding: 10px 20px 20px 20px;
+      border-bottom-left-radius: $border-radius-lg;
+      border-bottom-right-radius: $border-radius-lg;
     }
   }
 }
