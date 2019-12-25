@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import * as components from './components';
 
 const declarations = [
-  components.HorizontalResizeBarComponent,
+  components.HorizontalSplitComponent,
 ];
 
 @NgModule({
@@ -12,4 +12,4 @@ const declarations = [
   exports: declarations,
   imports: [CommonModule],
 })
-export class ResizeModule { }
+export class SplitModule { }

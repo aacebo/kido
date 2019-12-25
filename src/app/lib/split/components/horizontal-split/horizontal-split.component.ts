@@ -1,16 +1,17 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'kido-horizontal-resize-bar',
+  selector: 'kido-horizontal-split',
   template: '',
-  styleUrls: ['./horizontal-resize-bar.component.scss'],
+  styleUrls: ['./horizontal-split.component.scss'],
   host: {
-    class: 'kido-horizontal-resize-bar',
-    '[class.kido-horizontal-resize-bar--resizing]': 'resizing',
+    class: 'kido-horizontal-split',
+    '[class.kido-horizontal-split--resizing]': 'resizing',
   },
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HorizontalResizeBarComponent {
+export class HorizontalSplitComponent {
   @Output() onresize = new EventEmitter<number>();
 
   get resizing() {

@@ -1,4 +1,4 @@
-:host {
+.kido-horizontal-split {
   width: 10px;
   position: absolute;
   cursor: col-resize;
@@ -8,7 +8,7 @@
   transition: box-shadow 0.5s ease;
 
   &:hover,
-  &.kido-horizontal-resize-bar--resizing {
+  &.kido-horizontal-split--resizing {
     box-shadow: -12px 0 0 -8px var(--info) inset
   }
 }

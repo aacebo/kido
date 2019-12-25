@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModalModule, NgbTabsetModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConnectionIconModule } from '../connection-icon';
-import { ResizeModule } from '../resize';
 import { SocketIconModule } from '../socket-icon';
 
 import { ButtonModule } from '../../lib/button';
@@ -37,7 +36,6 @@ const declarations = [
     ReactiveFormsModule,
 
     SocketIconModule,
-    ResizeModule,
     ConnectionIconModule,
 
     NgbModalModule,
