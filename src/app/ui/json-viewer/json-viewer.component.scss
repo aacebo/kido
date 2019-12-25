@@ -22,7 +22,7 @@ $type-colors: (
     border: 1px solid var(--hairline-soft);
 
     .kido-json-viewer--content {
-      overflow-y: auto;
+      overflow: auto;
       padding: 0px 0 0px 20px;
     }
   }
@@ -72,6 +72,8 @@ $type-colors: (
     position: relative;
 
     .kido-json-viewer--nodes {
+      width: fit-content;
+
       .kido-json-viewer--node {
         display: flex;
 

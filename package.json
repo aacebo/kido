@@ -21,7 +21,7 @@
     "ngrx"
   ],
   "scripts": {
-    "postinstall": "install-app-deps",
+    "postinstall": "electron-builder install-app-deps",
     "ng": "ng",
     "start": "rimraf dist && ng build && electron .",
     "test": "ng test",
