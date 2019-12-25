@@ -7,15 +7,15 @@ import { ConnectionIconModule } from '../connection-icon';
 import { ResizeModule } from '../resize';
 import { SocketIconModule } from '../socket-icon';
 
-import { ButtonModule } from '../../ui/button';
-import { CheckboxModule } from '../../ui/checkbox';
-import { DropdownModule } from '../../ui/dropdown';
-import { ElapseTimeModule } from '../../ui/elapse-time';
-import { InputModule } from '../../ui/input';
-import { JsonEditorModule } from '../../ui/json-editor';
-import { JsonViewerModule } from '../../ui/json-viewer';
-import { MessengerModule } from '../../ui/messenger';
-import { SelectModule } from '../../ui/select';
+import { ButtonModule } from '../../lib/button';
+import { CheckboxModule } from '../../lib/checkbox';
+import { DropdownModule } from '../../lib/dropdown';
+import { ElapseTimeModule } from '../../lib/elapse-time';
+import { InputModule } from '../../lib/input';
+import { JsonEditorModule } from '../../lib/json-editor';
+import { JsonViewerModule } from '../../lib/json-viewer';
+import { MessengerModule } from '../../lib/messenger';
+import { SelectModule } from '../../lib/select';
 
 import * as components from './components';
 

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Output, EventEmitter } from '@angular/core';
 
-import { Hotkeys } from '../../ui/hotkeys';
+import { Hotkeys } from '../../lib/hotkeys';
 
 @Component({
   selector: 'kido-actionbar',

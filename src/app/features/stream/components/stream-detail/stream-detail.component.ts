@@ -5,9 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { areEqual, isValidJSON } from '../../../../core/utils';
 import { IMessage } from '../../../../resources/message';
 import { IStream, StreamType } from '../../../../resources/stream';
-import { Hotkeys } from '../../../../ui/hotkeys';
+import { Hotkeys } from '../../../../lib/hotkeys';
 
-import { MessageAction } from '../../../../ui/messenger';
+import { MessageAction } from '../../../../lib/messenger';
 import { STREAM_TYPE_LABELS } from '../../constants';
 
 @Component({

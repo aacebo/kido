@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Hotkeys } from '../../ui/hotkeys';
+import { Hotkeys } from '../../lib/hotkeys';
 import { IStream } from '../../resources/stream';
 
 @Component({

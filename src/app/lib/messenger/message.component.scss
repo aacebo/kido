@@ -129,11 +129,13 @@ $inner-arrow-size: 7px;
         &:not(:last-child) {
           border-top-right-radius: 0px;
           border-bottom-right-radius: 0px;
+          border-right: 0px;
         }
 
         &:not(:first-child) {
           border-top-left-radius: 0px;
           border-bottom-left-radius: 0px;
+          border-left: 0px;
         }
       }
     }
