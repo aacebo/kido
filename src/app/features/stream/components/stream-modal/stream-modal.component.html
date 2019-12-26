@@ -1,5 +1,7 @@
 <div class="modal-header">
-  <div class="modal-title">STREAM</div>
+  <div class="modal-title">
+    {{ stream ? 'Edit' : 'Create' }} Stream
+  </div>
 
   <button
     kido-icon-button
@@ -70,6 +72,6 @@
     [disabled]="form.invalid || form.pristine"
     (click)="save()"
   >
-    <span class="fas fa-save"></span> Save
+    {{ stream ? 'Save' : 'Create' }}
   </button>
 </div>
