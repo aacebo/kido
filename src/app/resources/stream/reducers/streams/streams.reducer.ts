@@ -17,16 +17,19 @@ export const streams = createReducer<{ [streamId: string]: IStream }>(
     return map;
   }),
   on(actions.addSuccess, (_, a) => {
-    _[a.stream._id] = a.stream;
-    return { ..._ };
+    const state = { ..._ };
+    state[a.stream._id] = a.stream;
+    return state;
   }),
   on(actions.updateSuccess, (_, a) => {
-    _[a.stream._id] = a.stream;
-    return { ..._ };
+    const state = { ..._ };
+    state[a.stream._id] = a.stream;
+    return state;
   }),
   on(actions.removeSuccess, (_, a) => {
-    _[a.streamId] = undefined;
-    delete _[a.streamId];
-    return { ..._ };
+    const state = { ..._ };
+    state[a.streamId] = undefined;
+    delete state[a.streamId];
+    return state;
   }),
 );

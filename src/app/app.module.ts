@@ -30,17 +30,25 @@ PouchDB.plugin(PouchDBFind);
     BrowserModule,
     BrowserAnimationsModule,
 
-    StoreModule.forRoot({ }),
     EffectsModule.forRoot([ ]),
+    StoreModule.forRoot({ }, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      },
+    }),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
       maxAge: 100,
     }),
 
     ToastrModule.forRoot({
-      progressBar: true,
       positionClass: 'toast-bottom-right',
+      progressBar: true,
       timeOut: 3000,
+      maxOpened: 5,
+      autoDismiss: true,
+      countDuplicates: true,
     }),
     AppRoutingModule,
     ResourcesModule,

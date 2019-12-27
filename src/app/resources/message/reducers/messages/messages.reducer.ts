@@ -9,15 +9,18 @@ import { IMessage } from '../../models';
 export const messages = createReducer<{ [streamId: string]: IMessage[] }>(
   { },
   on(actions.getSuccess, (_, a) => {
-    _[a.streamId] = [...a.messages.sort((one, two) => one.createdAt - two.createdAt)];
-    return { ..._ };
+    const state = { ..._ };
+    state[a.streamId] = a.messages.slice().sort((one, two) => one.createdAt - two.createdAt);
+    return state;
   }),
   on(actions.saveSuccess, (_, a) => {
-    _[a.streamId] = [...a.messages.sort((one, two) => one.createdAt - two.createdAt)];
-    return { ..._ };
+    const state = { ..._ };
+    state[a.streamId] = a.messages.slice().sort((one, two) => one.createdAt - two.createdAt);
+    return state;
   }),
   on(actions.add, (_, a) => {
-    const msgs = _[a.streamId] || [];
+    const state = { ..._ };
+    const msgs = state[a.streamId] ? [...state[a.streamId]] : [];
 
     msgs.push({
       _id: uuid(),
@@ -34,11 +37,12 @@ export const messages = createReducer<{ [streamId: string]: IMessage[] }>(
       msgs.shift();
     }
 
-    _[a.streamId] = [...msgs];
-    return { ..._ };
+    state[a.streamId] = [...msgs];
+    return state;
   }),
   on(actions.remove, (_, a) => {
-    const msgs = _[a.streamId] || [];
+    const state = { ..._ };
+    const msgs = state[a.streamId] ? [...state[a.streamId]] : [];
 
     for (let i = 0; i < msgs.length; i++) {
       if (msgs[i]._id === a._id) {
@@ -47,11 +51,12 @@ export const messages = createReducer<{ [streamId: string]: IMessage[] }>(
       }
     }
 
-    _[a.streamId] = [...msgs];
-    return { ..._ };
+    state[a.streamId] = [...msgs];
+    return state;
   }),
   on(actions.removeAllSuccess, (_, a) => {
-    _[a.streamId] = undefined;
-    return { ..._ };
+    const state = { ..._ };
+    state[a.streamId] = undefined;
+    return state;
   }),
 );

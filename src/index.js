@@ -17,6 +17,20 @@ let mainWindow;
 function createWindow() {
   devtools.default(devtools.REDUX_DEVTOOLS);
 
+  electron.session.defaultSession.webRequest.onHeadersReceived((details, cb) => {
+    cb({
+      responseHeaders: {
+        ...details.responseHeaders,
+        'Content-Security-Policy': [
+          'default-src \'self\'',
+          'style-src \'self\' \'unsafe-inline\'',
+          'script-src \'self\'',,
+          'connect-src * data: blob: \'unsafe-inline\'',
+        ]
+      },
+    });
+  });
+
   mainWindow = window({
     width: 900,
     height: 600,

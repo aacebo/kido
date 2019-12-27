@@ -8,13 +8,14 @@ import { ILog } from '../../models';
 export const logs = createReducer<ILog[]>(
   [ ],
   on(actions.addSuccess, (_, a) => {
-    _.push(a.log);
+    const state = [ ..._ ];
+    state.push(a.log);
 
     if (environment.maxLogs > _.length) {
-      _.shift();
+      state.shift();
     }
 
-    return [..._];
+    return state;
   }),
   on(actions.getSuccess, (_, a) => a.logs),
 );

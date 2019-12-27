@@ -23,11 +23,11 @@
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "ng": "ng",
-    "start": "rimraf dist && ng build && electron .",
+    "start": "rimraf dist && ng build --aot && electron .",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build": "rimraf dist && ng build",
+    "build": "rimraf dist && ng build --aot",
     "build:prod": "rimraf dist && ng build --prod",
     "publish": "rimraf pkg && npm run build:prod && npm run sign && electron-builder -ml --publish always",
     "pkg": "rimraf pkg && npm run build:prod && npm run sign && electron-builder",

@@ -1,11 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Color, Size } from '../core/enums';
-
-import {
-  ButtonTheme,
-  getButtonHost,
-} from '../core/button';
+import { ButtonTheme, BUTTON_HOST } from '../core/button';
 
 const BUTTON_HOST_ATTRIBUTES = [
   'kido-button',
@@ -18,10 +14,7 @@ const BUTTON_HOST_ATTRIBUTES = [
   selector: 'button[kido-button], button[kido-icon-button]',
   template: '<ng-content></ng-content>',
   styleUrls: ['./button.component.scss'],
-  host: {
-    class: 'btn',
-    ...getButtonHost(),
-  },
+  host: BUTTON_HOST,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
