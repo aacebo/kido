@@ -1,7 +1,7 @@
-const { dialog, app } = require('electron');
-const dev = require('electron-is-dev');
+import { dialog, app, BrowserWindow } from 'electron';
+import dev from 'electron-is-dev';
 
-module.exports = function about(parent) {
+export function about(parent: BrowserWindow) {
   dialog.showMessageBox(parent, {
     message: 'About Kido',
     detail: `${app.getVersion()} (${dev ? 'development' : 'production'})`,

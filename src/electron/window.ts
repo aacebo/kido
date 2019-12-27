@@ -1,13 +1,13 @@
-const path = require('path');
-const electron = require('electron');
-const dev = require('electron-is-dev');
-const url = require('url');
+import * as path from 'path';
+import * as electron from 'electron';
+import dev from 'electron-is-dev';
+import * as url from 'url';
 
 function icon() {
   return process.platform === 'linux' ? 'png/512x512.png' : 'icns/512x512.icns';
 }
 
-const DEFAULT_OPTIONS = {
+const DEFAULT_OPTIONS: electron.BrowserWindowConstructorOptions = {
   autoHideMenuBar: true,
   darkTheme: true,
   show: false,
@@ -21,7 +21,11 @@ const DEFAULT_OPTIONS = {
   },
 };
 
-module.exports = function window(options, uri, onReady) {
+export function window(
+  options: Partial<electron.BrowserWindowConstructorOptions>,
+  uri: string,
+  onReady?: () => void,
+) {
   const win = new electron.BrowserWindow({
     ...DEFAULT_OPTIONS,
     ...options,

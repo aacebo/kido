@@ -1,18 +1,18 @@
-const electron = require('electron');
-const dev = require('electron-is-dev');
-const devtools = require('electron-devtools-installer');
-const dotenv = require('dotenv');
+import * as electron from 'electron';
+import dev from 'electron-is-dev';
+import * as devtools from 'electron-devtools-installer';
+import * as dotenv from 'dotenv';
 
-const update = require('./electron/update');
-const window = require('./electron/window');
-const menu = require('./electron/menu');
+import { update } from './update';
+import { window } from './window';
+import { menu } from './menu';
 
 dotenv.config({
   debug: dev,
   path: `${__dirname}/.env`,
 });
 
-let mainWindow;
+let mainWindow: electron.BrowserWindow;
 
 function createWindow() {
   devtools.default(devtools.REDUX_DEVTOOLS);
@@ -24,9 +24,9 @@ function createWindow() {
         'Content-Security-Policy': [
           'default-src \'self\'',
           'style-src \'self\' \'unsafe-inline\'',
-          'script-src \'self\'',,
+          'script-src \'self\'',
           'connect-src * data: blob: \'unsafe-inline\'',
-        ]
+        ],
       },
     });
   });

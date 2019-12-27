@@ -2,7 +2,7 @@
   "name": "kido",
   "version": "0.0.1-rc.2",
   "description": "a socket debugger/tester",
-  "main": "dist/index.js",
+  "main": "dist/electron/index.js",
   "author": {
     "name": "Alexander Acebo",
     "email": "aacebowork@gmail.com"
@@ -23,10 +23,11 @@
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "ng": "ng",
-    "start": "rimraf dist && ng build --aot && electron .",
-    "start:prod": "rimraf dist && ng build --prod && electron .",
-    "build": "rimraf dist && ng build --aot",
-    "build:prod": "rimraf dist && ng build --prod",
+    "start": "npm run build && electron .",
+    "start:prod": "npm run build:prod && electron .",
+    "build": "rimraf dist && ng build --aot && npm run build:electron",
+    "build:prod": "rimraf dist && ng build --prod && npm run build:electron",
+    "build:electron": "tsc -p src/electron",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

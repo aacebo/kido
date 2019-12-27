@@ -1,9 +1,9 @@
-const { dialog } = require('electron');
-const { autoUpdater } = require('electron-updater');
-const log = require('electron-log');
-const dev = require('electron-is-dev');
+import { dialog, BrowserWindow } from 'electron';
+import { autoUpdater } from 'electron-updater';
+import log from 'electron-log';
+import dev from 'electron-is-dev';
 
-module.exports = function update(mainWindow) {
+export function update(mainWindow: BrowserWindow) {
   log.transports.file.level = dev ? 'debug' : 'info';
   autoUpdater.logger = log;
 
@@ -20,8 +20,8 @@ module.exports = function update(mainWindow) {
       message: 'Update Available',
       detail: 'A newer version of Kido is available, would you list to update?',
       buttons: ['Update', 'Cancel'],
-    }, choice => {
-      if (choice === 0) {
+    }).then(choice => {
+      if (choice.response === 0) {
         autoUpdater.downloadUpdate();
       }
     });

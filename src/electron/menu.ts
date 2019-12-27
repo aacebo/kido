@@ -1,8 +1,9 @@
-const { app, Menu, dialog } = require('electron');
-const { autoUpdater } = require('electron-updater');
-const about = require('./about');
+import { app, Menu, dialog, BrowserWindow } from 'electron';
+import { autoUpdater } from 'electron-updater';
 
-module.exports = function menu(mainWindow) {
+import { about } from './about';
+
+export function menu(mainWindow: BrowserWindow) {
   Menu.setApplicationMenu(Menu.buildFromTemplate([
     {
       label: 'File',
@@ -23,8 +24,8 @@ module.exports = function menu(mainWindow) {
                 message: 'Update Available',
                 detail: 'A newer version of Kido is available, would you list to update?',
                 buttons: ['Update', 'Cancel'],
-              }, choice => {
-                if (choice === 0) {
+              }).then(choice => {
+                if (choice.response === 0) {
                   autoUpdater.downloadUpdate();
                 }
               });
@@ -38,19 +39,19 @@ module.exports = function menu(mainWindow) {
     {
       label: 'Edit',
       submenu: [
-        { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
-        { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
-        { type: "separator" },
-        { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
-        { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
-        { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
-        { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" },
+        { label: 'Undo', accelerator: 'CmdOrCtrl+Z', role: 'undo' },
+        { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', role: 'redo' },
+        { type: 'separator' },
+        { label: 'Cut', accelerator: 'CmdOrCtrl+X', role: 'cut' },
+        { label: 'Copy', accelerator: 'CmdOrCtrl+C', role: 'copy' },
+        { label: 'Paste', accelerator: 'CmdOrCtrl+V', role: 'paste' },
+        { label: 'Select All', accelerator: 'CmdOrCtrl+A', role: 'selectAll' },
       ],
     },
     {
       label: 'View',
       submenu: [
-        { label: 'Toggle Developer Tools', click: () => mainWindow.webContents.openDevTools() }
+        { label: 'Toggle Developer Tools', click: () => mainWindow.webContents.openDevTools() },
       ],
     },
   ]));
