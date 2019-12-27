@@ -50,6 +50,7 @@ PouchDB.plugin(PouchDBFind);
       autoDismiss: true,
       countDuplicates: true,
     }),
+
     AppRoutingModule,
     ResourcesModule,
     CoreModule,

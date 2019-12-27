@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs/operators';
 
 import * as actions from '../../actions';
@@ -13,7 +12,6 @@ export class DisconnectEffects {
     tap(a => {
       if (this._socketService.isConnected(a.streamId)) {
         this._socketService.disconnect(a.streamId);
-        this._toastr.warning('Disconnected', 'Socket');
       }
     }),
   ), { dispatch: false });
@@ -21,6 +19,5 @@ export class DisconnectEffects {
   constructor(
     private readonly _actions$: Actions,
     private readonly _socketService: SocketService,
-    private readonly _toastr: ToastrService,
   ) { }
 }
