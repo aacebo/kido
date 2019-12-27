@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Output, EventEmitter } from '@angular/core';
 
-import { Hotkeys } from '../../lib/hotkeys';
+import { Hotkeys, HotkeyBase } from '../../lib/hotkeys';
 
 @Component({
   selector: 'kido-actionbar',
@@ -8,7 +8,7 @@ import { Hotkeys } from '../../lib/hotkeys';
   styleUrls: ['./actionbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ActionbarComponent {
+export class ActionbarComponent extends HotkeyBase {
   @Output() add = new EventEmitter<void>();
   @Output() logs = new EventEmitter<void>();
 

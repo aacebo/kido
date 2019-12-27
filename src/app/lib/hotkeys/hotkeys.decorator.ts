@@ -3,8 +3,6 @@ import { NgZone } from '@angular/core';
 import { HotkeysService } from './hotkeys.service';
 
 export function Hotkeys(keys: string, description: string) {
-  const hotkeys = HotkeysService.instance;
-
   return (target: any, name: string) => {
     const ngOnInit = target.ngOnInit;
     const ngOnDestroy = target.ngOnDestroy;
@@ -14,7 +12,7 @@ export function Hotkeys(keys: string, description: string) {
         ngOnInit.bind(this)();
       }
 
-      hotkeys.register(
+      HotkeysService.instance.register(
         keys,
         description,
         target[name].bind(this),
@@ -27,7 +25,7 @@ export function Hotkeys(keys: string, description: string) {
         ngOnDestroy.bind(this)();
       }
 
-      hotkeys.deregister(keys);
+      HotkeysService.instance.deregister(keys);
     };
   };
 }

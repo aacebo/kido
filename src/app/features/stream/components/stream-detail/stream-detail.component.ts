@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { areEqual, isValidJSON } from '../../../../core/utils';
 import { IMessage } from '../../../../resources/message';
 import { IStream, StreamType } from '../../../../resources/stream';
-import { Hotkeys } from '../../../../lib/hotkeys';
+import { Hotkeys, HotkeyBase } from '../../../../lib/hotkeys';
 
 import { MessageAction } from '../../../../lib/messenger';
 import { STREAM_TYPE_LABELS } from '../../constants';
@@ -18,7 +18,7 @@ import { STREAM_TYPE_LABELS } from '../../constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class StreamDetailComponent implements OnInit {
+export class StreamDetailComponent extends HotkeyBase implements OnInit {
   @Input() activeMessage?: IMessage;
   @Input() activeMessageContent?: any;
   @Input() messages: { [streamId: string]: IMessage[] } = { };
@@ -79,7 +79,7 @@ export class StreamDetailComponent implements OnInit {
   constructor(
     private readonly _fb: FormBuilder,
     private readonly _toastr: ToastrService,
-  ) { }
+  ) { super(); }
 
   ngOnInit() {
     this.form = this._fb.group({

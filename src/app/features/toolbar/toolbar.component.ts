@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Hotkeys } from '../../lib/hotkeys';
+import { Hotkeys, HotkeyBase } from '../../lib/hotkeys';
 import { IStream } from '../../resources/stream';
 
 @Component({
@@ -10,7 +10,7 @@ import { IStream } from '../../resources/stream';
   host: { class: 'navbar' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ToolbarComponent {
+export class ToolbarComponent extends HotkeyBase {
   @Input() stream?: IStream;
   @Input() connected?: Date;
 

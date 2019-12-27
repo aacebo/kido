@@ -1,11 +1,7 @@
 import { NgZone } from '@angular/core';
-import * as mousetrap from 'mousetrap';
+import * as Mousetrap from 'mousetrap';
 
 import { IHotkey } from './hotkey.interface';
-
-mousetrap.prototype.stopCallback = (..._: any) => {
-  return false;
-};
 
 export class HotkeysService {
   private static _instance: HotkeysService;
@@ -18,9 +14,14 @@ export class HotkeysService {
   }
 
   get hotkeys() { return this._hotkeys; }
-  private _hotkeys: { [keys: string]: IHotkey } = { };
+  private readonly _hotkeys: { [keys: string]: IHotkey } = { };
+  private readonly _mousetrap = Mousetrap(document as never as Element);
 
-  private constructor() { }
+  private constructor() {
+    this._mousetrap.stopCallback = (..._: any) => {
+      return false;
+    };
+  }
 
   register(keys: string, description: string, cb: () => void, zone: NgZone) {
     this._hotkeys[keys] = {
@@ -29,13 +30,14 @@ export class HotkeysService {
       cb,
     };
 
-    mousetrap.bind(keys, () => {
+    this._mousetrap.bind(keys, () => {
       zone.run(() => cb());
     });
   }
 
   deregister(keys: string) {
     this._hotkeys[keys] = undefined;
-    mousetrap.unbind(keys);
+    delete this._hotkeys[keys];
+    this._mousetrap.unbind(keys);
   }
 }
