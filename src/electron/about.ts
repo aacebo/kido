@@ -1,5 +1,5 @@
 import { dialog, app, BrowserWindow } from 'electron';
-import dev from 'electron-is-dev';
+import * as dev from 'electron-is-dev';
 
 export function about(parent: BrowserWindow) {
   dialog.showMessageBox(parent, {

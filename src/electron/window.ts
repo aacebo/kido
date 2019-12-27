@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as electron from 'electron';
-import dev from 'electron-is-dev';
+import * as dev from 'electron-is-dev';
 import * as url from 'url';
 
 function icon() {

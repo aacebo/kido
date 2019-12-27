@@ -1,22 +1,59 @@
 import * as electron from 'electron';
-import dev from 'electron-is-dev';
 import * as devtools from 'electron-devtools-installer';
 import * as dotenv from 'dotenv';
+import * as dev from 'electron-is-dev';
 
-import { update } from './update';
+import { KidoUpdater } from './updater';
 import { window } from './window';
-import { menu } from './menu';
+import { KidoMenu } from './menu';
 
 dotenv.config({
   debug: dev,
-  path: `${__dirname}/.env`,
+  path: `${__dirname}/../.env`,
 });
 
-let mainWindow: electron.BrowserWindow;
+let app: App;
 
-function createWindow() {
+class App {
+  private _updater: KidoUpdater;
+  private _menu: KidoMenu;
+  private _window: electron.BrowserWindow;
+
+  constructor() {
+    this._window = window({
+      width: 900,
+      height: 600,
+      minWidth: 600,
+      minHeight: 600,
+      title: 'Kido',
+    }, undefined, () => {
+      this._menu = new KidoMenu(this._window);
+      this._updater = new KidoUpdater(this._window);
+
+      this._menu.checkForUpdate.subscribe(() => {
+        this._updater.check(true);
+      });
+    });
+
+    electron.ipcMain.on('open', (_, args) => {
+      window({
+        parent: this._window,
+        modal: args.modal,
+      }, args.path);
+    });
+
+    this._window.on('closed', () => {
+      this._window = null;
+    });
+  }
+
+  quit() {
+    electron.app.quit();
+  }
+}
+
+electron.app.on('ready', () => {
   devtools.default(devtools.REDUX_DEVTOOLS);
-
   electron.session.defaultSession.webRequest.onHeadersReceived((details, cb) => {
     cb({
       responseHeaders: {
@@ -31,37 +68,15 @@ function createWindow() {
     });
   });
 
-  mainWindow = window({
-    width: 900,
-    height: 600,
-    minWidth: 600,
-    minHeight: 600,
-    title: 'Kido',
-  }, undefined, () => {
-    menu(mainWindow);
-    update(mainWindow);
-  });
-
-  electron.ipcMain.on('open', (_, args) => {
-    window({
-      parent: mainWindow,
-      modal: args.modal,
-    }, args.path);
-  });
-
-  mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
-}
-
-electron.app.on('ready', createWindow);
+  app = new App();
+});
 
 electron.app.on('window-all-closed', () => {
-  electron.app.quit();
+  app.quit();
 });
 
 electron.app.on('activate', () => {
-  if (mainWindow === null) {
-    createWindow();
+  if (!app) {
+    app = new App();
   }
 });
