@@ -25,6 +25,12 @@
   label {
     color: var(--text-primary);
     font-size: 11pt;
+    font-weight: 450;
+
+    span {
+      font-weight: normal;
+      color: var(--text-muted);
+    }
   }
 
   .form-control {
