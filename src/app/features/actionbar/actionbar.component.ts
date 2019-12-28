@@ -11,6 +11,7 @@ import { Hotkeys, HotkeyBase } from '../../lib/hotkeys';
 export class ActionbarComponent extends HotkeyBase {
   @Output() add = new EventEmitter<void>();
   @Output() logs = new EventEmitter<void>();
+  @Output() hotkeys = new EventEmitter<void>();
 
   @Hotkeys('mod+n', 'Add New Stream')
   onAdd() {
@@ -20,5 +21,10 @@ export class ActionbarComponent extends HotkeyBase {
   @Hotkeys('mod+l', 'System Logs')
   onLogs() {
     this.logs.emit();
+  }
+
+  @Hotkeys('mod+h', 'Hotkeys')
+  onHoykeys() {
+    this.hotkeys.emit();
   }
 }

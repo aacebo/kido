@@ -68,6 +68,7 @@ $type-colors: (
   }
 
   .kido-json-viewer--content {
+    flex: 1;
     padding-left: 12px;
     position: relative;
 
@@ -138,6 +139,12 @@ $type-colors: (
           overflow-x: hidden;
           color: #999;
           cursor: copy;
+
+          .kido-ellipsis--content {
+            &:hover {
+              text-decoration: underline;
+            }
+          }
         }
       }
     }

@@ -2,6 +2,7 @@ import * as signalr from '@aspnet/signalr';
 import { Subject } from 'rxjs';
 
 import { ISocketService } from '../../models';
+import { SignalrLogger } from './signalr.logger';
 
 export class SignalrService implements ISocketService {
   get disconnected() { return this._socket$.state === signalr.HubConnectionState.Disconnected; }
@@ -15,15 +16,17 @@ export class SignalrService implements ISocketService {
   private readonly _disconnected$ = new Subject<void>();
   private readonly _error$ = new Subject<any>();
   private readonly _event$ = new Subject<{ e: string, v: any }>();
+  private readonly _logger = new SignalrLogger();
 
   constructor(private readonly _url: string) {
     this._socket$ = new signalr.HubConnectionBuilder()
                                .withUrl(this._url)
+                               .configureLogging(this._logger)
                                .build();
 
-    this._socket$.on('Disconnected', this._onDisconnect.bind(this));
-    this._socket$.on('Connected', this._onConnect.bind(this));
-    this._socket$.on('Error', this._onError.bind(this));
+    this._logger.connected$.subscribe(this._onConnect.bind(this));
+    this._logger.disconnected$.subscribe(this._onDisconnect.bind(this));
+    this._logger.error$.subscribe(this._onError.bind(this));
     this._socket$.on('*', this._onEvent.bind(this));
   }
 

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { ElectronService } from '../../core/services';
+
 import { StreamModalService } from '../../features/stream';
 
 import { IMessage, MessageService, MessageType } from '../../resources/message';
