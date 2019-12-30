@@ -1,5 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { ElectronService } from '../../core/services';
 
@@ -13,10 +16,13 @@ import { SystemService } from '../../resources/system';
   selector: 'kido-stream',
   templateUrl: './stream.component.html',
   styleUrls: ['./stream.component.scss'],
+  host: { class: 'kido-stream' },
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StreamComponent implements OnInit {
   readonly menu$ = new BehaviorSubject(true);
+  readonly form = new FormGroup({ });
 
   constructor(
     readonly systemService: SystemService,
@@ -30,8 +36,11 @@ export class StreamComponent implements OnInit {
     this.streamService.get();
   }
 
-  onUpdate(e: Partial<IStream>) {
-    this.streamService.update(e);
+  onSave(e: IStream) {
+    this.streamService.update({
+      ...e,
+      ...this.form.value,
+    });
   }
 
   onConnect(e: IStream) {
@@ -47,8 +56,8 @@ export class StreamComponent implements OnInit {
     this.messageService.add(e._id, MessageType.Sent, e.message, e.event || 'message', e.json);
   }
 
-  onDeleteMessage(e: IMessage) {
-    this.messageService.remove(e.streamId, e._id);
+  onRemoveMessage(e: IMessage) {
+    this.messageService.remove(e.streamId, e._id, e._rev);
   }
 
   onSelectMessage(e?: IMessage) {
@@ -58,6 +67,14 @@ export class StreamComponent implements OnInit {
   onOpenMessage(e: IMessage) {
     this._electronService.send('open', {
       path: `/message/${e._id}`,
+    });
+  }
+
+  onStreamTabChange(e: NgbTabChangeEvent) {
+    this.messageService.messages$.pipe(take(1)).subscribe(msgs => {
+      if (!msgs[e.nextId]) {
+        this.messageService.get(e.nextId);
+      }
     });
   }
 
@@ -92,9 +109,5 @@ export class StreamComponent implements OnInit {
 
   onMenu() {
     this.menu$.next(!this.menu$.value);
-  }
-
-  onSelected(e: IStream) {
-    this.streamService.setActive(e._id);
   }
 }

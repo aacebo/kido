@@ -15,7 +15,6 @@ import { reducers } from './stream.state';
       effects.UpdateEffects,
       effects.ConnectEffects,
       effects.DisconnectEffects,
-      effects.SetActiveEffects,
       effects.RemoveEffects,
     ]),
   ],

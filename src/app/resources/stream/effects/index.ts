@@ -3,5 +3,4 @@ export * from './add';
 export * from './update';
 export * from './connect';
 export * from './disconnect';
-export * from './set-active';
 export * from './remove';

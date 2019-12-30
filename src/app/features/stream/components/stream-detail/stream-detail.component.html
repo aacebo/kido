@@ -1,135 +1,35 @@
-<div class="stream-detail--form-group" [formGroup]="form">
-  <div class="stream-detail--form-header">
-    <kido-input
-      formControlName="url"
-      placeholder="Url..."
-      required
-    >
-      <div kidoInputPrepend>
-        <kido-select
-          placeholder="Type..."
-          formControlName="type"
-        >
-          <kido-option [value]="StreamType.WebSocket">
-            <kido-socket-icon [type]="StreamType.WebSocket"></kido-socket-icon>
-            <span class="kido-option--text">{{ STREAM_TYPE_LABELS[StreamType.WebSocket] }}</span>
-          </kido-option>
+<div
+  class="stream-detail--messenger"
+  [style.flex]="activeMessageContent ? '1 1 50%' : '1 1 auto'"
+  [formGroup]="form"
+>
+  <kido-messenger
+    [messages]="messages[stream._id]"
+    [active]="activeMessageId"
+    (action)="onMessageAction($event)"
+  ></kido-messenger>
 
-          <kido-option [value]="StreamType.SignalR">
-            <kido-socket-icon [type]="StreamType.SignalR"></kido-socket-icon>
-            <span class="kido-option--text">{{ STREAM_TYPE_LABELS[StreamType.SignalR] }}</span>
-          </kido-option>
+  <kido-json-editor
+    sendable
+    expandable
+    copyable
+    formControlName="message"
+    [raw]="!form.value.json"
+    (rawChange)="onJsonChanged($event)"
+    (copyValue)="onPropertyValueClicked($event)"
+    (send)="onSend()"
+  ></kido-json-editor>
+</div>
 
-          <kido-option [value]="StreamType.SocketIO">
-            <kido-socket-icon [type]="StreamType.SocketIO"></kido-socket-icon>
-            <span class="kido-option--text">{{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}</span>
-          </kido-option>
-
-          <kido-option [value]="StreamType.SockJS">
-            <kido-socket-icon [type]="StreamType.SockJS"></kido-socket-icon>
-            <span class="kido-option--text">{{ STREAM_TYPE_LABELS[StreamType.SockJS] }}</span>
-          </kido-option>
-        </kido-select>
-      </div>
-
-      <div kidoInputAppend>
-        <button
-          kido-button
-          color="danger"
-          theme="outline"
-          ngbTooltip="Revert"
-          container="body"
-          [disabled]="areEqual || form.pristine"
-          (click)="reset()"
-        >
-          <span class="fas fa-history"></span>
-        </button>
-      </div>
-
-      <div kidoInputAppend>
-        <button
-          kido-button
-          color="success"
-          theme="outline"
-          ngbTooltip="Save"
-          container="body"
-          [disabled]="form.invalid || form.pristine || areEqual"
-          (click)="save()"
-        >
-          <span class="fas fa-save"></span>
-        </button>
-      </div>
-
-      <div kidoInputAppend>
-        <button
-          kido-button
-          container="body"
-          [theme]="connected ? '' : 'outline'"
-          [color]="connected ? 'danger' : 'info'"
-          [ngbTooltip]="connected ? 'Disconnect' : 'Connect'"
-          [disabled]="!form.value.url"
-          (click)="toggle()"
-        >
-          <span *ngIf="!connecting" class="fas fa-plug"></span>
-          <span *ngIf="connecting" class="spinner-border spinner-border-sm"></span>
-        </button>
-      </div>
-    </kido-input>
-
-    <kido-input
-      *ngIf="form?.value.type !== StreamType.WebSocket && form?.value.type !== StreamType.SockJS"
-      formControlName="event"
-      placeholder="Event..."
-    >
-    </kido-input>
-  </div>
-
-  <ngb-tabset>
-    <ngb-tab title="Messenger">
-      <ng-template ngbTabContent>
-        <div class="stream-detail--form-content">
-          <div
-            class="stream-detail--messenger"
-            [style.flex]="activeMessage ? '1 1 50%' : '1 1 auto'"
-          >
-            <kido-messenger
-              [messages]="messages[stream?._id]"
-              [active]="activeMessage?._id"
-              (action)="onMessageAction($event)"
-            ></kido-messenger>
-
-            <kido-json-editor
-              sendable
-              expandable
-              copyable
-              formControlName="message"
-              [raw]="!form.value.json"
-              (rawChange)="onJsonChanged($event)"
-              (copyValue)="onPropertyValueClicked($event)"
-              (send)="sendMessage()"
-            ></kido-json-editor>
-          </div>
-
-          <div
-            *ngIf="activeMessage"
-            class="stream-detail--json"
-            [style.flex]="activeMessage ? '1 1 50%' : '1 1 auto'"
-          >
-            <kido-json-viewer
-              closeable
-              [json]="activeMessageContent"
-              (propertyValueClicked)="onPropertyValueClicked($event)"
-              (closeClicked)="onClearMessage()"
-            ></kido-json-viewer>
-          </div>
-        </div>
-      </ng-template>
-    </ngb-tab>
-
-    <ngb-tab title="Settings">
-      <ng-template ngbTabContent>
-
-      </ng-template>
-    </ngb-tab>
-  </ngb-tabset>
+<div
+  *ngIf="activeMessageContent"
+  class="stream-detail--json"
+  [style.flex]="activeMessageContent ? '1 1 50%' : '1 1 auto'"
+>
+  <kido-json-viewer
+    closeable
+    [json]="activeMessageContent"
+    (propertyValueClicked)="onPropertyValueClicked($event)"
+    (closeClicked)="onClearMessage()"
+  ></kido-json-viewer>
 </div>

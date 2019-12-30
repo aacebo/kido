@@ -15,13 +15,15 @@ import { JsonEditorModule } from '../../lib/json-editor';
 import { JsonViewerModule } from '../../lib/json-viewer';
 import { MessengerModule } from '../../lib/messenger';
 import { SelectModule } from '../../lib/select';
+import { SplitModule } from '../../lib/split';
 
 import * as components from './components';
 
 const declarations = [
-  components.StreamListItemComponent,
   components.StreamDetailComponent,
   components.StreamModalComponent,
+  components.StreamDetailHeaderComponent,
+  components.StreamDetailSidebarComponent,
 ];
 
 @NgModule({
@@ -51,6 +53,7 @@ const declarations = [
     MessengerModule,
     CheckboxModule,
     ElapseTimeModule,
+    SplitModule,
   ],
 })
 export class StreamModule { }

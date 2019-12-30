@@ -1,0 +1,77 @@
+<div [formGroup]="form">
+  <kido-input
+    formControlName="url"
+    placeholder="Url..."
+    required
+  >
+    <div kidoInputPrepend>
+      <kido-select
+        placeholder="Type..."
+        formControlName="type"
+      >
+        <kido-option [value]="StreamType.WebSocket">
+          <kido-socket-icon [type]="StreamType.WebSocket"></kido-socket-icon>
+          <span class="kido-option--text">{{ STREAM_TYPE_LABELS[StreamType.WebSocket] }}</span>
+        </kido-option>
+
+        <kido-option [value]="StreamType.SignalR">
+          <kido-socket-icon [type]="StreamType.SignalR"></kido-socket-icon>
+          <span class="kido-option--text">{{ STREAM_TYPE_LABELS[StreamType.SignalR] }}</span>
+        </kido-option>
+
+        <kido-option [value]="StreamType.SocketIO">
+          <kido-socket-icon [type]="StreamType.SocketIO"></kido-socket-icon>
+          <span class="kido-option--text">{{ STREAM_TYPE_LABELS[StreamType.SocketIO] }}</span>
+        </kido-option>
+
+        <kido-option [value]="StreamType.SockJS">
+          <kido-socket-icon [type]="StreamType.SockJS"></kido-socket-icon>
+          <span class="kido-option--text">{{ STREAM_TYPE_LABELS[StreamType.SockJS] }}</span>
+        </kido-option>
+      </kido-select>
+    </div>
+
+    <div kidoInputAppend>
+      <button
+        kido-button
+        color="danger"
+        theme="outline"
+        ngbTooltip="Revert"
+        container="body"
+        [disabled]="form.pristine || !changed"
+        (click)="onReset()"
+      >
+        <span class="fas fa-history"></span>
+      </button>
+    </div>
+
+    <div kidoInputAppend>
+      <button
+        kido-button
+        color="success"
+        theme="outline"
+        ngbTooltip="Save"
+        container="body"
+        [disabled]="form.invalid || form.pristine || !changed"
+        (click)="save.emit()"
+      >
+        <span class="fas fa-save"></span>
+      </button>
+    </div>
+
+    <div kidoInputAppend>
+      <button
+        kido-button
+        container="body"
+        [theme]="connected[stream._id] ? '' : 'outline'"
+        [color]="connected[stream._id] ? 'danger' : 'info'"
+        [ngbTooltip]="connected[stream._id] ? 'Disconnect' : 'Connect'"
+        [disabled]="!form.value.url"
+        (click)="onConnect()"
+      >
+        <span *ngIf="!connecting[stream._id]" class="fas fa-plug"></span>
+        <span *ngIf="connecting[stream._id]" class="spinner-border spinner-border-sm"></span>
+      </button>
+    </div>
+  </kido-input>
+</div>

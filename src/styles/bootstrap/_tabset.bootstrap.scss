@@ -6,8 +6,7 @@ ngb-tabset {
   min-width: 0px;
 
   .nav-tabs {
-    border-bottom: 1px solid var(--hairline-soft);
-    margin-bottom: 2px;
+    border-bottom: 1px solid var(--info);
 
     .nav-link {
       font-size: 10pt;
@@ -16,9 +15,9 @@ ngb-tabset {
       border: none !important;
 
       &.active {
-        color: var(--info) !important;
-        font-weight: bold;
-        box-shadow: 0 -2px 0 0 var(--info) inset !important;
+        font-weight: 450;
+        color: var(--dark) !important;
+        background-color: var(--info) !important;
       }
     }
   }

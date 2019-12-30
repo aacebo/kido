@@ -1,14 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
-import { areEqual, isValidJSON } from '../../../../core/utils';
 import { IMessage } from '../../../../resources/message';
-import { IStream, StreamType } from '../../../../resources/stream';
-import { Hotkeys, HotkeyBase } from '../../../../lib/hotkeys';
-
+import { IStream } from '../../../../resources/stream';
 import { MessageAction } from '../../../../lib/messenger';
-import { STREAM_TYPE_LABELS } from '../../constants';
+import { isValidJSON } from '../../../../core/utils';
 
 @Component({
   selector: 'kido-stream-detail',
@@ -18,17 +15,28 @@ import { STREAM_TYPE_LABELS } from '../../constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class StreamDetailComponent extends HotkeyBase implements OnInit {
-  @Input() activeMessage?: IMessage;
-  @Input() activeMessageContent?: any;
+export class StreamDetailComponent implements OnInit {
+  @Input() form: FormGroup;
   @Input() messages: { [streamId: string]: IMessage[] } = { };
-  @Input() connected?: Date;
-  @Input() connecting?: boolean;
+  @Input() connected: { [streamId: string]: Date } = { };
+  @Input() connecting: { [streamId: string]: boolean } = { };
+
+  @Input()
+  get activeMessageId() { return this._activeMessageId; }
+  set activeMessageId(v: string) {
+    this._activeMessageId = v;
+
+    if (this.stream) {
+      this.activeMessage = (this.messages[this.stream._id] || []).find(m => m._id === v);
+    }
+  }
+  private _activeMessageId?: string;
 
   @Input()
   get stream() { return this._stream; }
   set stream(v: IStream) {
     this._stream = v;
+    this.activeMessage = (this.messages[v._id] || []).find(m => m._id === this.activeMessageId);
 
     if (this.form) {
       this.form.reset(this._formStream);
@@ -36,104 +44,53 @@ export class StreamDetailComponent extends HotkeyBase implements OnInit {
   }
   private _stream: IStream;
 
-  @Output() update = new EventEmitter<Partial<IStream>>();
-  @Output() connect = new EventEmitter<IStream>();
-  @Output() disconnect = new EventEmitter<void>();
-  @Output() send = new EventEmitter<IStream>();
-  @Output() deleteMessage = new EventEmitter<IMessage>();
+  get activeMessage() { return this._activeMessage; }
+  set activeMessage(v: IMessage) {
+    this._activeMessage = v;
+    this.activeMessageContent = v ? {
+      root: v.json ? JSON.parse(v.content)
+                   : v.content,
+    } : undefined;
+  }
+  private _activeMessage?: IMessage;
+
+  @Output() removeMessage = new EventEmitter<IMessage>();
   @Output() selectMessage = new EventEmitter<IMessage | undefined>();
   @Output() openMessage = new EventEmitter<IMessage>();
+  @Output() send = new EventEmitter<IStream>();
 
-  readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
-  readonly StreamType = StreamType;
-
-  form: FormGroup;
-
-  get areEqual() {
-    return areEqual(this.form.value, this._formStream);
-  }
-
-  get isValidJSON() {
-    return isValidJSON(this.form.value.message);
-  }
+  activeMessageContent: any | string;
 
   get notSendable() {
     return this.form.invalid ||
            !this.form.value.message ||
-           (this.form.value.json && !this.isValidJSON) ||
-           !this.connected;
+           (this.form.value.json && !this._isValidJSON) ||
+           !this.connected[this.stream._id];
   }
 
   private get _formStream() {
     return {
       type: this.stream.type,
-      name: this.stream.name,
       url: this.stream.url,
-      description: this.stream.description,
       message: this.stream.message,
       event: this.stream.event,
       json: this.stream.json,
     };
   }
 
+  private get _isValidJSON() {
+    return isValidJSON(this.form.value.message);
+  }
+
   constructor(
     private readonly _fb: FormBuilder,
     private readonly _toastr: ToastrService,
-  ) { super(); }
+  ) { }
 
   ngOnInit() {
-    this.form = this._fb.group({
-      type: this._fb.control(this.stream.type),
-      name: this._fb.control(this.stream.name),
-      url: this._fb.control(this.stream.url),
-      description: this._fb.control(this.stream.description),
-      message: this._fb.control(this.stream.message),
-      event: this._fb.control(this.stream.event),
-      json: this._fb.control(this.stream.json),
-    });
-  }
-
-  @Hotkeys('mod+s', 'Save')
-  save() {
-    if (!this.form.invalid && !this.form.pristine && !this.areEqual) {
-      this.update.emit({
-        ...this.stream,
-        ...this.form.value,
-      });
-    }
-  }
-
-  @Hotkeys('mod+f', 'Format')
-  format() {
-    if (this.isValidJSON) {
-      const ctrl = this.form.get('message');
-      ctrl.setValue(JSON.stringify(JSON.parse(ctrl.value), undefined, 2));
-    }
-  }
-
-  @Hotkeys('mod+enter', 'Send Message')
-  sendMessage() {
-    if (!this.notSendable) {
-      this.send.emit({
-        ...this.stream,
-        ...this.form.value,
-      });
-    }
-  }
-
-  reset() {
-    this.form.reset(this._formStream);
-  }
-
-  toggle() {
-    if (this.connected) {
-      this.disconnect.emit();
-    } else {
-      this.connect.emit({
-        ...this.stream,
-        ...this.form.value,
-      });
-    }
+    this.form.addControl('message', this._fb.control(this.stream.message));
+    this.form.addControl('event', this._fb.control(this.stream.event));
+    this.form.addControl('json', this._fb.control(this.stream.json));
   }
 
   onJsonChanged(e: boolean) {
@@ -148,7 +105,7 @@ export class StreamDetailComponent extends HotkeyBase implements OnInit {
 
   onMessageAction(e: { message: IMessage; action: MessageAction }) {
     if (e.action === MessageAction.Delete) {
-      this.deleteMessage.emit(e.message);
+      this.removeMessage.emit(e.message);
     } else if (e.action === MessageAction.Copy) {
       this.onPropertyValueClicked(e.message.content);
     } else if (e.action === MessageAction.OpenSide) {
@@ -160,5 +117,14 @@ export class StreamDetailComponent extends HotkeyBase implements OnInit {
 
   onClearMessage() {
     this.selectMessage.emit();
+  }
+
+  onSend() {
+    if (!this.notSendable) {
+      this.send.emit({
+        ...this.stream,
+        ...this.form.value,
+      });
+    }
   }
 }

@@ -3,104 +3,36 @@
 .stream-detail {
   flex: 1 1 auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   min-height: 0px;
   min-width: 0px;
 
-  .stream-detail--form-group {
+  .stream-detail--messenger {
     display: flex;
+    position: relative;
     flex-direction: column;
-    flex: 1 1 auto;
     min-height: 0px;
     min-width: 0px;
 
-    .stream-detail--form-header {
-      margin-bottom: 10px;
-      padding: 10px;
-
-      .kido-select {
-        .form-control {
-          font-weight: bold;
-
-          kido-socket-icon {
-            margin-right: 0;
-          }
-
-          .kido-option--text {
-            display: none;
-          }
-        }
-      }
+    kido-json-editor {
+      max-height: 50%;
+      margin: 0px 5px 5px 5px;
     }
+  }
 
-    .stream-detail--form-content {
-      display: flex;
-      flex-direction: row;
+  .stream-detail--json {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    min-height: 0px;
+    min-width: 0px;
+
+    .kido-json-viewer--root-node {
       flex: 1 1 auto;
       min-height: 0px;
       min-width: 0px;
-
-      .stream-detail--messenger {
-        display: flex;
-        position: relative;
-        flex-direction: column;
-        min-height: 0px;
-        min-width: 0px;
-
-        kido-json-editor {
-          max-height: 50%;
-          margin: 0px 5px 5px 5px;
-        }
-      }
-
-      .stream-detail--json {
-        display: flex;
-        position: relative;
-        flex-direction: column;
-        min-height: 0px;
-        min-width: 0px;
-
-        &:hover {
-          .kido-icon-button,
-          .kido-checkbox {
-            display: block;
-          }
-        }
-
-        &.kido-fullscreen--expanded {
-          padding-top: $titlebar-height;
-
-          .stream-detail--json-clear {
-            display: none;
-          }
-        }
-
-        .kido-icon-button,
-        .kido-checkbox {
-          display: none;
-        }
-
-        .kido-json-viewer--root-node {
-          flex: 1 1 auto;
-          min-height: 0px;
-          min-width: 0px;
-          border-top-color: transparent;
-          border-bottom-color: transparent;
-        }
-
-        .stream-detail--json-clear {
-          position: absolute;
-          right: 5px;
-          top: 5px;
-        }
-
-        .stream-detail--viewer-json-toggler {
-          position: absolute;
-          right: 5px;
-          bottom: 5px;
-          z-index: 2;
-        }
-      }
+      border-top-color: transparent;
+      border-bottom-color: transparent;
     }
   }
 }

@@ -14,6 +14,7 @@ import { reducers } from './message.state';
       effects.SendEffects,
       effects.RemoveAllEffects,
       effects.SaveEffects,
+      effects.RemoveEffects,
     ]),
   ],
 })

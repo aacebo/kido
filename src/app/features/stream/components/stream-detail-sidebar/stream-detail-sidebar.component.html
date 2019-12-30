@@ -1,0 +1,18 @@
+<div
+  *ngIf="open"
+  class="kido-sidebar"
+  [style.width.px]="width"
+>
+  <div
+    class="kido-sidebar--side-content"
+  >
+  </div>
+
+  <kido-horizontal-split
+    (onresize)="onResize($event)"
+  ></kido-horizontal-split>
+</div>
+
+<div class="kido-sidebar--content">
+  <ng-content></ng-content>
+</div>

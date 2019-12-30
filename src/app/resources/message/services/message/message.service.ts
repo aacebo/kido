@@ -14,15 +14,11 @@ import { IMessage } from '../../models';
 export class MessageService {
   readonly state$: Observable<IMessageState>;
   readonly activeId$: Observable<string | undefined>;
-  readonly active$: Observable<IMessage | undefined>;
-  readonly activeContent$: Observable<any | undefined>;
   readonly messages$: Observable<{ [streamId: string]: IMessage[] }>;
 
   constructor(private readonly _store$: Store<IMessageState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
     this.activeId$ = this._store$.pipe(select(selectors.selectActiveId));
-    this.active$ = this._store$.pipe(select(selectors.selectActive));
-    this.activeContent$ = this._store$.pipe(select(selectors.selectActiveContent));
     this.messages$ = this._store$.pipe(select(selectors.selectMessages));
   }
 
@@ -34,8 +30,8 @@ export class MessageService {
     this._store$.dispatch(actions.add({ streamId, messageType, content, event, json }));
   }
 
-  remove(streamId: string, _id: string) {
-    this._store$.dispatch(actions.remove({ streamId, _id }));
+  remove(streamId: string, _id: string, _rev: string) {
+    this._store$.dispatch(actions.remove({ streamId, _id, _rev }));
   }
 
   removeAll(streamId: string) {

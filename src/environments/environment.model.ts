@@ -3,5 +3,4 @@ export interface IEnvironment {
   readonly maxMessages: number;
   readonly maxLogs: number;
   readonly maxDbSizeMb: number;
-  readonly activeStreamKey: string;
 }

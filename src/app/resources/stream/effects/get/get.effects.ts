@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { switchMap, tap } from 'rxjs/operators';
-
-import { environment } from '../../../../../environments/environment';
+import { switchMap } from 'rxjs/operators';
 
 import { PouchService } from '../../../../core/services';
-import { MessageService } from '../../../message';
 import * as actions from '../../actions';
 import { IStream } from '../../models';
 
@@ -22,21 +19,5 @@ export class GetEffects {
     ),
   ));
 
-  readonly getSuccess$ = createEffect(() => this._actions$.pipe(
-    ofType(actions.getSuccess),
-    tap(a => {
-      let active = localStorage.getItem(environment.activeStreamKey);
-
-      if (!active || active === 'null') {
-        active = (a.streams.length > 0 ? a.streams[0]._id : undefined);
-      }
-
-      this._messageService.get(active);
-    }),
-  ), { dispatch: false });
-
-  constructor(
-    private readonly _actions$: Actions,
-    private readonly _messageService: MessageService,
-  ) { }
+  constructor(private readonly _actions$: Actions) { }
 }

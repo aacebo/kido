@@ -1,4 +1,4 @@
-@import '../../../styles/variables';
+@import '../../../../../styles/variables';
 
 :host {
   display: flex;
@@ -6,13 +6,6 @@
   min-height: 0px;
   min-width: 0px;
   background-color: var(--bg-darkest);
-
-  &.mac {
-    .kido-sidebar,
-    .kido-sidebar--content {
-      padding-top: $titlebar-height;
-    }
-  }
 
   .kido-sidebar {
     flex: 0 0 auto;
@@ -28,20 +21,6 @@
       display: flex;
       flex-direction: column;
       max-width: 100%;
-
-      &.kido-sidebar--empty {
-        font-size: 35pt;
-        height: 100%;
-        opacity: 0.5;
-
-        span {
-          margin: auto;
-        }
-      }
-    }
-
-    @media only screen and (max-width: $sidebar-collapse-width) {
-      display: none !important;
     }
   }
 

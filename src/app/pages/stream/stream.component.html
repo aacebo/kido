@@ -1,40 +1,39 @@
-<kido-sidebar
+<ngb-tabset
   [class.mac]="systemService.isMac$ | async"
-  [active]="streamService.activeId$ | async"
-  [streams]="streamService.entities$ | async"
-  [connected]="streamService.connected$ | async"
-  [open]="menu$ | async"
-  (selected)="onSelected($event)"
+  (tabChange)="onStreamTabChange($event)"
 >
-  <kido-toolbar
-    [class.mac]="systemService.isMac$ | async"
-    [stream]="streamService.active$ | async"
-    [connected]="streamService.activeConnected$ | async"
-    (edit)="onAdd($event)"
-    (menu)="onMenu()"
-    (remove)="onRemove($event)"
-    (clear)="onClear($event)"
-  ></kido-toolbar>
+  <ngb-tab
+    *ngFor="let stream of streamService.entities$ | async"
+    [id]="stream._id"
+    [title]="stream.name"
+  >
+    <ng-template ngbTabContent>
+      <kido-stream-detail-header
+        [form]="form"
+        [stream]="stream"
+        [connected]="streamService.connected$ | async"
+        [connecting]="streamService.connecting$ | async"
+        (save)="onSave(stream)"
+        (connect)="onConnect(stream)"
+        (disconnect)="onDisconnect(stream)"
+      ></kido-stream-detail-header>
 
-  <kido-stream-detail
-    *ngIf="streamService.active$ | async; let stream"
-    [activeMessage]="messageService.active$ | async"
-    [activeMessageContent]="messageService.activeContent$ | async"
-    [stream]="stream"
-    [messages]="messageService.messages$ | async"
-    [connected]="streamService.activeConnected$ | async"
-    [connecting]="streamService.activeConnecting$ | async"
-    (update)="onUpdate($event)"
-    (connect)="onConnect($event)"
-    (disconnect)="onDisconnect(stream)"
-    (send)="onSend($event)"
-    (deleteMessage)="onDeleteMessage($event)"
-    (selectMessage)="onSelectMessage($event)"
-    (openMessage)="onOpenMessage($event)"
-  ></kido-stream-detail>
-</kido-sidebar>
-
-<kido-actionbar
-  (add)="onAdd()"
-  (logs)="onOpenLogs()"
-></kido-actionbar>
+      <kido-stream-detail-sidebar
+        [open]="menu$ | async"
+      >
+        <kido-stream-detail
+          [form]="form"
+          [stream]="stream"
+          [activeMessageId]="messageService.activeId$ | async"
+          [messages]="messageService.messages$ | async"
+          [connected]="streamService.connected$ | async"
+          [connecting]="streamService.connecting$ | async"
+          (selectMessage)="onSelectMessage($event)"
+          (openMessage)="onOpenMessage($event)"
+          (removeMessage)="onRemoveMessage($event)"
+          (send)="onSend($event)"
+        ></kido-stream-detail>
+      </kido-stream-detail-sidebar>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
