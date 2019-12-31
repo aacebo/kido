@@ -3,7 +3,13 @@
   [style.flex]="activeMessageContent ? '1 1 50%' : '1 1 auto'"
   [formGroup]="form"
 >
+  <div
+    *ngIf="loading[stream._id]"
+    [style.flex]="'1 1 auto'"
+  ></div>
+
   <kido-messenger
+    *ngIf="!loading[stream._id]"
     [messages]="messages[stream._id]"
     [active]="activeMessageId"
     (action)="onMessageAction($event)"

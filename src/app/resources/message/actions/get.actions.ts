@@ -14,5 +14,5 @@ export const getSuccess = createAction(
 
 export const getFailed = createAction(
   '[MESSAGE] GetFailed',
-  props<{ readonly error: Error }>(),
+  props<{ readonly error: Error; readonly streamId: string }>(),
 );

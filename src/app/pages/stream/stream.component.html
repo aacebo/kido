@@ -25,6 +25,7 @@
           [form]="form"
           [stream]="stream"
           [activeMessageId]="messageService.activeId$ | async"
+          [loading]="messageService.loading$ | async"
           [messages]="messageService.messages$ | async"
           [connected]="streamService.connected$ | async"
           [connecting]="streamService.connecting$ | async"

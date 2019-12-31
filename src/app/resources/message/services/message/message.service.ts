@@ -15,11 +15,13 @@ export class MessageService {
   readonly state$: Observable<IMessageState>;
   readonly activeId$: Observable<string | undefined>;
   readonly messages$: Observable<{ [streamId: string]: IMessage[] }>;
+  readonly loading$: Observable<{ [streamId: string]: boolean }>;
 
   constructor(private readonly _store$: Store<IMessageState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
     this.activeId$ = this._store$.pipe(select(selectors.selectActiveId));
     this.messages$ = this._store$.pipe(select(selectors.selectMessages));
+    this.loading$ = this._store$.pipe(select(selectors.selectLoading));
   }
 
   get(streamId: string) {

@@ -18,7 +18,7 @@ export class GetEffects {
     switchMap(a =>
       this._pouchService.get(0, environment.maxMessages, environment.maxMessages, { streamId: a.streamId })
         .then(res => actions.getSuccess({ streamId: a.streamId, messages: res.docs }))
-        .catch(error => actions.getFailed({ error })),
+        .catch(error => actions.getFailed({ error, streamId: a.streamId })),
     ),
   ));
 

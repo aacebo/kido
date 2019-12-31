@@ -5,3 +5,4 @@ import { IMessageState } from './message.state';
 export const selectState = createFeatureSelector<IMessageState>('message');
 export const selectMessages = createSelector(selectState, state => state.messages);
 export const selectActiveId = createSelector(selectState, state => state.activeId);
+export const selectLoading = createSelector(selectState, state => state.loading);

@@ -18,6 +18,7 @@ import { isValidJSON } from '../../../../core/utils';
 export class StreamDetailComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() messages: { [streamId: string]: IMessage[] } = { };
+  @Input() loading: { [streamId: string]: boolean } = { };
   @Input() connected: { [streamId: string]: Date } = { };
   @Input() connecting: { [streamId: string]: boolean } = { };
 

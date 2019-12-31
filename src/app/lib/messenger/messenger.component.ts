@@ -55,6 +55,8 @@ export class MessengerComponent implements AfterViewInit {
   constructor(private readonly _cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
+    this._scrollToBottom();
+
     this.virtualForOf.dataStream.subscribe(() => {
       setTimeout(() => this._scrollToBottom(), 0);
     });

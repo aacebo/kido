@@ -152,6 +152,8 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   ngOnDestroy() {
     if (this.editor) {
       this.editor.off('change', this.onEditorChange.bind(this));
+      this.editor.off('focus', this.onFocus.bind(this));
+      this.editor.off('blur', this.onBlur.bind(this));
     }
   }
 
