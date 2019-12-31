@@ -86,8 +86,10 @@ export class StreamComponent implements AfterViewInit {
     });
   }
 
-  onRemove(e: IStream) {
-    this.streamService.remove(e._id, e._rev);
+  onRemove(e: Event, stream: IStream) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    this.streamService.remove(stream._id, stream._rev);
   }
 
   onClear(e: IStream) {

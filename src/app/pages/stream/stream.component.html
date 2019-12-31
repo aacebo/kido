@@ -5,8 +5,12 @@
   <ngb-tab
     *ngFor="let stream of streamService.entities$ | async"
     [id]="stream._id"
-    [title]="stream.name"
   >
+    <ng-template ngbTabTitle>
+      <span class="tab-title">{{ stream.name }}</span>
+      <span class="tab-title--close fas fa-times" (click)="onRemove($event, stream)"></span>
+    </ng-template>
+
     <ng-template ngbTabContent>
       <kido-stream-detail-header
         [form]="form"
@@ -18,9 +22,7 @@
         (disconnect)="onDisconnect(stream)"
       ></kido-stream-detail-header>
 
-      <kido-stream-detail-sidebar
-        [open]="menu$ | async"
-      >
+      <kido-stream-detail-sidebar [open]="menu$ | async">
         <kido-stream-detail
           [form]="form"
           [stream]="stream"
@@ -37,3 +39,8 @@
     </ng-template>
   </ngb-tab>
 </ngb-tabset>
+
+<div
+  class="tab--add-btn fas fa-plus-square"
+  (click)="onAdd()"
+></div>

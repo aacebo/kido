@@ -8,6 +8,8 @@
   min-width: 0px;
 
   ngb-tabset {
+    margin-top: 5px;
+
     &.mac {
       padding-top: $titlebar-height;
     }
@@ -16,12 +18,23 @@
       overflow-x: auto;
       overflow-y: hidden;
       flex-wrap: nowrap;
+      padding-left: 35px;
 
       .nav-item {
         white-space: nowrap;
 
         .nav-link {
           padding: 5px 8px;
+
+          .tab-title {
+            margin: auto 10px auto 0;
+          }
+
+          .tab-title--close {
+            &:hover {
+              color: var(--danger);
+            }
+          }
         }
       }
     }
@@ -30,6 +43,19 @@
       &.active {
         flex-direction: column;
       }
+    }
+  }
+
+  .tab--add-btn {
+    position: absolute;
+    left: 9px;
+    top: 10px;
+    font-size: 20px;
+    opacity: 0.7;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
     }
   }
 }
