@@ -56,7 +56,6 @@ export class StreamDetailComponent implements OnInit {
 
   @Output() removeMessage = new EventEmitter<IMessage>();
   @Output() selectMessage = new EventEmitter<IMessage | undefined>();
-  @Output() openMessage = new EventEmitter<IMessage>();
   @Output() send = new EventEmitter<IStream>();
 
   activeMessageContent: any | string;
@@ -110,8 +109,6 @@ export class StreamDetailComponent implements OnInit {
       this.onPropertyValueClicked(e.message.content);
     } else if (e.action === MessageAction.OpenSide) {
       this.selectMessage.emit(e.message);
-    } else if (e.action === MessageAction.Open) {
-      this.openMessage.emit(e.message);
     }
   }
 

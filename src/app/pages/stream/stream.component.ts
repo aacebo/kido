@@ -4,8 +4,6 @@ import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
-import { ElectronService } from '../../core/services';
-
 import { StreamModalService } from '../../features/stream';
 
 import { IMessage, MessageService, MessageType } from '../../resources/message';
@@ -28,7 +26,6 @@ export class StreamComponent implements OnInit {
     readonly systemService: SystemService,
     readonly streamService: StreamService,
     readonly messageService: MessageService,
-    private readonly _electronService: ElectronService,
     private readonly _streamModalService: StreamModalService,
   ) { }
 
@@ -64,23 +61,11 @@ export class StreamComponent implements OnInit {
     this.messageService.setActive(e ? e._id : undefined);
   }
 
-  onOpenMessage(e: IMessage) {
-    this._electronService.send('open', {
-      path: `/message/${e._id}`,
-    });
-  }
-
   onStreamTabChange(e: NgbTabChangeEvent) {
     this.messageService.messages$.pipe(take(1)).subscribe(msgs => {
       if (!msgs[e.nextId]) {
         this.messageService.get(e.nextId);
       }
-    });
-  }
-
-  onOpenLogs() {
-    this._electronService.send('open', {
-      path: '/logs',
     });
   }
 

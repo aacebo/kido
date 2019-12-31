@@ -29,7 +29,6 @@
           [connected]="streamService.connected$ | async"
           [connecting]="streamService.connecting$ | async"
           (selectMessage)="onSelectMessage($event)"
-          (openMessage)="onOpenMessage($event)"
           (removeMessage)="onRemoveMessage($event)"
           (send)="onSend($event)"
         ></kido-stream-detail>
