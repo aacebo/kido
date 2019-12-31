@@ -106,7 +106,7 @@ export class JsonViewerComponent implements OnInit {
       key,
       value,
       description: `${value}`,
-      expanded: this.deep ? this.expanded : false,
+      expanded: this.root ? this.expanded : this.deep ? this.expanded : false,
     };
 
     if (type === 'number' || type === 'bigint') {

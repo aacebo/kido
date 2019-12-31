@@ -19,6 +19,10 @@
 
       .nav-item {
         white-space: nowrap;
+
+        .nav-link {
+          padding: 5px 8px;
+        }
       }
     }
 
