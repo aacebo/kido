@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +19,7 @@ import { SystemService } from '../../resources/system';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StreamComponent implements OnInit {
+export class StreamComponent implements AfterViewInit {
   readonly menu$ = new BehaviorSubject(true);
   readonly form = new FormGroup({ });
 
@@ -27,10 +28,11 @@ export class StreamComponent implements OnInit {
     readonly streamService: StreamService,
     readonly messageService: MessageService,
     private readonly _streamModalService: StreamModalService,
+    private readonly _route: ActivatedRoute,
   ) { }
 
-  ngOnInit() {
-    this.streamService.get();
+  ngAfterViewInit() {
+    this.messageService.get(this._route.snapshot.data.activeId);
   }
 
   onSave(e: IStream) {
