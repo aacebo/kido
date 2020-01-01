@@ -25,12 +25,16 @@
 
         .nav-link {
           padding: 5px 8px;
+          display: flex;
 
           .tab-title {
             margin: auto 10px auto 0;
+            max-width: 100px;
           }
 
           .tab-title--close {
+            margin: auto;
+
             &:hover {
               color: var(--danger);
             }

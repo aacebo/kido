@@ -7,7 +7,7 @@
     [id]="stream._id"
   >
     <ng-template ngbTabTitle>
-      <span class="tab-title">{{ stream.name }}</span>
+      <span class="tab-title ellipsis">{{ stream.name }}</span>
       <span class="tab-title--close fas fa-times" (click)="onRemove($event, stream)"></span>
     </ng-template>
 

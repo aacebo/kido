@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { areEqual } from '../../../../core/utils';
@@ -35,7 +35,7 @@ export class StreamDetailHeaderComponent implements OnInit {
   readonly StreamType = StreamType;
 
   get changed() {
-    return !areEqual(this.form.value, this._formStream);
+    return !areEqual(this._formStream, this.form.value);
   }
 
   private get _formStream() {
@@ -48,11 +48,15 @@ export class StreamDetailHeaderComponent implements OnInit {
     };
   }
 
-  constructor(private readonly _fb: FormBuilder) { }
+  constructor(
+    private readonly _fb: FormBuilder,
+    private readonly _cdr: ChangeDetectorRef,
+  ) { }
 
   ngOnInit() {
     this.form.addControl('type', this._fb.control(this.stream.type));
     this.form.addControl('url', this._fb.control(this.stream.url));
+    this.form.valueChanges.subscribe(() => this._cdr.markForCheck());
   }
 
   onReset() {
