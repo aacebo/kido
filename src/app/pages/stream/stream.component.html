@@ -42,5 +42,6 @@
 
 <div
   class="tab--add-btn fas fa-plus-square"
+  [class.mac]="systemService.isMac$ | async"
   (click)="onAdd()"
 ></div>

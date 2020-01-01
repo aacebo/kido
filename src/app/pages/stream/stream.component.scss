@@ -57,5 +57,9 @@
     &:hover {
       opacity: 1;
     }
+
+    &.mac {
+      top: 10px + $titlebar-height;
+    }
   }
 }
