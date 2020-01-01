@@ -61,7 +61,7 @@ export class ConnectEffects {
     this._store$.dispatch(actions.connectFailed({ error, streamId: a.streamId }));
     this._streamService.disconnect(a.streamId);
 
-    this._messageService.add(a.streamId, MessageType.Received, util.inspect(error), 'Error', typeof error === 'object');
+    this._messageService.add(a.streamId, MessageType.Received, util.inspect(error), 'Error', false);
     this._messageService.save(a.streamId);
   }
 
