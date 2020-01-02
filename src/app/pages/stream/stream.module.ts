@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabsetModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { StreamModule as StreamFeatureModule } from '../../features/stream';
 
@@ -13,6 +13,7 @@ import { StreamComponent } from './stream.component';
   imports: [
     CommonModule,
     NgbTabsetModule,
+    NgbTooltipModule,
 
     StreamRoutingModule,
     StreamFeatureModule,

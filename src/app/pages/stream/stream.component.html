@@ -7,8 +7,17 @@
     [id]="stream._id"
   >
     <ng-template ngbTabTitle>
-      <span class="tab-title ellipsis">{{ stream.name }}</span>
-      <span class="tab-title--close fas fa-times" (click)="onRemove($event, stream)"></span>
+      <div
+        class="nav-link-header"
+        [ngbTooltip]="stream.name"
+        [disableTooltip]="stream.name.length < 13"
+        placement="bottom"
+      >
+        <span class="tab-title ellipsis">{{ stream.name }}</span>
+        <span class="tab-title--close fas fa-times" (click)="onRemove($event, stream)"></span>
+      </div>
+
+      <div class="nav-link-active-border"></div>
     </ng-template>
 
     <ng-template ngbTabContent>
