@@ -1,0 +1,26 @@
+<kido-connection-icon
+  [type]="connected[stream._id] ? ConnectionType.Connected : ConnectionType.Disconnected"
+></kido-connection-icon>
+
+<span
+  class="kido-stream-tab-header--tab-title ellipsis"
+  [ngbTooltip]="tooltipTpl"
+  placement="bottom"
+>{{ stream.name }}</span>
+
+<span class="kido-stream-tab-header--tab-title--close fas fa-times" (click)="remove.emit($event)"></span>
+<div class="kido-stream-tab-header--active-border"></div>
+
+<ng-template #tooltipTpl>
+  <div>
+    <kido-connection-icon
+      [type]="connected[stream._id] ? ConnectionType.Connected : ConnectionType.Disconnected"
+    ></kido-connection-icon>
+
+    <span>{{ stream.name }}</span>
+  </div>
+
+  <div *ngIf="connected[stream._id]">
+    {{ connected[stream._id] | kidoElapseTime }}
+  </div>
+</ng-template>

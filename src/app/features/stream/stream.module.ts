@@ -24,6 +24,7 @@ const declarations = [
   components.StreamModalComponent,
   components.StreamDetailHeaderComponent,
   components.StreamDetailSidebarComponent,
+  components.StreamTabHeaderComponent,
 ];
 
 @NgModule({

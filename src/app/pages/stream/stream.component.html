@@ -1,4 +1,5 @@
 <ngb-tabset
+  #tabset="ngbTabset"
   [class.mac]="systemService.isMac$ | async"
   (tabChange)="onStreamTabChange($event)"
 >
@@ -7,17 +8,13 @@
     [id]="stream._id"
   >
     <ng-template ngbTabTitle>
-      <div
-        class="nav-link-header"
-        [ngbTooltip]="stream.name"
-        [disableTooltip]="stream.name.length < 13"
-        placement="bottom"
-      >
-        <span class="tab-title ellipsis">{{ stream.name }}</span>
-        <span class="tab-title--close fas fa-times" (click)="onRemove($event, stream)"></span>
-      </div>
-
-      <div class="nav-link-active-border"></div>
+      <kido-stream-tab-header
+        [stream]="stream"
+        [activeId]="tabset.activeId"
+        [connected]="streamService.connected$ | async"
+        [connecting]="streamService.connecting$ | async"
+        (remove)="onRemove($event, stream)"
+      ></kido-stream-tab-header>
     </ng-template>
 
     <ng-template ngbTabContent>

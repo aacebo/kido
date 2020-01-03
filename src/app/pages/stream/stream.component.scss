@@ -29,41 +29,6 @@
 
         .nav-link {
           padding: 5px 8px;
-
-          &.active {
-            .nav-link-active-border {
-              display: block;
-            }
-          }
-
-          .nav-link-header {
-            display: flex;
-            white-space: nowrap;
-            max-width: 100px;
-            width: 100px;
-
-            .tab-title {
-              margin: auto 10px auto 0;
-            }
-
-            .tab-title--close {
-              margin: auto;
-
-              &:hover {
-                color: var(--danger);
-              }
-            }
-          }
-
-          .nav-link-active-border {
-            position: absolute;
-            display: none;
-            width: 116px;
-            height: 5px;
-            margin-top: 3px;
-            margin-left: -8px;
-            background-color: var(--bg-obsidian);
-          }
         }
       }
     }
