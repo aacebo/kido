@@ -1,5 +1,3 @@
-import { coerceNumberProperty } from '@angular/cdk/coercion';
-import { CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -12,6 +10,8 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 import { MessageAction } from './message-action.enum';
 import { IMessage } from './message.interface';
@@ -55,10 +55,8 @@ export class MessengerComponent implements AfterViewInit {
   constructor(private readonly _cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
-    this._scrollToBottom();
-
     this.virtualForOf.dataStream.subscribe(() => {
-      setTimeout(() => this._scrollToBottom(), 0);
+      setTimeout(() => this._scrollToBottom());
     });
   }
 
