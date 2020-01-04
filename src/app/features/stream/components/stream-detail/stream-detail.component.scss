@@ -15,8 +15,6 @@
     min-width: 0px;
 
     .stream-detail--json-editor {
-      max-height: 30%;
-
       kido-input {
         margin: 0 5px;
 
@@ -31,6 +29,7 @@
 
       kido-json-editor {
         margin: 0px 5px 5px 5px;
+        height: 100px;
 
         &.eventable {
           border-top-left-radius: 0px;
