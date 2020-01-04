@@ -15,16 +15,25 @@
     (action)="onMessageAction($event)"
   ></kido-messenger>
 
-  <kido-json-editor
-    sendable
-    expandable
-    copyable
-    formControlName="message"
-    [raw]="!form.value.json"
-    (rawChange)="onJsonChanged($event)"
-    (copyValue)="onPropertyValueClicked($event)"
-    (send)="onSend()"
-  ></kido-json-editor>
+  <div class="stream-detail--json-editor">
+    <kido-input
+      *ngIf="stream.type !== StreamType.WebSocket && stream.type !== StreamType.SockJS"
+      formControlName="event"
+      placeholder="Event..."
+    ></kido-input>
+
+    <kido-json-editor
+      sendable
+      expandable
+      copyable
+      formControlName="message"
+      [class.eventable]="stream.type !== StreamType.WebSocket && stream.type !== StreamType.SockJS"
+      [raw]="!form.value.json"
+      (rawChange)="onJsonChanged($event)"
+      (copyValue)="onPropertyValueClicked($event)"
+      (send)="onSend()"
+    ></kido-json-editor>
+  </div>
 </div>
 
 <div

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { IMessage } from '../../../../resources/message';
-import { IStream } from '../../../../resources/stream';
+import { IStream, StreamType } from '../../../../resources/stream';
 import { MessageAction } from '../../../../lib/messenger';
 import { isValidJSON } from '../../../../core/utils';
 
@@ -59,6 +59,7 @@ export class StreamDetailComponent implements OnInit {
   @Output() selectMessage = new EventEmitter<IMessage | undefined>();
   @Output() send = new EventEmitter<IStream>();
 
+  readonly StreamType = StreamType;
   activeMessageContent: any | string;
 
   get notSendable() {

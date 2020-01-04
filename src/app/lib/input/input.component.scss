@@ -25,6 +25,10 @@
     box-shadow: none;
     resize: none;
 
+    &:focus {
+      z-index: 4;
+    }
+
     &:hover {
       filter: brightness(150%);
 
