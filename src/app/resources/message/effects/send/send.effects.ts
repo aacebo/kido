@@ -9,7 +9,7 @@ import * as actions from '../../actions';
 export class SendEffects {
   readonly send$ = createEffect(() => this._actions$.pipe(
     ofType(actions.send),
-    tap(a => this._socketService.send(a.streamId, a.message, a.event)),
+    tap(a => this._socketService.send(a.streamId, a.args, a.event)),
   ), { dispatch: false });
 
   constructor(

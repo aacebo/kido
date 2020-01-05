@@ -1,4 +1,3 @@
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -14,6 +13,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { FormGroupDirective, NgForm } from '@angular/forms';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import CodeMirror from 'codemirror';
@@ -26,6 +26,7 @@ import 'codemirror/addon/scroll/simplescrollbars.js';
 import { FormControlBase, formControlProvider } from '../core/form-control';
 import { isValidJSON } from '../../core/utils';
 import { JsonEditorModalComponent } from './json-editor-modal.component';
+import { IJsonEditorValue } from './json-editor-value.interface';
 
 @Component({
   moduleId: module.id,
@@ -36,7 +37,7 @@ import { JsonEditorModalComponent } from './json-editor-modal.component';
   host: {
     tabindex: '-1',
     class: 'kido-json-editor',
-    '[class.kido-json-editor--invalid]': 'invalid && !raw',
+    '[class.kido-json-editor--invalid]': 'invalid && value.json',
     '(focus)': 'onFocus()',
     '(blur)': 'onBlur()',
   },
@@ -44,7 +45,7 @@ import { JsonEditorModalComponent } from './json-editor-modal.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class JsonEditorComponent extends FormControlBase<string> implements AfterViewInit, OnDestroy {
+export class JsonEditorComponent extends FormControlBase<IJsonEditorValue> implements AfterViewInit, OnDestroy {
   @Input() sendIcon = 'fa-paper-plane';
   @Input() sendTooltip = 'Send';
 
@@ -54,21 +55,6 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
     this._viewportMargin = coerceNumberProperty(v);
   }
   private _viewportMargin = Infinity;
-
-  @Input()
-  get raw() { return this._raw; }
-  set raw(v: boolean) {
-    if (v !== this._raw) {
-      this.rawChange.emit(v);
-    }
-
-    this._raw = coerceBooleanProperty(v);
-
-    if (this.editor) {
-      this.editor.setOption('mode', this._mode);
-    }
-  }
-  private _raw?: boolean;
 
   @Input()
   get sendable() { return this._sendable; }
@@ -92,19 +78,22 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   private _copyable?: boolean;
 
   get value() { return this._value; }
-  set value(v: string) {
+  set value(v: IJsonEditorValue) {
     this._value = v;
 
-    if (this.editor && v !== this.editor.getValue()) {
-      this.editor.setValue(v || '');
+    if (this.editor && v.value !== this.editor.getValue()) {
+      this.editor.setValue(v.value || '');
+    }
+
+    if (this.editor) {
+      this.editor.setOption('mode', this._mode);
     }
 
     this.cdr.markForCheck();
     this.onChange(v);
   }
-  protected _value?: string;
+  protected _value?: IJsonEditorValue;
 
-  @Output() rawChange = new EventEmitter<boolean>();
   @Output() copyValue = new EventEmitter<string>();
   @Output() send = new EventEmitter<string>();
 
@@ -115,7 +104,7 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   invalid = false;
 
   private get _mode() {
-    return this._raw ? 'text/plain' : 'application/json';
+    return this.value && this.value.json ? 'application/json' : 'text/plain';
   }
 
   constructor(
@@ -146,7 +135,7 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
     this.editor.on('change', this.onEditorChange.bind(this));
     this.editor.on('focus', this.onFocus.bind(this));
     this.editor.on('blur', this.onBlur.bind(this));
-    this.editor.setValue(this.value || '');
+    this.editor.setValue(this.value ? this.value.value : '');
   }
 
   ngOnDestroy() {
@@ -162,7 +151,7 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   }
 
   onBeautify() {
-    if (!this.raw) {
+    if (this.value.json) {
       const v = this.editor.getValue();
       this.invalid = !isValidJSON(v);
 
@@ -179,7 +168,6 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
   onExpand() {
     const ref = this._modal.open(JsonEditorModalComponent, { size: 'xl' });
     ref.componentInstance.value = this.value;
-    ref.componentInstance.raw = this.raw;
 
     ref.result.then(v => {
       this.value = v;
@@ -198,8 +186,11 @@ export class JsonEditorComponent extends FormControlBase<string> implements Afte
     const v = editor.getValue();
     this.invalid = !isValidJSON(v);
 
-    if (v !== this.value) {
-      this.value = v;
+    if (v !== this.value.value) {
+      this.value = {
+        ...this.value,
+        value: v,
+      };
     }
   }
 }

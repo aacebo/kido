@@ -7,6 +7,7 @@ import * as selectors from '../../message.selectors';
 import { MessageType } from '../../enums';
 import { IMessageState } from '../../message.state';
 import { IMessage } from '../../models';
+import { IStreamArg } from '../../../stream';
 
 @Injectable({
   providedIn: 'root',
@@ -40,8 +41,8 @@ export class MessageService {
     this._store$.dispatch(actions.removeAll({ streamId }));
   }
 
-  send(streamId: string, message: string, event?: string, json?: boolean) {
-    this._store$.dispatch(actions.send({ streamId, message, event, json }));
+  send(streamId: string, args: IStreamArg[], event?: string) {
+    this._store$.dispatch(actions.send({ streamId, args, event }));
   }
 
   save(streamId: string) {

@@ -40,8 +40,8 @@ export class SocketIOService implements ISocketService {
     this._socket$.disconnect();
   }
 
-  send(message: any, event = 'message') {
-    this._socket$.emit(event, message);
+  send(args: any[], event = 'message') {
+    this._socket$.emit(event, args);
   }
 
   private _onConnect() {

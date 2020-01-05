@@ -35,8 +35,8 @@ export class SockjsService implements ISocketService {
     this._socket$.close();
   }
 
-  send(message: any) {
-    this._socket$.send(message);
+  send(args: any) {
+    this._socket$.send(args);
   }
 
   private _onEvent(e: SockJS.MessageEvent) {

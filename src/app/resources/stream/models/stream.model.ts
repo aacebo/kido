@@ -1,4 +1,5 @@
 import { StreamType } from '../enums';
+import { IStreamArg } from './stream-arg.model';
 
 export interface IStream {
   readonly _id: string;
@@ -8,7 +9,6 @@ export interface IStream {
   readonly description?: string;
   readonly type: StreamType;
   readonly event?: string;
-  readonly message?: string;
-  readonly json?: boolean;
+  readonly args: IStreamArg[];
   readonly createdAt: number;
 }

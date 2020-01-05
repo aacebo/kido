@@ -1,11 +1,20 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  ViewEncapsulation,
+  Output,
+  EventEmitter,
+  ChangeDetectorRef,
+} from '@angular/core';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { IMessage } from '../../../../resources/message';
 import { IStream, StreamType } from '../../../../resources/stream';
 import { MessageAction } from '../../../../lib/messenger';
-import { isValidJSON } from '../../../../core/utils';
+// import { isValidJSON } from '../../../../core/utils';
 
 @Component({
   selector: 'kido-stream-detail',
@@ -59,44 +68,47 @@ export class StreamDetailComponent implements OnInit {
   @Output() selectMessage = new EventEmitter<IMessage | undefined>();
   @Output() send = new EventEmitter<IStream>();
 
-  readonly StreamType = StreamType;
   activeMessageContent: any | string;
+  args: FormArray;
 
   get notSendable() {
     return this.form.invalid ||
-           !this.form.value.message ||
-           (this.form.value.json && !this._isValidJSON) ||
            !this.connected[this.stream._id];
+  }
+
+  get eventable() {
+    return this.form.value.type !== StreamType.WebSocket && this.form.value.type !== StreamType.SockJS;
   }
 
   private get _formStream() {
     return {
       type: this.stream.type,
       url: this.stream.url,
-      message: this.stream.message,
+      args: this.stream.args,
       event: this.stream.event,
-      json: this.stream.json,
     };
   }
 
-  private get _isValidJSON() {
-    return isValidJSON(this.form.value.message);
+  private get _formArgs() {
+    return this.stream.args.map(arg => this._fb.control({ ...arg }));
   }
 
   constructor(
     private readonly _fb: FormBuilder,
+    private readonly _cdr: ChangeDetectorRef,
     private readonly _toastr: ToastrService,
   ) { }
 
   ngOnInit() {
-    this.form.addControl('message', this._fb.control(this.stream.message));
+    this.args = this._fb.array(this._formArgs);
     this.form.addControl('event', this._fb.control(this.stream.event));
-    this.form.addControl('json', this._fb.control(this.stream.json));
+    this.form.addControl('args', this.args);
+    this.form.valueChanges.subscribe(() => this._cdr.markForCheck());
   }
 
-  onJsonChanged(e: boolean) {
-    this.form.get('json').setValue(!e);
-    this.form.markAsDirty();
+  onArgJsonChanged(e: boolean, arg: FormGroup) {
+    arg.get('json').setValue(e);
+    arg.markAsDirty();
   }
 
   onPropertyValueClicked(e: string) {

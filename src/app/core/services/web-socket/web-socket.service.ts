@@ -40,8 +40,8 @@ export class WebSocketService implements ISocketService {
     this._socket$.complete();
   }
 
-  send(message: any) {
-    this._socket$.next(message);
+  send(args: any) {
+    this._socket$.next(args);
   }
 
   private _onNext(v: any) {

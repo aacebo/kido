@@ -42,9 +42,8 @@ export class StreamDetailHeaderComponent implements OnInit {
     return {
       type: this.stream.type,
       url: this.stream.url,
-      message: this.stream.message,
+      args: this.stream.args,
       event: this.stream.event,
-      json: this.stream.json,
     };
   }
 

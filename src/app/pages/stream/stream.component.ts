@@ -51,8 +51,13 @@ export class StreamComponent implements AfterViewInit {
   }
 
   onSend(e: IStream) {
-    this.messageService.send(e._id, e.json ? JSON.parse(e.message) : e.message, e.event, e.json);
-    this.messageService.add(e._id, MessageType.Sent, e.message, e.event || 'message', e.json);
+    const args = e.args.map(v => ({
+      json: v.json,
+      value: v.json ? JSON.parse(v.value) : v.value,
+    }));
+
+    this.messageService.send(e._id, args, e.event);
+    this.messageService.add(e._id, MessageType.Sent, e.args, e.event || 'message');
   }
 
   onRemoveMessage(e: IMessage) {
