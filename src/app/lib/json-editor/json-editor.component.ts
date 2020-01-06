@@ -81,7 +81,7 @@ export class JsonEditorComponent extends FormControlBase<IJsonEditorValue> imple
   set value(v: IJsonEditorValue) {
     this._value = v;
 
-    if (this.editor && v.value !== this.editor.getValue()) {
+    if (this.editor && v && v.value !== this.editor.getValue()) {
       this.editor.setValue(v.value || '');
     }
 
@@ -135,7 +135,7 @@ export class JsonEditorComponent extends FormControlBase<IJsonEditorValue> imple
     this.editor.on('change', this.onEditorChange.bind(this));
     this.editor.on('focus', this.onFocus.bind(this));
     this.editor.on('blur', this.onBlur.bind(this));
-    this.editor.setValue(this.value ? this.value.value : '');
+    this.editor.setValue(this.value && this.value.value ? this.value.value : '');
   }
 
   ngOnDestroy() {

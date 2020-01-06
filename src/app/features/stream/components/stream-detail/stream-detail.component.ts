@@ -7,14 +7,17 @@ import {
   Output,
   EventEmitter,
   ChangeDetectorRef,
+  ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { take } from 'rxjs/operators';
+
 import { ToastrService } from 'ngx-toastr';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 import { IMessage } from '../../../../resources/message';
 import { IStream, StreamType } from '../../../../resources/stream';
 import { MessageAction } from '../../../../lib/messenger';
-// import { isValidJSON } from '../../../../core/utils';
 
 @Component({
   selector: 'kido-stream-detail',
@@ -47,10 +50,6 @@ export class StreamDetailComponent implements OnInit {
   set stream(v: IStream) {
     this._stream = v;
     this.activeMessage = (this.messages[v._id] || []).find(m => m._id === this.activeMessageId);
-
-    if (this.form) {
-      this.form.reset(this._formStream);
-    }
   }
   private _stream: IStream;
 
@@ -68,8 +67,10 @@ export class StreamDetailComponent implements OnInit {
   @Output() selectMessage = new EventEmitter<IMessage | undefined>();
   @Output() send = new EventEmitter<IStream>();
 
+  @ViewChild(NgbTabset, { static: false })
+  readonly tabset: NgbTabset;
+
   activeMessageContent: any | string;
-  args: FormArray;
 
   get notSendable() {
     return this.form.invalid ||
@@ -80,17 +81,8 @@ export class StreamDetailComponent implements OnInit {
     return this.form.value.type !== StreamType.WebSocket && this.form.value.type !== StreamType.SockJS;
   }
 
-  private get _formStream() {
-    return {
-      type: this.stream.type,
-      url: this.stream.url,
-      args: this.stream.args,
-      event: this.stream.event,
-    };
-  }
-
-  private get _formArgs() {
-    return this.stream.args.map(arg => this._fb.control({ ...arg }));
+  get args() {
+    return this.form.get('args') as FormArray;
   }
 
   constructor(
@@ -100,15 +92,14 @@ export class StreamDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.args = this._fb.array(this._formArgs);
-    this.form.addControl('event', this._fb.control(this.stream.event));
-    this.form.addControl('args', this.args);
-    this.form.valueChanges.subscribe(() => this._cdr.markForCheck());
-  }
+    this.form.get('event').setValue(this.stream.event);
 
-  onArgJsonChanged(e: boolean, arg: FormGroup) {
-    arg.get('json').setValue(e);
-    arg.markAsDirty();
+    this.args.clear();
+    for (const arg of this.stream.args) {
+      this.args.push(this._fb.control({ ...arg }));
+    }
+
+    this.form.valueChanges.subscribe(() => this._cdr.markForCheck());
   }
 
   onPropertyValueClicked(e: string) {
@@ -137,5 +128,30 @@ export class StreamDetailComponent implements OnInit {
         ...this.form.value,
       });
     }
+  }
+
+  onAddArg() {
+    this.args.push(this._fb.control({
+      value: '',
+      json: false,
+    }));
+
+    this.args.markAsDirty();
+    this.args.updateValueAndValidity();
+    this._cdr.markForCheck();
+
+    this.tabset.tabs.changes.pipe(take(1)).subscribe(() => {
+      this.tabset.select(this.tabset.tabs.last.id);
+    });
+  }
+
+  onRemoveArg(e: Event, i: number) {
+    e.stopImmediatePropagation();
+    e.preventDefault();
+
+    this.args.removeAt(i);
+    this.args.markAsDirty();
+    this.args.updateValueAndValidity();
+    this._cdr.markForCheck();
   }
 }

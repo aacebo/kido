@@ -25,10 +25,19 @@
     <ngb-tabset formArrayName="args">
       <ngb-tab
         *ngFor="let arg of args.controls; let i = index"
-        [title]="i + 1"
+        [id]="i"
       >
+        <ng-template ngbTabTitle>
+          <span>{{ i + 1 }}</span>
+          <span
+            class="tab--close-btn fas fa-times"
+            (click)="onRemoveArg($event, i)"
+          ></span>
+        </ng-template>
+
         <ng-template ngbTabContent>
           <kido-json-editor
+            *ngIf="arg"
             sendable
             expandable
             copyable
@@ -40,6 +49,12 @@
         </ng-template>
       </ngb-tab>
     </ngb-tabset>
+
+    <div
+      class="tab--add-btn fas fa-plus-square"
+      [class.editable]="eventable"
+      (click)="onAddArg()"
+    ></div>
   </div>
 </div>
 
