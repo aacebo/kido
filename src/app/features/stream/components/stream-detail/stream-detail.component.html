@@ -22,13 +22,16 @@
       placeholder="Event..."
     ></kido-input>
 
-    <ngb-tabset formArrayName="args">
+    <ngb-tabset
+      formArrayName="args"
+      [class.not-eventable]="!eventable"
+    >
       <ngb-tab
         *ngFor="let arg of args.controls; let i = index"
         [id]="i"
       >
         <ng-template ngbTabTitle>
-          <span>{{ eventable ? (i + 1) : 'Arg' }}</span>
+          <span>{{ i + 1 }}</span>
           <span
             *ngIf="eventable"
             class="tab--close-btn fas fa-times"
