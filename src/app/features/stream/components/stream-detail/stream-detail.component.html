@@ -33,7 +33,7 @@
         <ng-template ngbTabTitle>
           <span>{{ i + 1 }}</span>
           <span
-            *ngIf="eventable"
+            *ngIf="eventable && args.controls.length > 1"
             class="tab--close-btn fas fa-times"
             (click)="onRemoveArg($event, i)"
           ></span>
