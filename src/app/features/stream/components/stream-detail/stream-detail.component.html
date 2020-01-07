@@ -28,8 +28,9 @@
         [id]="i"
       >
         <ng-template ngbTabTitle>
-          <span>{{ i + 1 }}</span>
+          <span>{{ eventable ? (i + 1) : 'Arg' }}</span>
           <span
+            *ngIf="eventable"
             class="tab--close-btn fas fa-times"
             (click)="onRemoveArg($event, i)"
           ></span>
@@ -51,6 +52,7 @@
     </ngb-tabset>
 
     <div
+      *ngIf="eventable"
       class="tab--add-btn fas fa-plus-square"
       [class.editable]="eventable"
       (click)="onAddArg()"

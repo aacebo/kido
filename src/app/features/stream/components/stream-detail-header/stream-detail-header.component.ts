@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
-import { areEqual } from '../../../../core/utils';
 import { StreamType, IStream } from '../../../../resources/stream';
 import { STREAM_TYPE_LABELS } from '../../constants';
 
@@ -34,10 +33,6 @@ export class StreamDetailHeaderComponent implements OnInit {
 
   readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
   readonly StreamType = StreamType;
-
-  get changed() {
-    return !areEqual(this._formStream, this.form.value);
-  }
 
   private get _formStream() {
     return {
