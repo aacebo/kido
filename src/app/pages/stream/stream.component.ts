@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, AfterViewInit, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -19,9 +19,9 @@ import { SystemService } from '../../resources/system';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StreamComponent implements AfterViewInit {
+export class StreamComponent implements OnInit, AfterViewInit {
   readonly menu$ = new BehaviorSubject(true);
-  readonly form = new FormGroup({ });
+  form: FormGroup;
 
   constructor(
     readonly systemService: SystemService,
@@ -29,7 +29,17 @@ export class StreamComponent implements AfterViewInit {
     readonly messageService: MessageService,
     private readonly _streamModalService: StreamModalService,
     private readonly _route: ActivatedRoute,
+    private readonly _fb: FormBuilder,
   ) { }
+
+  ngOnInit() {
+    this.form = this._fb.group({
+      type: this._fb.control(null),
+      url: this._fb.control(null),
+      args: this._fb.array([]),
+      event: this._fb.control(null),
+    });
+  }
 
   ngAfterViewInit() {
     this.messageService.get(this._route.snapshot.data.activeId);
@@ -51,8 +61,10 @@ export class StreamComponent implements AfterViewInit {
   }
 
   onSend(e: IStream) {
-    this.messageService.send(e._id, e.json ? JSON.parse(e.message) : e.message, e.event, e.json);
-    this.messageService.add(e._id, MessageType.Sent, e.message, e.event || 'message', e.json);
+    const args = e.args.map(v => v.json ? JSON.parse(v.value) : v.value);
+
+    this.messageService.send(e._id, args, e.event);
+    this.messageService.add(e._id, MessageType.Sent, JSON.stringify(args), e.event || 'message', true);
   }
 
   onRemoveMessage(e: IMessage) {

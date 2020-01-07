@@ -21,9 +21,8 @@ export class AddEffects {
         name: a.name ? a.name.trim() : null,
         url: a.url ? a.url.trim() : null,
         description: a.description ? a.description.trim() : null,
-        json: true,
         event: null,
-        message: null,
+        args: [{ value: '', json: false }],
         createdAt: new Date().getTime(),
       })
       .then(res => actions.addSuccess({ stream: res }))

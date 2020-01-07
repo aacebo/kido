@@ -22,7 +22,7 @@ export class SocketService {
       this._sockets[streamId] = new SocketIOService(url);
     } else if (type === StreamType.SignalR) {
       this._sockets[streamId] = new SignalrService(url);
-    } else if (type === StreamType.SockJS) {
+    } else {
       this._sockets[streamId] = new SockjsService(url);
     }
 
@@ -37,8 +37,8 @@ export class SocketService {
     this._sockets[streamId].disconnect();
   }
 
-  send(streamId: string, message: string, event?: string) {
-    this._sockets[streamId].send(message, event);
+  send(streamId: string, args: any | any[], event?: string) {
+    this._sockets[streamId].send(args, event);
   }
 
   isConnected(streamId: string) {

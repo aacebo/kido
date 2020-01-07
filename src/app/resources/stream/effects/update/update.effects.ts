@@ -21,9 +21,8 @@ export class UpdateEffects {
         name: a.stream.name ? a.stream.name.trim() : null,
         url: a.stream.url ? a.stream.url.trim() : null,
         description: a.stream.description ? a.stream.description.trim() : null,
-        message: a.stream.message ? a.stream.message.trim() : null,
         event: a.stream.event ? a.stream.event.trim() : null,
-        json: a.stream.json !== undefined ? a.stream.json : true,
+        args: a.stream.args || [],
         createdAt: a.stream.createdAt,
       })
       .then(res => actions.updateSuccess({ stream: res }))

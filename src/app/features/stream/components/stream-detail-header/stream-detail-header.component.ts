@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
-import { areEqual } from '../../../../core/utils';
 import { StreamType, IStream } from '../../../../resources/stream';
 import { STREAM_TYPE_LABELS } from '../../constants';
 
@@ -23,6 +22,7 @@ export class StreamDetailHeaderComponent implements OnInit {
 
     if (this.form) {
       this.form.reset(this._formStream);
+      this.form.markAsPristine();
     }
   }
   private _stream: IStream;
@@ -34,33 +34,39 @@ export class StreamDetailHeaderComponent implements OnInit {
   readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
   readonly StreamType = StreamType;
 
-  get changed() {
-    return !areEqual(this._formStream, this.form.value);
-  }
-
   private get _formStream() {
     return {
       type: this.stream.type,
       url: this.stream.url,
-      message: this.stream.message,
+      args: this.stream.args.map(arg => ({ ...arg })),
       event: this.stream.event,
-      json: this.stream.json,
     };
   }
 
+  private get _args() {
+    return this.form.get('args') as FormArray;
+  }
+
   constructor(
-    private readonly _fb: FormBuilder,
     private readonly _cdr: ChangeDetectorRef,
+    private readonly _fb: FormBuilder,
   ) { }
 
   ngOnInit() {
-    this.form.addControl('type', this._fb.control(this.stream.type));
-    this.form.addControl('url', this._fb.control(this.stream.url));
+    this.form.get('type').setValue(this.stream.type);
+    this.form.get('url').setValue(this.stream.url);
     this.form.valueChanges.subscribe(() => this._cdr.markForCheck());
   }
 
   onReset() {
     this.form.reset(this._formStream);
+
+    this._args.clear();
+    for (const arg of this.stream.args) {
+      this._args.push(this._fb.control({ ...arg }));
+    }
+
+    this.form.markAsPristine();
   }
 
   onConnect() {

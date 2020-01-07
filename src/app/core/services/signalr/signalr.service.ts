@@ -38,8 +38,8 @@ export class SignalrService implements ISocketService {
     this._socket$.stop();
   }
 
-  send(message: any, event = 'message') {
-    this._socket$.send(event, message);
+  send(args: any[], event = 'message') {
+    this._socket$.send(event, args);
   }
 
   private _onConnect() {

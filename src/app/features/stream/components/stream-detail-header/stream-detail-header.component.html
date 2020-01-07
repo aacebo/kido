@@ -38,7 +38,7 @@
         theme="outline"
         ngbTooltip="Revert"
         container="body"
-        [disabled]="form.pristine || !changed"
+        [disabled]="form.pristine"
         (click)="onReset()"
       >
         <span class="fas fa-history"></span>
@@ -52,7 +52,7 @@
         theme="outline"
         ngbTooltip="Save"
         container="body"
-        [disabled]="form.invalid || form.pristine || !changed"
+        [disabled]="form.pristine"
         (click)="save.emit()"
       >
         <span class="fas fa-save"></span>

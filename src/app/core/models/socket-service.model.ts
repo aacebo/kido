@@ -9,5 +9,5 @@ export interface ISocketService {
 
   connect: () => void;
   disconnect: () => void;
-  send: (v: any, e?: string) => void;
+  send: (args: any[], e?: string) => void;
 }

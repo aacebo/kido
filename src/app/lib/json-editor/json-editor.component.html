@@ -4,17 +4,17 @@
   <span
     class="fas fa-code"
     container="body"
-    [class.active]="!raw"
-    [ngbTooltip]="raw ? 'JSON' : 'Plain/Text'"
-    (click)="rawChange.emit(!raw)"
+    [class.active]="value?.json"
+    [ngbTooltip]="!value?.json ? 'JSON' : 'Plain/Text'"
+    (click)="value = { value: value.value, json: !value.json }"
   ></span>
 
   <span
     class="fas fa-align-left"
     ngbTooltip="Beautify"
     container="body"
-    [class.disabled]="raw"
-    [disableTooltip]="raw"
+    [class.disabled]="!value?.json"
+    [disableTooltip]="!value?.json"
     (click)="onBeautify()"
   ></span>
 
@@ -42,8 +42,8 @@
     [ngClass]="sendIcon"
     [ngbTooltip]="sendTooltip"
     container="body"
-    [class.disabled]="!raw && invalid"
-    [disableTooltip]="!raw && invalid"
+    [class.disabled]="value?.json && invalid"
+    [disableTooltip]="value?.json && invalid"
     (click)="onSend()"
   ></span>
 </div>

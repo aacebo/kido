@@ -1,6 +1,8 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { IJsonEditorValue } from './json-editor-value.interface';
+
 @Component({
   moduleId: module.id,
   exportAs: 'kidoJsonEditorModal',
@@ -12,8 +14,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JsonEditorModalComponent {
-  @Input() value: string;
-  @Input() raw: boolean;
+  @Input() value: IJsonEditorValue;
 
   constructor(private readonly _modal: NgbActiveModal) { }
 
