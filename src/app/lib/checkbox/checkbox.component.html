@@ -1,9 +1,10 @@
-<div class="btn-group btn-group-toggle">
-  <label
-    ngbButtonLabel
-    [ngClass]="'kido-checkbox--' + color"
-  >
-    <input type="checkbox" [(ngModel)]="value" ngbButton />
-    <ng-content></ng-content>
-  </label>
-</div>
+<label class="kido-checkbox--label">
+  <input type="checkbox" [(ngModel)]="value" />
+
+  <span
+    class="kido-checkbox--box"
+    [class.checked]="value"
+  ></span>
+
+  <ng-content></ng-content>
+</label>

@@ -1,32 +1,59 @@
-@mixin kidoCheckboxColor($color) {
-  &.kido-checkbox--#{$color} {
-    &:hover,
-    &.active {
-      color: var(--#{$color});
-    }
-  }
-}
+@import '../../../styles/variables';
+
+$checkbox-color: var(--info);
+$checkbox-check-color: var(--white);
 
 .kido-checkbox {
-  label {
+  .kido-checkbox--label {
     cursor: pointer;
-    background-color: transparent;
-    border-color: transparent;
-    box-shadow: none !important;
-    color: var(--text-muted);
 
-    &:hover {
-      background-color: transparent;
-      border-color: transparent;
+    input {
+      position: absolute;
+      opacity: 0;
     }
 
-    @include kidoCheckboxColor('info');
-    @include kidoCheckboxColor('success');
-    @include kidoCheckboxColor('danger');
-    @include kidoCheckboxColor('warning');
-    @include kidoCheckboxColor('primary');
-    @include kidoCheckboxColor('secondary');
-    @include kidoCheckboxColor('light');
-    @include kidoCheckboxColor('dark');
+    .kido-checkbox--box {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 24px;
+      width: 24px;
+      border-radius: $border-radius-md;
+      background-color: transparent;
+      border: 2px solid var(--hairline-strong);
+      transition: all 0.3s ease-out;
+
+      &:after {
+        position: absolute;
+        content: '';
+        left: 12px;
+        top: 12px;
+        height: 0px;
+        width: 0px;
+        border-radius: $border-radius-md;
+        border: solid var(--white);
+        border-width: 0 2px 2px 0;
+        opacity: 1;
+        transform: rotate(0deg) scale(0);
+        transition: all 0.3s ease-out;
+      }
+
+      &.checked {
+        background-color: var(--info);
+        border-radius: $border-radius-md;
+        opacity: 1;
+        border: 2px solid var(--info);
+        transform: rotate(0deg) scale(1);
+
+        &:after {
+          top: 3px;
+          left: 8px;
+          width: 6px;
+          height: 12px;
+          border-radius: 0;
+          transform: rotate(45deg) scale(1);
+        }
+      }
+    }
   }
 }
