@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Optional, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Optional, ViewEncapsulation } from '@angular/core';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 
-import { Color } from '../core/enums';
 import { FormControlBase, formControlProvider } from '../core/form-control';
 
 @Component({
@@ -10,14 +9,15 @@ import { FormControlBase, formControlProvider } from '../core/form-control';
   selector: 'kido-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
-  host: { class: 'kido-checkbox' },
+  host: {
+    class: 'kido-checkbox',
+    '[class.disabled]': 'disabled',
+  },
   providers: [formControlProvider(CheckboxComponent)],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxComponent extends FormControlBase<boolean> {
-  @Input() color = Color.Primary;
-
   constructor(
     readonly cdr: ChangeDetectorRef,
     readonly el: ElementRef<HTMLElement>,

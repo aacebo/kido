@@ -36,8 +36,6 @@ $inner-arrow-size: 7px;
     padding-right: $arrow-size;
 
     .kido-message--bubble {
-      box-shadow: 12px 0 0 -8px var(--success) inset;
-
       &:after {
         left: 100%;
         border-left: $arrow-size solid var(--hairline-strong);
@@ -55,8 +53,6 @@ $inner-arrow-size: 7px;
     padding-left: $arrow-size;
 
     .kido-message--bubble {
-      box-shadow: -12px 0 0 -8px var(--info) inset;
-
       &:after {
         right: 100%;
         border-right: $arrow-size solid var(--hairline-strong);

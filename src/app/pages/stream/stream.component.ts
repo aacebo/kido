@@ -8,7 +8,7 @@ import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { StreamModalService } from '../../features/stream';
 
 import { IMessage, MessageService, MessageType } from '../../resources/message';
-import { IStream, StreamService } from '../../resources/stream';
+import { IStream, StreamService, StreamType } from '../../resources/stream';
 import { SystemService } from '../../resources/system';
 
 @Component({
@@ -23,6 +23,13 @@ export class StreamComponent implements OnInit, AfterViewInit {
   readonly menu$ = new BehaviorSubject(true);
   form: FormGroup;
 
+  get eventable() {
+    return this.form &&
+           this.form.value &&
+           this.form.value.type !== StreamType.WebSocket &&
+           this.form.value.type !== StreamType.SockJS;
+  }
+
   constructor(
     readonly systemService: SystemService,
     readonly streamService: StreamService,
@@ -36,8 +43,9 @@ export class StreamComponent implements OnInit, AfterViewInit {
     this.form = this._fb.group({
       type: this._fb.control(null),
       url: this._fb.control(null),
-      args: this._fb.array([]),
       event: this._fb.control(null),
+      args: this._fb.array([]),
+      listeners: this._fb.control([]),
     });
   }
 
@@ -53,7 +61,7 @@ export class StreamComponent implements OnInit, AfterViewInit {
   }
 
   onConnect(e: IStream) {
-    this.streamService.connect(e._id, e.type, e.url);
+    this.streamService.connect(e._id, this.form.value.type, this.form.value.url, this.form.value.listeners);
   }
 
   onDisconnect(e: IStream) {

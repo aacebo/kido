@@ -2,7 +2,6 @@ import { Subject } from 'rxjs';
 import * as io from 'socket.io-client';
 
 import { ISocketService } from '../../models';
-import { socketIOWildcard } from '../../utils/socket-io-wildcard';
 
 export class SocketIOService implements ISocketService {
   get disconnected() { return this._socket$.disconnected; }
@@ -23,16 +22,17 @@ export class SocketIOService implements ISocketService {
       reconnection: false,
     });
 
-    socketIOWildcard(io.Manager)(this._socket$);
-
     this._socket$.on('connect', this._onConnect.bind(this));
     this._socket$.on('connect_error', this._onError.bind(this));
     this._socket$.on('error', this._onError.bind(this));
-    this._socket$.on('*', this._onEvent.bind(this));
     this._socket$.on('disconnect', this._onDisconnect.bind(this));
   }
 
-  connect() {
+  connect(events: string[]) {
+    for (const e of events) {
+      this._socket$.on(e, (v: any) => this._onEvent(e, v));
+    }
+
     this._socket$.connect();
   }
 
@@ -52,11 +52,8 @@ export class SocketIOService implements ISocketService {
     this._disconnected$.next();
   }
 
-  private _onEvent(e: { event: string, value: any }) {
-    this._event$.next({
-      e: e.event,
-      v: e.value,
-    });
+  private _onEvent(e: string, v: any) {
+    this._event$.next({ e, v });
   }
 
   private _onError(err: any) {

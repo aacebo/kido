@@ -1,0 +1,53 @@
+<label
+  *ngIf="label"
+  class="ellipsis"
+>{{ label }}</label>
+
+<kido-input
+  *ngIf="editable"
+  size="sm"
+  [placeholder]="inputPlaceholder"
+  [disabled]="disabled"
+  [(ngModel)]="newItemLabel"
+></kido-input>
+
+<div class="kido-color-list-multi-select--items">
+  <div
+    *ngIf="(!value || !value.length) && placeholder"
+    class="kido-color-list-multi-select--placeholder ellipsis"
+  >
+    {{ placeholder }}
+  </div>
+
+  <div
+    *ngFor="let item of value; let i = index"
+    class="kido-color-list-multi-select--item"
+    [class.disabled]="disabled"
+    [ngStyle]="{ 'box-shadow': '-12px 0 0 -8px ' + item.color + ' inset' }"
+  >
+    <div class="kido-color-list-multi-select--item-label ellipsis">
+      {{ item.label }}
+    </div>
+
+    <kido-checkbox
+      [disabled]="disabled"
+      [ngModel]="item.checked"
+      (ngModelChange)="check($event, i)"
+    ></kido-checkbox>
+
+    <div
+      *ngIf="editable && !disabled"
+      class="kido-color-list-multi-select--item-close fas fa-times"
+      (click)="remove(i)"
+    ></div>
+  </div>
+</div>
+
+<button
+  *ngIf="editable"
+  kido-button
+  color="success"
+  size="sm"
+  [disabled]="!newItemLabel || exists || disabled"
+  (click)="add()"
+>Add</button>

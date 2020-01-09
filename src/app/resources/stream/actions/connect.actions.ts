@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { StreamType } from '../enums';
+import { IStreamListener } from '../models';
 
 export const connect = createAction(
   '[STREAM] Connect',
@@ -8,6 +9,7 @@ export const connect = createAction(
     readonly streamId: string;
     readonly streamType: StreamType;
     readonly url: string;
+    readonly listeners?: IStreamListener[];
   }>(),
 );
 

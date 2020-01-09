@@ -28,7 +28,12 @@
         (disconnect)="onDisconnect(stream)"
       ></kido-stream-detail-header>
 
-      <kido-stream-detail-sidebar [open]="menu$ | async">
+      <kido-stream-detail-sidebar
+        [open]="menu$ | async"
+        [form]="form"
+        [stream]="stream"
+        [eventable]="eventable"
+      >
         <kido-stream-detail
           [form]="form"
           [stream]="stream"
@@ -37,6 +42,7 @@
           [messages]="messageService.messages$ | async"
           [connected]="streamService.connected$ | async"
           [connecting]="streamService.connecting$ | async"
+          [eventable]="eventable"
           (selectMessage)="onSelectMessage($event)"
           (removeMessage)="onRemoveMessage($event)"
           (send)="onSend($event)"

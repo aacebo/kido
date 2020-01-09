@@ -23,6 +23,7 @@ export class AddEffects {
         description: a.description ? a.description.trim() : null,
         event: null,
         args: [{ value: '', json: false }],
+        listeners: [],
         createdAt: new Date().getTime(),
       })
       .then(res => actions.addSuccess({ stream: res }))

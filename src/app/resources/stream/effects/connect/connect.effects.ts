@@ -28,7 +28,10 @@ export class ConnectEffects {
       socket.error$.subscribe(err => this._onError(err, a));
       socket.event$.subscribe(e => this._onEvent(e, a));
 
-      this._socketService.connect(a.streamId);
+      this._socketService.connect(
+        a.streamId,
+        (a.listeners || []).filter(l => l.checked).map(l => l.label),
+      );
     }),
   ), { dispatch: false });
 

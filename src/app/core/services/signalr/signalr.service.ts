@@ -27,10 +27,13 @@ export class SignalrService implements ISocketService {
     this._logger.connected$.subscribe(this._onConnect.bind(this));
     this._logger.disconnected$.subscribe(this._onDisconnect.bind(this));
     this._logger.error$.subscribe(this._onError.bind(this));
-    this._socket$.on('*', this._onEvent.bind(this));
   }
 
-  connect() {
+  connect(events: string[]) {
+    for (const e of events) {
+      this._socket$.on(e, (v: any) => this._onEvent(e, v));
+    }
+
     this._socket$.start();
   }
 
@@ -50,12 +53,13 @@ export class SignalrService implements ISocketService {
     this._disconnected$.next();
   }
 
-  private _onEvent(e: { event: string, value: any }) {
+  private _onEvent(e: string, v: any) {
     // this._event$.next({
     //   e: e.event,
     //   v: e.value,
     // });
     console.log(e);
+    console.log(v);
   }
 
   private _onError(err: any) {

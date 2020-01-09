@@ -32,6 +32,7 @@ export class FormControlBase<T> implements ControlValueAccessor {
   get label() { return this._label; }
   set label(v: string) {
     this._label = v;
+    this.cdr.markForCheck();
   }
   protected _label?: string;
 
@@ -39,6 +40,7 @@ export class FormControlBase<T> implements ControlValueAccessor {
   get placeholder() { return this._placeholder; }
   set placeholder(v: string) {
     this._placeholder = v;
+    this.cdr.markForCheck();
   }
   protected _placeholder?: string;
 
@@ -46,6 +48,7 @@ export class FormControlBase<T> implements ControlValueAccessor {
   get required() { return this._required; }
   set required(v: boolean) {
     this._required = coerceBooleanProperty(v);
+    this.cdr.markForCheck();
   }
   protected _required?: boolean;
 
@@ -53,6 +56,7 @@ export class FormControlBase<T> implements ControlValueAccessor {
   get disabled() { return this._disabled; }
   set disabled(v: boolean) {
     this._disabled = coerceBooleanProperty(v);
+    this.cdr.markForCheck();
   }
   protected _disabled?: boolean;
 
@@ -60,6 +64,7 @@ export class FormControlBase<T> implements ControlValueAccessor {
   get readonly() { return this._readonly; }
   set readonly(v: boolean) {
     this._readonly = coerceBooleanProperty(v);
+    this.cdr.markForCheck();
   }
   protected _readonly?: boolean;
 

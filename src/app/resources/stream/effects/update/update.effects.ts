@@ -23,6 +23,7 @@ export class UpdateEffects {
         description: a.stream.description ? a.stream.description.trim() : null,
         event: a.stream.event ? a.stream.event.trim() : null,
         args: a.stream.args || [],
+        listeners: a.stream.listeners || [],
         createdAt: a.stream.createdAt,
       })
       .then(res => actions.updateSuccess({ stream: res }))

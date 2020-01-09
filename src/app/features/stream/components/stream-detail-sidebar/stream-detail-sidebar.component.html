@@ -1,10 +1,19 @@
 <div
-  *ngIf="open"
+  *ngIf="open && eventable"
   class="kido-sidebar"
   [style.width.px]="width"
 >
-  <div class="kido-sidebar--side-content">
-    <kido-checkbox></kido-checkbox>
+  <div
+    class="kido-sidebar--side-content"
+    [formGroup]="form"
+  >
+    <kido-color-list-multi-select
+      editable
+      formControlName="listeners"
+      inputPlaceholder="Event Name..."
+      placeholder="Not listening on any events..."
+      label="Event Listeners"
+    ></kido-color-list-multi-select>
   </div>
 
   <kido-horizontal-split

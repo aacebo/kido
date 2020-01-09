@@ -1,0 +1,38 @@
+.kido-color-list-multi-select {
+  display: flex;
+  flex-direction: column;
+
+  .kido-color-list-multi-select--items {
+    margin: 5px;
+
+    .kido-color-list-multi-select--placeholder {
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      font-size: 10pt;
+    }
+
+    .kido-color-list-multi-select--item {
+      display: flex;
+      padding-right: 10px;
+
+      .kido-color-list-multi-select--item-label {
+        flex: 1 1 auto;
+        margin: auto;
+      }
+
+      kido-checkbox {
+        transform: scale(0.7);
+      }
+
+      .kido-color-list-multi-select--item-close {
+        cursor: pointer;
+        margin: auto;
+
+        &:hover {
+          color: var(--danger);
+        }
+      }
+    }
+  }
+}

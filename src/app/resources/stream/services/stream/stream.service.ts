@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import * as actions from '../../actions';
 import * as selectors from '../../stream.selectors';
 import { StreamType } from '../../enums';
-import { IStream } from '../../models';
+import { IStream, IStreamListener } from '../../models';
 import { IStreamState } from '../../stream.state';
 
 @Injectable({
@@ -40,8 +40,8 @@ export class StreamService {
     this._store$.dispatch(actions.update({ stream }));
   }
 
-  connect(streamId: string, streamType: StreamType, url: string) {
-    this._store$.dispatch(actions.connect({ streamId, streamType, url }));
+  connect(streamId: string, streamType: StreamType, url: string, listeners?: IStreamListener[]) {
+    this._store$.dispatch(actions.connect({ streamId, streamType, url, listeners }));
   }
 
   disconnect(streamId: string) {

@@ -4,18 +4,19 @@ $checkbox-color: var(--info);
 $checkbox-check-color: var(--white);
 
 .kido-checkbox {
+  &.disabled {
+    opacity: 0.7;
+  }
+
   .kido-checkbox--label {
     cursor: pointer;
+    margin-bottom: 0;
 
     input {
-      position: absolute;
-      opacity: 0;
+      display: none;
     }
 
     .kido-checkbox--box {
-      position: absolute;
-      top: 0px;
-      left: 0px;
       height: 24px;
       width: 24px;
       border-radius: $border-radius-md;

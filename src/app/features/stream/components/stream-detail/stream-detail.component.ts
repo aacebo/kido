@@ -16,8 +16,9 @@ import { ToastrService } from 'ngx-toastr';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 import { IMessage } from '../../../../resources/message';
-import { IStream, StreamType } from '../../../../resources/stream';
+import { IStream, IStreamListener } from '../../../../resources/stream';
 import { MessageAction } from '../../../../lib/messenger';
+import { arrayToMap } from '../../../../core/utils';
 
 @Component({
   selector: 'kido-stream-detail',
@@ -33,6 +34,7 @@ export class StreamDetailComponent implements OnInit {
   @Input() loading: { [streamId: string]: boolean } = { };
   @Input() connected: { [streamId: string]: Date } = { };
   @Input() connecting: { [streamId: string]: boolean } = { };
+  @Input() eventable?: boolean;
 
   @Input()
   get activeMessageId() { return this._activeMessageId; }
@@ -70,20 +72,22 @@ export class StreamDetailComponent implements OnInit {
   @ViewChild(NgbTabset, { static: false })
   readonly tabset: NgbTabset;
 
-  activeMessageContent: any | string;
-
   get notSendable() {
     return this.form.invalid ||
            !this.connected[this.stream._id];
   }
 
-  get eventable() {
-    return this.form.value.type !== StreamType.WebSocket && this.form.value.type !== StreamType.SockJS;
-  }
-
   get args() {
     return this.form.get('args') as FormArray;
   }
+
+  get eventColors() {
+    return this.form.value && Array.isArray(this.form.value.listeners) ?
+      arrayToMap<IStreamListener>('label', this.form.value.listeners) :
+      { };
+  }
+
+  activeMessageContent: any | string;
 
   constructor(
     private readonly _fb: FormBuilder,

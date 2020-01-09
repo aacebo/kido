@@ -1,4 +1,7 @@
-<div class="kido-message--bubble">
+<div
+  class="kido-message--bubble"
+  [ngStyle]="{ 'box-shadow': boxShadow }"
+>
   <div class="kido-message--bubble-event ellipsis">
     {{ message.event }}
   </div>

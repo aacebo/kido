@@ -38,9 +38,10 @@ export class StreamDetailHeaderComponent implements OnInit {
     return {
       type: this.stream.type,
       url: this.stream.url,
-      args: this.stream.args.map(arg => ({ ...arg })),
       event: this.stream.event,
-    };
+      args: (this.stream.args || []).map(a => ({ ...a })),
+      listeners: (this.stream.listeners || []).map(l => ({ ...l })),
+    } as Partial<IStream>;
   }
 
   private get _args() {

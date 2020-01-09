@@ -29,8 +29,8 @@ export class SocketService {
     return this._sockets[streamId];
   }
 
-  connect(streamId: string) {
-    this._sockets[streamId].connect();
+  connect(streamId: string, events?: string[]) {
+    this._sockets[streamId].connect(events);
   }
 
   disconnect(streamId: string) {

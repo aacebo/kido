@@ -12,6 +12,7 @@
     *ngIf="!loading[stream._id]"
     [messages]="messages[stream._id]"
     [active]="activeMessageId"
+    [eventColors]="eventColors"
     (action)="onMessageAction($event)"
   ></kido-messenger>
 

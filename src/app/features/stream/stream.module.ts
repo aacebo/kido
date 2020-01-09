@@ -7,7 +7,6 @@ import { ConnectionIconModule } from '../connection-icon';
 import { SocketIconModule } from '../socket-icon';
 
 import { ButtonModule } from '../../lib/button';
-import { CheckboxModule } from '../../lib/checkbox';
 import { DropdownModule } from '../../lib/dropdown';
 import { ElapseTimeModule } from '../../lib/elapse-time';
 import { InputModule } from '../../lib/input';
@@ -16,6 +15,7 @@ import { JsonViewerModule } from '../../lib/json-viewer';
 import { MessengerModule } from '../../lib/messenger';
 import { SelectModule } from '../../lib/select';
 import { SplitModule } from '../../lib/split';
+import { ColorListMultiSelectModule } from '../../lib/color-list-multi-select';
 
 import * as components from './components';
 
@@ -52,9 +52,9 @@ const declarations = [
     JsonEditorModule,
     JsonViewerModule,
     MessengerModule,
-    CheckboxModule,
     ElapseTimeModule,
     SplitModule,
+    ColorListMultiSelectModule,
   ],
 })
 export class StreamModule { }

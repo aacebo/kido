@@ -13,6 +13,8 @@ import {
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
+import { IColorListMultiSelectItem } from '../color-list-multi-select';
+
 import { MessageAction } from './message-action.enum';
 import { IMessage } from './message.interface';
 
@@ -28,6 +30,8 @@ import { IMessage } from './message.interface';
 })
 export class MessengerComponent implements AfterViewInit {
   @Input() active?: string;
+  @Input() eventColors: { [event: string]: IColorListMultiSelectItem } = { };
+
   @Input()
   get messages() { return this._messages; }
   set messages(v: IMessage[]) {
