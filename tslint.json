@@ -12,8 +12,10 @@
     "directive-selector": [
       true,
       "attribute",
+      "element",
       "kido",
-      "camelCase"
+      "camelCase",
+      "kebab-case"
     ],
     "component-selector": [
       true,
