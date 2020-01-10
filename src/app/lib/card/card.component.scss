@@ -1,3 +1,16 @@
+$card-padding: 10px;
+
 .kido-card {
   display: block;
+
+  .kido-card-title {
+    display: block;
+    padding: 0 $card-padding;
+    font-size: 16pt;
+  }
+
+  .kido-card-body {
+    display: block;
+    padding: $card-padding;
+  }
 }

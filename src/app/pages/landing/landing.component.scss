@@ -4,10 +4,39 @@
   width: 100%;
 
   .kido-landing--content {
-    margin: 0;
+    display: flex;
     position: absolute;
+    flex-direction: column;
+    margin: 0;
     top: 50%;
     left: 50%;
+    width: 80%;
     transform: translate(-50%, -50%);
+
+    .kido-landing--cards {
+      display: flex;
+
+      kido-card {
+        max-width: 250px;
+        margin: auto;
+
+        kido-card-title {
+          text-align: center;
+
+          &.kido-card--icon {
+            font-size: 50px;
+          }
+        }
+
+        kido-card-body {
+          height: 150px;
+        }
+      }
+    }
+
+    .kido-landing--actions {
+      padding: 10px;
+      text-align: center;
+    }
   }
 }
