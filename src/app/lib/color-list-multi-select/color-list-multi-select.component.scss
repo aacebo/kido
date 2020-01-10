@@ -22,12 +22,12 @@
       }
 
       kido-checkbox {
-        transform: scale(0.7);
+        margin: auto;
       }
 
       .kido-color-list-multi-select--item-close {
         cursor: pointer;
-        margin: auto;
+        margin: auto auto auto 5px;
 
         &:hover {
           color: var(--danger);

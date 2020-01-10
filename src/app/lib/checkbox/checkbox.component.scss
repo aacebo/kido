@@ -9,6 +9,7 @@ $checkbox-check-color: var(--white);
   }
 
   .kido-checkbox--label {
+    display: block;
     cursor: pointer;
     margin-bottom: 0;
 
@@ -17,8 +18,8 @@ $checkbox-check-color: var(--white);
     }
 
     .kido-checkbox--box {
-      height: 24px;
-      width: 24px;
+      height: 18px;
+      width: 18px;
       border-radius: $border-radius-md;
       background-color: transparent;
       border: 2px solid var(--hairline-strong);
@@ -26,15 +27,9 @@ $checkbox-check-color: var(--white);
 
       &:after {
         position: absolute;
-        content: '';
-        left: 12px;
-        top: 12px;
-        height: 0px;
-        width: 0px;
-        border-radius: $border-radius-md;
+        content: "";
         border: solid var(--white);
         border-width: 0 2px 2px 0;
-        opacity: 1;
         transform: rotate(0deg) scale(0);
         transition: all 0.3s ease-out;
       }
@@ -47,11 +42,10 @@ $checkbox-check-color: var(--white);
         transform: rotate(0deg) scale(1);
 
         &:after {
-          top: 3px;
-          left: 8px;
+          top: calc(50% - 7px);
+          left: calc(50% - 2px);
           width: 6px;
           height: 12px;
-          border-radius: 0;
           transform: rotate(45deg) scale(1);
         }
       }
