@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import * as faker from 'faker';
 
@@ -30,19 +31,28 @@ export class ColorListMultiSelectComponent extends FormControlBase<IColorListMul
 
   get value() { return this._value; }
   set value(v: IColorListMultiSelectItem[]) {
-    this._value = [...v];
+    this._value = v ? v.map(o => ({ ...o })) : v;
     this.cdr.markForCheck();
     this.onChange(this._value);
   }
   protected _value?: IColorListMultiSelectItem[];
 
-  get exists() {
+  get addable() {
+    return this.newItemLabel && !this._exists && !this.disabled;
+  }
+
+  private get _exists() {
     return (this.value || []).some(v => v.label === this.newItemLabel);
   }
 
   newItemLabel: string;
+  control?: AbstractControl;
 
   add() {
+    if (!this.addable) {
+      return;
+    }
+
     if (!this.value) {
       this.value = [];
     }

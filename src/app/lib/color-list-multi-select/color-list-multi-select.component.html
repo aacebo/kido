@@ -1,7 +1,9 @@
 <label
   *ngIf="label"
   class="ellipsis"
->{{ label }}</label>
+>
+  {{ label }}
+</label>
 
 <kido-input
   *ngIf="editable"
@@ -9,6 +11,7 @@
   [placeholder]="inputPlaceholder"
   [disabled]="disabled"
   [(ngModel)]="newItemLabel"
+  (keydown.enter)="add()"
 ></kido-input>
 
 <div class="kido-color-list-multi-select--items">
@@ -48,7 +51,7 @@
   kido-button
   color="success"
   size="sm"
-  [disabled]="!newItemLabel || exists || disabled"
+  [disabled]="!addable"
   (click)="add()"
 >
   <span class="fas fa-plus"></span>

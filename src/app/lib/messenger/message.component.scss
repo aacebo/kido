@@ -22,10 +22,10 @@ $inner-arrow-size: 7px;
 
     &.kido-message--sent {
       .kido-message--bubble {
-        border-color: var(--success);
+        border-color: var(--info);
 
         &:after {
-          border-left-color: var(--success);
+          border-left-color: var(--info);
         }
       }
     }

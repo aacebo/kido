@@ -28,6 +28,7 @@ export class StreamDetailSidebarComponent implements OnInit {
 
   ngOnInit() {
     this.form.get('listeners').setValue((this.stream.listeners || []).map(l => ({ ...l })));
+    this.form.get('listeners').markAsPristine();
     this.form.valueChanges.subscribe(() => this._cdr.markForCheck());
   }
 
