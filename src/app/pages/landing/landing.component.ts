@@ -1,4 +1,7 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { StreamService, StreamType } from '../../resources/stream';
 
 @Component({
   selector: 'kido-landing',
@@ -9,4 +12,13 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/
   encapsulation: ViewEncapsulation.None,
 })
 export class LandingComponent {
+  constructor(
+    private readonly _router: Router,
+    private readonly _streamService: StreamService,
+  ) { }
+
+  getStarted() {
+    this._streamService.add(StreamType.WebSocket, 'New Stream');
+    this._router.navigateByUrl('/stream');
+  }
 }

@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation, AfterViewInit, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-
-import { StreamModalService } from '../../features/stream';
 
 import { IMessage, MessageService, MessageType } from '../../resources/message';
 import { IStream, StreamService, StreamType } from '../../resources/stream';
@@ -34,7 +32,7 @@ export class StreamComponent implements OnInit, AfterViewInit {
     readonly systemService: SystemService,
     readonly streamService: StreamService,
     readonly messageService: MessageService,
-    private readonly _streamModalService: StreamModalService,
+    private readonly _router: Router,
     private readonly _route: ActivatedRoute,
     private readonly _fb: FormBuilder,
   ) { }
@@ -91,25 +89,24 @@ export class StreamComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onAdd(e?: IStream) {
-    this._streamModalService.open(e, (v?: Partial<IStream>) => {
-      if (v) {
-        if (e) {
-          this.streamService.update({
-            ...e,
-            ...v,
-          });
-        } else {
-          this.streamService.add(v.type, v.name, v.url, v.description);
-        }
-      }
-    });
+  onAdd() {
+    this.streamService.add(StreamType.WebSocket, 'New Stream');
   }
 
   onRemove(e: Event, stream: IStream) {
     e.preventDefault();
     e.stopImmediatePropagation();
-    this.streamService.remove(stream._id, stream._rev);
+
+    this.streamService.entities$.pipe(
+      take(1),
+      tap(entities => {
+        if (entities.length === 1) {
+          this._router.navigateByUrl('/landing');
+        }
+
+        this.streamService.remove(stream._id, stream._rev);
+      }),
+    ).subscribe();
   }
 
   onClear(e: IStream) {
