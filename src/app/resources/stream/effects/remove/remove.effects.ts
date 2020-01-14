@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { ToastrService } from 'ngx-toastr';
 import { switchMap, tap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 import { PouchService } from '../../../../core/services';
 import { MessageService } from '../../../message';
+
 import * as actions from '../../actions';
 import { IStream } from '../../models';
 

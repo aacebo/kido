@@ -7,6 +7,10 @@ const routes: Routes = [
     path: 'stream',
     loadChildren: () => import('./pages/stream/stream.module').then(m => m.StreamModule),
   },
+  {
+    path: 'landing',
+    loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule),
+  },
 ];
 
 @NgModule({

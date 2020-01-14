@@ -27,7 +27,7 @@ export class SystemService {
     this._store$.dispatch(actions.setSystem({ system }));
   }
 
-  setOnline(online: boolean) {
-    this._store$.dispatch(actions.setOnline({ online }));
+  setOnline(online: boolean, notify?: boolean) {
+    this._store$.dispatch(actions.setOnline({ online, notify }));
   }
 }

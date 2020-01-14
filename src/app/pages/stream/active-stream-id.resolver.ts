@@ -5,7 +5,7 @@ import { map, take } from 'rxjs/operators';
 import { StreamService } from '../../resources/stream';
 
 @Injectable()
-export class StreamResolver implements Resolve<string | undefined> {
+export class ActiveStreamIdResolver implements Resolve<string | undefined> {
   constructor(private readonly _streamService: StreamService) { }
 
   resolve() {
@@ -15,8 +15,6 @@ export class StreamResolver implements Resolve<string | undefined> {
         if (entities.length > 0) {
           return entities[0]._id;
         }
-
-        return undefined;
       }),
     );
   }

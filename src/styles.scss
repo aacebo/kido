@@ -1,12 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import './styles/index';
 
+@font-face {
+  font-family: 'nunito';
+  src: url('assets/fonts/nunito/Nunito-Regular.ttf') format('truetype');
+}
+
 html, body {
   height: 100%;
   overflow: hidden;
   color: var(--text-primary);
   background-color: var(--bg-darkest);
-  font-family: 'Proxima Nova Soft', 'Helvetica Neue', sans-serif;
+  font-family: 'nunito', 'Helvetica Neue', sans-serif;
 }
 
 *:focus {

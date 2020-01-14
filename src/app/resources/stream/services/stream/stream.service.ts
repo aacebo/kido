@@ -40,15 +40,15 @@ export class StreamService {
     this._store$.dispatch(actions.update({ stream }));
   }
 
+  remove(streamId: string, _rev: string) {
+    this._store$.dispatch(actions.remove({ streamId, _rev }));
+  }
+
   connect(streamId: string, streamType: StreamType, url: string, listeners?: IStreamListener[]) {
     this._store$.dispatch(actions.connect({ streamId, streamType, url, listeners }));
   }
 
   disconnect(streamId: string) {
     this._store$.dispatch(actions.disconnect({ streamId }));
-  }
-
-  remove(streamId: string, _rev: string) {
-    this._store$.dispatch(actions.remove({ streamId, _rev }));
   }
 }
