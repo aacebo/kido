@@ -1,4 +1,9 @@
 <div class="kido-landing--content">
+  <div class="kido-landing--logo">
+    <img src="./assets/logo/png/64x64.png" draggable="false" />
+    <div class="kido-landing--logo-title">Kido</div>
+  </div>
+
   <div class="kido-landing--cards">
     <kido-card>
       <kido-card-title class="kido-card--icon">
@@ -43,4 +48,8 @@
       Get Started!
     </button>
   </div>
+</div>
+
+<div class="kido-landing--bottom-right">
+  {{ (systemService.system$ | async).version }}
 </div>

@@ -7,6 +7,15 @@ function icon() {
   return process.platform === 'linux' ? 'png/512x512.png' : 'icns/512x512.icns';
 }
 
+function getSystem() {
+  return {
+    pid: process.pid,
+    platform: process.platform,
+    version: electron.app.getVersion(),
+    build: dev ? 'development' : 'production',
+  };
+}
+
 const DEFAULT_OPTIONS: electron.BrowserWindowConstructorOptions = {
   autoHideMenuBar: true,
   darkTheme: true,
@@ -44,13 +53,7 @@ export function window(
 
   win.webContents.on('dom-ready', () => {
     win.show();
-
-    win.webContents.send('system', {
-      pid: process.pid,
-      platform: process.platform,
-      version: electron.app.getVersion(),
-      build: dev ? 'development' : 'production',
-    });
+    win.webContents.send('system', getSystem());
 
     if (onReady) {
       onReady();

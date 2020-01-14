@@ -29,11 +29,11 @@ export class AppComponent implements OnInit {
     });
 
     window.addEventListener('online', () => {
-      this.systemService.setOnline(true);
+      this.systemService.setOnline(true, true);
     });
 
     window.addEventListener('offline', () => {
-      this.systemService.setOnline(false);
+      this.systemService.setOnline(false, true);
     });
 
     this.systemService.setOnline(navigator.onLine);

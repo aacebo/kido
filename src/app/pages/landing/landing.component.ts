@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/
 import { Router } from '@angular/router';
 
 import { StreamService, StreamType } from '../../resources/stream';
+import { SystemService } from '../../resources/system';
 
 @Component({
   selector: 'kido-landing',
@@ -13,6 +14,7 @@ import { StreamService, StreamType } from '../../resources/stream';
 })
 export class LandingComponent {
   constructor(
+    readonly systemService: SystemService,
     private readonly _router: Router,
     private readonly _streamService: StreamService,
   ) { }
