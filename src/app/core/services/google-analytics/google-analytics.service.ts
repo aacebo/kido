@@ -16,11 +16,11 @@ export class GoogleAnalyticsService {
     this._ua = this._electronService.getGlobal('ua')('UA-156265478-1');
   }
 
-  pageView(path: string) {
+  pageView(path: string | ua.PageviewParams) {
     this._ua.pageview(path, this._onComplete.bind(this));
   }
 
-  exception(ex: string) {
+  exception(ex: string | ua.ExceptionParams) {
     this._ua.exception(ex, this._onComplete.bind(this));
   }
 
