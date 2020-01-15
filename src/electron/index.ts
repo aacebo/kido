@@ -6,6 +6,7 @@ import * as dev from 'electron-is-dev';
 import { KidoUpdater } from './updater';
 import { window } from './window';
 import { KidoMenu } from './menu';
+import { KidoGoogleAnalytics } from './google-analytics';
 
 dotenv.config({
   debug: dev,
@@ -18,6 +19,7 @@ class App {
   private _updater: KidoUpdater;
   private _menu: KidoMenu;
   private _window: electron.BrowserWindow;
+  private _googleAnalytics: KidoGoogleAnalytics;
 
   constructor() {
     this._window = window({
@@ -29,9 +31,14 @@ class App {
     }, undefined, () => {
       this._menu = new KidoMenu(this._window);
       this._updater = new KidoUpdater(this._window);
+      this._googleAnalytics = new KidoGoogleAnalytics();
 
-      this._menu.checkForUpdate.subscribe(() => {
+      this._menu.checkForUpdate$.subscribe(() => {
         this._updater.check(true);
+      });
+
+      this._googleAnalytics.error$.subscribe(err => {
+        console.error(err);
       });
     });
 

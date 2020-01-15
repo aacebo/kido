@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { ElectronService } from './core/services';
 import { ISystem, SystemService } from './resources/system';
@@ -17,9 +18,16 @@ export class AppComponent implements OnInit {
     readonly routerService: RouterService,
     private readonly _electronService: ElectronService,
     private readonly _logService: LogService,
+    private readonly _router: Router,
   ) { }
 
   ngOnInit() {
+    this._router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        this._electronService.send('ga.pageview', e.urlAfterRedirects);
+      }
+    });
+
     this._electronService.on('log', (log) => {
       this._logService.add(log.message, 'Electron', log.type);
     });
