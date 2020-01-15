@@ -18,11 +18,15 @@ export class GoogleAnalyticsService {
   }
 
   pageView(path: string | ua.PageviewParams) {
-    this._ua.pageview(path, this._onComplete.bind(this));
+    if (navigator.onLine) {
+      this._ua.pageview(path, this._onComplete.bind(this));
+    }
   }
 
   exception(ex: string | ua.ExceptionParams) {
-    this._ua.exception(ex, this._onComplete.bind(this));
+    if (navigator.onLine) {
+      this._ua.exception(ex, this._onComplete.bind(this));
+    }
   }
 
   private _onComplete(err?: Error) {
