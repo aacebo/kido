@@ -1244,6 +1244,11 @@
   dependencies:
     "@types/estree" "*"
 
+"@types/universal-analytics@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@types/universal-analytics/-/universal-analytics-0.4.3.tgz#8cc5e9a69df0e3c9714bdcf101d8d93df2a6d247"
+  integrity sha512-CCM1yPGAAg/WRlBEUIzRAqEE0G84n1btOVRybHgQ+AdA6+LgM0DeDH8yBWtcpg3HcrLHA9JWiHwPpySlo5GtZA==
+
 "@types/uuid@^3.4.6":
   version "3.4.6"
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.6.tgz#d2c4c48eb85a757bf2927f75f939942d521e3016"

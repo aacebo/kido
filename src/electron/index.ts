@@ -2,11 +2,13 @@ import * as electron from 'electron';
 import * as devtools from 'electron-devtools-installer';
 import * as dotenv from 'dotenv';
 import * as dev from 'electron-is-dev';
+import * as ua from 'universal-analytics';
 
 import { KidoUpdater } from './updater';
 import { window } from './window';
 import { KidoMenu } from './menu';
 
+(global as any).ua = ua;
 dotenv.config({
   debug: dev,
   path: `${__dirname}/../.env`,
@@ -30,7 +32,7 @@ class App {
       this._menu = new KidoMenu(this._window);
       this._updater = new KidoUpdater(this._window);
 
-      this._menu.checkForUpdate.subscribe(() => {
+      this._menu.checkForUpdate$.subscribe(() => {
         this._updater.check(true);
       });
     });

@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { about } from './about';
 
 export class KidoMenu {
-  readonly checkForUpdate = new Subject<void>();
+  readonly checkForUpdate$ = new Subject<void>();
 
   constructor(private _window: BrowserWindow) {
     Menu.setApplicationMenu(Menu.buildFromTemplate([
@@ -14,7 +14,7 @@ export class KidoMenu {
           { label: 'About Kido', click: () => about(this._window) },
           {
             label: 'Check for Updates...',
-            click: () => this.checkForUpdate.next(),
+            click: () => this.checkForUpdate$.next(),
           },
           { type: 'separator' },
           { label: 'Exit', click: () => app.quit() },
