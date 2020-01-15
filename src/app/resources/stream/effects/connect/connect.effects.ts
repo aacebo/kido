@@ -5,16 +5,12 @@ import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs/operators';
 import * as util from 'util';
 
-import * as actions from '../../actions';
-
-import { MessageService, MessageType } from '../../../message';
-import { LogService, LogType } from '../../../log';
-
 import { isValidJSON } from '../../../../core/utils';
+import { MessageService, MessageType } from '../../../message';
+
+import * as actions from '../../actions';
 import { SocketService, StreamService } from '../../services';
 import { IStreamState } from '../../stream.state';
-
-const LOG_CONTEXT = '[STREAM] - ConnectEffect';
 
 @Injectable()
 export class ConnectEffects {
@@ -46,7 +42,6 @@ export class ConnectEffects {
     private readonly _socketService: SocketService,
     private readonly _streamService: StreamService,
     private readonly _messageService: MessageService,
-    private readonly _logService: LogService,
     private readonly _toastr: ToastrService,
   ) { }
 
@@ -60,7 +55,6 @@ export class ConnectEffects {
   }
 
   private _onError(error: Error, a: { streamId: string; }) {
-    this._logService.add(util.inspect(error), LOG_CONTEXT, LogType.Error);
     this._store$.dispatch(actions.connectFailed({ error, streamId: a.streamId }));
     this._streamService.disconnect(a.streamId);
 
