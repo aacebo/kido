@@ -64,4 +64,8 @@ export class ElectronService {
   removeAllListeners(channel: string) {
     this._renderer.removeAllListeners(channel);
   }
+
+  getGlobal<T = any>(prop: string) {
+    return this._remote.getGlobal(prop) as T;
+  }
 }
