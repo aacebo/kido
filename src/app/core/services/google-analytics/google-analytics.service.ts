@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import ua from 'universal-analytics';
 
+import { environment } from '../../../../environments/environment';
 import { ElectronService } from '../electron';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class GoogleAnalyticsService {
   private readonly _ua: ua.Visitor;
 
   constructor(private readonly _electronService: ElectronService) {
-    this._ua = this._electronService.getGlobal('ua')('UA-156265478-1');
+    this._ua = this._electronService.getGlobal('ua')(environment.googleAnalyticsTrackingId);
   }
 
   pageView(path: string | ua.PageviewParams) {
