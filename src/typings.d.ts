@@ -1,6 +1,6 @@
 // tslint:disable-next-line
 interface Window {
-  require: NodeRequire;
+  readonly require: NodeRequire;
 }
 
 // tslint:disable-next-line
