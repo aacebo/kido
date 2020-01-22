@@ -17,7 +17,10 @@ import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 import { IMessage } from '../../../../resources/message';
 import { IStream, IStreamListener } from '../../../../resources/stream';
+
 import { MessageAction } from '../../../../lib/messenger';
+import { Hotkeys } from '../../../../lib/hotkeys';
+
 import { arrayToMap } from '../../../../core/utils';
 
 @Component({
@@ -125,6 +128,7 @@ export class StreamDetailComponent implements OnInit {
     this.selectMessage.emit();
   }
 
+  @Hotkeys('mod+enter', 'Send Message')
   onSend() {
     if (!this.notSendable) {
       this.send.emit({

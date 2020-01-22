@@ -2,6 +2,8 @@ import { Component, ChangeDetectionStrategy, Input, OnInit, Output, EventEmitter
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 import { StreamType, IStream } from '../../../../resources/stream';
+import { Hotkeys } from '../../../../lib/hotkeys';
+
 import { STREAM_TYPE_LABELS } from '../../constants';
 
 @Component({
@@ -59,6 +61,12 @@ export class StreamDetailHeaderComponent implements OnInit {
     this.form.valueChanges.subscribe(() => this._cdr.markForCheck());
   }
 
+  @Hotkeys('mod+s', 'Save')
+  onSave() {
+    this.save.emit();
+  }
+
+  @Hotkeys('mod+r', 'Revert')
   onReset() {
     this.form.reset(this._formStream);
 
@@ -70,6 +78,7 @@ export class StreamDetailHeaderComponent implements OnInit {
     this.form.markAsPristine();
   }
 
+  @Hotkeys('mod+c', 'Connect')
   onConnect() {
     const connected = !!this.connected[this.stream._id];
 
