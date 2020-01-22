@@ -1,0 +1,24 @@
+<div
+  class="kido-hotkey"
+  *ngFor="let hotkey of hotkeys"
+>
+  <div class="kido-hotkey--keys">
+    <div
+      class="kido-hotkey--key"
+      *ngFor="let key of hotkey.keys; let i = index"
+    >
+      <div class="kido-hotkey--key-value">
+        {{ key }}
+      </div>
+
+      <div
+        class="kido-hotkey--key-plus"
+        *ngIf="i < hotkey.keys.length - 1"
+      >+</div>
+    </div>
+  </div>
+
+  <div class="kido-hotkey--description">
+    {{ hotkey.description }}
+  </div>
+</div>

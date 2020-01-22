@@ -35,6 +35,7 @@ export class KidoMenu {
       {
         label: 'View',
         submenu: [
+          { label: 'Hotkeys', click: () => this._window.webContents.send('hotkeys') },
           { label: 'Toggle Developer Tools', click: () => this._window.webContents.openDevTools() },
         ],
       },

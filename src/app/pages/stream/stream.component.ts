@@ -8,6 +8,7 @@ import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { IMessage, MessageService, MessageType } from '../../resources/message';
 import { IStream, StreamService, StreamType } from '../../resources/stream';
 import { SystemService } from '../../resources/system';
+import { Hotkeys, HotkeyBase } from '../../lib/hotkeys';
 
 @Component({
   selector: 'kido-stream',
@@ -17,7 +18,7 @@ import { SystemService } from '../../resources/system';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StreamComponent implements OnInit, AfterViewInit {
+export class StreamComponent extends HotkeyBase implements OnInit, AfterViewInit {
   readonly menu$ = new BehaviorSubject(true);
   form: FormGroup;
 
@@ -35,7 +36,7 @@ export class StreamComponent implements OnInit, AfterViewInit {
     private readonly _router: Router,
     private readonly _route: ActivatedRoute,
     private readonly _fb: FormBuilder,
-  ) { }
+  ) { super(); }
 
   ngOnInit() {
     this.form = this._fb.group({
@@ -89,6 +90,7 @@ export class StreamComponent implements OnInit, AfterViewInit {
     });
   }
 
+  @Hotkeys('mod+n', 'New')
   onAdd() {
     this.streamService.add(StreamType.WebSocket, 'New Stream');
   }

@@ -1,9 +1,10 @@
 import { NgZone } from '@angular/core';
 
 import { HotkeysService } from './hotkeys.service';
+import { HotkeyBase } from './hotkey.base';
 
-export function Hotkeys(keys: string, description: string) {
-  return (target: any, name: string) => {
+export function Hotkeys(comb: string, description: string) {
+  return (target: Partial<HotkeyBase>, name: string) => {
     const ngOnInit = target.ngOnInit;
     const ngOnDestroy = target.ngOnDestroy;
 
@@ -13,10 +14,11 @@ export function Hotkeys(keys: string, description: string) {
       }
 
       HotkeysService.instance.register(
-        keys,
+        comb,
         description,
         target[name].bind(this),
         new NgZone({ enableLongStackTrace: false }),
+        target.constructor.name,
       );
     };
 
@@ -25,7 +27,7 @@ export function Hotkeys(keys: string, description: string) {
         ngOnDestroy.bind(this)();
       }
 
-      HotkeysService.instance.deregister(keys);
+      HotkeysService.instance.deregister(comb);
     };
   };
 }

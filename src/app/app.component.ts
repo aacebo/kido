@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ElectronService } from './core/services';
 import { ISystem, SystemService } from './resources/system';
 import { RouterService } from './resources/router';
+import { HotkeysService } from './features/hotkeys';
 
 @Component({
   selector: 'kido-root',
@@ -15,11 +16,16 @@ export class AppComponent implements OnInit {
     readonly systemService: SystemService,
     readonly routerService: RouterService,
     private readonly _electronService: ElectronService,
+    private readonly _hotkeysService: HotkeysService,
   ) { }
 
   ngOnInit() {
     this._electronService.on('system', (system: ISystem) => {
       this.systemService.setSystem(system);
+    });
+
+    this._electronService.on('hotkeys', () => {
+      this._hotkeysService.open();
     });
 
     window.addEventListener('online', () => {

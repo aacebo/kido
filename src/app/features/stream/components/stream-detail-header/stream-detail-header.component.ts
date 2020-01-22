@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, Input, OnInit, Output, EventEmitter
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 import { StreamType, IStream } from '../../../../resources/stream';
-import { Hotkeys } from '../../../../lib/hotkeys';
+import { Hotkeys, HotkeyBase } from '../../../../lib/hotkeys';
 
 import { STREAM_TYPE_LABELS } from '../../constants';
 
@@ -12,7 +12,7 @@ import { STREAM_TYPE_LABELS } from '../../constants';
   styleUrls: ['./stream-detail-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StreamDetailHeaderComponent implements OnInit {
+export class StreamDetailHeaderComponent extends HotkeyBase implements OnInit {
   @Input() form: FormGroup;
   @Input() connected: { [streamId: string]: Date } = { };
   @Input() connecting: { [streamId: string]: boolean } = { };
@@ -53,7 +53,7 @@ export class StreamDetailHeaderComponent implements OnInit {
   constructor(
     private readonly _cdr: ChangeDetectorRef,
     private readonly _fb: FormBuilder,
-  ) { }
+  ) { super(); }
 
   ngOnInit() {
     this.form.get('type').setValue(this.stream.type);

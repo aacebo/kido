@@ -17,6 +17,7 @@ import { CoreModule } from './core';
 
 import { StreamModule } from './features/stream';
 import { TitlebarModule } from './features/titlebar';
+import { HotkeysModule } from './features/hotkeys';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,6 +58,7 @@ PouchDB.plugin(PouchDBFind);
 
     TitlebarModule,
     StreamModule,
+    HotkeysModule,
   ],
 })
 export class AppModule { }

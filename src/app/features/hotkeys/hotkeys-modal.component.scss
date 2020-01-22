@@ -1,0 +1,42 @@
+@import '../../../styles/variables';
+
+:host {
+  display: flex;
+  flex-wrap: wrap;
+
+  .kido-hotkey {
+    display: flex;
+    flex: 1 1 25%;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    background-color: var(--bg-obsidian);
+    border-radius: $border-radius-md;
+
+    .kido-hotkey--keys {
+      display: flex;
+
+      * {
+        &:not(:last-child) {
+          margin-right: 5px;
+        }
+      }
+
+      .kido-hotkey--key {
+        display: flex;
+
+        .kido-hotkey--key-value {
+          color: var(--blood-orange);
+        }
+
+        .kido-hotkey--key-plus {
+          color: var(--text-muted);
+        }
+      }
+    }
+
+    .kido-hotkey--description {
+      font-size: 10pt;
+    }
+  }
+}

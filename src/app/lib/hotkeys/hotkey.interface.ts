@@ -1,5 +1,8 @@
 export interface IHotkey {
-  readonly keys: string;
+  readonly comb: string;
+  readonly keys: string[];
   readonly description: string;
+  readonly ctx: string;
   readonly cb: () => void;
+  disabled?: boolean;
 }
