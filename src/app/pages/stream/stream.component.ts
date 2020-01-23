@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation, AfterViewInit, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, AfterViewInit, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
-import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabset, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { IMessage, MessageService, MessageType } from '../../resources/message';
 import { IStream, StreamService, StreamType } from '../../resources/stream';
@@ -19,6 +19,9 @@ import { Hotkeys, HotkeyBase } from '../../lib/hotkeys';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StreamComponent extends HotkeyBase implements OnInit, AfterViewInit {
+  @ViewChild(NgbTabset, { static: false })
+  readonly tabset: NgbTabset;
+
   readonly menu$ = new BehaviorSubject(true);
   form: FormGroup;
 
@@ -93,6 +96,10 @@ export class StreamComponent extends HotkeyBase implements OnInit, AfterViewInit
   @Hotkeys('mod+n', 'New')
   onAdd() {
     this.streamService.add(StreamType.WebSocket, 'New Stream');
+
+    this.tabset.tabs.changes.pipe(take(1)).subscribe(() => {
+      this.tabset.select(this.tabset.tabs.last.id);
+    });
   }
 
   onRemove(e: Event, stream: IStream) {
