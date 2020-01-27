@@ -3,7 +3,7 @@
     <div
       class="kido-stream-detail-header--name"
       [class.kido-stream-detail-header--name-expanded]="nameExpanded$ | async"
-      [class.kido-stream-detail-header--name-editing]="editName$ | async"
+      [class.editing]="editName$ | async"
     >
       <div
         *ngIf="!(editName$ | async)"
@@ -30,10 +30,12 @@
     <div
       *ngIf="nameExpanded$ | async"
       class="kido-stream-detail-header--description"
+      [class.editing]="editDescription$ | async"
     >
       <div
         *ngIf="!(editDescription$ | async)"
         class="kido-stream-detail-header--description-text hover-edit"
+        [class.placeholder]="!form.value.description"
       >
         {{ form.value.description || 'Description...' }}
         <span

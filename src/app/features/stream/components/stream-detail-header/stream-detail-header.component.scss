@@ -51,7 +51,7 @@
       .kido-stream-detail-header--name {
         padding-left: 15px;
 
-        &.kido-stream-detail-header--name-editing {
+        &.editing {
           padding-left: 0;
         }
 
@@ -70,12 +70,22 @@
       }
 
       .kido-stream-detail-header--description {
+        padding-left: 15px;
+
+        &.editing {
+          padding-left: 0;
+        }
+
         .kido-stream-detail-header--description-text {
           margin: 5px;
           color: var(--text-muted);
           font-size: 10pt;
           cursor: default;
           user-select: none;
+
+          &.placeholder {
+            opacity: 0.6;
+          }
         }
       }
     }
