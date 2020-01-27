@@ -43,6 +43,8 @@ export class StreamComponent extends HotkeyBase implements OnInit, AfterViewInit
 
   ngOnInit() {
     this.form = this._fb.group({
+      name: this._fb.control(null),
+      description: this._fb.control(null),
       type: this._fb.control(null),
       url: this._fb.control(null),
       event: this._fb.control(null),

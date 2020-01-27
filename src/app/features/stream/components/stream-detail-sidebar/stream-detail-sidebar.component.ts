@@ -1,5 +1,5 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ChangeDetectionStrategy, Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { FormGroup } from '@angular/forms';
 
 import { IStream } from '../../../../resources/stream';

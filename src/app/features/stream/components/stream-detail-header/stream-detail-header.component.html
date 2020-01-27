@@ -1,13 +1,68 @@
-<div [formGroup]="form">
+<div class="kido-stream-detail-header--form" [formGroup]="form">
+  <div class="kido-stream-detail-header--identity">
+    <div
+      class="kido-stream-detail-header--name"
+      [class.kido-stream-detail-header--name-expanded]="nameExpanded$ | async"
+      [class.kido-stream-detail-header--name-editing]="editName$ | async"
+    >
+      <div
+        *ngIf="!(editName$ | async)"
+        class="kido-stream-detail-header--name-text hover-edit"
+        (click)="toggleName()"
+      >
+        <div class="kido-stream-detail-header--toggler"></div>
+        {{ form.value.name || 'Name...' }}
+        <span
+          class="fas fa-pencil-alt"
+          (click)="editName($event)"
+        ></span>
+      </div>
+
+      <kido-input
+        *ngIf="editName$ | async"
+        formControlName="name"
+        placeholder="Name..."
+        size="sm"
+        required
+      ></kido-input>
+    </div>
+
+    <div
+      *ngIf="nameExpanded$ | async"
+      class="kido-stream-detail-header--description"
+    >
+      <div
+        *ngIf="!(editDescription$ | async)"
+        class="kido-stream-detail-header--description-text hover-edit"
+      >
+        {{ form.value.description || 'Description...' }}
+        <span
+          class="fas fa-pencil-alt"
+          (click)="editDescription()"
+        ></span>
+      </div>
+
+      <kido-input
+        *ngIf="editDescription$ | async"
+        formControlName="description"
+        placeholder="Description..."
+        size="sm"
+        type="textarea"
+      ></kido-input>
+    </div>
+  </div>
+
   <kido-input
     formControlName="url"
     placeholder="Url..."
+    size="sm"
     required
   >
     <div kidoInputPrepend>
       <kido-select
         placeholder="Type..."
         formControlName="type"
+        size="sm"
       >
         <kido-option [value]="StreamType.WebSocket">
           <kido-socket-icon [type]="StreamType.WebSocket"></kido-socket-icon>
@@ -36,6 +91,7 @@
         kido-button
         color="danger"
         theme="outline"
+        size="sm"
         ngbTooltip="Revert"
         container="body"
         [disabled]="form.pristine"
@@ -50,6 +106,7 @@
         kido-button
         color="success"
         theme="outline"
+        size="sm"
         ngbTooltip="Save"
         container="body"
         [disabled]="form.pristine"
@@ -63,6 +120,7 @@
       <button
         kido-button
         container="body"
+        size="sm"
         [theme]="connected[stream._id] ? '' : 'outline'"
         [color]="connected[stream._id] ? 'danger' : 'info'"
         [ngbTooltip]="connected[stream._id] ? 'Disconnect' : 'Connect'"

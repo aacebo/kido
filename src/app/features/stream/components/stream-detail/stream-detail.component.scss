@@ -28,7 +28,7 @@
 
         .nav-tabs {
           background-color: #282a36;
-          margin: 0 5px;
+          margin: 0 8px;
           border: 1px solid var(--hairline-soft);
           border-top: none;
           padding-left: 25px;
@@ -41,6 +41,7 @@
 
       .tab--add-btn {
         top: 7px !important;
+        left: 13px !important;
 
         &.editable {
           top: 28px !important;
@@ -57,7 +58,7 @@
       }
 
       kido-input {
-        margin: 0 5px;
+        margin: 0 8px;
 
         input {
           border-bottom-left-radius: 0px;

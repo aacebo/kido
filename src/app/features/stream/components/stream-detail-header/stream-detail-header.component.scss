@@ -3,4 +3,81 @@
   padding: 8px;
   background-color: var(--bg-obsidian);
   border-bottom: 1px solid var(--hairline-soft);
+
+  .kido-stream-detail-header--form {
+    display: flex;
+    flex-direction: column;
+
+    .kido-stream-detail-header--identity {
+      display: flex;
+      flex-direction: column;
+
+      .hover-edit {
+        &:hover {
+          span {
+            display: initial;
+          }
+        }
+
+        span {
+          display: none;
+          position: absolute;
+          font-size: 9pt;
+          margin-left: 5px;
+          cursor: pointer;
+        }
+      }
+
+      .kido-stream-detail-header--toggler {
+        position: absolute;
+        margin-left: -14px;
+        margin-top: 5px;
+        font-size: 0.6em;
+        vertical-align: middle;
+        color: #787878;
+        user-select: none;
+
+        &:after {
+          display: inline-block;
+          content: "►";
+          transition: transform 0.1s ease-in;
+        }
+      }
+
+      kido-input {
+        margin: 5px;
+      }
+
+      .kido-stream-detail-header--name {
+        padding-left: 15px;
+
+        &.kido-stream-detail-header--name-editing {
+          padding-left: 0;
+        }
+
+        &.kido-stream-detail-header--name-expanded {
+          .kido-stream-detail-header--toggler {
+            transform: rotate(90deg);
+          }
+        }
+
+        .kido-stream-detail-header--name-text {
+          margin: 5px;
+          color: var(--text-muted);
+          cursor: pointer;
+          user-select: none;
+        }
+      }
+
+      .kido-stream-detail-header--description {
+        .kido-stream-detail-header--description-text {
+          margin: 5px;
+          color: var(--text-muted);
+          font-size: 10pt;
+          cursor: default;
+          user-select: none;
+        }
+      }
+    }
+  }
 }

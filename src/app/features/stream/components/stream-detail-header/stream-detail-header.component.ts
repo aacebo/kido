@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 import { StreamType, IStream } from '../../../../resources/stream';
 import { Hotkeys, HotkeyBase } from '../../../../lib/hotkeys';
@@ -36,8 +37,14 @@ export class StreamDetailHeaderComponent extends HotkeyBase implements OnInit {
   readonly STREAM_TYPE_LABELS = STREAM_TYPE_LABELS;
   readonly StreamType = StreamType;
 
+  readonly nameExpanded$ = new BehaviorSubject(false);
+  readonly editName$ = new BehaviorSubject(false);
+  readonly editDescription$ = new BehaviorSubject(false);
+
   private get _formStream() {
     return {
+      name: this.stream.name,
+      description: this.stream.description,
       type: this.stream.type,
       url: this.stream.url,
       event: this.stream.event,
@@ -64,6 +71,8 @@ export class StreamDetailHeaderComponent extends HotkeyBase implements OnInit {
   @Hotkeys('mod+s', 'Save')
   onSave() {
     this.save.emit();
+    this.editName$.next(false);
+    this.editDescription$.next(false);
   }
 
   @Hotkeys('mod+r', 'Revert')
@@ -76,6 +85,8 @@ export class StreamDetailHeaderComponent extends HotkeyBase implements OnInit {
     }
 
     this.form.markAsPristine();
+    this.editName$.next(false);
+    this.editDescription$.next(false);
   }
 
   @Hotkeys('mod+c', 'Connect')
@@ -87,5 +98,22 @@ export class StreamDetailHeaderComponent extends HotkeyBase implements OnInit {
     } else {
       this.connect.emit();
     }
+  }
+
+  toggleName() {
+    this.nameExpanded$.next(!this.nameExpanded$.value);
+  }
+
+  editName(e: Event) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    this.editName$.next(true);
+    this.editDescription$.next(false);
+  }
+
+  editDescription() {
+    this.editName$.next(false);
+    this.editDescription$.next(true);
   }
 }

@@ -21,7 +21,7 @@ $type-colors: (
   &.kido-json-viewer--root-node {
     border: 1px solid var(--hairline-soft);
 
-    .kido-json-viewer--content {
+    > .kido-json-viewer--content {
       overflow: auto;
       padding: 0px 0 0px 20px;
     }
