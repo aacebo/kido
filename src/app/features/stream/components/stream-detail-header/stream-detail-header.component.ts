@@ -92,12 +92,14 @@ export class StreamDetailHeaderComponent extends HotkeyBase implements OnInit {
 
   @Hotkeys('mod+c', 'Connect')
   onConnect() {
-    const connected = !!this.connected[this.stream._id];
+    if (this.form.value.url && this.connected) {
+      const connected = !!this.connected[this.stream._id];
 
-    if (connected) {
-      this.disconnect.emit();
-    } else {
-      this.connect.emit();
+      if (connected) {
+        this.disconnect.emit();
+      } else {
+        this.connect.emit();
+      }
     }
   }
 
