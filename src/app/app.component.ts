@@ -28,6 +28,10 @@ export class AppComponent implements OnInit {
       this._hotkeysService.open();
     });
 
+    this._electronService.on('fullscreen', (fullscreen: boolean) => {
+      this.systemService.setFullscreen(fullscreen);
+    });
+
     window.addEventListener('online', () => {
       this.systemService.setOnline(true, true);
     });

@@ -54,10 +54,19 @@ export function window(
   win.webContents.on('dom-ready', () => {
     win.show();
     win.webContents.send('system', getSystem());
+    win.webContents.send('fullscreen', win.isFullScreen());
 
     if (onReady) {
       onReady();
     }
+  });
+
+  win.on('enter-full-screen', () => {
+    win.webContents.send('fullscreen', true);
+  });
+
+  win.on('leave-full-screen', () => {
+    win.webContents.send('fullscreen', false);
   });
 
   return win;

@@ -1,4 +1,4 @@
 <kido-titlebar
-  *ngIf="systemService.isMac$ | async"
+  *ngIf="(systemService.isMac$ | async) && !(systemService.fullscreen$ | async)"
 ></kido-titlebar>
 <router-outlet></router-outlet>

@@ -12,6 +12,10 @@
 
     &.mac {
       padding-top: $titlebar-height;
+
+      &.fullscreen {
+        padding-top: 0;
+      }
     }
 
     .nav-tabs {
@@ -54,6 +58,10 @@
 
     &.mac {
       top: 10px + $titlebar-height;
+
+      &.fullscreen {
+        top: 10px;
+      }
     }
   }
 }

@@ -15,12 +15,14 @@ export class SystemService {
   readonly system$: Observable<ISystem | undefined>;
   readonly isMac$: Observable<boolean>;
   readonly online$: Observable<boolean | undefined>;
+  readonly fullscreen$: Observable<boolean | undefined>;
 
   constructor(private readonly _store$: Store<ISystemState>) {
     this.state$ = this._store$.pipe(select(selectors.selectState));
     this.system$ = this._store$.pipe(select(selectors.selectSystem));
     this.isMac$ = this._store$.pipe(select(selectors.selectIsMac));
     this.online$ = this._store$.pipe(select(selectors.selectOnline));
+    this.fullscreen$ = this._store$.pipe(select(selectors.selectFullscreen));
   }
 
   setSystem(system: ISystem) {
@@ -29,5 +31,9 @@ export class SystemService {
 
   setOnline(online: boolean, notify?: boolean) {
     this._store$.dispatch(actions.setOnline({ online, notify }));
+  }
+
+  setFullscreen(fullscreen: boolean) {
+    this._store$.dispatch(actions.setFullscreen({ fullscreen }));
   }
 }

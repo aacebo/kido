@@ -1,6 +1,7 @@
 <ngb-tabset
   #tabset="ngbTabset"
   [class.mac]="systemService.isMac$ | async"
+  [class.fullscreen]="systemService.fullscreen$ | async"
   (tabChange)="onStreamTabChange($event)"
 >
   <ngb-tab
@@ -56,5 +57,6 @@
 <div
   class="tab--add-btn fas fa-plus-square"
   [class.mac]="systemService.isMac$ | async"
+  [class.fullscreen]="systemService.fullscreen$ | async"
   (click)="onAdd()"
 ></div>
