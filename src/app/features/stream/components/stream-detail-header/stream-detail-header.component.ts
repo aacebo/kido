@@ -17,6 +17,7 @@ export class StreamDetailHeaderComponent extends HotkeyBase implements OnInit {
   @Input() form: FormGroup;
   @Input() connected: { [streamId: string]: Date } = { };
   @Input() connecting: { [streamId: string]: boolean } = { };
+  @Input() online?: boolean;
 
   @Input()
   get stream() { return this._stream; }

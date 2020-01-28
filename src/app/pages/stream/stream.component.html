@@ -23,6 +23,7 @@
         [stream]="stream"
         [connected]="streamService.connected$ | async"
         [connecting]="streamService.connecting$ | async"
+        [online]="systemService.online$ | async"
         (save)="onSave(stream)"
         (connect)="onConnect(stream)"
         (disconnect)="onDisconnect(stream)"

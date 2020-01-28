@@ -126,7 +126,7 @@
         [theme]="connected[stream._id] ? '' : 'outline'"
         [color]="connected[stream._id] ? 'danger' : 'info'"
         [ngbTooltip]="connected[stream._id] ? 'Disconnect' : 'Connect'"
-        [disabled]="!form.value.url"
+        [disabled]="!form.value.url || !online"
         (click)="onConnect()"
       >
         <span *ngIf="!connecting[stream._id]" class="fas fa-plug"></span>
