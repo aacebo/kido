@@ -34,7 +34,8 @@ import { OptionComponent } from './option.component';
 export class SelectComponent extends FormControlBase<string | number> implements AfterContentInit {
   @Input() size = Size.Medium;
 
-  @ContentChildren(OptionComponent) options: QueryList<OptionComponent>;
+  @ContentChildren(OptionComponent)
+  readonly options: QueryList<OptionComponent>;
 
   get selected() {
     const option = this.options.find(o => o.value === this.value);
