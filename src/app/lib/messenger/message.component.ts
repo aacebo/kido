@@ -47,6 +47,10 @@ export class MessageComponent {
       return this.eventColors[this.message.event].color;
     }
 
+    if (this.message.event === 'Error') {
+      return 'var(--danger)';
+    }
+
     return this.type === MessageType.Received ? 'var(--info)' : 'var(--success)';
   }
 
