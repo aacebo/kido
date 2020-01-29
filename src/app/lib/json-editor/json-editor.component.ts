@@ -79,7 +79,7 @@ export class JsonEditorComponent extends FormControlBase<IJsonEditorValue> imple
 
   get value() { return this._value; }
   set value(v: IJsonEditorValue) {
-    this.invalid = v.json && !isValidJSON(v.value);
+    this.invalid = v && v.json && !isValidJSON(v.value);
     this._value = v;
 
     if (this.editor && v && v.value !== this.editor.getValue()) {
@@ -90,7 +90,7 @@ export class JsonEditorComponent extends FormControlBase<IJsonEditorValue> imple
       this.editor.setOption('mode', this._mode);
     }
 
-    if (!this.invalid) {
+    if (v && !this.invalid) {
       this.pretty = this.getPretty(v.value) === v.value;
     }
 
