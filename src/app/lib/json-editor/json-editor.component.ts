@@ -90,7 +90,7 @@ export class JsonEditorComponent extends FormControlBase<IJsonEditorValue> imple
       this.editor.setOption('mode', this._mode);
     }
 
-    if (v && !this.invalid) {
+    if (v && v.json && !this.invalid) {
       this.pretty = this.getPretty(v.value) === v.value;
     }
 
