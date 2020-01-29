@@ -10,10 +10,12 @@
   ></span>
 
   <span
-    class="fas fa-align-left"
-    ngbTooltip="Beautify"
+    class="fas"
     container="body"
+    [ngbTooltip]="pretty ? 'Uglify' : 'Beautify'"
     [class.disabled]="!value?.json"
+    [class.fa-align-left]="!pretty"
+    [class.fa-align-justify]="pretty"
     [disableTooltip]="!value?.json"
     (click)="onBeautify()"
   ></span>

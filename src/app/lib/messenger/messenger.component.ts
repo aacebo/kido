@@ -36,6 +36,11 @@ export class MessengerComponent implements AfterViewInit {
   get messages() { return this._messages; }
   set messages(v: IMessage[]) {
     this._messages = v || [];
+
+    if (v && v.length) {
+      this.first = v[0]._id;
+      this.last = v[v.length - 1]._id;
+    }
   }
   private _messages: IMessage[] = [];
 
@@ -53,6 +58,9 @@ export class MessengerComponent implements AfterViewInit {
 
   @ViewChild(CdkVirtualForOf, { static: false })
   readonly virtualForOf: CdkVirtualForOf<IMessage>;
+
+  first?: string;
+  last?: string;
 
   private _resizeTimer: NodeJS.Timer;
 

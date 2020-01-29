@@ -37,7 +37,7 @@ import { IJsonEditorValue } from './json-editor-value.interface';
   host: {
     tabindex: '-1',
     class: 'kido-json-editor',
-    '[class.kido-json-editor--invalid]': 'invalid && value.json',
+    '[class.kido-json-editor--invalid]': 'invalid',
     '(focus)': 'onFocus()',
     '(blur)': 'onBlur()',
   },
@@ -79,6 +79,7 @@ export class JsonEditorComponent extends FormControlBase<IJsonEditorValue> imple
 
   get value() { return this._value; }
   set value(v: IJsonEditorValue) {
+    this.invalid = v.json && !isValidJSON(v.value);
     this._value = v;
 
     if (this.editor && v && v.value !== this.editor.getValue()) {
@@ -87,6 +88,10 @@ export class JsonEditorComponent extends FormControlBase<IJsonEditorValue> imple
 
     if (this.editor) {
       this.editor.setOption('mode', this._mode);
+    }
+
+    if (!this.invalid) {
+      this.pretty = this.getPretty(v.value) === v.value;
     }
 
     this.cdr.markForCheck();
@@ -102,6 +107,7 @@ export class JsonEditorComponent extends FormControlBase<IJsonEditorValue> imple
 
   editor: CodeMirror.EditorFromTextArea;
   invalid = false;
+  pretty = false;
 
   private get _mode() {
     return this.value && this.value.json ? 'application/json' : 'text/plain';
@@ -151,12 +157,11 @@ export class JsonEditorComponent extends FormControlBase<IJsonEditorValue> imple
   }
 
   onBeautify() {
-    if (this.value.json) {
-      const v = this.editor.getValue();
-      this.invalid = !isValidJSON(v);
-
-      if (!this.invalid) {
-        this.editor.setValue(JSON.stringify(JSON.parse(v), undefined, 2));
+    if (this.value.json && !this.invalid) {
+      if (this.pretty) {
+        this.editor.setValue(this.getPretty(this.value.value, null));
+      } else {
+        this.editor.setValue(this.getPretty(this.value.value));
       }
     }
   }
@@ -184,7 +189,6 @@ export class JsonEditorComponent extends FormControlBase<IJsonEditorValue> imple
 
   private onEditorChange(editor: CodeMirror.EditorFromTextArea) {
     const v = editor.getValue();
-    this.invalid = !isValidJSON(v);
 
     if (v !== this.value.value) {
       this.value = {
@@ -192,5 +196,9 @@ export class JsonEditorComponent extends FormControlBase<IJsonEditorValue> imple
         value: v,
       };
     }
+  }
+
+  private getPretty(v: string, indent = 2) {
+    return JSON.stringify(JSON.parse(v), undefined, indent);
   }
 }
