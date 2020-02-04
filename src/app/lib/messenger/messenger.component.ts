@@ -4,7 +4,6 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  HostListener,
   Input,
   Output,
   ViewChild,
@@ -36,11 +35,6 @@ export class MessengerComponent implements AfterViewInit {
   get messages() { return this._messages; }
   set messages(v: IMessage[]) {
     this._messages = v || [];
-
-    if (v && v.length) {
-      this.first = v[0]._id;
-      this.last = v[v.length - 1]._id;
-    }
   }
   private _messages: IMessage[] = [];
 
@@ -59,11 +53,6 @@ export class MessengerComponent implements AfterViewInit {
   @ViewChild(CdkVirtualForOf, { static: false })
   readonly virtualForOf: CdkVirtualForOf<IMessage>;
 
-  first?: string;
-  last?: string;
-
-  private _resizeTimer: NodeJS.Timer;
-
   constructor(private readonly _cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
@@ -72,16 +61,9 @@ export class MessengerComponent implements AfterViewInit {
     });
   }
 
-  @HostListener('window:resize')
   onResize() {
-    if (this._resizeTimer) {
-      clearTimeout(this._resizeTimer);
-    }
-
-    this._resizeTimer = setTimeout(() => {
-      this.virtualScrollViewport.checkViewportSize();
-      this._scrollToBottom();
-    }, 100);
+    this.virtualScrollViewport.checkViewportSize();
+    this._scrollToBottom();
   }
 
   onAction(e: MessageAction, message: IMessage) {

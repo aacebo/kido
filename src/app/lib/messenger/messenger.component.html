@@ -1,11 +1,10 @@
 <cdk-virtual-scroll-viewport
   [itemSize]="itemSize"
+  (kidoResizeObserver)="onResize()"
 >
   <kido-message
     *cdkVirtualFor="let message of messages"
     [style.height.px]="itemSize"
-    [class.first]="first === message._id"
-    [class.last]="last === message._id"
     [active]="active"
     [message]="message"
     [type]="message.type"

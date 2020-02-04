@@ -31,6 +31,7 @@
           margin: 0 8px;
           border: 1px solid var(--hairline-soft);
           border-top: none;
+          border-bottom: none;
           padding-left: 25px;
 
           .nav-link {
@@ -76,7 +77,6 @@
         height: 100px;
 
         &.eventable {
-          border-top: none;
           border-top-left-radius: 0px;
           border-top-right-radius: 0px;
 

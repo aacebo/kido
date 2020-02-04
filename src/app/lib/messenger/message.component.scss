@@ -9,14 +9,6 @@ $inner-arrow-size: 7px;
   position: relative;
   padding-bottom: 5px;
 
-  &.last {
-    margin-bottom: 10px;
-  }
-
-  &.first {
-    margin-top: 10px;
-  }
-
   &.kido-message--active {
     &.kido-message--received {
       .kido-message--bubble {

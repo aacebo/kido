@@ -6,6 +6,7 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonModule } from '../button';
 import { BytesToStringModule } from '../bytes-to-string';
 import { ElapseTimeModule } from '../elapse-time';
+import { ResizeObserverModule } from '../resize-observer';
 
 import { MessageComponent } from './message.component';
 import { MessengerComponent } from './messenger.component';
@@ -26,6 +27,7 @@ const declarations = [
     ButtonModule,
     ElapseTimeModule,
     BytesToStringModule,
+    ResizeObserverModule,
   ],
 })
 export class MessengerModule { }

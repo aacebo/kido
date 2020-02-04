@@ -9,6 +9,7 @@
     background-color: var(--bg-darkest);
     box-shadow: $box-shadow-lg;
     border-radius: $border-radius-lg;
+    border-color: var(--hairline-strong);
 
     .modal-header {
       border-bottom: none;
