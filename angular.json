@@ -153,6 +153,50 @@
           }
         }
       }
+    },
+    "uniform": {
+      "projectType": "library",
+      "root": "projects/uniform",
+      "sourceRoot": "projects/uniform/src",
+      "prefix": "uni",
+      "schematics": {
+        "@schematics/angular:component": {
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "None",
+          "style": "scss",
+          "export": true,
+          "flat": true
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/uniform/tsconfig.lib.json",
+            "project": "projects/uniform/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/uniform/src/test.ts",
+            "tsConfig": "projects/uniform/tsconfig.spec.json",
+            "karmaConfig": "projects/uniform/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/uniform/tsconfig.lib.json",
+              "projects/uniform/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "kido"
 }
