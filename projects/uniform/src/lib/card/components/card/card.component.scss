@@ -1,0 +1,23 @@
+@import '../../../core/styles/colors';
+@import '../../../core/styles/box-shadow';
+@import '../../../core/styles/border-radius';
+@import '../../../core/styles/animations';
+
+:host {
+  display: block;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  background-color: #fff;
+  border-radius: $uni-border-radius-lg;
+  box-shadow: $uni-shadow-2dp;
+  transition-duration: $uni-animation-duration;
+  transition-timing-function: $uni-animation-timing-function;
+
+  @include uni-colors();
+
+  &.uni-card-hover {
+    &:hover {
+      box-shadow: $uni-shadow-8dp;
+    }
+  }
+}

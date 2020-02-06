@@ -1,0 +1,79 @@
+@import '../core/styles/border-radius';
+@import './toast';
+
+:host {
+  visibility: hidden;
+  font-size: 12pt;
+  color: var(--white);
+  border-radius: $uni-border-radius-sm;
+  min-width: 200px;
+  animation: 0.5s uniFadeIn;
+  animation-fill-mode: both;
+
+  .uni-toast-content {
+    flex: 1 1 auto;
+    padding: 15px 20px;
+
+    .uni-toast-title {
+      font-size: 14pt;
+      font-weight: 550;
+    }
+  }
+
+  .uni-toast-progressbar {
+    height: 5px;
+    border-bottom-left-radius: $uni-border-radius-sm;
+  }
+
+  &.dismissable {
+    cursor: pointer;
+  }
+
+  &.info {
+    background-color: var(--primary);
+
+    &:hover {
+      box-shadow: inset 0 0 0 3px var(--primary-l20);
+    }
+
+    .uni-toast-progressbar {
+      background-color: var(--primary-l20);
+    }
+  }
+
+  &.success {
+    background-color: var(--success);
+
+    &:hover {
+      box-shadow: inset 0 0 0 3px var(--success-l20);
+    }
+
+    .uni-toast-progressbar {
+      background-color: var(--success-l20);
+    }
+  }
+
+  &.warning {
+    background-color: var(--warning);
+
+    &:hover {
+      box-shadow: inset 0 0 0 3px var(--warning-l20);
+    }
+
+    .uni-toast-progressbar {
+      background-color: var(--warning-l20);
+    }
+  }
+
+  &.danger {
+    background-color: var(--danger);
+
+    &:hover {
+      box-shadow: inset 0 0 0 3px var(--danger-l20);
+    }
+
+    .uni-toast-progressbar {
+      background-color: var(--danger-l20);
+    }
+  }
+}

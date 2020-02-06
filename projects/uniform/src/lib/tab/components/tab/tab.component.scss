@@ -1,0 +1,7 @@
+:host {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}

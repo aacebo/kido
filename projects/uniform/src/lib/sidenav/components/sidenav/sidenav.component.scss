@@ -1,0 +1,30 @@
+@import '../../../core/styles/animations';
+@import '../../../core/styles/colors';
+
+:host {
+  display: block;
+  position: absolute;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 2;
+  transition-duration: $uni-animation-duration;
+  transition-timing-function: $uni-animation-timing-function;
+
+  @include uni-colors;
+
+  &.end {
+    right: 0;
+
+    &.closed {
+      transform: translateX(100%);
+    }
+  }
+
+  &.closed {
+    transform: translateX(-100%);
+  }
+
+  &.over {
+    z-index: 3;
+  }
+}

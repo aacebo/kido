@@ -1,0 +1,39 @@
+@import '../../../core/styles/animations';
+@import '../../progress';
+
+:host {
+  display: inline-block;
+
+  &.indeterminate {
+    @include uni-spinner-indeterminate();
+  }
+
+  svg {
+    circle {
+      fill: transparent;
+      transition: $uni-animation-duration stroke-dashoffset;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+
+      &.primary {
+        stroke: var(--primary);
+      }
+
+      &.secondary {
+        stroke: var(--secondary);
+      }
+
+      &.success {
+        stroke: var(--success);
+      }
+
+      &.warning {
+        stroke: var(--warning);
+      }
+
+      &.danger {
+        stroke: var(--danger);
+      }
+    }
+  }
+}

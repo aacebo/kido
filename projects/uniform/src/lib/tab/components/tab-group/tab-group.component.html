@@ -1,0 +1,10 @@
+<div class="uni-tab-header">
+  <uni-tab-label *ngFor="let tab of tabs.toArray(); index as i"
+                 [active]="+active === i"
+                 [color]="color"
+                 (click)="select(i)">
+    {{ tab.label }}
+  </uni-tab-label>
+</div>
+
+<ng-content select="uni-tab"></ng-content>

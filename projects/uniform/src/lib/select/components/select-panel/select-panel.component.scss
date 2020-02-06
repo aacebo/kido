@@ -1,0 +1,10 @@
+@import '../../../core/styles/box-shadow';
+@import '../../../core/styles/border-radius';
+
+:host {
+  display: block;
+  border-radius: $uni-border-radius-sm;
+  width: 100%;
+  background-color: var(--white);
+  box-shadow: $uni-shadow-16dp;
+}

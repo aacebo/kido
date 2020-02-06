@@ -1,0 +1,14 @@
+<div class="uni-toast-content">
+  <div *ngIf="options.title"
+       class="uni-toast-title">
+    {{ options.title }}
+  </div>
+  <div class="uni-toast-message">
+    {{ options.message }}
+  </div>
+</div>
+
+<div class="uni-toast-progressbar"
+     *ngIf="config.progressBar"
+     [style.width.%]="progress | async">
+</div>

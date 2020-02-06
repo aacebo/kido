@@ -1,0 +1,49 @@
+:host {
+  display: block;
+
+  svg {
+    .uni-progress-bar-background {
+      &.primary {
+        fill: var(--primary-a50);
+      }
+
+      &.secondary {
+        fill: var(--secondary-a50);
+      }
+
+      &.success {
+        fill: var(--success-a50);
+      }
+
+      &.warning {
+        fill: var(--warning-a50);
+      }
+
+      &.danger {
+        fill: var(--danger-a50);
+      }
+    }
+
+    .uni-progress-bar-foreground {
+      &.primary {
+        fill: var(--primary);
+      }
+
+      &.secondary {
+        fill: var(--secondary);
+      }
+
+      &.success {
+        fill: var(--success);
+      }
+
+      &.warning {
+        fill: var(--warning);
+      }
+
+      &.danger {
+        fill: var(--danger);
+      }
+    }
+  }
+}

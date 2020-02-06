@@ -1,0 +1,7 @@
+<div class="uni-backdrop"
+     [class.visible]="showBackdrop"
+     (click)="backdropClicked.emit()">
+</div>
+
+<ng-content select="uni-sidenav"></ng-content>
+<ng-content select="uni-sidenav-content"></ng-content>

@@ -1,0 +1,32 @@
+<div
+  class="uni-select-trigger"
+  cdk-overlay-origin
+  #origin="cdkOverlayOrigin"
+  #trigger
+  (click)="toggle()">
+  <div class="uni-select-text">
+    <div *ngIf="!selected" class="uni-select-placeholder">{{ placeholder }}</div>
+    <div *ngIf="selected" class="uni-select-value">{{ selected }}</div>
+  </div>
+
+  <div class="uni-select-icon"
+       [ngClass]="{ bottom: (opened | async) }">
+  </div>
+</div>
+
+<ng-template
+  cdk-connected-overlay
+  cdkConnectedOverlayLockPosition
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  [cdkConnectedOverlayOrigin]="origin"
+  [cdkConnectedOverlayOpen]="opened | async"
+  [cdkConnectedOverlayPositions]="positions"
+  [cdkConnectedOverlayMinWidth]="minWidth"
+  [cdkConnectedOverlayOffsetY]="50"
+  (backdropClick)="close()"
+  (detach)="close()">
+  <uni-select-panel [ngClass]="panelClass">
+    <ng-content select="uni-option"></ng-content>
+  </uni-select-panel>
+</ng-template>

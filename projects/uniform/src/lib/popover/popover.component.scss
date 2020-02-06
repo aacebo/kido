@@ -1,0 +1,40 @@
+@import '../core/styles/animations';
+@import '../core/styles/arrow';
+@import '../core/styles/box-shadow';
+@import '../core/styles/border-radius';
+
+$uni-popover-margin: 10px;
+$uni-popover-bg-color: var(--white);
+$uni-popover-color: var(--black);
+$uni-popover-title-bg-color: rgb(230, 235, 236);
+
+:host {
+  font-size: 12px;
+  max-width: 250px;
+  padding: 15px;
+  overflow-wrap: break-word;
+  border-radius: $uni-border-radius-sm;
+  background-color: $uni-popover-bg-color;
+  box-shadow: $uni-shadow-8dp;
+  color: $uni-popover-color;
+  transition-duration: $uni-animation-duration;
+  transition-timing-function: $uni-animation-timing-function;
+
+  @include uni-arrow(var(--white), var(--white));
+
+  &.top, &.top-left, &.top-right {
+    margin-bottom: $uni-popover-margin;
+  }
+
+  &.bottom, &.bottom-left, &.bottom-right {
+    margin-top: $uni-popover-margin;
+  }
+
+  &.left {
+    margin-right: $uni-popover-margin;
+  }
+
+  &.right {
+    margin-left: $uni-popover-margin;
+  }
+}

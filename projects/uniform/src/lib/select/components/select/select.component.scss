@@ -1,0 +1,72 @@
+@import '../../../form-field/form-field-control';
+@import '../../../core/styles/border-radius';
+
+:host {
+  display: block;
+  outline: none;
+  border-radius: $uni-border-radius-sm;
+
+  &:focus {
+    box-shadow: $uni-form-control-outline;
+  }
+
+  .uni-select-trigger {
+    display: flex;
+    padding: 12px 20px;
+    cursor: pointer;
+    background-color: $uni-form-control-bg;
+    border-radius: $uni-border-radius-sm;
+
+    .uni-select-text {
+      flex: 1 1 auto;
+      user-select: none;
+    }
+
+    .uni-select-placeholder {
+      color: $uni-form-control-placeholder;
+    }
+
+    .uni-select-icon {
+      font-size: 12px;
+      margin: auto;
+      margin-left: 10px;
+      color: var(--grey);
+      user-select: none;
+
+      &:before {
+        border-style: solid;
+        border-width: 0.25em 0.25em 0 0;
+        content: '';
+        display: inline-block;
+        height: 0.45em;
+        left: 0.15em;
+        position: relative;
+        top: 0.15em;
+        transform: rotate(-45deg);
+        vertical-align: top;
+        width: 0.45em;
+      }
+
+      &.right {
+        &:before {
+          left: 0;
+          transform: rotate(45deg);
+        }
+      }
+
+      &.left {
+        &:before {
+          left: 0.25em;
+          transform: rotate(-135deg);
+        }
+      }
+
+      &.bottom {
+        &:before {
+          top: 0;
+          transform: rotate(135deg);
+        }
+      }
+    }
+  }
+}

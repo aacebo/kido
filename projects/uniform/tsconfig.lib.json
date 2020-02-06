@@ -3,9 +3,10 @@
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
     "target": "es2015",
+    "module": "es2015",
     "declaration": true,
     "inlineSources": true,
-    "types": [],
+    "moduleResolution": "node",
     "lib": [
       "dom",
       "es2018"

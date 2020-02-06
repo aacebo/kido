@@ -1,0 +1,7 @@
+@import '../../form-field-control';
+@import '../../../core/styles/border-radius';
+
+:host {
+  display: inline-block;
+  border-radius: $uni-border-radius-sm;
+}

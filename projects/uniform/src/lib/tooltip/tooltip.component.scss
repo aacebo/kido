@@ -1,0 +1,38 @@
+@import '../core/styles/animations';
+@import '../core/styles/arrow';
+@import '../core/styles/border-radius';
+
+$uni-tooltip-margin: 10px;
+$uni-tooltip-bg-color: var(--black);
+$uni-tooltip-color: var(--white);
+
+:host {
+  max-width: 250px;
+  overflow-wrap: break-word;
+  padding: 10px;
+  border-radius: $uni-border-radius-sm;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: $uni-tooltip-bg-color;
+  color: $uni-tooltip-color;
+  transition-duration: $uni-animation-duration;
+  transition-timing-function: $uni-animation-timing-function;
+
+  @include uni-arrow(var(--black), var(--black));
+
+  &.top, &.top-left, &.top-right {
+    margin-bottom: $uni-tooltip-margin;
+  }
+
+  &.bottom, &.bottom-left, &.bottom-right {
+    margin-top: $uni-tooltip-margin;
+  }
+
+  &.left {
+    margin-right: $uni-tooltip-margin;
+  }
+
+  &.right {
+    margin-left: $uni-tooltip-margin;
+  }
+}

@@ -1,0 +1,146 @@
+@import '../core/styles/colors';
+@import '../core/styles/animations';
+@import './button';
+
+:host {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  outline: none;
+  border: 2px solid transparent;
+  user-select: none;
+  cursor: pointer;
+  transition-duration: $uni-animation-duration;
+  transition-timing-function: $uni-animation-timing-function;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  &.uni-button {
+    @include uni-colors();
+
+    &:hover {
+      filter: brightness(1.2);
+
+      &:disabled {
+        filter: none;
+      }
+    }
+  }
+
+  &.uni-fab,
+  &.uni-outline-fab {
+    height: 50px;
+    width: 50px;
+  }
+
+  &.uni-mini-fab,
+  &.uni-outline-mini-fab,
+  &.uni-icon-button {
+    height: 40px;
+    width: 40px;
+  }
+
+  &.uni-fab,
+  &.uni-mini-fab,
+  &.uni-outline-fab,
+  &.uni-outline-mini-fab {
+    $uni-color: var(--white);
+
+    border-radius: 100%;
+    padding: 0;
+    color: $uni-color;
+
+    &:hover {
+      filter: brightness(1.2);
+
+      &:disabled {
+        filter: none;
+      }
+    }
+
+    &.primary {
+      @include uni-fab(--primary);
+    }
+
+    &.secondary {
+      @include uni-fab(--secondary);
+    }
+
+    &.success {
+      @include uni-fab(--success);
+    }
+
+    &.warning {
+      @include uni-fab(--warning);
+    }
+
+    &.danger {
+      @include uni-fab(--danger);
+    }
+  }
+
+  &.uni-icon-button {
+    $uni-color: var(--white);
+
+    border-radius: 100%;
+    padding: 0;
+    background-color: transparent;
+    color: $uni-color;
+
+    &:hover {
+      background-color: var(--white-a25);
+
+      &:disabled {
+        background-color: transparent;
+      }
+    }
+
+    &.primary {
+      @include uni-icon-button(--primary);
+    }
+
+    &.secondary {
+      @include uni-icon-button(--secondary);
+    }
+
+    &.success {
+      @include uni-icon-button(--success);
+    }
+
+    &.warning {
+      @include uni-icon-button(--warning);
+    }
+
+    &.danger {
+      @include uni-icon-button(--danger);
+    }
+  }
+
+  &.uni-outline-button,
+  &.uni-outline-fab,
+  &.uni-outline-mini-fab {
+    &.primary {
+      @include uni-outline-button(--primary);
+    }
+
+    &.secondary {
+      @include uni-outline-button(--secondary);
+    }
+
+    &.success {
+      @include uni-outline-button(--success);
+    }
+
+    &.warning {
+      @include uni-outline-button(--warning);
+    }
+
+    &.danger {
+      @include uni-outline-button(--danger);
+    }
+  }
+}

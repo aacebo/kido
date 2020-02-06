@@ -1,0 +1,19 @@
+@import '../form-field/form-field-control';
+@import '../core/styles/border-radius';
+
+:host {
+  outline: none;
+  padding: 10px;
+  border: 0px;
+  border-radius: $uni-border-radius-sm;
+  font-size: $uni-form-control-font-size;
+  background-color: $uni-form-control-bg;
+
+  &::placeholder {
+    color: $uni-form-control-placeholder;
+  }
+
+  &:focus {
+    box-shadow: $uni-form-control-outline;
+  }
+}

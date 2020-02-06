@@ -1,0 +1,13 @@
+@keyframes uni-spinner-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin uni-spinner-indeterminate() {
+  animation: uni-spinner-rotate 1s linear infinite;
+}
+

@@ -1,0 +1,69 @@
+$uni-theme-colors: (
+  'primary': #0b81cf,
+  'secondary': #6b6969,
+  'success': #4BB543,
+  'warning': #e49e07,
+  'danger': #a72222,
+
+  'white': #ffffff,
+  'black': #000000,
+  'grey': #6c757d
+);
+
+@function uni-theme-alphas($theme) {
+  $keys: map-keys($theme);
+  $alphas: (15, 20, 25, 30, 50);
+  $map: ();
+
+  @each $key in $keys {
+    @each $alpha in $alphas {
+      $map: map-merge($map, (#{ $key + '-a' + $alpha }: rgba(map-get($theme, $key), $alpha / 100)));
+    }
+  }
+
+  @return $map;
+}
+
+@function uni-theme-lighten($theme) {
+  $keys: map-keys($theme);
+  $values: (20);
+  $map: ();
+
+  @each $key in $keys {
+    @each $value in $values {
+      $map: map-merge($map, (#{ $key + '-l' + $value }: lighten(map-get($theme, $key), $value)));
+    }
+  }
+
+  @return $map;
+}
+
+@function uni-theme-darken($theme) {
+  $keys: map-keys($theme);
+  $values: (20);
+  $map: ();
+
+  @each $key in $keys {
+    @each $value in $values {
+      $map: map-merge($map, (#{ $key + '-d' + $value }: darken(map-get($theme, $key), $value)));
+    }
+  }
+
+  @return $map;
+}
+
+@mixin uni-theme($theme-colors: $uni-theme-colors) {
+  $alphas: uni-theme-alphas($theme-colors);
+  $lighten: uni-theme-lighten($theme-colors);
+  $darken: uni-theme-darken($theme-colors);
+
+  $theme: map-merge($theme-colors, $alphas);
+  $theme: map-merge($theme, $lighten);
+  $theme: map-merge($theme, $darken);
+
+  :root {
+    @each $name, $color in $theme {
+      --#{ $name }: #{ $color };
+    }
+  }
+}

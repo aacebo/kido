@@ -1,0 +1,6 @@
+@import '../../dialog';
+
+:host {
+  display: block;
+  padding: $uni-dialog-padding;
+}

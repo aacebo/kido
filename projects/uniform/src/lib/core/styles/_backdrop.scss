@@ -1,0 +1,15 @@
+$uni-backdrop-index: 2;
+$uni-backdrop-bg-color: rgba(0, 0, 0, 0.8);
+
+.uni-backdrop {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: $uni-backdrop-index;
+  background-color: $uni-backdrop-bg-color;
+  visibility: hidden;
+
+  &.visible {
+    visibility: visible;
+  }
+}
